@@ -43,7 +43,7 @@
  */
 
 require_once "lib/Portabilis/Report/ReportCore.php";
-require_once 'Portabilis/Model/Report/TipoBoletim.php';
+require_once "Reports/Tipos/TipoBoletim.php";
 require_once "App/Model/IedFinder.php";
 
 class BoletimReport extends Portabilis_Report_ReportCore
@@ -59,18 +59,8 @@ class BoletimReport extends Portabilis_Report_ReportCore
       );
     }
 
-    $tiposBoletim = Portabilis_Model_Report_TipoBoletim;
-
-    $templates = array($tiposBoletim::BIMESTRAL                     => 'portabilis_boletim',
-                       $tiposBoletim::TRIMESTRAL                    => 'portabilis_boletim_trimestral',
-                       $tiposBoletim::TRIMESTRAL_CONCEITUAL         => 'portabilis_boletim_primeiro_ano_trimestral',
-                       $tiposBoletim::SEMESTRAL                     => 'portabilis_boletim_semestral',
-                       $tiposBoletim::SEMESTRAL_CONCEITUAL          => 'portabilis_boletim_conceitual_semestral',
-                       $tiposBoletim::SEMESTRAL_EDUCACAO_INFANTIL   => 'portabilis_boletim_educ_infantil_semestral',
-                       $tiposBoletim::PARECER_DESCRITIVO_COMPONENTE => 'portabilis_boletim_parecer',
-                       $tiposBoletim::PARECER_DESCRITIVO_GERAL      => 'portabilis_boletim_parecer_geral');
-
-    $template = is_null($flagTipoBoletimTurma) ? '' : $templates[$flagTipoBoletimTurma];
+    $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
+    $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : '';
 
   	if (empty($template)) {
   		throw new Exception(
