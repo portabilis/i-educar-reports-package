@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header-portrait" pageWidth="572" pageHeight="752" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d2ddb19-fbc0-4ec9-9b68-1b3f41c8ef77">
+	<property name="ireport.zoom" value="1.5026296018031557"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cod_instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cod_escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<queryString language="json">
+		<![CDATA[header]]>
+	</queryString>
+	<field name="nm_instituicao" class="java.lang.String"/>
+	<field name="nm_responsavel" class="java.lang.String"/>
+	<field name="nm_escola" class="java.lang.String"/>
+	<field name="tipo_logradouro" class="java.lang.String"/>
+	<field name="logradouro" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="numero" class="java.math.BigDecimal"/>
+	<field name="fone_ddd" class="java.math.BigDecimal"/>
+	<field name="cel_ddd" class="java.math.BigDecimal"/>
+	<field name="cep" class="java.lang.String"/>
+	<field name="fone" class="java.lang.String"/>
+	<field name="cel" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="uf" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="inep" class="java.lang.Long"/>
+	<pageHeader>
+		<band height="81" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="383" y="0" width="166" height="10" uuid="87541580-69bf-4d1f-b67c-9a2fc57807bc"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Ano letivo:</b>"+$P{ano}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="0" width="341" height="10" uuid="f6960e90-9ff9-4ae7-b8fe-cd89f3390925"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_instituicao}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="186" y="38" width="139" height="10" uuid="f0dffc35-22d0-4ba4-b497-7098acce5fc0">
+					<printWhenExpression><![CDATA[$P{cod_escola}!=0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Celular:</b> "+($F{cel_ddd}!=null ? "("+$F{cel_ddd}+")" : "(  )")+($F{cel} != null ? $F{cel} : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="18" width="341" height="10" uuid="a5375e45-67e9-4e74-8a95-c6bb3a0e7290">
+					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_escola}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="38" width="150" height="10" uuid="1176d12b-48c8-4a50-8104-f9daf02dc0d4">
+					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Telefone:</b> "+($F{fone_ddd}!=null ? "("+$F{fone_ddd}+")" : "(  )")+($F{fone} != null ? $F{fone} : "")]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="1" width="64" height="47" uuid="9674430f-eca9-43bc-84a7-b31a860f744f"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="28" width="478" height="10" uuid="f1f29642-7441-4092-ba28-a45bb4641b28">
+					<printWhenExpression><![CDATA[$P{cod_escola} != 0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{logradouro} != null ? $F{logradouro}+", " : "" )+($F{numero} != null ? $F{numero} : "S/N")+($F{bairro} != null ? ", "+$F{bairro} : "" )+($F{cidade} != null ? " - "+$F{cidade} : "" )+($F{uf} != null ? " - "+$F{uf} : "" )+($F{cidade} != null ? " - CEP: "+($F{cep} == null ? "" : $F{cep}) : "" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="66" width="548" height="14" uuid="51205443-63af-4d53-88ba-bf5f3d94c56a"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="71" y="9" width="341" height="10" uuid="08a62240-61cb-401e-a8ac-a1b3a17541f1"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_responsavel}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="301" y="38" width="241" height="10" uuid="a065f9a7-f9bc-4117-ba78-c79f630c77d3">
+					<printWhenExpression><![CDATA[$P{cod_escola}!=0]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>E-mail: </b> "+($F{email} != null ? $F{email} : "")]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="361" y="10" width="107" height="13" uuid="87541580-69bf-4d1f-b67c-9a2fc57807bc"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Emitido em:</b>"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy hh:mm" isBlankWhenNull="true">
+				<reportElement x="409" y="10" width="135" height="13" uuid="87541580-69bf-4d1f-b67c-9a2fc57807bc"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="71" y="18" width="478" height="47" uuid="36b23f49-e517-4f26-8fc6-a11221f3e75f">
+					<printWhenExpression><![CDATA[$P{cod_escola} == 0]]></printWhenExpression>
+				</reportElement>
+				<textField>
+					<reportElement x="0" y="1" width="330" height="10" uuid="f1f29642-7441-4092-ba28-a45bb4641b28"/>
+					<textElement markup="html">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{logradouro} != null ? $F{logradouro}+", " : "" )+($F{numero} != null ? $F{numero} : "S/N")+($F{bairro} != null ? ", "+$F{bairro} : "" )+($F{cidade} != null ? " - "+$F{cidade} : "" )+($F{uf} != null ? " - "+$F{uf} : "" )+($F{cidade} != null ? " - CEP: "+$F{cep} : "" )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="11" width="150" height="10" uuid="1176d12b-48c8-4a50-8104-f9daf02dc0d4"/>
+					<textElement markup="html">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Telefone:</b> "+($F{fone_ddd}!=null ? "("+$F{fone_ddd}+")" : "(  )")+($F{fone} != null ? $F{fone} : "")]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement x="414" y="18" width="61" height="10" uuid="a4f9423c-3673-4708-8e06-0ce26812b063">
+					<printWhenExpression><![CDATA[$F{inep} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código INEP:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="476" y="18" width="96" height="10" uuid="d372ad04-b1b2-41b0-9386-e63983551227"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inep} == null ? "" : $F{inep}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>
