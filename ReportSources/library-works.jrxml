@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="works" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="42a736ab-937c-4f66-9b1b-2375e49a22ec">
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/bonot/portabilis/projetos/ieducar/ieducar/modules/Reports/ReportSources/Portabilis/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="data_emissao" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="nm_instituicao" class="java.lang.String"/>
+	<field name="cod_biblioteca" class="java.lang.Integer"/>
+	<field name="cod_acervo" class="java.lang.Integer"/>
+	<field name="titulo" class="java.lang.String"/>
+	<field name="estante" class="java.lang.String"/>
+	<field name="cdd" class="java.lang.String"/>
+	<field name="sub_titulo" class="java.lang.String"/>
+	<field name="cdu" class="java.lang.String"/>
+	<field name="cutter" class="java.lang.String"/>
+	<field name="volume" class="java.lang.Integer"/>
+	<field name="num_edicao" class="java.lang.Integer"/>
+	<field name="ano" class="java.lang.String"/>
+	<field name="num_paginas" class="java.lang.Integer"/>
+	<field name="ref_cod_biblioteca" class="java.lang.Integer"/>
+	<field name="ref_cod_tipo_autor" class="java.lang.Integer"/>
+	<field name="tipo_autor" class="java.lang.String"/>
+	<field name="isbn" class="java.lang.String"/>
+	<field name="nm_biblioteca" class="java.lang.String"/>
+	<field name="autor" class="java.lang.String"/>
+	<field name="nm_tipo_exemplar" class="java.lang.String"/>
+	<field name="nm_colecao" class="java.lang.String"/>
+	<field name="nm_idioma" class="java.lang.String"/>
+	<field name="nm_editora" class="java.lang.String"/>
+	<group name="Biblioteca" keepTogether="true">
+		<groupExpression><![CDATA[$F{cod_biblioteca}]]></groupExpression>
+		<groupHeader>
+			<band height="35">
+				<line>
+					<reportElement x="0" y="1" width="555" height="1" uuid="61262edc-6e1e-4015-9ee5-70b7805de039"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="3" y="4" width="100" height="10" uuid="8493f0ec-49c8-4e2f-9fc5-a8a3a0f0b843"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Biblioteca]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="3" y="14" width="285" height="10" uuid="fc6cea34-5e8f-430c-ba51-37fe09e4a72f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nm_biblioteca}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="27" width="555" height="1" uuid="61262edc-6e1e-4015-9ee5-70b7805de039"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="24">
+				<textField>
+					<reportElement x="440" y="7" width="114" height="11" uuid="be1b76f3-80e3-4304-b028-c15cfacebac1"/>
+					<textElement textAlignment="Right" markup="html">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Total de obras:</b> "+ $V{Biblioteca_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="105" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="94" uuid="2990dbb6-be86-4038-96d4-95a79b28b25d"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Relação de obras"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao"/>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait-listing.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="18" forecolor="#DCDCDC" backcolor="#DCDCDC" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="1" y="4" width="25" height="11" uuid="f99f5d12-5cf0-4aa5-a676-be73f7b75f8d"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cód.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="26" y="4" width="36" height="11" uuid="8d5f35e6-a513-4012-8427-8683b582d6d7"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cod_acervo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="98" y="4" width="165" height="11" uuid="2cb30d31-a73e-4a7e-8513-97a9a78db30b"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="315" y="4" width="238" height="11" uuid="06ae71e3-9e72-4e0a-b865-ff8ce50a1b8e"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sub_titulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="68" y="4" width="31" height="11" uuid="0fcbbebd-caaa-42bd-b95d-08b52662d415"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Título:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="265" y="4" width="51" height="11" uuid="09ff6f62-230d-43c5-8262-e03683409f3a"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sub-título:]]></text>
+			</staticText>
+		</band>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="15" isPrintWhenDetailOverflows="true" forecolor="#DCDCDC" backcolor="#DCDCDC" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="476" y="0" width="77" height="11" uuid="9c86b114-948e-4611-9713-ac4c67d5d6a4"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_tipo_exemplar}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="1" y="0" width="40" height="11" uuid="49a62f25-aa86-4630-bfc3-e00349654386"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Coleção:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="146" y="0" width="36" height="11" uuid="a7e35092-1175-45cd-8523-d1c83b83bccd"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Idioma:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="181" y="0" width="81" height="11" uuid="97bdf200-56c6-4dc2-bf82-fc8c894abd17"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_idioma}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="265" y="0" width="38" height="11" uuid="87caf1af-764d-4796-894e-c011648e1313"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Editora:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="302" y="0" width="100" height="11" uuid="9d278357-517e-4c11-931d-d1aa71e89b51"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_editora}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="406" y="0" width="71" height="11" uuid="65f580dc-0ac2-48f8-bde2-68864e1e87a5"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo exemplar:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="41" y="0" width="104" height="11" uuid="0aa5706d-a29e-461f-b6b5-ade3a39239ff"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_colecao}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="15" forecolor="#DCDCDC" backcolor="#DCDCDC" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="0" width="48" height="11" uuid="1d9d7886-25e5-4ccb-a68a-4eae7ba252dd"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Autor(es):]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="48" y="0" width="215" height="11" uuid="16bee438-ec2b-4e8d-ab80-b697741daddb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ref_cod_tipo_autor} == 1 ? $F{autor} : $F{ref_cod_tipo_autor} == 4 ? "Obra anônima" :
+$F{ref_cod_tipo_autor} == 2 || $F{ref_cod_tipo_autor} == 3 ? $F{tipo_autor} : ""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="265" y="0" width="23" height="11" uuid="15d2fdbb-1b84-4317-b03e-1af3cefc9235"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vol.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="0" width="35" height="11" uuid="81343bfa-b34f-4dc2-8af7-d353459a8dfc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edição:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="0" width="23" height="11" uuid="1da363a7-02bf-442d-a974-39c0d69ca3e7"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ano:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="287" y="0" width="47" height="11" uuid="1756341c-8196-41de-9f6a-e422fee63f91"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{volume}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="373" y="0" width="30" height="11" uuid="722c0c4f-eecb-4dc8-8e9e-e0f923890ad0"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_edicao}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="428" y="0" width="70" height="11" uuid="166fa2a0-9a0b-4d09-b7ab-b4ef5afec10e"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="501" y="0" width="30" height="11" uuid="000328d7-eee9-4271-8183-14d2f8a55df5"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Págs.:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="530" y="0" width="21" height="11" uuid="cf912f4e-3d77-4481-9a0f-5d1548a576f5"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_paginas}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="18" forecolor="#DCDCDC" backcolor="#DCDCDC" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="265" y="1" width="24" height="11" uuid="42dea64f-9a1b-4c72-8e58-1b5a45f03696"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CDU:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="1" width="34" height="11" uuid="c93e76d6-f72f-455e-a445-d2b936f01b03"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cutter:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="1" width="26" height="11" uuid="2dddbdfe-e343-4f59-b041-f446f29ae1ae"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ISBN:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="288" y="1" width="58" height="11" uuid="60328af3-5f4b-40eb-95e9-ab202a2e7105"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cdu}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="439" y="1" width="81" height="11" uuid="6f4cda61-c77b-40ff-89d8-187d346f57d4"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cutter}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="94" y="1" width="110" height="11" uuid="0301d837-b6f1-4872-bb6a-161868bf6e56"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{isbn}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="1" width="40" height="11" uuid="1d9d7886-25e5-4ccb-a68a-4eae7ba252dd"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estante:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="40" y="1" width="25" height="11" uuid="b7feb1fd-0f07-481b-b2f9-d5178a3396ae"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="206" y="1" width="24" height="11" uuid="1d9d7886-25e5-4ccb-a68a-4eae7ba252dd"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CDD:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="230" y="1" width="36" height="11" uuid="722c0c4f-eecb-4dc8-8e9e-e0f923890ad0"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cdd}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="2" width="55" height="11" uuid="578a3b03-e89a-40f7-a4b9-5318bee25adb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data e hora:]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="531" y="2" width="23" height="11" uuid="107e7588-b8c9-4b89-b641-b3e945523771"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="2" width="100" height="11" uuid="bf961f8e-15b0-4d54-99ea-e7a6044ed124"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="0" width="554" height="1" uuid="3dfca454-5212-40e8-8ad3-de9ba73bb63f"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="439" y="2" width="92" height="11" uuid="be1b76f3-80e3-4304-b028-c15cfacebac1"/>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Página:</b> "+$V{PAGE_NUMBER}+" /"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
