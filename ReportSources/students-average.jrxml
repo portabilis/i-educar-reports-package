@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="students-average" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="660c525a-0168-4141-8483-3075f389d9a9">
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="curso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="serie" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="turma" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="etapa" class="java.lang.String">
+		<defaultValueExpression><![CDATA['0']]></defaultValueExpression>
+	</parameter>
+	<parameter name="limite" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1000000]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="ano" class="java.lang.Integer"/>
+	<field name="nm_instituicao" class="java.lang.String"/>
+	<field name="nm_curso" class="java.lang.String"/>
+	<field name="nm_serie" class="java.lang.String"/>
+	<field name="nm_turma" class="java.lang.String"/>
+	<field name="escola" class="java.lang.String"/>
+	<field name="media" class="java.math.BigDecimal"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="etapa_case" class="java.lang.String"/>
+	<pageHeader>
+		<band height="77" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="59" uuid="bc1a14df-7be7-4ba6-90a3-36a04c852ec4"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Relação de alunos com o melhor desempenho"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="14">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="14" uuid="15605e7d-ba22-4b8a-ad9a-974d3aa77c58"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="43" height="14" uuid="680952a9-8740-42ff-a415-6f2403459820"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<text><![CDATA[Posição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="0" width="145" height="14" uuid="f97ff13b-928a-4ea7-8919-2749a9884cdd"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<text><![CDATA[Curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="0" width="58" height="14" uuid="7e72d56e-d38b-4830-a9b3-4d65286807c3"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<text><![CDATA[Série]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="513" y="0" width="42" height="14" uuid="a62642bf-9574-4fe2-8203-d7d9f30fd291"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<text><![CDATA[Média]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="0" width="166" height="14" uuid="85ba1532-12b5-41cc-92f6-5bb6210e6272"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<text><![CDATA[Nome do aluno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="412" y="0" width="101" height="14" uuid="96b2489e-cbe9-4122-9ac2-fd0cabe5ddbc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<text><![CDATA[Turma]]></text>
+			</staticText>
+			<line>
+				<reportElement x="42" y="0" width="1" height="14" uuid="8db7c205-3fe0-464c-b080-031fb72211ef"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="209" y="0" width="1" height="14" uuid="ac52bc5b-eed7-40b5-a028-be8747781636"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="353" y="0" width="1" height="14" uuid="3831914d-0097-45dd-a861-98e7eaaf393c"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="411" y="0" width="1" height="14" uuid="f729eb9d-01b6-410d-b41e-7a0f7b249108"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="512" y="0" width="1" height="14" uuid="9d036409-8877-43f3-bb4b-156acc6ed0f2"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="14">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="14" uuid="0aabfafa-a9c5-4af1-8013-f82432ef7916"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="354" y="0" width="58" height="14" uuid="795be62a-49d0-47eb-bf77-c14db4f0c736"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_serie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="412" y="0" width="101" height="14" uuid="7a5d9985-92a1-475f-8d55-dbbe72e6b536"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_turma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="513" y="0" width="42" height="14" uuid="48e968c3-e6f3-4f60-862b-03a18d678f79"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{media}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="0" width="166" height="14" uuid="ca8a5dac-6aee-45eb-b9ba-deff7134e619"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="0" width="145" height="14" uuid="c8af1932-eb33-41a8-b0a6-6113c87a77f5"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="43" height="14" uuid="98ad472a-def8-47d3-94bc-4920a1a930d8"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT} + "º"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="512" y="0" width="1" height="14" uuid="7e9ebbbf-3521-4929-b2f5-5fec70879363"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="411" y="0" width="1" height="14" uuid="85849f31-b4c4-4abe-8abd-d2bc348de71f"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="353" y="0" width="1" height="14" uuid="b67645d9-a190-45fe-9682-5819421ab8e8"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="209" y="0" width="1" height="14" uuid="4e8ab977-dd5d-4dab-8516-3aa7d45f94bc"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="42" y="0" width="1" height="14" uuid="3642edce-aee9-45ba-b938-9e0007d4ff23"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="11">
+			<textField>
+				<reportElement x="0" y="0" width="554" height="11" uuid="3aa4ed60-8ddc-4d0e-81ac-58c552ebd60d"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="1" leftIndent="1" rightIndent="1" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{etapa} == "0" ? "* O campo média é referente a média geral de todos os componentes curriculares." :
+"* O campo média é referente a média geral de todos os componentes curriculares da " + $P{etapa} + "º etapa."]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>
