@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detailed-transportation-routes" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21966338-d24f-4052-a3d4-e9fa6950b43a">
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="modelo" class="java.lang.Integer"/>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="nome_instituicao" class="java.lang.String"/>
+	<field name="nome_responsavel" class="java.lang.String"/>
+	<field name="nome_empresa" class="java.lang.String"/>
+	<field name="cod_rota_transporte_escolar" class="java.lang.Integer"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="km_pav" class="java.lang.Double"/>
+	<field name="km_npav" class="java.lang.Double"/>
+	<field name="nome_destino" class="java.lang.String"/>
+	<field name="tercerizado" class="java.lang.String"/>
+	<field name="seq" class="java.lang.Integer"/>
+	<field name="nome_ponto" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="hora" class="java.sql.Time"/>
+	<field name="nome_veiculo" class="java.lang.String"/>
+	<variable name="pontos_count" class="java.lang.Integer" resetType="Group" resetGroup="rota" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{seq}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="rotas_count" class="java.lang.Integer" resetType="Group" resetGroup="empresa" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{cod_rota_transporte_escolar}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="rotas_report_count" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{cod_rota_transporte_escolar}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="empresa">
+		<groupExpression><![CDATA[$F{nome_empresa}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<staticText>
+					<reportElement x="0" y="2" width="59" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Empresa:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="47" y="2" width="312" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nome_empresa}.toUpperCase()]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="13">
+				<staticText>
+					<reportElement x="415" y="0" width="140" height="13" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total de rotas na empresa:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="547" y="0" width="25" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{rotas_count}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="rota">
+		<groupExpression><![CDATA[$F{descricao}]]></groupExpression>
+		<groupHeader>
+			<band height="33">
+				<textField>
+					<reportElement x="0" y="18" width="272" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+					<textElement markup="html">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Destino: </b>"+$F{nome_destino}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="4" width="272" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+					<textElement markup="html">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Rota: </b>"+$F{descricao}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="299" y="17" width="272" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+					<textElement markup="html">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Km não pavimentados: </b>"+($F{km_npav}!=null ? $F{km_npav}.intValue() : 0)]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="299" y="4" width="272" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+					<textElement markup="html">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Km pavimentados: </b>"+($F{km_pav}!=null ? $F{km_pav}.intValue() : 0)]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="18">
+				<printWhenExpression><![CDATA[$F{seq} != null]]></printWhenExpression>
+				<staticText>
+					<reportElement x="0" y="3" width="71" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99">
+						<printWhenExpression><![CDATA[$F{seq} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sequencial]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="84" y="3" width="66" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99">
+						<printWhenExpression><![CDATA[$F{seq} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Ponto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="278" y="3" width="45" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99">
+						<printWhenExpression><![CDATA[$F{seq} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tipo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="334" y="3" width="45" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99">
+						<printWhenExpression><![CDATA[$F{seq} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Veículo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="223" y="3" width="45" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99">
+						<printWhenExpression><![CDATA[$F{seq} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Horário]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="15">
+				<line>
+					<reportElement x="0" y="0" width="572" height="1" uuid="93ae06bc-1c20-4d24-a76f-7ad5607a9ea6"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="415" y="1" width="140" height="13" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99">
+						<printWhenExpression><![CDATA[$V{pontos_count} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total de pontos na rota:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="547" y="1" width="25" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb">
+						<printWhenExpression><![CDATA[$V{pontos_count} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{pontos_count}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="55">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="572" height="55" uuid="0eb1b18e-4b00-4b83-b69f-8c071ee1b88d"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Relatório de Rotas de Transporte"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[0]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{seq} != null]]></printWhenExpression>
+			<rectangle>
+				<reportElement mode="Opaque" x="-1" y="0" width="573" height="15" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="2" width="60" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{seq}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="84" y="2" width="133" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_ponto}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm" isBlankWhenNull="true">
+				<reportElement x="223" y="2" width="45" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="278" y="2" width="45" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb">
+					<printWhenExpression><![CDATA[$F{tipo}!=null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo}.equals("I") ? "Ida" : "Volta"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="334" y="2" width="237" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_veiculo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="13">
+			<staticText>
+				<reportElement x="415" y="0" width="140" height="13" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de rotas geral:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="547" y="0" width="25" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{rotas_report_count}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
