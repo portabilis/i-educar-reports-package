@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="servants" pageWidth="595" pageHeight="840" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0378c531-ef85-4c42-9c57-3c8660b99c2d">
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="linha-zebrado" hTextAlign="Center" hImageAlign="Center">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{ROW_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style backcolor="#F0F0F0"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="componente_curricular" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cabecalho_alternativo" class="java.lang.Integer"/>
+	<parameter name="criterio_aprovacao" class="java.lang.String">
+		<defaultValueExpression><![CDATA["CONCEITO"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="buscar_disciplina" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="funcao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="vinculo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="periodo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_totalizadores" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nao_emitir_afastados" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="nm_escola_servidor" class="java.lang.String"/>
+	<field name="nm_servidor" class="java.lang.String"/>
+	<field name="nm_servidor_order" class="java.lang.String"/>
+	<field name="escolaridade" class="java.lang.String"/>
+	<field name="carga_horaria_total" class="java.lang.Integer"/>
+	<field name="vinculo" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.Long"/>
+	<field name="ddd_telefone" class="java.lang.Long"/>
+	<field name="periodo" class="java.lang.String"/>
+	<variable name="contagem" class="java.lang.Integer" resetType="None" incrementType="Column" calculation="DistinctCount">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="qtd_efet" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(($F{vinculo}.contains( "Efet" )) ? 1 : 0 )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="qtd_cont" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(($F{vinculo}.contains( "Cont" )) ? 1 : 0 )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="qtd_com" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(($F{vinculo}.contains( "Com" )) ? 1 : 0 )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="qtd_est" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(($F{vinculo}.contains( "Est" )) ? 1 : 0 )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="qtd_cont_por_escola" class="java.lang.Integer" resetType="Group" resetGroup="escola" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(($F{vinculo}.contains( "Cont" )) ? 1 : 0 )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="qtd_efet_por_escola" class="java.lang.Integer" resetType="Group" resetGroup="escola" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(($F{vinculo}.contains( "Efet" )) ? 1 : 0 )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="qtd_est_por_escola" class="java.lang.Integer" resetType="Group" resetGroup="escola" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(($F{vinculo}.contains( "Est" )) ? 1 : 0 )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="qtd_com_por_escola" class="java.lang.Integer" resetType="Group" resetGroup="escola" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(($F{vinculo}.contains( "Com" )) ? 1 : 0 )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="qtd_sem_vinc" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(($F{vinculo} == null) ? 1 : 0 )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="qtd_sem_vinc_por_escola" class="java.lang.Integer" resetType="Group" resetGroup="escola" calculation="Sum">
+		<variableExpression><![CDATA[new Integer(($F{vinculo} == null) ? 1 : 0 )]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="escola">
+		<groupExpression><![CDATA[$F{nm_escola_servidor}]]></groupExpression>
+		<groupFooter>
+			<band height="17">
+				<printWhenExpression><![CDATA[$P{emitir_totalizadores}]]></printWhenExpression>
+				<textField>
+					<reportElement x="454" y="3" width="100" height="10" uuid="7aab6e38-06ab-4c7b-8bc7-e21ff4832108">
+						<printWhenExpression><![CDATA[$P{emitir_totalizadores}]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" markup="html">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Total: </b>" + $V{escola_servidor_COUNT}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1" y="3" width="443" height="10" uuid="7aab6e38-06ab-4c7b-8bc7-e21ff4832108">
+						<printWhenExpression><![CDATA[$P{emitir_totalizadores}]]></printWhenExpression>
+					</reportElement>
+					<textElement markup="html">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<b>Efetivos: </b>" + ($V{qtd_efet_por_escola} == null ? 0 : $V{qtd_efet_por_escola}) +
+" - <b>Contratados: </b>" + ($V{qtd_cont_por_escola} == null ? 0 : $V{qtd_cont_por_escola}) +
+" - <b>Comissionados: </b>" + ($V{qtd_com_por_escola} == null ? 0 : $V{qtd_com_por_escola}) +
+" - <b>Estagiários: </b>" + ($V{qtd_est_por_escola} == null ? 0 : $V{qtd_est_por_escola}) +
+" - <b>Sem vínculo: </b>" + ($V{qtd_sem_vinc_por_escola} == null ? 0 : $V{qtd_sem_vinc_por_escola})]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="17"/>
+		</groupFooter>
+	</group>
+	<group name="escola_servidor">
+		<groupExpression><![CDATA[$F{nm_escola_servidor}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<rectangle>
+					<reportElement x="0" y="0" width="555" height="22" uuid="03144c3c-1804-42ed-b626-a68f1e4139c1"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="0" y="22" width="172" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SERVIDOR]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="506" y="22" width="49" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PERÍODO]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="6" width="555" height="12" uuid="13f7cdd6-b162-46b4-a0c6-71c4c2422e27"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nm_escola_servidor}.equals("") ? "NÃO ALOCADOS" : $F{nm_escola_servidor}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="172" y="22" width="88" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ESCOLARIDADE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="476" y="22" width="30" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[C.H.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="421" y="22" width="55" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VÍNCULO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="260" y="22" width="78" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CPF]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="338" y="22" width="83" height="15" uuid="2ff4da37-6cfe-4e70-aa9d-cdf32bd859f7"/>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TELEFONE]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="102">
+			<subreport>
+				<reportElement x="0" y="1" width="555" height="100" uuid="15562236-bb5b-4ab7-bd34-638b125489f8"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Relação de servidores"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="15" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="172" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_servidor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="506" y="0" width="49" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="476" y="0" width="30" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carga_horaria_total}+"h"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="0" width="55" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vinculo} == null ? "" : $F{vinculo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="0" width="83" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefone} == 0 ? "" : "(" + $F{ddd_telefone} + ")" + $F{telefone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="0" width="88" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{escolaridade} == null ? "" : $F{escolaridade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="0" width="78" height="15" uuid="11f408e7-d0d5-4485-b078-995f3630293f"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf} == null ? "" : $F{cpf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="20">
+			<rectangle>
+				<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="5" width="555" height="15" forecolor="#FFFFFF" backcolor="#CCCCCC" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
+					<printWhenExpression><![CDATA[$P{emitir_totalizadores}]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement x="427" y="8" width="123" height="10" uuid="7aab6e38-06ab-4c7b-8bc7-e21ff4832108">
+					<printWhenExpression><![CDATA[$P{emitir_totalizadores}]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Right" markup="html">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Total geral: </b>" + $V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="2" y="8" width="419" height="10" uuid="7aab6e38-06ab-4c7b-8bc7-e21ff4832108">
+					<printWhenExpression><![CDATA[$P{emitir_totalizadores}]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Efetivos: </b>" + ($V{qtd_efet} == null ? "0" : $V{qtd_efet}) +
+" - <b>Contratados: </b>" + ($V{qtd_cont} == null ? "0" : $V{qtd_cont}) +
+" - <b>Comissionados: </b>" + ($V{qtd_com} == null ? "0" : $V{qtd_com}) +
+" - <b>Estagiários: </b>" + ($V{qtd_est} == null ? "0" : $V{qtd_est}) +
+" - <b>Sem vínculo: </b>" + ($V{qtd_sem_vinc} == null ? "0" : $V{qtd_sem_vinc})]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>
