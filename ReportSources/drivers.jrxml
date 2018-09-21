@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="drivers" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21966338-d24f-4052-a3d4-e9fa6950b43a">
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="observacao" class="java.lang.String"/>
+	<parameter name="motorista" class="java.lang.Integer"/>
+	<parameter name="data" class="java.lang.String"/>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="cod_rota" class="java.lang.Integer"/>
+	<field name="nm_rota" class="java.lang.String"/>
+	<field name="nm_coordenador" class="java.lang.String"/>
+	<field name="hora_inicial" class="java.sql.Time"/>
+	<field name="hora_final" class="java.sql.Time"/>
+	<field name="nm_ponto_inicial" class="java.lang.String"/>
+	<field name="nm_ponto_final" class="java.lang.String"/>
+	<field name="nm_motorista" class="java.lang.String"/>
+	<group name="rota">
+		<groupHeader>
+			<band height="28">
+				<staticText>
+					<reportElement x="495" y="16" width="26" height="12" uuid="01638447-9641-4770-b66b-1f6813bb271b"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data:]]></text>
+				</staticText>
+				<textField pattern="HH.mm" isBlankWhenNull="true">
+					<reportElement x="521" y="16" width="51" height="12" uuid="f069952c-f990-4781-a550-83bb59905ed7"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{data}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="50">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="572" height="50" uuid="35b2eff6-857b-46b7-8585-5c24f172455e"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Motoristas de Transporte Escolar"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[0]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="54" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="0" y="2" width="572" height="52" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="30" width="174" height="21" uuid="5d4d81e0-19c9-4d6b-8901-a09a3486be5f"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_ponto_inicial}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="174" y="30" width="172" height="21" uuid="b0e2e99e-4741-46c2-be15-900a110638ad"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_ponto_final}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="346" y="30" width="226" height="21" uuid="aee1f1cb-428c-4eac-ad84-3fe452c2d66e"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_motorista}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="4" width="28" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rota:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="4" width="59" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora inícial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="17" width="59" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Origem:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="495" y="4" width="49" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora final:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="17" width="59" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destino:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="28" y="4" width="318" height="12" uuid="5366c781-60af-4c4c-b7d7-4da2c84c0c67"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_rota}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm" isBlankWhenNull="true">
+				<reportElement x="405" y="4" width="44" height="12" uuid="24f1b33a-23c7-478d-8f65-3cb6fcf8e581"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora_inicial}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm" isBlankWhenNull="true">
+				<reportElement x="544" y="4" width="28" height="12" uuid="f069952c-f990-4781-a550-83bb59905ed7"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora_final}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="346" y="17" width="59" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motorista(s):]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="17">
+			<textField isBlankWhenNull="true">
+				<reportElement x="67" y="3" width="279" height="12" uuid="5366c781-60af-4c4c-b7d7-4da2c84c0c67"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{observacao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="3" width="67" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99">
+					<printWhenExpression><![CDATA[$P{observacao} != ""]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observação:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="347" y="3" width="73" height="12" uuid="01638447-9641-4770-b66b-1f6813bb271b"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Coordenador:]]></text>
+			</staticText>
+			<textField pattern="HH.mm" isBlankWhenNull="true">
+				<reportElement x="420" y="3" width="152" height="12" uuid="f069952c-f990-4781-a550-83bb59905ed7"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_coordenador}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
