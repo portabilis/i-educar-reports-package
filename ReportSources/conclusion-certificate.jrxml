@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="conclusion-certificate" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ebfea547-cf8a-408f-af8a-1e9e8f07874e">
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="observacao" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="emitir_frequencia" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cabecalho_alternativo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_nome_diretor" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="curso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="serie" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="turma" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="aluno" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="matricula" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mostrar_prazo_entrega_historico" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="prazo_entrega_historico" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[30]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="nm_instituicao" class="java.lang.String"/>
+	<field name="nm_responsavel" class="java.lang.String"/>
+	<field name="cod_escola" class="java.lang.Integer"/>
+	<field name="ano" class="java.lang.Integer"/>
+	<field name="nm_curso" class="java.lang.String"/>
+	<field name="sigla_curso" class="java.lang.String"/>
+	<field name="nm_serie" class="java.lang.String"/>
+	<field name="nm_turma" class="java.lang.String"/>
+	<field name="periodo" class="java.lang.String"/>
+	<field name="cod_aluno" class="java.lang.Integer"/>
+	<field name="cod_matricula" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="data_atual" class="java.lang.String"/>
+	<field name="data_nasc" class="java.lang.String"/>
+	<field name="municipio_uf_nascimento" class="java.lang.String"/>
+	<field name="dt_matricula" class="java.lang.String"/>
+	<field name="matricula_ano" class="java.lang.Integer"/>
+	<field name="nm_pai" class="java.lang.String"/>
+	<field name="nm_mae" class="java.lang.String"/>
+	<field name="nm_escola" class="java.lang.String"/>
+	<field name="tipo_logradouro" class="java.lang.String"/>
+	<field name="logradouro" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="numero" class="java.math.BigDecimal"/>
+	<field name="uf_municipio" class="java.lang.String"/>
+	<field name="fone_ddd" class="java.math.BigDecimal"/>
+	<field name="cep" class="java.lang.String"/>
+	<field name="fone" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="hora_atual" class="java.lang.String"/>
+	<field name="cod_inep" class="java.lang.Long"/>
+	<field name="cod_nis" class="java.math.BigDecimal"/>
+	<field name="aluno_estado_id" class="java.lang.String"/>
+	<field name="frequencia" class="java.math.BigDecimal"/>
+	<field name="diretor" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="117" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="117" uuid="96e6597c-b865-4552-bc23-e71c9c547339"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$F{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA[""]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[0]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="501" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="21" y="90" width="513" height="105" uuid="09b1099f-fbaf-45f9-aaa9-9fa8f5d23f8d"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="10"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Declaramos para os devidos fins de direitos, que o(a) aluno(a) " + $F{nome} + " código do ID " + $F{cod_aluno} + ", nascido(a) em " + $F{data_nasc} + ", no município de " +
+$F{municipio_uf_nascimento} + ", filho(a) de "+ ($F{nm_pai}.equals("") && $F{nm_mae}.equals("") ? "Não Informado" : (!$F{nm_pai}.equals("") && $F{nm_mae}.equals("")
+    ? $F{nm_pai} : ($F{nm_pai}.equals("") && !$F{nm_mae}.equals("")
+    ? $F{nm_mae} : ($F{nm_mae} + " e de " + $F{nm_pai})))) + ", concluiu o(a) " + $F{nm_serie} + "/" + $F{sigla_curso} +
+", do(a) " + $F{nm_curso} + ", neste Estabelecimento de Ensino, no ano de " + $F{ano} + "."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="56" width="555" height="15" uuid="8254ee26-1c44-4a50-af32-278794dee199"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DECLARAÇÃO DE CONCLUSÃO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="21" y="220" width="513" height="20" uuid="025e1b59-5dc8-44d2-ba52-45f399d97bd6">
+					<printWhenExpression><![CDATA[$P{mostrar_prazo_entrega_historico}]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Declaramos que o Histórico Escolar será expedido no prazo de " +  $P{prazo_entrega_historico} + " dia(s)."]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="21" y="485" width="513" height="14" uuid="90b88942-ea8c-4d08-a9e9-63d3f59a46b0"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade}+", "+$F{data_atual}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="21" y="339" width="68" height="12" uuid="b1b6820c-9942-4dde-92b9-b73466b8f22b"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Observação:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="89" y="339" width="445" height="121" uuid="d887c1ae-b508-427f-8d43-83229fa03dbf"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{observacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="21" y="269" width="513" height="15" uuid="0d0d550b-9013-4377-961e-d714d8047c04"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Código nacional (INEP): " + ($F{cod_inep} == null ? "" : $F{cod_inep})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="88">
+			<staticText>
+				<reportElement x="134" y="27" width="287" height="20" uuid="9877fef6-6597-4474-be5f-504b1757aed0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Assinatura]]></text>
+			</staticText>
+			<line>
+				<reportElement x="134" y="26" width="287" height="1" uuid="f7bd76a9-7cb8-4fa1-8a30-c513bce076a6"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>
