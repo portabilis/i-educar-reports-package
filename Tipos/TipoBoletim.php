@@ -7,11 +7,11 @@ class Portabilis_Model_Report_TipoBoletim extends CoreExt_Enum
     const BIMESTRAL = 1;
 
     protected $_data = array(
-        self::BIMESTRAL => 'Bimestral',
+        self::BIMESTRAL => 'Bimestral'
     );
 
     protected $_reports = array(
-        self::BIMESTRAL => 'portabilis_boletim',
+        self::BIMESTRAL => 'report-card'
     );
 
     public function getReports()

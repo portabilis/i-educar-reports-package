@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="transportation-routes" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21966338-d24f-4052-a3d4-e9fa6950b43a">
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/lucas/projects/ieducar/ieducar-utils/reports/jasperreports/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="modelo" class="java.lang.Integer"/>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="nome_instituicao" class="java.lang.String"/>
+	<field name="nome_responsavel" class="java.lang.String"/>
+	<field name="nome_empresa" class="java.lang.String"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="km_pav" class="java.lang.Double"/>
+	<field name="km_npav" class="java.lang.Double"/>
+	<field name="nome_destino" class="java.lang.String"/>
+	<field name="tercerizado" class="java.lang.String"/>
+	<variable name="count_kpav" class="java.lang.Integer" resetType="Group" resetGroup="empresa" calculation="Sum">
+		<variableExpression><![CDATA[$F{km_pav}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="count_knpav" class="java.lang.Integer" resetType="Group" resetGroup="empresa" calculation="Sum">
+		<variableExpression><![CDATA[$F{km_npav}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="empresa">
+		<groupExpression><![CDATA[$F{nome_empresa}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<staticText>
+					<reportElement x="12" y="2" width="47" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Empresa:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="59" y="2" width="300" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nome_empresa}.toUpperCase()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="477" y="16" width="67" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Km pav.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="12" y="15" width="243" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Rota]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="401" y="16" width="67" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Km não pav.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="329" y="16" width="59" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tercerizado]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="19">
+				<staticText>
+					<reportElement x="12" y="2" width="243" height="12" uuid="346efedb-317a-499a-b49b-b5aa8bbccf99"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="401" y="2" width="65" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($V{count_knpav}==null ? 0 : $V{count_knpav})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="477" y="1" width="65" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($V{count_kpav} == null ? 0 : $V{count_kpav})]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="11" y="14" width="540" height="1" uuid="93ae06bc-1c20-4d24-a76f-7ad5607a9ea6"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="50">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="572" height="50" uuid="35b2eff6-857b-46b7-8585-5c24f172455e"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[0]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Rotas de Transporte Escolar"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Opaque" x="12" y="0" width="540" height="15" forecolor="#FFFFFF" backcolor="#F0F0F0" uuid="31f4ee65-09f0-489c-b178-f91ba385052f">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 1)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement x="12" y="2" width="304" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="401" y="2" width="65" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{km_npav} == null ? 0 : $F{km_npav}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="477" y="2" width="65" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{km_pav} == null ? 0 : $F{km_pav}.intValue())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="0" width="59" height="13" uuid="c1d665e8-f1a5-4faa-84a7-a5779fbccbeb"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tercerizado}.equals("S") ? "Sim" : "Não"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

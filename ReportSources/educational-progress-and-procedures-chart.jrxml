@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="educational-progress-and-procedures-chart" language="groovy" pageWidth="612" pageHeight="200" columnWidth="515" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3f8d8580-478d-4021-a547-d37af41d360a">
+	<property name="ireport.zoom" value="1.5421731577181272"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<queryString language="json">
+		<![CDATA[quantitative_chart]]>
+	</queryString>
+	<field name="percentual" class="java.math.BigDecimal"/>
+	<field name="situacao" class="java.lang.String"/>
+	<summary>
+		<band height="200" splitType="Stretch">
+			<barChart>
+				<chart theme="default">
+					<reportElement stretchType="RelativeToBandHeight" x="10" y="0" width="553" height="200" isPrintWhenDetailOverflows="true" uuid="826e40d0-92b0-432a-9add-76d5d43b1e99"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{situacao}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{percentual} + " %"]]></categoryExpression>
+						<valueExpression><![CDATA[$F{percentual}]]></valueExpression>
+						<labelExpression><![CDATA[$F{situacao}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>
