@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_distribuido_por_aluno" pageWidth="595" pageHeight="841" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3f92d803-86a0-4be9-adab-22f9919b925b">
+	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="aluno" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="curso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="serie" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="turma" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="codigo_aluno" class="java.lang.Integer"/>
+	<field name="data" class="java.lang.String"/>
+	<field name="aluno" class="java.lang.String"/>
+	<field name="recebeu_kit" class="java.lang.Boolean"/>
+	<field name="qt_agasalho" class="java.lang.Integer"/>
+	<field name="qt_camiseta_curta" class="java.lang.Integer"/>
+	<field name="qt_camiseta_longa" class="java.lang.Integer"/>
+	<field name="qt_meias" class="java.lang.Integer"/>
+	<field name="qt_bermudas_tectels" class="java.lang.Integer"/>
+	<field name="qt_bermudas_coton" class="java.lang.Integer"/>
+	<field name="qt_tenis" class="java.lang.Integer"/>
+	<field name="tm_agasalho" class="java.lang.String"/>
+	<field name="tm_camiseta_curta" class="java.lang.String"/>
+	<field name="tm_camiseta_longa" class="java.lang.String"/>
+	<field name="tm_meias" class="java.lang.String"/>
+	<field name="tm_bermudas_tectels" class="java.lang.String"/>
+	<field name="tm_bermudas_coton" class="java.lang.String"/>
+	<field name="tm_tenis" class="java.lang.String"/>
+	<field name="escola_uniforme" class="java.lang.String"/>
+	<field name="escola" class="java.lang.String"/>
+	<field name="ano" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="104" uuid="e2c330a6-9f0d-4f0e-869d-5e103714c3d4"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Distribuição de uniformes"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="43">
+			<staticText>
+				<reportElement x="50" y="13" width="40" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Ano]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="13" backcolor="#DEDEDE" uuid="d8e55987-bbfc-4142-97d6-f8a964ceea04"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nome Escola: "+ $F{escola}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="13" width="97" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Nome do aluno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="13" width="43" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Kit completo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="13" width="118" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Kit parcial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="13" width="132" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Entregue por]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="13" width="50" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Cod Aluno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="13" width="75" height="30" uuid="106b95f3-8cea-4dc0-a2b5-e62bc71ed94b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Data de recebimento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38">
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="50" height="38" uuid="9957235a-07e0-423f-8530-2b665dca7397"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_aluno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="50" y="0" width="40" height="38" uuid="035c7af7-d915-4738-87a8-338421d44578"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="90" y="0" width="97" height="38" uuid="fe48b629-9354-43f9-82a5-fa93e059c21e"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aluno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="187" y="0" width="43" height="38" uuid="dfb0397d-322e-4d48-8729-ea5b28a80752"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recebeu_kit} == false ? "Não" : "Sim"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="230" y="0" width="118" height="38" isRemoveLineWhenBlank="true" uuid="2906be8a-413b-43d2-91cd-4456e878e7d2"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recebeu_kit} == false ? ("Sim" + "<br/>" + "Item - Qtd - Tam" + "<br/>" +
+($F{qt_agasalho}           == 0 ? "" : ("<br/>Agasalho - " + $F{qt_agasalho} + " - " + $F{tm_agasalho} + "<br/>")) +
+($F{qt_camiseta_curta}    == 0  ? "" : ("Camiseta Curta - " + $F{qt_camiseta_curta} + " - " + $F{tm_camiseta_curta} + "<br/>")) +
+($F{qt_camiseta_longa}    == 0  ? "" : ("Camiseta Longa - " + $F{qt_camiseta_longa} + " - " + $F{tm_camiseta_longa} + "<br/>")) +
+($F{qt_meias}              == 0  ? "" : ("Meias - " + $F{qt_meias} + " - " + $F{tm_meias} + "<br/>")) +
+($F{qt_bermudas_tectels}  == 0  ? "" : ("Bermudas Tectels - " + $F{qt_bermudas_tectels} + " - " + $F{qt_bermudas_tectels} + "<br/>")) +
+($F{qt_bermudas_coton}     == 0  ? "" : ("Bermudas Coton - " + $F{qt_bermudas_coton} + " - " + $F{tm_bermudas_coton} + "<br/>")) +
+($F{qt_tenis}               == 0 ? "" : ("Tênis - " + $F{qt_tenis} + " - " + $F{tm_tenis}))) : " - "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="348" y="0" width="132" height="38" uuid="15a46d2a-6754-46b5-94b2-b07933fd2288"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{escola_uniforme}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToBandHeight" x="480" y="0" width="75" height="38" uuid="15a46d2a-6754-46b5-94b2-b07933fd2288"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data} ==  null ? "Data não informada" : $F{data}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
