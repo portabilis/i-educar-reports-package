@@ -1,0 +1,1566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teacher-report-card-portait-crosstab" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="bee45616-9f88-4ff8-8f5d-640c268ac7e3">
+	<property name="ireport.zoom" value="0.9090909090909165"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="linha-zebrado" hAlign="Center">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{ROW_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style backcolor="#F0F0F0"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="turma" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="componente_curricular" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="linha" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="situacao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_manual" class="java.lang.Boolean"/>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<queryString language="json">
+		<![CDATA[teacher_report_card_crosstab]]>
+	</queryString>
+	<field name="cod_matricula" class="java.lang.Double"/>
+	<field name="nome_aluno" class="java.lang.String"/>
+	<field name="dep" class="java.lang.Boolean"/>
+	<field name="nome_modulo" class="java.lang.String"/>
+	<field name="sequencial" class="java.lang.Integer"/>
+	<field name="falta" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="nota_arredondada_etapa" class="java.lang.String"/>
+	<field name="situacao" class="java.lang.String"/>
+	<field name="frequencia" class="java.lang.String"/>
+	<field name="nota_exame" class="java.lang.String"/>
+	<field name="media" class="java.lang.String"/>
+	<variable name="qtde_etapa" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{sequencial}]]></variableExpression>
+	</variable>
+	<summary>
+		<band height="99" splitType="Stretch">
+			<elementGroup>
+				<crosstab ignoreWidth="true">
+					<reportElement uuid="e8217722-a99f-4eed-a4ba-df1cee1aa952" stretchType="RelativeToTallestObject" x="0" y="0" width="555" height="99">
+						<printWhenExpression><![CDATA[$V{qtde_etapa} == 2]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.25"/>
+						<leftPen lineWidth="0.25"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25"/>
+					</box>
+					<crosstabParameter name="data_manual" class="java.lang.Boolean">
+						<parameterValueExpression><![CDATA[$P{data_manual}]]></parameterValueExpression>
+					</crosstabParameter>
+					<crosstabDataset isDataPreSorted="true"/>
+					<crosstabHeaderCell>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<staticText>
+								<reportElement uuid="ed125289-86a7-4708-b30b-657efbb76ba1" style="Crosstab Data Text" x="0" y="0" width="270" height="30"/>
+								<box>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+									<paragraph leftIndent="5"/>
+								</textElement>
+								<text><![CDATA[Aluno]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabHeaderCell>
+					<rowGroup name="matricula" width="0" totalPosition="End">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{cod_matricula}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents mode="Opaque" style="linha-zebrado">
+								<box>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textField>
+									<reportElement uuid="797489cd-b843-4a55-8870-b97338651070" x="79" y="10" width="83" height="11"/>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{qtde_alunos}]]></textFieldExpression>
+								</textField>
+								<staticText>
+									<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="0" y="10" width="79" height="11"/>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Total de alunos:]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="0" y="0" width="270" height="11">
+										<printWhenExpression><![CDATA[$V{dep} == true]]></printWhenExpression>
+									</reportElement>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[* Alunos com dependência]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<rowGroup name="nome_aluno" width="270" totalPosition="End" headerPosition="Stretch">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{nome_aluno}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents mode="Opaque" style="linha-zebrado">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textField isBlankWhenNull="true">
+									<reportElement uuid="563e34a5-b51b-4cb6-8759-cfeb7d0c01e2" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="270" height="16"/>
+									<box>
+										<topPen lineWidth="0.0"/>
+										<leftPen lineWidth="0.0"/>
+										<rightPen lineWidth="0.0"/>
+									</box>
+									<textElement textAlignment="Left" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+										<paragraph leftIndent="5"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{nome_aluno}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents>
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+							</cellContents>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<columnGroup name="sequencial" height="30" totalPosition="End">
+						<bucket class="java.lang.Integer">
+							<bucketExpression><![CDATA[$F{sequencial}]]></bucketExpression>
+						</bucket>
+						<crosstabColumnHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textField>
+									<reportElement uuid="38e4cdf0-8028-41b9-9934-c695a7692e5a" style="Crosstab Data Text" x="0" y="0" width="40" height="14"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+										<paragraph leftIndent="2"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{sequencial} + "º " +$V{nome_modulo}.substring(0,3) + "."]]></textFieldExpression>
+								</textField>
+								<staticText>
+									<reportElement uuid="3bce75cd-c9aa-456c-8358-c5551b333289" style="Crosstab Data Text" x="0" y="14" width="25" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Nota]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="3d795476-1644-4083-ac4e-e61849dfd747" style="Crosstab Data Text" x="25" y="14" width="15" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[F]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabColumnHeader>
+						<crosstabTotalColumnHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="0" y="0" width="205" height="14"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Resultado]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="104" y="14" width="101" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Situação]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="79" y="14" width="25" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Freq.]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="29" y="14" width="50" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Media Final]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="0" y="14" width="29" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Exame]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabTotalColumnHeader>
+					</columnGroup>
+					<measure name="nota_arredondada_etapaMeasure" class="java.lang.String">
+						<measureExpression><![CDATA[$F{nota_arredondada_etapa}]]></measureExpression>
+					</measure>
+					<measure name="falta" class="java.lang.String">
+						<measureExpression><![CDATA[$F{falta}]]></measureExpression>
+					</measure>
+					<measure name="nome_modulo" class="java.lang.String" calculation="First">
+						<measureExpression><![CDATA[$F{nome_modulo}]]></measureExpression>
+					</measure>
+					<measure name="exame" class="java.lang.String">
+						<measureExpression><![CDATA[$F{nota_exame}]]></measureExpression>
+					</measure>
+					<measure name="media" class="java.lang.String">
+						<measureExpression><![CDATA[$F{media}]]></measureExpression>
+					</measure>
+					<measure name="frequencia" class="java.lang.String">
+						<measureExpression><![CDATA[$F{frequencia}]]></measureExpression>
+					</measure>
+					<measure name="situacao_aluno" class="java.lang.String">
+						<measureExpression><![CDATA[$F{situacao}]]></measureExpression>
+					</measure>
+					<measure name="qtde_alunos" class="java.lang.Integer" calculation="DistinctCount">
+						<measureExpression><![CDATA[$F{nome_aluno}]]></measureExpression>
+					</measure>
+					<measure name="dep" class="java.lang.Boolean">
+						<measureExpression><![CDATA[$F{dep}]]></measureExpression>
+					</measure>
+					<crosstabCell width="40" height="16">
+						<cellContents mode="Opaque" style="linha-zebrado">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5b16f2df-4545-4c53-afcb-bce1564ca15e" style="Crosstab Data Text" x="25" y="0" width="15" height="16"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{falta} == null ? "": $V{falta}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5b16f2df-4545-4c53-afcb-bce1564ca15e" style="Crosstab Data Text" x="0" y="0" width="25" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="40" height="21" rowTotalGroup="matricula">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="16" columnTotalGroup="sequencial">
+						<cellContents mode="Opaque" style="linha-zebrado">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="79" y="0" width="25" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{frequencia} == null ? "" : $V{frequencia}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="29" y="0" width="50" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}.matches("[-+]?\\d+(\\.\\d+)?") ? ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media}))) : $V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="0" y="0" width="29" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{exame}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="104" y="0" width="101" height="16"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{situacao_aluno}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="21" rowTotalGroup="matricula" columnTotalGroup="sequencial">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textField pattern="dd/MM/yyyy">
+								<reportElement uuid="797489cd-b843-4a55-8870-b97338651070" x="153" y="10" width="52" height="11"/>
+								<textElement textAlignment="Right">
+									<font fontName="DejaVu Sans" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{data_manual} ? "______________" : new java.util.Date()]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="49" y="10" width="104" height="11"/>
+								<textElement textAlignment="Right">
+									<font fontName="DejaVu Sans" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Data:]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="40" height="0" rowTotalGroup="nome_aluno">
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="0" rowTotalGroup="nome_aluno" columnTotalGroup="sequencial">
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+				</crosstab>
+				<crosstab ignoreWidth="true">
+					<reportElement uuid="e8217722-a99f-4eed-a4ba-df1cee1aa952" stretchType="RelativeToTallestObject" x="0" y="0" width="556" height="99">
+						<printWhenExpression><![CDATA[$V{qtde_etapa} == 1]]></printWhenExpression>
+					</reportElement>
+					<crosstabParameter name="data_manual" class="java.lang.Boolean">
+						<parameterValueExpression><![CDATA[$P{data_manual}]]></parameterValueExpression>
+					</crosstabParameter>
+					<crosstabDataset isDataPreSorted="true"/>
+					<crosstabHeaderCell>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<staticText>
+								<reportElement uuid="ed125289-86a7-4708-b30b-657efbb76ba1" style="Crosstab Data Text" x="0" y="0" width="310" height="30"/>
+								<box>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+									<paragraph leftIndent="5"/>
+								</textElement>
+								<text><![CDATA[Aluno]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabHeaderCell>
+					<rowGroup name="matricula" width="0" totalPosition="End">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{cod_matricula}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents mode="Opaque" style="linha-zebrado">
+								<box>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textField>
+									<reportElement uuid="797489cd-b843-4a55-8870-b97338651070" x="87" y="10" width="87" height="11"/>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{qtde_alunos}]]></textFieldExpression>
+								</textField>
+								<staticText>
+									<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="0" y="10" width="87" height="11"/>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Total de alunos:]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="0" y="0" width="310" height="11">
+										<printWhenExpression><![CDATA[$V{dep} == true]]></printWhenExpression>
+									</reportElement>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[* Alunos com dependência]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<rowGroup name="nome_aluno" width="310" totalPosition="End" headerPosition="Stretch">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{nome_aluno}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents mode="Opaque" style="linha-zebrado">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textField isBlankWhenNull="true">
+									<reportElement uuid="563e34a5-b51b-4cb6-8759-cfeb7d0c01e2" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="310" height="16"/>
+									<box>
+										<topPen lineWidth="0.0"/>
+										<leftPen lineWidth="0.0"/>
+										<rightPen lineWidth="0.0"/>
+									</box>
+									<textElement textAlignment="Left" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+										<paragraph leftIndent="5"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{nome_aluno}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents>
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+							</cellContents>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<columnGroup name="sequencial" height="30" totalPosition="End">
+						<bucket class="java.lang.Integer">
+							<bucketExpression><![CDATA[$F{sequencial}]]></bucketExpression>
+						</bucket>
+						<crosstabColumnHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textField>
+									<reportElement uuid="38e4cdf0-8028-41b9-9934-c695a7692e5a" style="Crosstab Data Text" x="0" y="0" width="40" height="14"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+										<paragraph leftIndent="2"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{sequencial} + "º " +$V{nome_modulo}.substring(0,3) + "."]]></textFieldExpression>
+								</textField>
+								<staticText>
+									<reportElement uuid="3bce75cd-c9aa-456c-8358-c5551b333289" style="Crosstab Data Text" x="0" y="14" width="25" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Nota]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="3d795476-1644-4083-ac4e-e61849dfd747" style="Crosstab Data Text" x="25" y="14" width="15" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[F]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabColumnHeader>
+						<crosstabTotalColumnHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="0" y="0" width="205" height="14"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Resultado]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="104" y="14" width="101" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Situação]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="79" y="14" width="25" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Freq.]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="29" y="14" width="50" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Media Final]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="0" y="14" width="29" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Exame]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabTotalColumnHeader>
+					</columnGroup>
+					<measure name="nota_arredondada_etapaMeasure" class="java.lang.String">
+						<measureExpression><![CDATA[$F{nota_arredondada_etapa}]]></measureExpression>
+					</measure>
+					<measure name="falta" class="java.lang.String">
+						<measureExpression><![CDATA[$F{falta}]]></measureExpression>
+					</measure>
+					<measure name="nome_modulo" class="java.lang.String" calculation="First">
+						<measureExpression><![CDATA[$F{nome_modulo}]]></measureExpression>
+					</measure>
+					<measure name="exame" class="java.lang.String">
+						<measureExpression><![CDATA[$F{nota_exame}]]></measureExpression>
+					</measure>
+					<measure name="media" class="java.lang.String">
+						<measureExpression><![CDATA[$F{media}]]></measureExpression>
+					</measure>
+					<measure name="frequencia" class="java.lang.String">
+						<measureExpression><![CDATA[$F{frequencia}]]></measureExpression>
+					</measure>
+					<measure name="situacao_aluno" class="java.lang.String">
+						<measureExpression><![CDATA[$F{situacao}]]></measureExpression>
+					</measure>
+					<measure name="qtde_alunos" class="java.lang.Integer" calculation="DistinctCount">
+						<measureExpression><![CDATA[$F{nome_aluno}]]></measureExpression>
+					</measure>
+					<measure name="dep" class="java.lang.Boolean">
+						<measureExpression><![CDATA[$F{dep}]]></measureExpression>
+					</measure>
+					<crosstabCell width="40" height="16">
+						<cellContents mode="Opaque" style="linha-zebrado">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5b16f2df-4545-4c53-afcb-bce1564ca15e" style="Crosstab Data Text" x="25" y="0" width="15" height="16"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{falta} == null ? "": $V{falta}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5b16f2df-4545-4c53-afcb-bce1564ca15e" style="Crosstab Data Text" x="0" y="0" width="25" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="40" height="21" rowTotalGroup="matricula">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="16" columnTotalGroup="sequencial">
+						<cellContents mode="Opaque" style="linha-zebrado">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="79" y="0" width="25" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{frequencia} == null ? "" : $V{frequencia}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="29" y="0" width="50" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}.matches("[-+]?\\d+(\\.\\d+)?") ? ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media}))) : $V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="0" y="0" width="29" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{exame}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="104" y="0" width="101" height="16"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{situacao_aluno}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="21" rowTotalGroup="matricula" columnTotalGroup="sequencial">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textField pattern="dd/MM/yyyy">
+								<reportElement uuid="797489cd-b843-4a55-8870-b97338651070" x="153" y="10" width="52" height="11"/>
+								<textElement textAlignment="Right">
+									<font fontName="DejaVu Sans" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{data_manual} ? "______________" : new java.util.Date()]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="104" y="10" width="49" height="11"/>
+								<textElement textAlignment="Right">
+									<font fontName="DejaVu Sans" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Data:]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="40" height="0" rowTotalGroup="nome_aluno">
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="0" rowTotalGroup="nome_aluno" columnTotalGroup="sequencial">
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+				</crosstab>
+				<crosstab ignoreWidth="true">
+					<reportElement uuid="e8217722-a99f-4eed-a4ba-df1cee1aa952" stretchType="RelativeToTallestObject" x="0" y="0" width="555" height="99">
+						<printWhenExpression><![CDATA[$V{qtde_etapa} == 4]]></printWhenExpression>
+					</reportElement>
+					<crosstabParameter name="data_manual" class="java.lang.Boolean">
+						<parameterValueExpression><![CDATA[$P{data_manual}]]></parameterValueExpression>
+					</crosstabParameter>
+					<crosstabDataset isDataPreSorted="true"/>
+					<crosstabHeaderCell>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<staticText>
+								<reportElement uuid="ed125289-86a7-4708-b30b-657efbb76ba1" style="Crosstab Data Text" x="0" y="0" width="190" height="30"/>
+								<box>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+									<paragraph leftIndent="5"/>
+								</textElement>
+								<text><![CDATA[Aluno]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabHeaderCell>
+					<rowGroup name="matricula" width="0" totalPosition="End">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{cod_matricula}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents mode="Opaque" style="linha-zebrado">
+								<box>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textField>
+									<reportElement uuid="797489cd-b843-4a55-8870-b97338651070" x="79" y="10" width="79" height="11"/>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{qtde_alunos}]]></textFieldExpression>
+								</textField>
+								<staticText>
+									<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="0" y="10" width="79" height="11"/>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Total de alunos:]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="0" y="0" width="190" height="11">
+										<printWhenExpression><![CDATA[$V{dep} == true]]></printWhenExpression>
+									</reportElement>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[* Alunos com dependência]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<rowGroup name="nome_aluno" width="190" totalPosition="End" headerPosition="Stretch">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{nome_aluno}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents mode="Opaque" style="linha-zebrado">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textField isBlankWhenNull="true">
+									<reportElement uuid="563e34a5-b51b-4cb6-8759-cfeb7d0c01e2" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="190" height="16"/>
+									<box>
+										<topPen lineWidth="0.0"/>
+										<leftPen lineWidth="0.0"/>
+										<rightPen lineWidth="0.0"/>
+									</box>
+									<textElement textAlignment="Left" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+										<paragraph leftIndent="5"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{nome_aluno}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents>
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+							</cellContents>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<columnGroup name="sequencial" height="30" totalPosition="End">
+						<bucket class="java.lang.Integer">
+							<bucketExpression><![CDATA[$F{sequencial}]]></bucketExpression>
+						</bucket>
+						<crosstabColumnHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textField>
+									<reportElement uuid="38e4cdf0-8028-41b9-9934-c695a7692e5a" style="Crosstab Data Text" x="0" y="0" width="40" height="14"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+										<paragraph leftIndent="2"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{sequencial} + "º " +$V{nome_modulo}.substring(0,3) + "."]]></textFieldExpression>
+								</textField>
+								<staticText>
+									<reportElement uuid="3bce75cd-c9aa-456c-8358-c5551b333289" style="Crosstab Data Text" x="0" y="14" width="25" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Nota]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="3d795476-1644-4083-ac4e-e61849dfd747" style="Crosstab Data Text" x="25" y="14" width="15" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[F]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabColumnHeader>
+						<crosstabTotalColumnHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="0" y="0" width="205" height="14"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Resultado]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="104" y="14" width="101" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Situação]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="79" y="14" width="25" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Freq.]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="29" y="14" width="50" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Media Final]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="0" y="14" width="29" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Exame]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabTotalColumnHeader>
+					</columnGroup>
+					<measure name="nota_arredondada_etapaMeasure" class="java.lang.String">
+						<measureExpression><![CDATA[$F{nota_arredondada_etapa}]]></measureExpression>
+					</measure>
+					<measure name="falta" class="java.lang.String">
+						<measureExpression><![CDATA[$F{falta}]]></measureExpression>
+					</measure>
+					<measure name="nome_modulo" class="java.lang.String" calculation="First">
+						<measureExpression><![CDATA[$F{nome_modulo}]]></measureExpression>
+					</measure>
+					<measure name="exame" class="java.lang.String">
+						<measureExpression><![CDATA[$F{nota_exame}]]></measureExpression>
+					</measure>
+					<measure name="media" class="java.lang.String">
+						<measureExpression><![CDATA[$F{media}]]></measureExpression>
+					</measure>
+					<measure name="frequencia" class="java.lang.String">
+						<measureExpression><![CDATA[$F{frequencia}]]></measureExpression>
+					</measure>
+					<measure name="situacao_aluno" class="java.lang.String">
+						<measureExpression><![CDATA[$F{situacao}]]></measureExpression>
+					</measure>
+					<measure name="qtde_alunos" class="java.lang.Integer" calculation="DistinctCount">
+						<measureExpression><![CDATA[$F{nome_aluno}]]></measureExpression>
+					</measure>
+					<measure name="dep" class="java.lang.Boolean">
+						<measureExpression><![CDATA[$F{dep}]]></measureExpression>
+					</measure>
+					<crosstabCell width="40" height="16">
+						<cellContents mode="Opaque" style="linha-zebrado">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5b16f2df-4545-4c53-afcb-bce1564ca15e" style="Crosstab Data Text" x="25" y="0" width="15" height="16"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{falta} == null ? "": $V{falta}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5b16f2df-4545-4c53-afcb-bce1564ca15e" style="Crosstab Data Text" x="0" y="0" width="25" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="40" height="22" rowTotalGroup="matricula">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="16" columnTotalGroup="sequencial">
+						<cellContents mode="Opaque" style="linha-zebrado">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="79" y="0" width="25" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{frequencia} == null ? "" : $V{frequencia}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="29" y="0" width="50" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}.matches("[-+]?\\d+(\\.\\d+)?") ? ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media}))) : $V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="0" y="0" width="29" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{exame}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="104" y="0" width="101" height="16"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{situacao_aluno}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="22" rowTotalGroup="matricula" columnTotalGroup="sequencial">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textField pattern="dd/MM/yyyy">
+								<reportElement uuid="797489cd-b843-4a55-8870-b97338651070" x="153" y="11" width="52" height="11"/>
+								<textElement textAlignment="Right">
+									<font fontName="DejaVu Sans" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{data_manual} ? "______________" : new java.util.Date()]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="104" y="11" width="49" height="11"/>
+								<textElement textAlignment="Right">
+									<font fontName="DejaVu Sans" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Data:]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="40" height="0" rowTotalGroup="nome_aluno">
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="0" rowTotalGroup="nome_aluno" columnTotalGroup="sequencial">
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+				</crosstab>
+				<crosstab ignoreWidth="true">
+					<reportElement uuid="e8217722-a99f-4eed-a4ba-df1cee1aa952" stretchType="RelativeToTallestObject" x="0" y="0" width="555" height="99">
+						<printWhenExpression><![CDATA[$V{qtde_etapa} == 3]]></printWhenExpression>
+					</reportElement>
+					<crosstabParameter name="data_manual" class="java.lang.Boolean">
+						<parameterValueExpression><![CDATA[$P{data_manual}]]></parameterValueExpression>
+					</crosstabParameter>
+					<crosstabDataset isDataPreSorted="true"/>
+					<crosstabHeaderCell>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<staticText>
+								<reportElement uuid="ed125289-86a7-4708-b30b-657efbb76ba1" style="Crosstab Data Text" x="0" y="0" width="230" height="30"/>
+								<box>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+									<paragraph leftIndent="5"/>
+								</textElement>
+								<text><![CDATA[Aluno]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabHeaderCell>
+					<rowGroup name="matricula" width="0" totalPosition="End">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{cod_matricula}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents mode="Opaque" style="linha-zebrado">
+								<box>
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.0"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.0"/>
+								</box>
+								<textField>
+									<reportElement uuid="797489cd-b843-4a55-8870-b97338651070" x="74" y="10" width="74" height="11"/>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{qtde_alunos}]]></textFieldExpression>
+								</textField>
+								<staticText>
+									<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="0" y="10" width="74" height="11"/>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Total de alunos:]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="0" y="0" width="230" height="11">
+										<printWhenExpression><![CDATA[$V{dep} == true]]></printWhenExpression>
+									</reportElement>
+									<textElement>
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[* Alunos com dependência]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<rowGroup name="nome_aluno" width="230" totalPosition="End" headerPosition="Stretch">
+						<bucket class="java.lang.String">
+							<bucketExpression><![CDATA[$F{nome_aluno}]]></bucketExpression>
+						</bucket>
+						<crosstabRowHeader>
+							<cellContents mode="Opaque" style="linha-zebrado">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textField isBlankWhenNull="true">
+									<reportElement uuid="563e34a5-b51b-4cb6-8759-cfeb7d0c01e2" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="230" height="16"/>
+									<box>
+										<topPen lineWidth="0.0"/>
+										<leftPen lineWidth="0.0"/>
+										<rightPen lineWidth="0.0"/>
+									</box>
+									<textElement textAlignment="Left" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+										<paragraph leftIndent="5"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{nome_aluno}]]></textFieldExpression>
+								</textField>
+							</cellContents>
+						</crosstabRowHeader>
+						<crosstabTotalRowHeader>
+							<cellContents>
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+							</cellContents>
+						</crosstabTotalRowHeader>
+					</rowGroup>
+					<columnGroup name="sequencial" height="30" totalPosition="End">
+						<bucket class="java.lang.Integer">
+							<bucketExpression><![CDATA[$F{sequencial}]]></bucketExpression>
+						</bucket>
+						<crosstabColumnHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textField>
+									<reportElement uuid="38e4cdf0-8028-41b9-9934-c695a7692e5a" style="Crosstab Data Text" x="0" y="0" width="40" height="14"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="true"/>
+										<paragraph leftIndent="2"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{sequencial} + "º " +$V{nome_modulo}.substring(0,3) + "."]]></textFieldExpression>
+								</textField>
+								<staticText>
+									<reportElement uuid="3bce75cd-c9aa-456c-8358-c5551b333289" style="Crosstab Data Text" x="0" y="14" width="25" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Nota]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="3d795476-1644-4083-ac4e-e61849dfd747" style="Crosstab Data Text" x="25" y="14" width="15" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="8" isBold="true"/>
+									</textElement>
+									<text><![CDATA[F]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabColumnHeader>
+						<crosstabTotalColumnHeader>
+							<cellContents backcolor="#FFFFFF" mode="Opaque">
+								<box>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="0" y="0" width="205" height="14"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Resultado]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="104" y="14" width="101" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Situação]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="79" y="14" width="25" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Freq.]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="29" y="14" width="50" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Media Final]]></text>
+								</staticText>
+								<staticText>
+									<reportElement uuid="9e9345b3-f34b-457a-8b87-03b429440661" x="0" y="14" width="29" height="16"/>
+									<box>
+										<topPen lineWidth="0.25"/>
+										<rightPen lineWidth="0.25"/>
+									</box>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font fontName="DejaVu Sans" size="8" isBold="false"/>
+									</textElement>
+									<text><![CDATA[Exame]]></text>
+								</staticText>
+							</cellContents>
+						</crosstabTotalColumnHeader>
+					</columnGroup>
+					<measure name="nota_arredondada_etapaMeasure" class="java.lang.String">
+						<measureExpression><![CDATA[$F{nota_arredondada_etapa}]]></measureExpression>
+					</measure>
+					<measure name="falta" class="java.lang.String">
+						<measureExpression><![CDATA[$F{falta}]]></measureExpression>
+					</measure>
+					<measure name="nome_modulo" class="java.lang.String" calculation="First">
+						<measureExpression><![CDATA[$F{nome_modulo}]]></measureExpression>
+					</measure>
+					<measure name="exame" class="java.lang.String">
+						<measureExpression><![CDATA[$F{nota_exame}]]></measureExpression>
+					</measure>
+					<measure name="media" class="java.lang.String">
+						<measureExpression><![CDATA[$F{media}]]></measureExpression>
+					</measure>
+					<measure name="frequencia" class="java.lang.String">
+						<measureExpression><![CDATA[$F{frequencia}]]></measureExpression>
+					</measure>
+					<measure name="situacao_aluno" class="java.lang.String">
+						<measureExpression><![CDATA[$F{situacao}]]></measureExpression>
+					</measure>
+					<measure name="qtde_alunos" class="java.lang.Integer" calculation="DistinctCount">
+						<measureExpression><![CDATA[$F{nome_aluno}]]></measureExpression>
+					</measure>
+					<measure name="dep" class="java.lang.Boolean">
+						<measureExpression><![CDATA[$F{dep}]]></measureExpression>
+					</measure>
+					<crosstabCell width="40" height="16">
+						<cellContents mode="Opaque" style="linha-zebrado">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5b16f2df-4545-4c53-afcb-bce1564ca15e" style="Crosstab Data Text" x="25" y="0" width="15" height="16"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{falta} == null ? "": $V{falta}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5b16f2df-4545-4c53-afcb-bce1564ca15e" style="Crosstab Data Text" x="0" y="0" width="25" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="40" height="21" rowTotalGroup="matricula">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="16" columnTotalGroup="sequencial">
+						<cellContents mode="Opaque" style="linha-zebrado">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="79" y="0" width="25" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{frequencia} == null ? "" : $V{frequencia}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="29" y="0" width="50" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure}.matches("[-+]?\\d+(\\.\\d+)?") ? ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media}))) : $V{nota_arredondada_etapaMeasure}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="0" y="0" width="29" height="16"/>
+								<box>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{exame}]]></textFieldExpression>
+							</textField>
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="104" y="0" width="101" height="16"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="DejaVu Sans" size="8" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{situacao_aluno}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="21" rowTotalGroup="matricula" columnTotalGroup="sequencial">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.0"/>
+								<bottomPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.0"/>
+							</box>
+							<textField pattern="dd/MM/yyyy">
+								<reportElement uuid="797489cd-b843-4a55-8870-b97338651070" x="153" y="10" width="52" height="11"/>
+								<textElement textAlignment="Right">
+									<font fontName="DejaVu Sans" size="8"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$P{data_manual} ? "______________" : new java.util.Date()]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement uuid="ad6aeace-de5e-4d20-8d19-2b7c5b8d1f81" x="74" y="10" width="79" height="11"/>
+								<textElement textAlignment="Right">
+									<font fontName="DejaVu Sans" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Data:]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="40" height="0" rowTotalGroup="nome_aluno">
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="205" height="0" rowTotalGroup="nome_aluno" columnTotalGroup="sequencial">
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.25"/>
+								<leftPen lineWidth="0.25"/>
+								<bottomPen lineWidth="0.25"/>
+								<rightPen lineWidth="0.25"/>
+							</box>
+						</cellContents>
+					</crosstabCell>
+				</crosstab>
+			</elementGroup>
+		</band>
+	</summary>
+</jasperReport>
