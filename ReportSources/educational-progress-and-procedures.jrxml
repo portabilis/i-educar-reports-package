@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="educational-progress-and-procedures" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3f8d8580-478d-4021-a547-d37af41d360a">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="data_emissao" class="java.lang.String"/>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<parameter name="imprimir_grafico" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<field name="nome_escola" class="java.lang.String"/>
+	<field name="nome_curso" class="java.lang.String"/>
+	<field name="nome_serie" class="java.lang.String"/>
+	<field name="qtde_matricula" class="java.lang.Long"/>
+	<field name="qtde_aprovado" class="java.lang.Long"/>
+	<field name="qtde_reprovado" class="java.lang.Long"/>
+	<field name="qtde_transferido" class="java.lang.Long"/>
+	<field name="qtde_falecidos" class="java.lang.Long"/>
+	<field name="qtde_desistencia" class="java.lang.Long"/>
+	<field name="perc_aprovado" class="java.math.BigDecimal"/>
+	<field name="perc_reprovado" class="java.math.BigDecimal"/>
+	<field name="perc_transferido" class="java.math.BigDecimal"/>
+	<field name="perc_falecidos" class="java.math.BigDecimal"/>
+	<field name="perc_desistencia" class="java.math.BigDecimal"/>
+	<variable name="total_alunos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qtde_matricula}]]></variableExpression>
+	</variable>
+	<variable name="total_aprovados" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qtde_aprovado}]]></variableExpression>
+	</variable>
+	<variable name="total_reprovados" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qtde_reprovado}]]></variableExpression>
+	</variable>
+	<variable name="total_transferidos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qtde_transferido}]]></variableExpression>
+	</variable>
+	<variable name="perc_aprovados" class="java.lang.String">
+		<variableExpression><![CDATA[($V{total_aprovados}*100)/$V{total_alunos}]]></variableExpression>
+	</variable>
+	<variable name="perc_reprovados" class="java.lang.String">
+		<variableExpression><![CDATA[($V{total_reprovados}*100)/$V{total_alunos}]]></variableExpression>
+	</variable>
+	<variable name="perc_transferidos" class="java.lang.String">
+		<variableExpression><![CDATA[($V{total_transferidos}*100)/$V{total_alunos}]]></variableExpression>
+	</variable>
+	<variable name="total_falecidos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qtde_falecidos}]]></variableExpression>
+	</variable>
+	<variable name="perc_falecidos" class="java.lang.String">
+		<variableExpression><![CDATA[($V{total_falecidos}*100)/$V{total_alunos}]]></variableExpression>
+	</variable>
+	<variable name="total_desistencia" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{qtde_desistencia}]]></variableExpression>
+	</variable>
+	<variable name="perc_desistencia" class="java.lang.String">
+		<variableExpression><![CDATA[($V{total_desistencia}*100)/$V{total_alunos}]]></variableExpression>
+	</variable>
+	<group name="escola" keepTogether="true">
+		<groupExpression><![CDATA[$F{nome_escola}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<textField>
+					<reportElement x="10" y="0" width="553" height="16" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.0" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="9" isBold="true"/>
+						<paragraph leftIndent="2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nome_escola}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="25">
+				<staticText>
+					<reportElement mode="Opaque" x="424" y="2" width="100" height="16" backcolor="#FFFFFF" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.0" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<text><![CDATA[Total por escola:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="529" y="2" width="34" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.0" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="9"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{escola_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="curso" keepTogether="true">
+		<groupExpression><![CDATA[$F{nome_curso}]]></groupExpression>
+		<groupHeader>
+			<band height="46">
+				<staticText>
+					<reportElement mode="Opaque" x="10" y="0" width="553" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.25" lineColor="#000000"/>
+						<leftPen lineWidth="0.25" lineColor="#000000"/>
+						<bottomPen lineWidth="0.25" lineColor="#000000"/>
+						<rightPen lineWidth="0.25" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Curso]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="10" y="30" width="88" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.25" lineColor="#000000"/>
+						<leftPen lineWidth="0.25" lineColor="#000000"/>
+						<bottomPen lineWidth="0.25" lineColor="#000000"/>
+						<rightPen lineWidth="0.25" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<text><![CDATA[Série]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="143" y="30" width="90" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.25" lineColor="#000000"/>
+						<leftPen lineWidth="0.25" lineColor="#000000"/>
+						<bottomPen lineWidth="0.25" lineColor="#000000"/>
+						<rightPen lineWidth="0.25" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<text><![CDATA[Aprovados]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="233" y="30" width="90" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.25" lineColor="#000000"/>
+						<leftPen lineWidth="0.25" lineColor="#000000"/>
+						<bottomPen lineWidth="0.25" lineColor="#000000"/>
+						<rightPen lineWidth="0.25" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<text><![CDATA[Reprovados]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="323" y="30" width="90" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.25" lineColor="#000000"/>
+						<leftPen lineWidth="0.25" lineColor="#000000"/>
+						<bottomPen lineWidth="0.25" lineColor="#000000"/>
+						<rightPen lineWidth="0.25" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<text><![CDATA[Transferidos]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="98" y="30" width="45" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.25" lineColor="#000000"/>
+						<leftPen lineWidth="0.25" lineColor="#000000"/>
+						<bottomPen lineWidth="0.25" lineColor="#000000"/>
+						<rightPen lineWidth="0.25" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<text><![CDATA[Alunos]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="10" y="16" width="553" height="14" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.25" lineColor="#000000"/>
+						<leftPen lineWidth="0.25" lineColor="#000000"/>
+						<bottomPen lineWidth="0.25" lineColor="#000000"/>
+						<rightPen lineWidth="0.25" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="9"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nome_curso}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="413" y="30" width="70" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.25" lineColor="#000000"/>
+						<leftPen lineWidth="0.25" lineColor="#000000"/>
+						<bottomPen lineWidth="0.25" lineColor="#000000"/>
+						<rightPen lineWidth="0.25" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<text><![CDATA[Falecidos]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="483" y="30" width="80" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.25" lineColor="#000000"/>
+						<leftPen lineWidth="0.25" lineColor="#000000"/>
+						<bottomPen lineWidth="0.25" lineColor="#000000"/>
+						<rightPen lineWidth="0.25" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<text><![CDATA[Desistência]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<staticText>
+					<reportElement mode="Opaque" x="446" y="4" width="78" height="16" backcolor="#FFFFFF" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.0" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="529" y="4" width="34" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+					<box>
+						<pen lineColor="#F0F0F0"/>
+						<topPen lineWidth="0.0" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="9"/>
+						<paragraph rightIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{curso_COUNT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="100" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="572" height="100" uuid="67f32df8-77f2-44a1-8e68-1cdea3cfec6a"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Rendimento e movimento escolar"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="143" y="0" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_aprovado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="0" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{perc_aprovado} + " %"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="0" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="0" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{perc_reprovado} + " %"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="233" y="0" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_reprovado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="0" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_transferido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="0" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{perc_transferido} + " %"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="0" width="88" height="16" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_serie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="0" width="33" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_falecidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="0" width="37" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{perc_falecidos} + "%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="0" width="37" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_desistencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="520" y="0" width="43" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{perc_desistencia} + " %"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6"/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+	<summary>
+		<band height="289" splitType="Stretch">
+			<textField>
+				<reportElement x="233" y="16" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_reprovados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="16" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("##0.0").format(Double.parseDouble($V{perc_reprovados})).toString().replace(",", ".") + " %"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="16" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_transferidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="16" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_alunos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="233" y="0" width="90" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.25" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Reprovados]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement x="368" y="16" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("##0.0").format(Double.parseDouble($V{perc_transferidos})).toString().replace(",", ".") + " %"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="143" y="0" width="90" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.25" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Aprovados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="98" y="0" width="45" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.25" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Alunos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="188" y="16" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("##0.0").format(Double.parseDouble($V{perc_aprovados})).toString().replace(",", ".") + " %"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="323" y="0" width="90" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.25" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Transferidos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="143" y="16" width="45" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_aprovados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="16" width="88" height="16" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.25" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9" isBold="true"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total geral:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="413" y="0" width="70" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.25" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Falecidos]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="413" y="16" width="33" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_falecidos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="483" y="0" width="80" height="16" backcolor="#F0F0F0" uuid="4e510b79-9907-4cd0-8693-468017ad367e"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.25" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true" isItalic="false"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<text><![CDATA[Desistência]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement x="446" y="16" width="37" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("##0.0").format(Double.parseDouble($V{perc_falecidos})).toString().replace(",", ".") + " %"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="16" width="37" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_desistencia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement x="520" y="16" width="43" height="16" backcolor="#FFFFFF" uuid="41006b88-4bc5-4726-bb95-27d993ae4d14"/>
+				<box>
+					<pen lineColor="#F0F0F0"/>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.25" lineColor="#000000"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.25" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="9"/>
+					<paragraph rightIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("##0.0").format(Double.parseDouble($V{perc_desistencia})).toString().replace(",", ".") + " %"]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="50" width="572" height="200" uuid="67f32df8-77f2-44a1-8e68-1cdea3cfec6a">
+					<printWhenExpression><![CDATA[$P{imprimir_grafico}]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "educational-progress-and-procedures-chart.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>
