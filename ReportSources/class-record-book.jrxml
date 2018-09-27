@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="class-diary" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="832" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5" uuid="7dc5cdf9-8f94-43cb-a2b6-91f22aeffc80">
+	<property name="ireport.zoom" value="0.9075000000000161"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="curso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="serie" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="turma" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="disciplina" class="java.lang.String"/>
+	<parameter name="professor" class="java.lang.String"/>
+	<parameter name="linha" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="situacao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.String">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="etapa" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="servidor_id" class="java.lang.Integer"/>
+	<parameter name="ref_cod_componente_curricular" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="buscar_professor" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="buscar_disciplina" class="java.lang.Boolean"/>
+	<parameter name="modelo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="?column?" class="java.lang.Integer"/>
+	<group name="class-record-cover">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="32">
+				<subreport>
+					<reportElement x="0" y="0" width="822" height="32" uuid="67f32df8-77f2-44a1-8e68-1cdea3cfec6a"/>
+					<subreportParameter name="logo">
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="etapa">
+						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "class-record-cover.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="attendance-list" isStartNewColumn="true" isStartNewPage="true">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<printWhenExpression><![CDATA[($P{modelo} == 1 || $P{modelo} == 3)]]></printWhenExpression>
+				<subreport>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<subreportParameter name="logo">
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="etapa">
+						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "children-education-attendance-list.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+			<band height="27">
+				<printWhenExpression><![CDATA[$P{modelo} == 2]]></printWhenExpression>
+				<subreport>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<subreportParameter name="logo">
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="etapa">
+						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "middle-school-attendance-list.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="exams-record" isStartNewColumn="true" isStartNewPage="true">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<printWhenExpression><![CDATA[$P{modelo} == 1]]></printWhenExpression>
+				<subreport>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<subreportParameter name="logo">
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="etapa">
+						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "elementary-school-exams-record.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+			<band height="27">
+				<printWhenExpression><![CDATA[$P{modelo} == 2]]></printWhenExpression>
+				<subreport>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<subreportParameter name="logo">
+						<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="etapa">
+						<subreportParameterExpression><![CDATA[$P{etapa}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "middle-school-exams-record.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="content-register" isStartNewColumn="true" isStartNewPage="true">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<subreport>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "scholar-subjects-and-objectives.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="retake-tests-register" isStartNewColumn="true" isStartNewPage="true">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<subreport>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "retake-tests-register.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="parents-contact-notes" isStartNewColumn="true" isStartNewPage="true">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="27">
+				<subreport>
+					<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="822" height="27" uuid="b5e4de52-3a28-474d-8923-98516559a0e5"/>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "parents-contact-notes.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+</jasperReport>
