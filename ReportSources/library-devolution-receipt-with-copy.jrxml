@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="library-devolution-receipt-with-copy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="bf35394d-6acd-4bff-9793-367676b24e06">
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cliente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dt_inicial" class="java.lang.String"/>
+	<parameter name="dt_final" class="java.lang.String"/>
+	<parameter name="emitir_2via" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="observacao" class="java.lang.String"/>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="data_emissao" class="java.lang.String"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="?column?" class="java.lang.Integer"/>
+	<group name="report_group">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="100" splitType="Stretch">
+				<subreport>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="22" width="555" height="78" uuid="ec60a2d3-53ce-48a4-b243-bcbefc423353"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="dt_final">
+						<subreportParameterExpression><![CDATA[$P{dt_final}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="dt_inicial">
+						<subreportParameterExpression><![CDATA[$P{dt_inicial}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="cliente">
+						<subreportParameterExpression><![CDATA[$P{cliente}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="instituicao">
+						<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="emitir_2via">
+						<subreportParameterExpression><![CDATA[$P{emitir_2via}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="escola">
+						<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="observacao">
+						<subreportParameterExpression><![CDATA[$P{observacao}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "library-devolution-receipt.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement x="171" y="0" width="213" height="14" uuid="612c2cf4-b2df-43e6-bd3d-14e62cadd826"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Comprovante de Devolução]]></text>
+				</staticText>
+			</band>
+			<band height="103">
+				<printWhenExpression><![CDATA[$P{emitir_2via}]]></printWhenExpression>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1" uuid="4bb896d5-267f-476e-8108-bcb640bdc64b"/>
+					<graphicElement>
+						<pen lineWidth="0.5" lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<subreport>
+					<reportElement stretchType="RelativeToTallestObject" x="0" y="39" width="555" height="64" uuid="ec60a2d3-53ce-48a4-b243-bcbefc423353"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="dt_final">
+						<subreportParameterExpression><![CDATA[$P{dt_final}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="dt_inicial">
+						<subreportParameterExpression><![CDATA[$P{dt_inicial}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="cliente">
+						<subreportParameterExpression><![CDATA[$P{cliente}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="instituicao">
+						<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="emitir_2via">
+						<subreportParameterExpression><![CDATA[$P{emitir_2via}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="escola">
+						<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="observacao">
+						<subreportParameterExpression><![CDATA[$P{observacao}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "library-devolution-receipt.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+</jasperReport>
