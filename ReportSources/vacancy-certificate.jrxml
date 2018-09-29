@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vacancy-certificate" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0cebf96a-c86e-439d-b777-7239a5c2af6a">
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="curso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="serie" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="aluno" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cabecalho_alternativo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_nome_diretor" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="certidao_nasci" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="comprovante_resi" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="decla_vacina" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="foto_3_4" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="historico_escola" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="atestado_frequencia" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cpf_aluno_pai" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="rg_aluno_pai" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cartao_bolsa_fami" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="carteira_sus" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="campo_validade" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_validade" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tit_eleitor" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="doc_nis" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_secretario_escolar" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="atestado_transferencia" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="titulo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="branco" class="java.lang.String"/>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="nome_instituicao" class="java.lang.String"/>
+	<field name="nm_responsavel" class="java.lang.String"/>
+	<field name="altera_atestado_para_declaracao" class="java.lang.Boolean"/>
+	<field name="cidade_instituicao" class="java.lang.String"/>
+	<field name="uf_instituicao" class="java.lang.String"/>
+	<field name="cod_escola" class="java.lang.Integer"/>
+	<field name="nm_escola" class="java.lang.String"/>
+	<field name="tipo_logradouro" class="java.lang.String"/>
+	<field name="logradouro" class="java.lang.String"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="numero" class="java.math.BigDecimal"/>
+	<field name="uf_municipio" class="java.lang.String"/>
+	<field name="fone_ddd" class="java.math.BigDecimal"/>
+	<field name="cep" class="java.lang.String"/>
+	<field name="fone" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="nm_curso" class="java.lang.String"/>
+	<field name="nm_serie" class="java.lang.String"/>
+	<field name="data_atual" class="java.lang.String"/>
+	<field name="hora_atual" class="java.lang.String"/>
+	<field name="diretor" class="java.lang.String"/>
+	<field name="secretario" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="60" uuid="0f963f2a-9a9d-40de-a1ad-d93122c5f9bc"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA[""]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="122" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="21" y="50" width="513" height="71" uuid="131a3b2e-fdab-4db8-ba18-6d5d66ded657"/>
+				<textElement textAlignment="Justified">
+					<font fontName="DejaVu Sans" size="10"/>
+					<paragraph lineSpacing="1_1_2" firstLineIndent="30"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{altera_atestado_para_declaracao} ? "Declaramos" : "Atestamos") + " para os devidos fins e a pedido da parte interessada, que há vaga no(a) "+$F{nm_serie}+" do(s) "+$F{nm_curso}+ " para o ano letivo de "+$P{ano}+", podendo ser aceita a matrícula por transferência do(a) aluno(a) "+$P{aluno}+" desde que apresente a documentação exigida:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="555" height="20" uuid="78dd6e0d-9283-44d1-b536-bae09aef8384"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{titulo}.toUpperCase()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{atestado_frequencia}]]></printWhenExpression>
+			<textField>
+				<reportElement x="105" y="10" width="365" height="15" uuid="9862d832-5645-4025-a715-c6279baa3240"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{altera_atestado_para_declaracao} ? "Declaração" : "Atestado") + " de Frequência original"]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="21b75d8b-73b4-4960-9f21-68cfd21a071e"/>
+			</rectangle>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{atestado_transferencia}]]></printWhenExpression>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="3b69d59e-8d31-44d4-8f69-7f75209672b2"/>
+			</rectangle>
+			<textField>
+				<reportElement x="105" y="10" width="295" height="15" uuid="da93a3d7-44ad-4dca-a6fc-1d824c5ceb10"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{altera_atestado_para_declaracao} ? "Declaração" : "Atestado") + " de Transferência"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{carteira_sus}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="105" y="10" width="295" height="15" uuid="c0350a66-5704-415e-ae9f-6d717b5dd5dc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Carteira do SUS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="3b69d59e-8d31-44d4-8f69-7f75209672b2"/>
+			</rectangle>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{certidao_nasci}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="105" y="10" width="365" height="15" uuid="bf9e832f-6511-4cf0-9d38-2ba14341e887"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Cópia certidão de Nascimento e/ou carteira de identidade]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="21b75d8b-73b4-4960-9f21-68cfd21a071e"/>
+			</rectangle>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{cartao_bolsa_fami}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="105" y="10" width="295" height="15" uuid="74bec1f9-c1fd-4ec2-9ab2-614ad478498d"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Cópia do cartão bolsa família]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="036ba63f-9b0b-4ed2-b96b-dbcd65f98f39"/>
+			</rectangle>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{comprovante_resi}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="105" y="10" width="365" height="15" uuid="bf9e832f-6511-4cf0-9d38-2ba14341e887"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Cópia comprovante de Residência]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="21b75d8b-73b4-4960-9f21-68cfd21a071e"/>
+			</rectangle>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{cpf_aluno_pai}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="105" y="10" width="295" height="15" uuid="c0350a66-5704-415e-ae9f-6d717b5dd5dc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Cópia do CPF (Aluno e Pais)]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="3b69d59e-8d31-44d4-8f69-7f75209672b2"/>
+			</rectangle>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{rg_aluno_pai}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="105" y="11" width="295" height="15" uuid="c0350a66-5704-415e-ae9f-6d717b5dd5dc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Cópia do RG (Aluno e Pais)]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="3b69d59e-8d31-44d4-8f69-7f75209672b2"/>
+			</rectangle>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{decla_vacina}]]></printWhenExpression>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="6cc748be-3513-4ebe-b97f-b56c7087e254"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="105" y="10" width="295" height="15" uuid="ff5b77fe-eb50-4312-9784-e6cda36ae922"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Declaração de vacina da unidade de saúde original]]></text>
+			</staticText>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{foto_3_4}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="105" y="10" width="295" height="15" uuid="b6e3b8d2-12e2-4047-82ce-c1ae167500f5"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Foto 3/4]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="0cddb8cb-258d-45c6-b14e-2ff465b6542d"/>
+			</rectangle>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{historico_escola}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="105" y="10" width="295" height="15" uuid="b6e3b8d2-12e2-4047-82ce-c1ae167500f5"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Histórico Escolar original]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="0cddb8cb-258d-45c6-b14e-2ff465b6542d"/>
+			</rectangle>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{doc_nis}]]></printWhenExpression>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="3b69d59e-8d31-44d4-8f69-7f75209672b2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="105" y="10" width="295" height="15" uuid="c0350a66-5704-415e-ae9f-6d717b5dd5dc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Número de Identificação Social - NIS]]></text>
+			</staticText>
+		</band>
+		<band height="26">
+			<printWhenExpression><![CDATA[$P{tit_eleitor}]]></printWhenExpression>
+			<staticText>
+				<reportElement x="105" y="10" width="295" height="15" uuid="c0350a66-5704-415e-ae9f-6d717b5dd5dc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Título de eleitor do responsável]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="81" y="7" width="14" height="10" uuid="3b69d59e-8d31-44d4-8f69-7f75209672b2"/>
+			</rectangle>
+		</band>
+		<band height="179">
+			<staticText>
+				<reportElement x="244" y="52" width="61" height="15" uuid="c0350a66-5704-415e-ae9f-6d717b5dd5dc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Vespertino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="52" width="59" height="15" uuid="c0350a66-5704-415e-ae9f-6d717b5dd5dc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Matutino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="53" width="44" height="15" uuid="c0350a66-5704-415e-ae9f-6d717b5dd5dc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Integral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="344" y="52" width="44" height="15" uuid="c0350a66-5704-415e-ae9f-6d717b5dd5dc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Noturno]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="220" y="51" width="14" height="10" uuid="3b69d59e-8d31-44d4-8f69-7f75209672b2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="124" y="51" width="14" height="10" uuid="3b69d59e-8d31-44d4-8f69-7f75209672b2"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="124" y="105" width="14" height="10" uuid="9e12b9e5-3d54-4901-928c-3686a8f975dc"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="401" y="51" width="14" height="10" uuid="3b69d59e-8d31-44d4-8f69-7f75209672b2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="113" y="79" width="352" height="15" uuid="bfd3be32-87ad-48fb-9f2d-3f788d5aad8c"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[No caso de transferência durante o ano, apresentar também:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="22" width="352" height="15" uuid="bfd3be32-87ad-48fb-9f2d-3f788d5aad8c"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[Confirmar o turno:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="124" y="137" width="14" height="10" uuid="13976172-3b25-4f11-bbe5-d94fd6bda1e4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="320" y="51" width="14" height="10" uuid="3b69d59e-8d31-44d4-8f69-7f75209672b2"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="148" y="137" width="295" height="15" uuid="62851621-c7ed-4c60-a3e5-43ee98e3dfe9"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Boletim de notas dos bimestres concluídos.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="148" y="105" width="295" height="15" uuid="138699ba-7af4-4771-a8d7-7935cd9aedad"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Notas parciais;]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="28">
+			<printWhenExpression><![CDATA[$P{emitir_validade}]]></printWhenExpression>
+			<textField>
+				<reportElement x="21" y="0" width="513" height="28" uuid="7853b7ed-0297-4e00-88b6-d07458b872d6"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="DejaVu Sans"/>
+					<paragraph firstLineIndent="30"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Este documento possui data de validade de " + $P{campo_validade} + " dias a partir da data de sua emissão."]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="87">
+			<textField>
+				<reportElement x="48" y="0" width="486" height="20" uuid="664a8f7e-73e9-4081-acb3-0898320daa5c"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="DejaVu Sans" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade_instituicao}+" ("+$F{uf_instituicao}+")"+",  ___/___/_____"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="341" y="38" width="193" height="1" uuid="0d179794-4148-414e-aa50-655ce102c43f">
+					<printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == true]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="341" y="39" width="193" height="38" uuid="4c9c2119-06e0-4e13-96e3-82a8347b7399">
+					<printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{emitir_nome_diretor} ? ($F{diretor} == null ? "Gestor(a) escolar" : $F{diretor} + "\n" + "Gestor(a) escolar") : ("Gestor(a) escolar")]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="21" y="39" width="193" height="1" uuid="0d179794-4148-414e-aa50-655ce102c43f">
+					<printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == true]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="21" y="40" width="193" height="37" uuid="acb35541-433f-46d1-942d-58b7e890aaa6">
+					<printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == true]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{emitir_secretario_escolar} ? ($F{secretario} == null ? "Secretário(a) escolar" : $F{secretario} + "\n" + "Secretário(a) escolar") : ("Secretário(a) escolar")]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="171" y="39" width="193" height="1" uuid="0d179794-4148-414e-aa50-655ce102c43f">
+					<printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == false]]></printWhenExpression>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="171" y="40" width="193" height="37" uuid="acb35541-433f-46d1-942d-58b7e890aaa6">
+					<printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{emitir_secretario_escolar} ? ($F{secretario} == null ? "Secretário(a) escolar" : $F{secretario} + "\n" + "Secretário(a) escolar") : ("Secretário(a) escolar")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="40" width="193" height="38" uuid="4c9c2119-06e0-4e13-96e3-82a8347b7399">
+					<printWhenExpression><![CDATA[$P{emitir_nome_diretor} == true && $P{emitir_secretario_escolar} == false]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{emitir_nome_diretor} ? ($F{diretor} == null ? "Gestor(a) escolar" : $F{diretor} + "\n" + "Gestor(a) escolar") : ("Gestor(a) escolar")]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="171" y="39" width="193" height="1" uuid="0d179794-4148-414e-aa50-655ce102c43f">
+					<printWhenExpression><![CDATA[$P{emitir_nome_diretor} == true && $P{emitir_secretario_escolar} == false]]></printWhenExpression>
+				</reportElement>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>
