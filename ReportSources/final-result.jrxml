@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="final-result" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0378c531-ef85-4c42-9c57-3c8660b99c2d">
+	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="linha-zebrado" hTextAlign="Center" hImageAlign="Center">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean(($V{ROW_COUNT}.intValue() % 2) == 0)]]></conditionExpression>
+			<style backcolor="#F0F0F0"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="curso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="serie" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="turma" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="situacao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[9]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dependencia" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mostrar_msg" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cabecalho_alternativo" class="java.lang.String"/>
+	<parameter name="portaria_aprovacao_pontos" class="java.lang.String"/>
+	<parameter name="modelo" class="java.lang.String"/>
+	<parameter name="orientacao" class="java.lang.String"/>
+	<parameter name="texto_rodape" class="java.lang.String"/>
+	<parameter name="criterio_aprovacao" class="java.lang.String"/>
+	<parameter name="areas_conhecimento" class="java.lang.String"/>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="cod_matricula" class="java.lang.Integer"/>
+	<field name="dependencia" class="java.lang.Boolean"/>
+	<field name="cod_aluno" class="java.lang.Integer"/>
+	<field name="nm_aluno" class="java.lang.String"/>
+	<field name="situacao" class="java.lang.String"/>
+	<field name="frequencia_geral" class="java.math.BigDecimal"/>
+	<field name="media" class="java.lang.String"/>
+	<field name="nota_maior_dez" class="java.lang.Integer"/>
+	<field name="nm_componente_curricular" class="java.lang.String"/>
+	<field name="ordenamento" class="java.lang.Integer"/>
+	<field name="ano" class="java.lang.Integer"/>
+	<field name="nome_curso" class="java.lang.String"/>
+	<field name="nome_serie" class="java.lang.String"/>
+	<field name="nome_turma" class="java.lang.String"/>
+	<field name="periodo" class="java.lang.String"/>
+	<field name="sequencial_fechamento" class="java.lang.Integer"/>
+	<variable name="nota_maior_dez" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{nota_maior_dez}]]></variableExpression>
+	</variable>
+	<variable name="count_cursando" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[($F{situacao}== "Cur"  && !$F{dependencia}) ? $F{cod_matricula}: null]]></variableExpression>
+	</variable>
+	<variable name="count_aprovado" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{situacao} == "Apr" ? $F{cod_matricula} : null]]></variableExpression>
+	</variable>
+	<variable name="count_reprovado" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{situacao} == "Rep"  ? $F{cod_matricula} : null]]></variableExpression>
+	</variable>
+	<variable name="count_abandono" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{situacao}== "Aba" ? $F{cod_matricula} : null]]></variableExpression>
+	</variable>
+	<variable name="count_reclassificado" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{situacao}== "Recl" ?  $F{cod_matricula}: null]]></variableExpression>
+	</variable>
+	<variable name="count_transferido" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{situacao}== "Trs" ?  $F{cod_matricula}: null]]></variableExpression>
+	</variable>
+	<variable name="count_cursando_dep" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[($F{situacao}== "Cur"  && $F{dependencia}) ? $F{cod_matricula}: null]]></variableExpression>
+	</variable>
+	<variable name="total" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{cod_matricula}]]></variableExpression>
+	</variable>
+	<variable name="count_falecidos" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{situacao}== "Fal" ?  $F{cod_matricula}: null]]></variableExpression>
+	</variable>
+	<variable name="total_alunos" class="java.lang.String">
+		<variableExpression><![CDATA[$V{total} + " alunos"]]></variableExpression>
+	</variable>
+	<variable name="total_aprovados" class="java.lang.String">
+		<variableExpression><![CDATA[$V{count_aprovado} == 0 ? "0" : $V{count_aprovado} + " -> " + new BigDecimal($V{count_aprovado} * 100 / $V{total}).setScale(1, java.math.RoundingMode.HALF_UP) + "%"]]></variableExpression>
+	</variable>
+	<variable name="total_cursando_dep" class="java.lang.String">
+		<variableExpression><![CDATA[$V{count_cursando_dep} == 0 ? "0" : $V{count_cursando_dep} + " -> " + new BigDecimal($V{count_cursando_dep} * 100 / $V{total}).setScale(1, java.math.RoundingMode.HALF_UP) + "%"]]></variableExpression>
+	</variable>
+	<variable name="total_cursando" class="java.lang.String">
+		<variableExpression><![CDATA[$V{count_cursando} == 0 ? "0" : $V{count_cursando} + " -> " + new BigDecimal($V{count_cursando} * 100 / $V{total}).setScale(1, java.math.RoundingMode.HALF_UP) + "%"]]></variableExpression>
+	</variable>
+	<variable name="total_transferido" class="java.lang.String">
+		<variableExpression><![CDATA[$V{count_transferido} == 0 ? "0" : $V{count_transferido} + " -> " + new BigDecimal($V{count_transferido} * 100 / $V{total}).setScale(1, java.math.RoundingMode.HALF_UP) + "%"]]></variableExpression>
+	</variable>
+	<variable name="total_reclassificado" class="java.lang.String">
+		<variableExpression><![CDATA[$V{count_reclassificado} == 0 ? "0" : $V{count_reclassificado} + " -> " + new BigDecimal($V{count_reclassificado} * 100 / $V{total}).setScale(1, java.math.RoundingMode.HALF_UP) + "%"]]></variableExpression>
+	</variable>
+	<variable name="total_abandono" class="java.lang.String">
+		<variableExpression><![CDATA[$V{count_abandono} == 0 ? "0" : $V{count_abandono} + " -> " + new BigDecimal($V{count_abandono} * 100 / $V{total}).setScale(1, java.math.RoundingMode.HALF_UP) + "%"]]></variableExpression>
+	</variable>
+	<variable name="total_falecidos" class="java.lang.String">
+		<variableExpression><![CDATA[$V{count_falecidos} == 0 ? "0" : $V{count_falecidos} + " -> " + new BigDecimal($V{count_falecidos} * 100 / $V{total}).setScale(1, java.math.RoundingMode.HALF_UP) + "%"]]></variableExpression>
+	</variable>
+	<variable name="total_reprovados" class="java.lang.String">
+		<variableExpression><![CDATA[$V{count_reprovado} == 0 ? "0" : $V{count_reprovado} + " -> " + new BigDecimal($V{count_reprovado} * 100 / $V{total}).setScale(1, java.math.RoundingMode.HALF_UP) + "%"]]></variableExpression>
+	</variable>
+	<group name="crosstable">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupFooter>
+			<band height="190" splitType="Stretch">
+				<elementGroup>
+					<elementGroup>
+						<crosstab>
+							<reportElement x="14" y="4" width="766" height="184" uuid="4c50a099-4f7c-4636-951b-21df04d0e54a"/>
+							<crosstabDataset isDataPreSorted="true"/>
+							<crosstabHeaderCell>
+								<cellContents mode="Opaque">
+									<box>
+										<pen lineWidth="0.0"/>
+										<topPen lineWidth="0.0"/>
+										<leftPen lineWidth="0.0"/>
+										<bottomPen lineWidth="0.0"/>
+										<rightPen lineWidth="0.0"/>
+									</box>
+									<staticText>
+										<reportElement style="Crosstab Data Text" x="20" y="5" width="259" height="15" uuid="4aa69f0a-3518-4fa1-81ed-bebb10e531d9"/>
+										<textElement textAlignment="Left">
+											<font fontName="DejaVu Sans" size="8" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Aluno]]></text>
+									</staticText>
+									<staticText>
+										<reportElement style="Crosstab Data Text" x="279" y="5" width="32" height="15" uuid="2ba58a37-c9da-48d4-a2ac-086dc9849def"/>
+										<textElement textAlignment="Center">
+											<font fontName="DejaVu Sans" size="8" isBold="true"/>
+										</textElement>
+										<text><![CDATA[Sit]]></text>
+									</staticText>
+									<staticText>
+										<reportElement style="Crosstab Data Text" x="311" y="5" width="32" height="15" uuid="93d25ded-82b7-42bd-800b-5c782568bed0"/>
+										<textElement textAlignment="Center">
+											<font fontName="DejaVu Sans" size="8" isBold="true"/>
+										</textElement>
+										<text><![CDATA[ %Fr]]></text>
+									</staticText>
+								</cellContents>
+							</crosstabHeaderCell>
+							<rowGroup name="nm_aluno" width="279">
+								<bucket class="java.lang.String">
+									<bucketExpression><![CDATA[$F{nm_aluno}]]></bucketExpression>
+								</bucket>
+								<crosstabRowHeader>
+									<cellContents mode="Opaque" style="linha-zebrado">
+										<box>
+											<pen lineWidth="0.0"/>
+											<topPen lineWidth="0.0"/>
+											<leftPen lineWidth="0.0"/>
+											<bottomPen lineWidth="0.0"/>
+											<rightPen lineWidth="0.0"/>
+										</box>
+										<textField>
+											<reportElement mode="Transparent" x="20" y="0" width="259" height="15" uuid="26451b38-4f94-4f1a-879d-a39854e52a6d"/>
+											<textElement textAlignment="Left" verticalAlignment="Middle">
+												<font fontName="DejaVu Sans" size="8"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$V{nm_aluno}]]></textFieldExpression>
+										</textField>
+									</cellContents>
+								</crosstabRowHeader>
+								<crosstabTotalRowHeader>
+									<cellContents>
+										<box>
+											<pen lineWidth="0.0"/>
+											<topPen lineWidth="0.0"/>
+											<leftPen lineWidth="0.0"/>
+											<bottomPen lineWidth="0.0"/>
+											<rightPen lineWidth="0.0"/>
+										</box>
+									</cellContents>
+								</crosstabTotalRowHeader>
+							</rowGroup>
+							<rowGroup name="situacao" width="32">
+								<bucket class="java.lang.String">
+									<bucketExpression><![CDATA[$F{situacao}]]></bucketExpression>
+								</bucket>
+								<crosstabRowHeader>
+									<cellContents mode="Opaque" style="linha-zebrado">
+										<textField isBlankWhenNull="true">
+											<reportElement mode="Transparent" x="0" y="0" width="32" height="15" uuid="815ac81e-a1c4-4ac0-ba55-bc9aabebb01b"/>
+											<textElement textAlignment="Center">
+												<font fontName="DejaVu Sans" size="8"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$V{situacao}]]></textFieldExpression>
+										</textField>
+									</cellContents>
+								</crosstabRowHeader>
+								<crosstabTotalRowHeader>
+									<cellContents/>
+								</crosstabTotalRowHeader>
+							</rowGroup>
+							<rowGroup name="%fr" width="33">
+								<bucket class="java.lang.String">
+									<bucketExpression><![CDATA[$F{frequencia_geral}]]></bucketExpression>
+								</bucket>
+								<crosstabRowHeader>
+									<cellContents mode="Opaque" style="linha-zebrado">
+										<textField isBlankWhenNull="true">
+											<reportElement mode="Transparent" x="0" y="0" width="32" height="15" uuid="051cef1f-d97b-49b5-8f0b-b5755efda5bb"/>
+											<textElement textAlignment="Center">
+												<font fontName="DejaVu Sans" size="8"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$V{%fr}]]></textFieldExpression>
+										</textField>
+									</cellContents>
+								</crosstabRowHeader>
+								<crosstabTotalRowHeader>
+									<cellContents/>
+								</crosstabTotalRowHeader>
+							</rowGroup>
+							<columnGroup name="nm_componente_curricular" height="21" totalPosition="End">
+								<bucket class="java.lang.String">
+									<bucketExpression><![CDATA[$F{nm_componente_curricular}]]></bucketExpression>
+								</bucket>
+								<crosstabColumnHeader>
+									<cellContents mode="Opaque">
+										<box>
+											<pen lineWidth="0.0"/>
+											<topPen lineWidth="0.0"/>
+											<leftPen lineWidth="0.0"/>
+											<bottomPen lineWidth="0.0"/>
+											<rightPen lineWidth="0.0"/>
+										</box>
+										<textField>
+											<reportElement style="Crosstab Data Text" x="1" y="5" width="32" height="15" uuid="0d33f862-3339-44cc-9676-9ea84b5ee545"/>
+											<textElement textAlignment="Center">
+												<font fontName="DejaVu Sans" size="8" isBold="true"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$V{nm_componente_curricular}]]></textFieldExpression>
+										</textField>
+									</cellContents>
+								</crosstabColumnHeader>
+								<crosstabTotalColumnHeader>
+									<cellContents backcolor="#BFE1FF" mode="Transparent">
+										<box>
+											<pen lineWidth="0.0"/>
+											<topPen lineWidth="0.0"/>
+											<leftPen lineWidth="0.0"/>
+											<bottomPen lineWidth="0.0"/>
+											<rightPen lineWidth="0.0"/>
+										</box>
+									</cellContents>
+								</crosstabTotalColumnHeader>
+							</columnGroup>
+							<measure name="mediaMeasure" class="java.lang.String" calculation="First">
+								<measureExpression><![CDATA[$F{media}]]></measureExpression>
+							</measure>
+							<crosstabCell width="34" height="15">
+								<cellContents mode="Opaque" style="linha-zebrado">
+									<box>
+										<pen lineWidth="0.0"/>
+										<topPen lineWidth="0.0"/>
+										<leftPen lineWidth="0.0"/>
+										<bottomPen lineWidth="0.0"/>
+										<rightPen lineWidth="0.0"/>
+									</box>
+									<textField pattern="###0.00" isBlankWhenNull="true">
+										<reportElement mode="Transparent" x="1" y="0" width="32" height="15" forecolor="#010101" uuid="5460d827-cdaa-4ea5-ab26-46e942baa06e"/>
+										<textElement textAlignment="Center" verticalAlignment="Middle">
+											<font fontName="DejaVu Sans" size="8"/>
+										</textElement>
+										<textFieldExpression><![CDATA[$V{mediaMeasure} ? $V{mediaMeasure} : "-"]]></textFieldExpression>
+									</textField>
+								</cellContents>
+							</crosstabCell>
+							<crosstabCell width="0" height="15" columnTotalGroup="nm_componente_curricular">
+								<cellContents backcolor="#BFE1FF" mode="Transparent">
+									<box>
+										<pen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+										<topPen lineWidth="0.0"/>
+										<leftPen lineWidth="0.0"/>
+										<bottomPen lineWidth="0.0"/>
+										<rightPen lineWidth="0.0"/>
+									</box>
+								</cellContents>
+							</crosstabCell>
+							<crosstabCell rowTotalGroup="nm_aluno">
+								<cellContents/>
+							</crosstabCell>
+							<crosstabCell rowTotalGroup="nm_aluno" columnTotalGroup="nm_componente_curricular">
+								<cellContents/>
+							</crosstabCell>
+							<crosstabCell rowTotalGroup="situacao">
+								<cellContents/>
+							</crosstabCell>
+							<crosstabCell rowTotalGroup="situacao" columnTotalGroup="nm_componente_curricular">
+								<cellContents/>
+							</crosstabCell>
+							<crosstabCell rowTotalGroup="%fr">
+								<cellContents/>
+							</crosstabCell>
+							<crosstabCell rowTotalGroup="%fr" columnTotalGroup="nm_componente_curricular">
+								<cellContents/>
+							</crosstabCell>
+						</crosstab>
+					</elementGroup>
+				</elementGroup>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="152">
+			<subreport>
+				<reportElement x="0" y="0" width="802" height="110" uuid="b241df72-8ed9-4919-81e7-4e966a7b0ab4"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Resultado Final"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-landscape.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="34" y="137" width="36" height="12" uuid="a2fef46a-95ee-471f-954d-4c59ee3f6453"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Curso:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="269" y="137" width="36" height="12" uuid="3d7e5690-83cf-4b94-b4d6-3d02c54443b7"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Turno:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="137" width="36" height="12" uuid="aabaa5dd-00d4-4b0b-a6c9-89f34a9d414e"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Turma:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="559" y="137" width="36" height="12" uuid="7ee2cd94-a04f-4ff5-b054-cd07275a5ff9"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Série:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="70" y="137" width="190" height="12" uuid="9863bd3d-2642-45a7-96fe-2246aad1c4a2"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_curso}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="305" y="137" width="100" height="12" uuid="86af51bf-68d8-4122-abd6-9223d889777a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{periodo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="447" y="137" width="100" height="12" uuid="142a6ec1-4e1c-47b3-974d-bd2b7c097dd8"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_turma}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="595" y="137" width="100" height="12" uuid="375f41e1-626b-44a6-a411-95e965ccc893"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_serie}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="709" y="137" width="29" height="12" uuid="4e5bf517-6347-41ef-947e-a2800b0fc3d2"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ano:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="738" y="137" width="45" height="12" uuid="4a53dec4-f655-4caa-881a-4cb00ffb31e3"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="408" y="20" width="67" height="17" uuid="5dc3e2b1-7ca4-402d-a704-740809fee527"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Estatísticas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="37" width="67" height="17" uuid="f26eb7d3-7b84-4827-8bf6-2f8f40ce07df"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Aprovados:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="54" width="67" height="17" uuid="542d4b8e-fd99-44f8-8f1b-f0021f609db3"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Reprovados:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="546" y="37" width="67" height="17" uuid="0c8bc5a3-d753-42ac-9c4e-7a3a31d4d6ea"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Cursando:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="546" y="54" width="67" height="17" uuid="ee625ed0-b60d-47ae-aa62-853cd3b33e89"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Transferidos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="680" y="38" width="67" height="17" uuid="954f8e5b-2131-4b42-80d5-e56ee8fb48dd"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Reclassificados:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="680" y="55" width="67" height="17" uuid="03c6d010-5a74-4bdb-b8ad-f97158b85b3a"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Abandono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="595" y="37" width="68" height="17" uuid="3903e81f-6b82-4518-9a72-547b26d5dbc6"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_cursando}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="738" y="38" width="59" height="17" uuid="3903e81f-6b82-4518-9a72-547b26d5dbc6"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_reclassificado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="738" y="55" width="59" height="17" uuid="3903e81f-6b82-4518-9a72-547b26d5dbc6"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_abandono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="595" y="54" width="68" height="17" uuid="3903e81f-6b82-4518-9a72-547b26d5dbc6"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_transferido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="37" width="66" height="17" uuid="3903e81f-6b82-4518-9a72-547b26d5dbc6"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_aprovados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="54" width="66" height="17" uuid="3903e81f-6b82-4518-9a72-547b26d5dbc6"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_reprovados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="447" y="20" width="78" height="17" uuid="3903e81f-6b82-4518-9a72-547b26d5dbc6"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_alunos}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="14" y="69" width="150" height="1" uuid="5b891216-44d8-455a-88d0-27c0adbdf80e"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="225" y="69" width="150" height="1" uuid="970f82bb-3a90-4ca2-aeb5-74bb9c7f6ba1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="14" y="69" width="151" height="17" uuid="5dc3e2b1-7ca4-402d-a704-740809fee527"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[SECRETÁRIO(A)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="69" width="151" height="17" uuid="5dc3e2b1-7ca4-402d-a704-740809fee527"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[DIRETOR(A)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="71" width="67" height="17" uuid="0c8bc5a3-d753-42ac-9c4e-7a3a31d4d6ea"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Cursando dep.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="457" y="71" width="68" height="17" uuid="3903e81f-6b82-4518-9a72-547b26d5dbc6"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_cursando_dep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="14" y="3" width="766" height="12" uuid="ba2d3bb1-d6a7-4cf5-abaf-6d7079d4b66b">
+					<printWhenExpression><![CDATA[$P{mostrar_msg} == true && $V{nota_maior_dez} > 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{portaria_aprovacao_pontos} == null ? "(*) Conforme Portaria N/20/24/05/2010" : "(*) " + $P{portaria_aprovacao_pontos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="680" y="72" width="67" height="17" uuid="03c6d010-5a74-4bdb-b8ad-f97158b85b3a"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Falecidos:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="738" y="72" width="59" height="17" uuid="3903e81f-6b82-4518-9a72-547b26d5dbc6"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_falecidos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
