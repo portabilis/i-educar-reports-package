@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_faculdades_servidor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2c6a6eca-5506-4868-9f25-d3c9fb24954d">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="servidor" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+	</parameter>
+	<queryString language="json">
+		<![CDATA[formations(cod_servidor == $P{servidor})]]>
+	</queryString>
+	<field name="nm_servidor" class="java.lang.String"/>
+	<field name="escolaridade" class="java.lang.String"/>
+	<field name="faculdade_um" class="java.lang.String"/>
+	<field name="faculdade_dois" class="java.lang.String"/>
+	<field name="faculdade_tres" class="java.lang.String"/>
+	<field name="curso_um" class="java.lang.String"/>
+	<field name="curso_dois" class="java.lang.String"/>
+	<field name="curso_tres" class="java.lang.String"/>
+	<field name="ano_inicio_curso_superior_1" class="java.math.BigDecimal"/>
+	<field name="ano_conclusao_curso_superior_1" class="java.math.BigDecimal"/>
+	<field name="situacao_curso_superior_1" class="java.lang.Integer"/>
+	<field name="ano_inicio_curso_superior_2" class="java.math.BigDecimal"/>
+	<field name="ano_conclusao_curso_superior_2" class="java.math.BigDecimal"/>
+	<field name="situacao_curso_superior_2" class="java.lang.Integer"/>
+	<field name="ano_inicio_curso_superior_3" class="java.math.BigDecimal"/>
+	<field name="ano_conclusao_curso_superior_3" class="java.math.BigDecimal"/>
+	<field name="situacao_curso_superior_3" class="java.lang.Integer"/>
+	<field name="curso_creche" class="java.lang.Integer"/>
+	<field name="curso_pre_escola" class="java.lang.Integer"/>
+	<field name="curso_anos_iniciais" class="java.lang.Integer"/>
+	<field name="curso_anos_finais" class="java.lang.Integer"/>
+	<field name="curso_ensino_medio" class="java.lang.Integer"/>
+	<field name="curso_eja" class="java.lang.Integer"/>
+	<field name="curso_educacao_especial" class="java.lang.Integer"/>
+	<field name="curso_educacao_indigena" class="java.lang.Integer"/>
+	<field name="curso_educacao_ambiental" class="java.lang.Integer"/>
+	<field name="curso_educacao_direitos_humanos" class="java.lang.Integer"/>
+	<field name="curso_educacao_campo" class="java.lang.Integer"/>
+	<field name="curso_genero_diversidade_sexual" class="java.lang.Integer"/>
+	<field name="curso_relacoes_etnicorraciais" class="java.lang.Integer"/>
+	<field name="curso_direito_crianca_adolescente" class="java.lang.Integer"/>
+	<field name="especializacao" class="java.lang.String"/>
+	<field name="pos_especializacao" class="java.lang.Integer"/>
+	<field name="pos_mestrado" class="java.lang.Integer"/>
+	<field name="pos_doutorado" class="java.lang.Integer"/>
+	<field name="pos_nenhuma" class="java.lang.Integer"/>
+	<group name="instituicao">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="66">
+				<textField isBlankWhenNull="true">
+					<reportElement x="79" y="56" width="71" height="10" uuid="6a0057eb-5532-4c1b-9b58-e3237da7fa69"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ano_inicio_curso_superior_1} == null ? "" : $F{ano_inicio_curso_superior_1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="384" y="65" width="160" height="1" uuid="efc624aa-3a01-4261-9e00-236a3048f490">
+						<printWhenExpression><![CDATA[$F{situacao_curso_superior_1} == null || $F{situacao_curso_superior_1} == ""]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<textField isBlankWhenNull="true">
+					<reportElement x="245" y="56" width="82" height="10" uuid="486bc4b0-cab2-434f-8387-2611b29c2fee"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ano_conclusao_curso_superior_1} == null ? "" : $F{ano_conclusao_curso_superior_1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="2" width="555" height="1" uuid="11b89ef3-5dc6-4588-a2f5-e6788186c06c"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="76" y="28" width="268" height="1" uuid="efc624aa-3a01-4261-9e00-236a3048f490">
+						<printWhenExpression><![CDATA[$F{escolaridade} == null || $F{escolaridade} == ""]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="246" y="65" width="82" height="1" uuid="efc624aa-3a01-4261-9e00-236a3048f490">
+						<printWhenExpression><![CDATA[$F{ano_conclusao_curso_superior_1} == null || $F{ano_conclusao_curso_superior_1} == ""]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<textField isBlankWhenNull="true">
+					<reportElement x="74" y="19" width="254" height="10" uuid="59103a5b-636e-4ab8-9d77-c11578c271f0"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{escolaridade}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="2" width="1" height="64" uuid="d5f11dda-5b85-4c99-8302-0f19d5834e51"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<textField isBlankWhenNull="true">
+					<reportElement x="382" y="56" width="173" height="10" uuid="86021bf1-9f63-45f0-b351-567354904627"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{situacao_curso_superior_1} == 1 ? "CONCLUÍDO" : $F{situacao_curso_superior_1} == 2 ? "CURSANDO" : ""]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="79" y="65" width="82" height="1" uuid="efc624aa-3a01-4261-9e00-236a3048f490">
+						<printWhenExpression><![CDATA[$F{ano_inicio_curso_superior_1} == null || $F{ano_inicio_curso_superior_1} == ""]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="8" y="44" width="110" height="10" uuid="bf6e3b9c-6d58-49e9-9894-6226f38ba085"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[INSTITUIÇÃO DE ENSINO 1:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="331" y="56" width="52" height="10" uuid="d001a899-8de5-4626-b71c-2635e046c332"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[SITUAÇÃO 1:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="162" y="56" width="84" height="10" uuid="804fd5c2-d6c2-44e5-9f07-59ff4b8acd38"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[ANO DE TÉRMINO 1:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="5" width="175" height="13" uuid="8b01fd4c-783e-4502-a612-269525331f58"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[GRADUAÇÃO]]></text>
+				</staticText>
+				<line>
+					<reportElement x="554" y="2" width="1" height="64" uuid="7790f458-0d7d-40f2-878d-d69d0f021730"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="8" y="19" width="67" height="10" uuid="b03318ff-4275-44ec-a3e9-ede2b82df529"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[ESCOLARIDADE:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="117" y="44" width="435" height="10" uuid="7d1a6bbc-4c0a-4b53-9401-6fb8f3147ca5"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{faculdade_um}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="8" y="56" width="72" height="10" uuid="19112d4f-c442-4fb9-9851-62cc390c842d"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[ANO DE INÍCIO 1:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="118" y="54" width="426" height="1" uuid="efc624aa-3a01-4261-9e00-236a3048f490">
+						<printWhenExpression><![CDATA[$F{faculdade_um} == null || $F{faculdade_um} == ""]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="8" y="32" width="83" height="10" uuid="bf6e3b9c-6d58-49e9-9894-6226f38ba085"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[CURSO SUPERIOR 1:]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="90" y="32" width="254" height="10" uuid="59103a5b-636e-4ab8-9d77-c11578c271f0"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{curso_um}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="92" y="41" width="252" height="1" uuid="efc624aa-3a01-4261-9e00-236a3048f490">
+						<printWhenExpression><![CDATA[$F{curso_um} == null || $F{curso_um} == ""]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+			</band>
+			<band height="37">
+				<printWhenExpression><![CDATA[$F{curso_dois} != null && $F{curso_dois} != ""]]></printWhenExpression>
+				<line>
+					<reportElement x="554" y="0" width="1" height="37" uuid="9e2ff1b9-e18c-469c-8733-41e791fba1d1"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="0" y="0" width="1" height="37" uuid="2fd60bcf-f047-4830-9e04-18f1ad12a838"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="382" y="27" width="173" height="10" uuid="86021bf1-9f63-45f0-b351-567354904627"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{situacao_curso_superior_2} == 1 ? "CONCLUÍDO" : $F{situacao_curso_superior_2} == 2 ? "CURSANDO" : ""]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="79" y="27" width="71" height="10" uuid="6a0057eb-5532-4c1b-9b58-e3237da7fa69"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ano_inicio_curso_superior_2} == null ? "" : $F{ano_inicio_curso_superior_2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="245" y="27" width="82" height="10" uuid="486bc4b0-cab2-434f-8387-2611b29c2fee"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ano_conclusao_curso_superior_2} == null ? "" : $F{ano_conclusao_curso_superior_2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="117" y="15" width="435" height="10" uuid="7d1a6bbc-4c0a-4b53-9401-6fb8f3147ca5"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{faculdade_dois} == null ? "" : $F{faculdade_dois}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="162" y="27" width="84" height="10" uuid="804fd5c2-d6c2-44e5-9f07-59ff4b8acd38"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[ANO DE TÉRMINO 2:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="27" width="72" height="10" uuid="19112d4f-c442-4fb9-9851-62cc390c842d"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[ANO DE INÍCIO 2:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="331" y="27" width="52" height="10" uuid="d001a899-8de5-4626-b71c-2635e046c332"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[SITUAÇÃO 2:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="15" width="110" height="10" uuid="bf6e3b9c-6d58-49e9-9894-6226f38ba085"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[INSTITUIÇÃO DE ENSINO 2:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="90" y="3" width="254" height="10" uuid="59103a5b-636e-4ab8-9d77-c11578c271f0">
+						<printWhenExpression><![CDATA[$F{curso_dois} != null || $F{curso_dois} != ""]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{curso_dois}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="8" y="3" width="83" height="10" uuid="bf6e3b9c-6d58-49e9-9894-6226f38ba085"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[CURSO SUPERIOR 2:]]></text>
+				</staticText>
+			</band>
+			<band height="37">
+				<printWhenExpression><![CDATA[$F{curso_tres} != null && $F{curso_tres} != ""]]></printWhenExpression>
+				<line>
+					<reportElement x="554" y="0" width="1" height="37" uuid="21ddd039-16dc-401f-b747-44be64381ef2"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="8" y="27" width="72" height="10" uuid="19112d4f-c442-4fb9-9851-62cc390c842d"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[ANO DE INÍCIO 3:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="331" y="27" width="52" height="10" uuid="d001a899-8de5-4626-b71c-2635e046c332"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[SITUAÇÃO 3:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="117" y="15" width="435" height="10" uuid="7d1a6bbc-4c0a-4b53-9401-6fb8f3147ca5"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{faculdade_tres} == null ? "" : $F{faculdade_tres}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="245" y="27" width="82" height="10" uuid="486bc4b0-cab2-434f-8387-2611b29c2fee"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ano_conclusao_curso_superior_3} == null ? "" : $F{ano_conclusao_curso_superior_3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="79" y="27" width="71" height="10" uuid="6a0057eb-5532-4c1b-9b58-e3237da7fa69"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ano_inicio_curso_superior_3} == null ? "" : $F{ano_inicio_curso_superior_3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="382" y="27" width="173" height="10" uuid="86021bf1-9f63-45f0-b351-567354904627"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{situacao_curso_superior_3} == 1 ? "CONCLUÍDO" : $F{situacao_curso_superior_3} == 2 ? "CURSANDO" : ""]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="162" y="27" width="84" height="10" uuid="804fd5c2-d6c2-44e5-9f07-59ff4b8acd38"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[ANO DE TÉRMINO 3:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="8" y="15" width="110" height="10" uuid="bf6e3b9c-6d58-49e9-9894-6226f38ba085"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[INSTITUIÇÃO DE ENSINO 3:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="0" width="1" height="37" uuid="21ddd039-16dc-401f-b747-44be64381ef2"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="8" y="3" width="83" height="10" uuid="bf6e3b9c-6d58-49e9-9894-6226f38ba085"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[CURSO SUPERIOR 3:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="90" y="3" width="254" height="10" uuid="59103a5b-636e-4ab8-9d77-c11578c271f0">
+						<printWhenExpression><![CDATA[$F{curso_tres} != null || $F{curso_tres} != ""]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{curso_tres}]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="13">
+				<staticText>
+					<reportElement mode="Transparent" x="8" y="2" width="76" height="10" uuid="3f671317-e449-4714-b70c-1344a95e9844"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="false"/>
+					</textElement>
+					<text><![CDATA[PÓS-GRADUAÇÃO:]]></text>
+				</staticText>
+				<line>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="554" y="0" width="1" height="13" isPrintWhenDetailOverflows="true" uuid="6aa20cdd-2fe9-46af-9c9a-6e868012591c"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="1" height="13" isPrintWhenDetailOverflows="true" uuid="6aa20cdd-2fe9-46af-9c9a-6e868012591c"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="83" y="2" width="461" height="10" uuid="f231b68a-9337-4c40-9c88-854832958d31"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph firstLineIndent="3"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{pos_especializacao} == 1 ? "ESPECIALIZAÇÃO" : "") + (($F{pos_doutorado} == 1 || $F{pos_mestrado} == 1)&& $F{pos_especializacao} == 1 ? ", " : "" ) +
+($F{pos_mestrado} == 1 ? "MESTRADO" : "") + (($F{pos_mestrado} == 1&& $F{pos_doutorado} == 1) ? ", " : "" ) +
+($F{pos_doutorado} == 1 ? "DOUTORADO" : "")]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="83" y="11" width="462" height="1" uuid="6efe04d1-edeb-4dff-b809-7cc38cde9b47">
+						<printWhenExpression><![CDATA[$F{pos_especializacao} != 1 && $F{pos_mestrado} != 1 && $F{pos_doutorado} != 1]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="true">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupFooter>
+			<band height="16">
+				<line>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="1" height="16" isPrintWhenDetailOverflows="true" uuid="f6325f48-3859-4f9a-ad99-1bebbc5b8bbd"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="554" y="0" width="1" height="16" isPrintWhenDetailOverflows="true" uuid="f6325f48-3859-4f9a-ad99-1bebbc5b8bbd"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement x="79" y="9" width="465" height="1" uuid="5bffd92b-eab7-4fec-b68f-48c2e2bc48fa">
+						<printWhenExpression><![CDATA[$F{curso_direito_crianca_adolescente} != 1 &&
+$F{curso_relacoes_etnicorraciais} != 1 &&
+$F{curso_genero_diversidade_sexual} != 1 &&
+$F{curso_educacao_campo} != 1 &&
+$F{curso_educacao_direitos_humanos} != 1 &&
+$F{curso_educacao_ambiental} != 1 &&
+$F{curso_educacao_indigena} != 1 &&
+$F{curso_educacao_especial} != 1 &&
+$F{curso_eja} != 1 &&
+$F{curso_ensino_medio} != 1 &&
+$F{curso_anos_finais} != 1 &&
+$F{curso_anos_iniciais} != 1 &&
+$F{curso_pre_escola} != 1 &&
+$F{curso_creche} != 1]]></printWhenExpression>
+					</reportElement>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line direction="BottomUp">
+					<reportElement positionType="FixRelativeToBottom" mode="Transparent" x="0" y="15" width="555" height="1" isPrintWhenDetailOverflows="true" uuid="11b89ef3-5dc6-4588-a2f5-e6788186c06c"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="8" y="1" width="536" height="10" isPrintWhenDetailOverflows="true" uuid="32706ed0-989e-42cb-b558-3501342633c9"/>
+					<textElement markup="html">
+						<font fontName="DejaVu Sans" size="8"/>
+						<paragraph lineSpacing="1_1_2"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{especializacao}.substring(0, ($F{especializacao}.length()-2))]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+</jasperReport>
