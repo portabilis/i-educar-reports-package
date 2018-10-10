@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_dados_profissionais_servidor" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2c6a6eca-5506-4868-9f25-d3c9fb24954d">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="servidor" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+	</parameter>
+	<queryString language="json">
+		<![CDATA[professional_data(cod_servidor == $P{servidor})]]>
+	</queryString>
+	<field name="nm_servidor" class="java.lang.String"/>
+	<field name="turno" class="java.lang.String"/>
+	<field name="nm_vinculo" class="java.lang.String"/>
+	<field name="nm_funcao" class="java.lang.String"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="carga_horaria" class="java.lang.String"/>
+	<field name="professor" class="java.lang.Integer"/>
+	<field name="dt_admissao" class="java.sql.Date"/>
+	<field name="curso" class="java.lang.String"/>
+	<field name="fantasia" class="java.lang.String"/>
+	<group name="turno">
+		<groupExpression><![CDATA[$F{turno}]]></groupExpression>
+	</group>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="8" y="5" width="175" height="15" uuid="8b01fd4c-783e-4502-a612-269525331f58"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DADOS PROFISSIONAIS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="2" width="555" height="1" uuid="f5f9d1aa-b2ad-48cb-8646-26f984ba079f"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="554" y="2" width="1" height="18" uuid="83c5aa72-bc32-43bf-a751-b4df7199328a"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="2" width="1" height="18" uuid="e50d0460-5eb1-4e3e-96e4-c9d9e97b4d3b"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="37">
+			<staticText>
+				<reportElement positionType="Float" mode="Transparent" x="378" y="13" width="74" height="12" uuid="b03db48f-3d4a-40d2-b45c-8e47fc12e946"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CARGA HORÁRIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" mode="Transparent" x="153" y="13" width="40" height="12" uuid="b03db48f-3d4a-40d2-b45c-8e47fc12e946"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[VÍNCULO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" mode="Transparent" x="8" y="13" width="38" height="12" uuid="3f671317-e449-4714-b70c-1344a95e9844"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FUNÇÃO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" mode="Transparent" x="273" y="13" width="34" height="12" uuid="3f671317-e449-4714-b70c-1344a95e9844"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TURNO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" mode="Transparent" x="8" y="25" width="29" height="10" uuid="3f671317-e449-4714-b70c-1344a95e9844"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NÍVEL:]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="37" y="32" width="509" height="1" uuid="e34ccd65-97ac-44f4-8dab-7021320920e2"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement positionType="Float" x="45" y="13" width="107" height="10" uuid="eab72c72-0b6a-46d3-8def-a1ee07975877"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_funcao} != null && $F{nm_funcao} != "" ?  $F{nm_funcao} : ""]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement positionType="Float" x="451" y="13" width="92" height="10" uuid="1849f438-f41a-4e45-9f8e-82eddfa270bf"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carga_horaria} == null ? "" : $F{carga_horaria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" mode="Transparent" x="192" y="13" width="82" height="10" uuid="3e34ea26-74c0-453c-8800-ffc3b6cbf651"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_vinculo} == null ? "" : $F{nm_vinculo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="47" y="22" width="102" height="1" uuid="e34ccd65-97ac-44f4-8dab-7021320920e2">
+					<printWhenExpression><![CDATA[$F{nm_funcao} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="193" y="22" width="80" height="1" uuid="e34ccd65-97ac-44f4-8dab-7021320920e2">
+					<printWhenExpression><![CDATA[$F{nm_vinculo} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="306" y="22" width="71" height="1" uuid="e34ccd65-97ac-44f4-8dab-7021320920e2">
+					<printWhenExpression><![CDATA[$F{turno} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="451" y="22" width="95" height="1" uuid="e34ccd65-97ac-44f4-8dab-7021320920e2">
+					<printWhenExpression><![CDATA[$F{carga_horaria} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="37" uuid="e50d0460-5eb1-4e3e-96e4-c9d9e97b4d3b"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="554" y="0" width="1" height="37" uuid="e50d0460-5eb1-4e3e-96e4-c9d9e97b4d3b"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="100" y="10" width="80" height="1" uuid="e34ccd65-97ac-44f4-8dab-7021320920e2">
+					<printWhenExpression><![CDATA[$F{dt_admissao}==null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="306" y="13" width="72" height="10" uuid="284f2f21-a07c-443d-a513-a3ad387b17d7"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{turno} == null ? "" : $F{turno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" mode="Transparent" x="8" y="1" width="89" height="12" uuid="5b26ba6b-0f35-4037-800a-c6795167d56c"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DATA CONTRATAÇÃO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" mode="Transparent" x="185" y="1" width="38" height="12" uuid="3f671317-e449-4714-b70c-1344a95e9844"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ESCOLA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" mode="Transparent" x="222" y="1" width="299" height="11" uuid="3e34ea26-74c0-453c-8800-ffc3b6cbf651"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fantasia} == null ? "" : $F{fantasia}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="101" y="1" width="82" height="12" uuid="66acb51f-14f7-49ae-9734-a2fadbd502fc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dt_admissao}==null ? "         /         /" : $F{dt_admissao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="15">
+			<line>
+				<reportElement x="0" y="14" width="555" height="1" uuid="2d87fb6f-b6ea-4fe2-9360-3003b3be92e1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" mode="Transparent" x="8" y="0" width="43" height="10" uuid="3f671317-e449-4714-b70c-1344a95e9844"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CURSO(S):]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="1" height="15" uuid="e50d0460-5eb1-4e3e-96e4-c9d9e97b4d3b"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="554" y="0" width="1" height="15" uuid="e50d0460-5eb1-4e3e-96e4-c9d9e97b4d3b"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="52" y="9" width="494" height="1" uuid="e34ccd65-97ac-44f4-8dab-7021320920e2">
+					<printWhenExpression><![CDATA[$F{curso}==""]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="52" y="0" width="491" height="10" uuid="9c1f481a-4e7d-4a0f-b8b9-a7d871ab0338"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{curso}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_ficha_aluno" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2c6a6eca-5506-4868-9f25-d3c9fb24954d">
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="servidor" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="branco" class="java.lang.String"/>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<field name="cidade_nasceu" class="java.lang.String"/>
+	<field name="estado_nasceu" class="java.lang.String"/>
+	<field name="bairro_servidor" class="java.lang.String"/>
+	<field name="pais_nasceu" class="java.lang.String"/>
+	<field name="estado_casa_servidor" class="java.lang.String"/>
+	<field name="municipio_casa_servidor" class="java.lang.String"/>
+	<field name="nm_logradouro" class="java.lang.String"/>
+	<field name="tipo_logradouro" class="java.lang.String"/>
+	<field name="complemento" class="java.lang.String"/>
+	<field name="cep" class="java.math.BigDecimal"/>
+	<field name="numero_casa" class="java.math.BigDecimal"/>
+	<field name="nm_servidor" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="estado_civil" class="java.lang.String"/>
+	<field name="religiao" class="java.lang.String"/>
+	<field name="sigla_uf_exp_rg" class="java.lang.String"/>
+	<field name="sigla_uf_cert_civil" class="java.lang.String"/>
+	<field name="orgao_exp" class="java.lang.String"/>
+	<field name="nome_pai" class="java.lang.String"/>
+	<field name="nome_mae" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="data_nasc" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="nis_pis_pasep" class="java.math.BigDecimal"/>
+	<field name="rg" class="java.lang.String"/>
+	<field name="data_exp_rg" class="java.lang.String"/>
+	<field name="num_termo" class="java.math.BigDecimal"/>
+	<field name="num_livro" class="java.lang.String"/>
+	<field name="num_folha" class="java.math.BigDecimal"/>
+	<field name="data_emissao_cert_civil" class="java.lang.String"/>
+	<field name="num_tit_eleitor" class="java.math.BigDecimal"/>
+	<field name="zona_tit_eleitor" class="java.math.BigDecimal"/>
+	<field name="secao_tit_eleitor" class="java.math.BigDecimal"/>
+	<field name="cartorio_cert_civil_inep" class="java.lang.String"/>
+	<field name="cartorio_cert_civil" class="java.lang.String"/>
+	<field name="certidao_nascimento" class="java.lang.String"/>
+	<field name="certidao_casamento" class="java.lang.String"/>
+	<field name="int_tipo_cert_civil" class="java.math.BigDecimal"/>
+	<field name="eh_certidao_nascimento" class="java.lang.String"/>
+	<field name="eh_certidao_casamento" class="java.lang.String"/>
+	<field name="telefones" class="java.lang.String"/>
+	<field name="celular_ddd" class="java.math.BigDecimal"/>
+	<field name="celular_fone" class="java.math.BigDecimal"/>
+	<field name="caminho" class="java.lang.String"/>
+	<field name="dt_adimissao" class="java.sql.Date"/>
+	<group name="true">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="10">
+				<subreport>
+					<reportElement x="0" y="0" width="555" height="10" uuid="e4c6a6b2-29b6-456c-8792-e4c943c24754"/>
+					<subreportParameter name="servidor">
+						<subreportParameterExpression><![CDATA[$P{servidor}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="instituicao">
+						<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="escola">
+						<subreportParameterExpression><![CDATA[$P{servidor}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "servant-formation.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="true_dois">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupHeader>
+			<band height="10">
+				<subreport>
+					<reportElement x="0" y="0" width="555" height="10" uuid="07c890a6-4bcb-461b-bce6-d039ad8daaf8"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="servidor">
+						<subreportParameterExpression><![CDATA[$P{servidor}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="instituicao">
+						<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="ano">
+						<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="escola">
+						<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="data_emissao">
+						<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "servant-professional-data.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<title>
+		<band height="459" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="229" width="555" height="62" uuid="0d5c812f-146e-447b-856d-10320669e060"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="93" width="555" height="88" uuid="64057efc-8c5a-4d3c-817b-f51874662347"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="342" width="555" height="117" uuid="6f9a9a3c-0ae8-49cf-b008-e5d6d3f8410c"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="293" width="555" height="47" uuid="6f9a9a3c-0ae8-49cf-b008-e5d6d3f8410c"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="183" width="555" height="44" uuid="8c8fc532-250b-44c5-918a-a65b2a0c40da"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="471" y="94" width="72" height="85" uuid="38869be9-83df-4287-a363-d0f20b2e6a75"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="52" uuid="64057efc-8c5a-4d3c-817b-f51874662347"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<subreport>
+				<reportElement x="0" y="0" width="554" height="89" uuid="addedcc9-c5cf-4eee-bd82-1cd538617ddf"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["FICHA DO SERVIDOR"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+			<image>
+				<reportElement x="474" y="95" width="66" height="84" uuid="10d94ccc-f34f-4b8b-b3d4-3749c115755c"/>
+				<imageExpression><![CDATA[$F{caminho}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="8" y="140" width="67" height="10" uuid="c4721aa8-2762-4f49-b8da-0bdcb2c36b46"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NATURALIDADE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="326" width="31" height="10" uuid="9b4b489a-3f94-4c80-8d94-1570685922bc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[E-MAIL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="263" width="34" height="10" uuid="faad08b4-c966-41df-91bc-a56f67949a3b"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[BAIRRO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="112" width="27" height="10" uuid="23476cb9-5e73-4c8a-a3c6-f63939243408"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NOME: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="154" width="70" height="10" uuid="2fde681e-b893-4ecd-8c56-6675b53ecefd"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PAÍS DE ORIGEM:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="403" width="57" height="10" uuid="522b1ff6-8727-41f8-8889-d9b6aba43500"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nº CERTIDÃO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="212" y="389" width="28" height="10" uuid="e5478702-a90a-48ab-a0a4-128a58a49030"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[LIVRO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="499" y="403" width="14" height="10" uuid="e394bb7a-f69b-451e-aae0-f54b6675c8ac"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[UF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="313" width="57" height="10" uuid="b473f882-cc0d-4b5c-840b-23375da174e9"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TELEFONE(S): ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="96" width="195" height="15" uuid="dec1bfbe-4e22-48bf-bb24-01efb5784757"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DADOS PESSOAIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="126" width="60" height="10" uuid="59b62bac-63d7-41bb-9071-db6021f15808"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ESTADO CIVIL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="418" width="45" height="10" uuid="0dae893a-f59c-41ba-b748-4dcdd7282800"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CARTÓRIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="200" width="58" height="10" uuid="e97af2e5-b68e-4b43-a112-b3116a41eca0"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NOME DO PAI: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="362" width="18" height="10" uuid="98b4a545-5d4c-4e14-9665-868253cea972"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CPF: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="418" width="45" height="10" uuid="0dae893a-f59c-41ba-b748-4dcdd7282800"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CERTIDÃO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="432" width="27" height="10" uuid="88486ae6-586e-4f94-afd0-069b75c8de25"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ZONA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="140" width="37" height="10" uuid="7f1cb144-3dac-4853-803c-792346d06168"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ESTADO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="313" width="40" height="10" uuid="a415c17f-94f9-49d3-af5d-c55fd5d3127e"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CELULAR: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="249" width="48" height="10" uuid="38ae196e-2625-499e-b7f4-d80a822b7933"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ENDEREÇO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="402" y="432" width="31" height="10" uuid="c80aea8a-a965-4c78-8a6c-fa885bc01efd"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SEÇÃO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="432" width="80" height="10" uuid="3f671317-e449-4714-b70c-1344a95e9844"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TÍTULO ELEITORAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="345" width="178" height="15" uuid="19d190f6-edba-4bbe-8ef4-f9a2b451d747"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DOCUMENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="483" y="131" width="44" height="10" uuid="d42c62da-daeb-4d04-8fbc-011b35948e78">
+					<printWhenExpression><![CDATA[$F{caminho} == null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FOTO 3X4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="112" width="96" height="10" uuid="f28922e4-4928-4f62-b65f-9eb1decc8e5c"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DATA DE NASCIMENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="376" width="68" height="10" uuid="b3863725-4478-4b5d-aaaa-7cb4218b9185"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ÓRGÃO EXP./UF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="376" width="54" height="10" uuid="7570a52c-140c-4f1b-b62b-627f90258874"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[IDENTIDADE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="296" width="178" height="15" uuid="28359faa-f00e-4de9-a263-23a1dcb09cd5"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OUTRAS INFORMAÇÕES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="389" width="30" height="10" uuid="3ace7afd-f856-4bf9-a311-8c501bf485c5"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[FOLHA: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="232" width="178" height="15" uuid="c91831aa-4952-46ea-9051-257febf67cba"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ENDEREÇO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="212" width="62" height="10" uuid="db9ac36e-eb00-49df-a212-526098d25dc5"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NOME DA MÃE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="263" width="34" height="10" uuid="610ef849-471e-4905-af31-692eab86b020"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CIDADE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="249" width="13" height="10" uuid="2d62085f-e872-4499-9353-fde0a7a632a1"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nº: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="193" y="263" width="19" height="10" uuid="80becd4a-64a9-4e2b-8126-55a8199cc450"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CEP:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="126" width="26" height="10" uuid="b03db48f-3d4a-40d2-b45c-8e47fc12e946"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[SEXO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="445" width="56" height="10" uuid="522b1ff6-8727-41f8-8889-d9b6aba43500"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nº PIS/PASEP: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="185" width="178" height="15" uuid="9bbbe938-238f-457d-b0ff-c77a5b5f6b87"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FILIAÇÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="154" width="71" height="10" uuid="9f901a07-c2bb-42b6-b313-3904e5c030c3"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NACIONALIDADE: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="389" width="32" height="10" uuid="df94efe7-51c2-4f02-8e40-1e2bf743969e"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TERMO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="167" width="42" height="10" uuid="c6d90342-15f2-4575-b0b4-bc2212e0f2bc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RELIGIÃO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="460" y="263" width="37" height="10" uuid="fe117df6-c096-4653-8cf3-8146c090f7d9"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ESTADO: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="376" width="26" height="10" uuid="5b26ba6b-0f35-4037-800a-c6795167d56c"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DATA: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="403" width="26" height="10" uuid="522b1ff6-8727-41f8-8889-d9b6aba43500"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DATA: ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="36" y="121" width="199" height="1" uuid="6d4286e5-9daf-4e0f-9114-b576da7f453d">
+					<printWhenExpression><![CDATA[$F{nm_servidor} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="35" y="135" width="199" height="1" uuid="8eeae6f1-8b3d-45c0-b55f-27a04d493041">
+					<printWhenExpression><![CDATA[$F{sexo} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="76" y="149" width="158" height="1" uuid="45e6c9b9-4f45-4fb5-8c44-5ffe5a385ede">
+					<printWhenExpression><![CDATA[$F{cidade_nasceu} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="80" y="163" width="155" height="1" uuid="62a4213f-b4ca-4710-b5e2-bb0d797470d9">
+					<printWhenExpression><![CDATA[$F{pais_nasceu} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="67" y="210" width="396" height="1" uuid="71fe2c9e-33ad-462f-8256-494e1226b13b">
+					<printWhenExpression><![CDATA[$F{nome_pai} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="71" y="222" width="392" height="1" uuid="26154d30-595e-4235-94cb-e92d231f8483">
+					<printWhenExpression><![CDATA[$F{nome_mae} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="377" y="121" width="86" height="1" uuid="d8a9c5fd-d432-4b24-918e-9262bc15c626">
+					<printWhenExpression><![CDATA[$F{data_nasc} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="341" y="135" width="123" height="1" uuid="739ce362-eee4-4306-a765-94f4682f0aa9">
+					<printWhenExpression><![CDATA[$F{estado_civil} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="318" y="149" width="140" height="1" uuid="79d574c9-e187-4fd5-9e1d-384b8bdb7940">
+					<printWhenExpression><![CDATA[$F{estado_nasceu} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="351" y="163" width="110" height="1" uuid="d130951a-699d-4b3d-b4aa-a82e721d49c6">
+					<printWhenExpression><![CDATA[$F{pais_nasceu} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="58" y="258" width="393" height="1" uuid="ce83fe1f-f24b-4027-afa0-f997f27ae08b">
+					<printWhenExpression><![CDATA[$F{tipo_logradouro} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="474" y="258" width="69" height="1" uuid="8aa07b26-7142-48a9-a23d-f85d23fdbfc9">
+					<printWhenExpression><![CDATA[$F{numero_casa} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="498" y="272" width="45" height="1" uuid="3bbb1450-ed82-46f8-91c8-d6acf12fb55e">
+					<printWhenExpression><![CDATA[$F{estado_casa_servidor} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="296" y="272" width="155" height="1" uuid="a289b98d-8326-43e0-bc01-c02f8db4c99c">
+					<printWhenExpression><![CDATA[$F{cep} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="75" y="286" width="468" height="1" uuid="4574c999-1608-4893-a8e2-23e576dd06d8">
+					<printWhenExpression><![CDATA[$F{complemento} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="43" y="272" width="148" height="1" uuid="eceba2eb-af19-49ec-9f5f-8aa94b187f3c">
+					<printWhenExpression><![CDATA[$F{bairro_servidor} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="101" y="323" width="160" height="1" uuid="841f9247-6e9f-4e74-85f1-47b872b2a2d6">
+					<printWhenExpression><![CDATA[$F{telefones} == ""]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="370" y="322" width="155" height="1" uuid="0779f903-e394-422e-a980-7657eb623037">
+					<printWhenExpression><![CDATA[$F{celular_fone} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="27" y="371" width="182" height="1" uuid="07aaa907-65a6-4669-9724-fa10f7d3e45f">
+					<printWhenExpression><![CDATA[$F{cpf} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="63" y="385" width="146" height="1" uuid="87c53a4e-16fa-4dc6-9545-8fc2fa5f0c35">
+					<printWhenExpression><![CDATA[$F{rg} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="41" y="398" width="168" height="1" uuid="71b02725-25bd-49b1-b5da-4f195f4a1391">
+					<printWhenExpression><![CDATA[$F{num_termo} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="241" y="398" width="152" height="1" uuid="83aab3f1-cc61-465e-9074-b076002e0843">
+					<printWhenExpression><![CDATA[$F{num_livro} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="425" y="398" width="118" height="1" uuid="dfd36067-8fe0-487a-8cc4-f981995ba65b">
+					<printWhenExpression><![CDATA[$F{num_folha} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="336" y="385" width="93" height="1" uuid="cd464f83-ed73-48d9-8f78-cb3bd1b0cb99">
+					<printWhenExpression><![CDATA[$F{sigla_uf_exp_rg} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="456" y="385" width="87" height="1" uuid="90b39f75-59cf-4b93-8ae5-1954e961d0ef">
+					<printWhenExpression><![CDATA[$F{data_exp_rg} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="66" y="412" width="301" height="1" uuid="a1b731a7-9865-49e9-ab26-703358878653">
+					<printWhenExpression><![CDATA[($F{certidao_nascimento} == "" || $F{certidao_nascimento} == null) &&
+($F{certidao_casamento}  == "" || $F{certidao_casamento}  == null)]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="395" y="412" width="102" height="1" uuid="427534df-0bbe-4d33-93dc-a68aae2bae3a">
+					<printWhenExpression><![CDATA[$F{data_emissao_cert_civil} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="514" y="412" width="29" height="1" uuid="f534fedf-6886-4bf0-9b8b-8810b4f0b23b">
+					<printWhenExpression><![CDATA[$F{data_emissao_cert_civil} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="54" y="427" width="146" height="1" uuid="72cf0d02-be97-4c37-9d30-f1f8f9ed6fcf">
+					<printWhenExpression><![CDATA[$F{int_tipo_cert_civil} != 91 && $F{int_tipo_cert_civil} != 92 && $F{eh_certidao_nascimento} == "" && $F{eh_certidao_casamento} == ""]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="248" y="427" width="295" height="1" uuid="3a9121e7-b000-4c7f-a0f7-36f7d42f0009">
+					<printWhenExpression><![CDATA[$F{cartorio_cert_civil} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="89" y="441" width="152" height="1" uuid="9a9895a1-397f-43b7-91f4-a8c235610b92">
+					<printWhenExpression><![CDATA[$F{num_tit_eleitor} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="277" y="441" width="116" height="1" uuid="9ef90690-7f16-42ad-b983-54c92da11991">
+					<printWhenExpression><![CDATA[$F{zona_tit_eleitor} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="434" y="441" width="109" height="1" uuid="6ba61faf-2612-4e26-87bb-ba736187216f">
+					<printWhenExpression><![CDATA[$F{secao_tit_eleitor} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="65" y="454" width="175" height="1" uuid="e3dd56ca-0d7d-4393-9b0b-d2917be5b3ad">
+					<printWhenExpression><![CDATA[$F{nis_pis_pasep} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="214" y="272" width="45" height="1" uuid="eceba2eb-af19-49ec-9f5f-8aa94b187f3c">
+					<printWhenExpression><![CDATA[$F{bairro_servidor} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="40" y="335" width="485" height="1" uuid="81f53c9e-6b0f-4d85-a862-171ec12eaeba">
+					<printWhenExpression><![CDATA[$F{email} == null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="51" y="176" width="400" height="1" uuid="81f53c9e-6b0f-4d85-a862-171ec12eaeba">
+					<printWhenExpression><![CDATA[$F{religiao}==null]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="8" y="277" width="66" height="10" uuid="0ce0f132-be39-4fd8-b532-5b0793c4e067"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[COMPLEMENTO: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="34" y="112" width="237" height="10" uuid="e5127e7c-e641-47ed-9e26-92ddbe975031"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_servidor} == null ? "" : $F{nm_servidor}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="263" width="150" height="10" uuid="80201cbd-3439-4b50-944b-a179e61a6fdb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro_servidor} == null ? "" : $F{bairro_servidor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="432" width="125" height="10" uuid="d44e47fd-85af-494a-a673-6ca1e80c5d07"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{zona_tit_eleitor} == null ? "" : $F{zona_tit_eleitor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="200" width="478" height="10" uuid="e3220ca6-8253-4164-a691-ba2f319799a0"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_pai} == null ? "" : $F{nome_pai}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="25" y="362" width="294" height="10" uuid="937d9d94-eec4-4cad-934c-44f54f6713be"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpf} == null ? "" : $F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="339" y="126" width="130" height="10" uuid="0ba30165-0bef-474e-8ffb-414704abc61b"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_civil} == null ? "" : $F{estado_civil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="349" y="154" width="119" height="10" uuid="2b8cbea1-eb3a-400d-9282-96d8a266898c"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pais_nasceu} == null ? "" : $F{pais_nasceu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="87" y="432" width="164" height="10" uuid="9fb2948a-2fb3-44e6-91a9-783a2f562eff"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_tit_eleitor} == null ? "" : $F{num_tit_eleitor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="126" width="239" height="10" uuid="d78bf0f8-43c2-4651-8714-3e71af43c843"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo} == 'M' ? "MASCULINO" : $F{sexo} == 'F' ? "FEMININO" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="389" width="154" height="10" uuid="6d6f0788-dfb4-459d-a6fc-a0eed3cc4e72"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_livro} == null ? "" : $F{num_livro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="64" y="403" width="300" height="10" uuid="fec9d2c3-3964-4c3c-aedc-781870d17354">
+					<printWhenExpression><![CDATA[$F{certidao_casamento} != null && $F{certidao_casamento} != ""]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{certidao_casamento} != null || $F{certidao_casamento} != "" ? $F{certidao_casamento} : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="52" y="418" width="146" height="10" uuid="ea4a0aeb-5474-4208-9280-cd011f6dacab"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{int_tipo_cert_civil} == 91 || $F{eh_certidao_nascimento} != "" ? "NASCIMENTO" : $F{int_tipo_cert_civil} == 92 || $F{eh_certidao_casamento} != "" ? "CASAMENTO" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="38" y="326" width="506" height="10" uuid="fcf801e9-189a-4afa-8e76-a98510f88481"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email} == null ? "" : $F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="313" width="200" height="10" uuid="fd68464f-f267-450d-a0ae-7c1c60cc7cbe"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{celular_fone} == null || $F{celular_ddd} == null ? "(      )" : "("+$F{celular_ddd}+") " + $F{celular_fone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="249" width="393" height="10" uuid="5a319b62-ae3b-4769-81b9-ff70db62dec8"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_logradouro} == null || $F{nm_logradouro} == null ||  $F{tipo_logradouro} == "" || $F{nm_logradouro} == "" ? "" : $F{tipo_logradouro}+ " " +$F{nm_logradouro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="512" y="403" width="37" height="10" uuid="d5739c1c-874a-4745-870a-ac2757a086cb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sigla_uf_cert_civil} == null ? "" : $F{sigla_uf_cert_civil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="140" width="201" height="10" uuid="67295f5c-baca-496f-b095-db37a8e3e44a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade_nasceu} == null ? "" : $F{cidade_nasceu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="376" width="200" height="10" uuid="37e93f38-9058-4406-9874-e61e2b3cff53"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rg} == null ? "" : $F{rg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="277" width="473" height="12" uuid="16174b08-bd4c-49e5-ab41-cbf053e0c7fc"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{complemento} == null ? "" : $F{complemento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="334" y="376" width="94" height="10" uuid="a72e3fde-577c-4b7c-8200-10f7ef49d5aa"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sigla_uf_exp_rg} == null ||$F{orgao_exp} == null ? "" : $F{orgao_exp}+ " / "+$F{sigla_uf_exp_rg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="432" width="120" height="10" uuid="34035ebc-c162-495c-b7cb-6bb33a3a2454"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{secao_tit_eleitor} == null ? "" : $F{secao_tit_eleitor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="454" y="376" width="100" height="10" uuid="0977a55d-5c6f-48ef-90fe-22c1184abe0d"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_exp_rg} == null ? "          /            /" : $F{data_exp_rg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="63" y="445" width="310" height="10" uuid="d85bae68-82ad-4f32-a8aa-a97e3756bf0e"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nis_pis_pasep} == null ? "" : $F{nis_pis_pasep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="212" y="263" width="48" height="10" uuid="cabda0e7-3658-45c2-94f9-0736d7de5bbb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cep} == null ? "" : $F{cep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="263" width="163" height="10" uuid="4c11bc47-87a7-41bd-a680-2aae1bd99444"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{municipio_casa_servidor} == null ? "" : $F{municipio_casa_servidor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="496" y="263" width="53" height="10" uuid="cde28d0c-d0ac-4f7e-8ed1-7d13ebbd865e"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_casa_servidor} == null ? "" : $F{estado_casa_servidor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="249" width="80" height="10" uuid="c1d86cb7-6aec-4f79-aba6-36d12690f576"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_casa} == null ? "" : $F{numero_casa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="212" width="478" height="10" uuid="55e08776-d0b8-444d-9fe3-3014e98f030f"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_mae} == null ? "" : $F{nome_mae}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="154" width="198" height="10" uuid="a746055f-55a5-4dcc-af2e-27fc80b6f06a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pais_nasceu} == null || $F{pais_nasceu} == "" ? "" : $F{pais_nasceu} == "BRASIL" ? "BRASILEIRO" : "ESTRANGEIRO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="140" width="150" height="10" uuid="e854493c-3948-4e9b-9ab6-e659a1c0dfbb"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado_nasceu} == null ? "" : $F{estado_nasceu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="112" width="94" height="10" uuid="442efa5a-613b-44bd-9b9b-36c624785904"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_nasc} == null ? "" : $F{data_nasc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="39" y="389" width="169" height="10" uuid="0b988f68-fe80-4e38-8a4e-e5fd0d8a3e23"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_termo} == null ? "" : $F{num_termo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="423" y="389" width="127" height="10" uuid="807199c3-f680-4c27-9503-5bb98a1639b2"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_folha} == null ? "" : $F{num_folha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="403" width="102" height="10" uuid="b4ad4267-f9dc-491a-88ff-8b4d6dce420a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_emissao_cert_civil} == null ? "           /           /" : $F{data_emissao_cert_civil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="64" y="403" width="280" height="10" uuid="fec9d2c3-3964-4c3c-aedc-781870d17354">
+					<printWhenExpression><![CDATA[$F{certidao_nascimento} != null && $F{certidao_nascimento} != ""]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{certidao_nascimento} != null || $F{certidao_nascimento} != "" ? $F{certidao_nascimento} : ""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="50" y="167" width="418" height="10" uuid="a223ba6d-04c2-4dda-bb11-be7c4d135d14"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{religiao}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="75" y="313" width="220" height="10" uuid="c459bb4f-4301-46d9-b51f-9b11f21f656a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefones}=="" ? "(      ) " : $F{telefones}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="248" y="418" width="292" height="10" uuid="afb4b9b6-5e9e-476a-96d2-c6b817cc1e6a"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cartorio_cert_civil}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<lastPageFooter>
+		<band height="32">
+			<staticText>
+				<reportElement x="226" y="22" width="109" height="10" uuid="5b26ba6b-0f35-4037-800a-c6795167d56c"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ASS. RESPONSÁVEL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="191" y="21" width="174" height="1" uuid="e5be5ac3-ff88-46fa-99a0-35536e65fa16"/>
+			</line>
+		</band>
+	</lastPageFooter>
+</jasperReport>
