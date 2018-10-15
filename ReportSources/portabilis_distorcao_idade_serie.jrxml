@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_grafico_distorcao_idade_serie" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="80c96018-59aa-4572-b3d5-66ec29e78417">
+	<style name="Crosstab Data Text" hTextAlign="Center" hImageAlign="Center"/>
+	<subDataset name="sql_grafico" uuid="ea014b45-9a42-4b89-847e-1e9942b2c0dd">
+		<parameter name="ano" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+		</parameter>
+		<parameter name="serie" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+		</parameter>
+		<parameter name="escola" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+		</parameter>
+		<parameter name="curso" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+		</parameter>
+		<parameter name="situacao" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+		</parameter>
+		<parameter name="source" class="java.lang.String"/>
+		<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+		</parameter>
+		<queryString language="json">
+			<![CDATA[dataset]]>
+		</queryString>
+		<field name="num_alunos" class="java.lang.Double"/>
+		<field name="idade" class="java.lang.Integer"/>
+		<field name="nm_serie" class="java.lang.String"/>
+		<field name="etapa_curso" class="java.lang.Integer"/>
+		<field name="idade_ideal" class="java.lang.Integer"/>
+		<field name="num_alunos_serie" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="curso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="serie" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escala_cinza" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="situacao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[main]]>
+	</queryString>
+	<field name="nm_serie" class="java.lang.String"/>
+	<field name="idade_ideal" class="java.lang.Integer"/>
+	<field name="nm_curso" class="java.lang.String"/>
+	<field name="numero_alunos" class="java.lang.Double"/>
+	<field name="numero_alunos_5" class="java.lang.Double"/>
+	<field name="numero_alunos_6" class="java.lang.Double"/>
+	<field name="numero_alunos_7" class="java.lang.Double"/>
+	<field name="numero_alunos_8" class="java.lang.Double"/>
+	<field name="numero_alunos_9" class="java.lang.Double"/>
+	<field name="numero_alunos_10" class="java.lang.Double"/>
+	<field name="numero_alunos_11" class="java.lang.Double"/>
+	<field name="numero_alunos_12" class="java.lang.Double"/>
+	<field name="numero_alunos_13" class="java.lang.Double"/>
+	<field name="numero_alunos_14" class="java.lang.Double"/>
+	<field name="numero_alunos_15" class="java.lang.Double"/>
+	<field name="numero_alunos_16" class="java.lang.Double"/>
+	<field name="numero_alunos_17" class="java.lang.Double"/>
+	<variable name="count_serie_new" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{nm_serie}]]></variableExpression>
+	</variable>
+	<variable name="contador_quebra_linha" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{nm_serie}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<group name="crosstable">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupFooter>
+			<band height="304">
+				<barChart>
+					<chart>
+						<reportElement x="1" y="16" width="553" height="275" uuid="ec56be7b-b099-400e-87eb-5d9e14ef40fe">
+							<printWhenExpression><![CDATA[$P{escala_cinza} == true]]></printWhenExpression>
+						</reportElement>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<dataset>
+							<incrementWhenExpression><![CDATA[$F{idade} == $F{idade_ideal}]]></incrementWhenExpression>
+							<datasetRun subDataset="sql_grafico" uuid="4a96f071-44e6-49f9-bff1-9700cc8cbaa6">
+								<datasetParameter name="ano">
+									<datasetParameterExpression><![CDATA[$P{ano}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="serie">
+									<datasetParameterExpression><![CDATA[$P{serie}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="escola">
+									<datasetParameterExpression><![CDATA[$P{escola}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="curso">
+									<datasetParameterExpression><![CDATA[$P{curso}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="situacao">
+									<datasetParameterExpression><![CDATA[$P{situacao}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="source">
+									<datasetParameterExpression><![CDATA[$P{source}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{nm_serie}]]></seriesExpression>
+							<categoryExpression><![CDATA[(new DecimalFormat("#,###,##0.00")).format(($F{num_alunos}*100)/$F{num_alunos_serie}) + "%"]]></categoryExpression>
+							<valueExpression><![CDATA[($F{num_alunos}*100)/$F{num_alunos_serie}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<barPlot>
+						<plot>
+							<seriesColor seriesOrder="0" color="#101010"/>
+							<seriesColor seriesOrder="1" color="#505050"/>
+							<seriesColor seriesOrder="2" color="#909090"/>
+							<seriesColor seriesOrder="3" color="#B0B0B0"/>
+							<seriesColor seriesOrder="4" color="#D0D0D0"/>
+						</plot>
+						<itemLabel/>
+						<categoryAxisFormat>
+							<axisFormat/>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+						<domainAxisMinValueExpression><![CDATA[0]]></domainAxisMinValueExpression>
+						<domainAxisMaxValueExpression><![CDATA[100]]></domainAxisMaxValueExpression>
+						<rangeAxisMinValueExpression><![CDATA[0]]></rangeAxisMinValueExpression>
+						<rangeAxisMaxValueExpression><![CDATA[100]]></rangeAxisMaxValueExpression>
+					</barPlot>
+				</barChart>
+				<barChart>
+					<chart>
+						<reportElement x="1" y="16" width="553" height="275" uuid="ec56be7b-b099-400e-87eb-5d9e14ef40fe">
+							<printWhenExpression><![CDATA[$P{escala_cinza} == false]]></printWhenExpression>
+						</reportElement>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</chart>
+					<categoryDataset>
+						<dataset>
+							<incrementWhenExpression><![CDATA[$F{idade} == $F{idade_ideal}]]></incrementWhenExpression>
+							<datasetRun subDataset="sql_grafico" uuid="4a96f071-44e6-49f9-bff1-9700cc8cbaa6">
+								<datasetParameter name="ano">
+									<datasetParameterExpression><![CDATA[$P{ano}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="serie">
+									<datasetParameterExpression><![CDATA[$P{serie}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="escola">
+									<datasetParameterExpression><![CDATA[$P{escola}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="curso">
+									<datasetParameterExpression><![CDATA[$P{curso}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="situacao">
+									<datasetParameterExpression><![CDATA[$P{situacao}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter name="source">
+									<datasetParameterExpression><![CDATA[$P{source}]]></datasetParameterExpression>
+								</datasetParameter>
+							</datasetRun>
+						</dataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{nm_serie}]]></seriesExpression>
+							<categoryExpression><![CDATA[(new DecimalFormat("#,###,##0.00")).format(($F{num_alunos}*100)/$F{num_alunos_serie}) + "%"]]></categoryExpression>
+							<valueExpression><![CDATA[($F{num_alunos}*100)/$F{num_alunos_serie}]]></valueExpression>
+						</categorySeries>
+					</categoryDataset>
+					<barPlot>
+						<plot/>
+						<itemLabel/>
+						<categoryAxisFormat>
+							<axisFormat/>
+						</categoryAxisFormat>
+						<valueAxisFormat>
+							<axisFormat/>
+						</valueAxisFormat>
+						<domainAxisMinValueExpression><![CDATA[0]]></domainAxisMinValueExpression>
+						<domainAxisMaxValueExpression><![CDATA[100]]></domainAxisMaxValueExpression>
+						<rangeAxisMinValueExpression><![CDATA[0]]></rangeAxisMinValueExpression>
+						<rangeAxisMaxValueExpression><![CDATA[100]]></rangeAxisMaxValueExpression>
+					</barPlot>
+				</barChart>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="97">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="97" uuid="ba33501e-df50-4101-a8e3-97f94ad572f3"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Gráfico de distorção idade/série"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<detail>
+		<band height="63">
+			<rectangle>
+				<reportElement x="45" y="1" width="483" height="14" backcolor="#D5D5D5" uuid="e727c1ad-8e36-4d56-a5f5-9182757228b0"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="458" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="55e515d2-9989-4211-a9bf-c489b4edcbbb">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 16]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="493" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="55e515d2-9989-4211-a9bf-c489b4edcbbb">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 17]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="0" width="44" height="45" backcolor="#8BCEFF" uuid="471d2258-af32-48cd-9dc5-f712d7b2c7be"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="528" y="0" width="27" height="44" backcolor="#8BCEFF" uuid="1a5c105f-8cbe-41e7-a371-c1e16f8eaab9"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="45" y="14" width="34" height="30" backcolor="#D5D5D5" uuid="1add4688-5b2e-4191-945d-76a6920aebfd"/>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="79" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="db318027-987a-4a15-ba65-832717332161">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 5]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="113" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="81911085-033b-4eeb-8291-caa62968c6c8">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 6]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="147" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="903d0271-42e9-40a9-9728-91ccb6b08599">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 7]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="182" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="efb81114-c86d-42ef-983e-6a636be0e147">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 8]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="216" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="ae7a83ef-6111-42c4-b9e1-cfe8f77e49d1">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 9]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="250" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="1ba3effb-33bf-4946-bc9e-a5cf9dff1895">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 10]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="285" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="6305ace0-343b-4a4d-ac03-ce2cd4802124">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 11]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="320" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="ce885911-335e-48ed-99c1-0e70be17abf3">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 12]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="355" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="e1b26a71-f39e-4880-a3e9-63deb01cfb4b">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 13]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="389" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="8ada7847-5541-42d7-be4f-6223d41bfd54">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 14]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="424" y="0" width="35" height="44" backcolor="#8BCEFF" uuid="55e515d2-9989-4211-a9bf-c489b4edcbbb">
+					<printWhenExpression><![CDATA[$F{idade_ideal} == 15]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="45" height="45" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_serie}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="45" y="0" width="33" height="15" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Idade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="15" width="33" height="15" uuid="2a831a5c-2a96-4c7e-8b4d-94519673d7b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Alunos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="30" width="33" height="15" uuid="0049b23c-f622-4196-bf21-c0806c49749f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[5 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[6 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[7 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[8 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[9 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[10 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[11 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[12 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[13 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="389" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[14 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="424" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[15 anos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="528" y="0" width="27" height="15" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="79" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_5} == 0 ? "" : $F{numero_alunos_5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="113" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_6} == 0 ? "" : $F{numero_alunos_6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="147" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_7} == 0 ? "" : $F{numero_alunos_7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="182" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_8} == 0 ? "" : $F{numero_alunos_8}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="216" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_9} == 0 ? "" : $F{numero_alunos_9}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="250" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_10} == 0 ? "" : $F{numero_alunos_10}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="285" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_11} == 0 ? "" : $F{numero_alunos_11}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="320" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_12} == 0 ? "" : $F{numero_alunos_12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="355" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_13} == 0 ? "" : $F{numero_alunos_13}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="389" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_14} == 0 ? "" : $F{numero_alunos_14}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="424" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_15} == 0 ? "" : $F{numero_alunos_15}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="528" y="15" width="27" height="30" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="147" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_7} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_7} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="79" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_5} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_5} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="113" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_6} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_6} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="216" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_9} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_9} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="182" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_8} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_8} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="250" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_10} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_10} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="285" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_11} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_11} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="355" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_13} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_13} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="320" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_12} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_12} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="389" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_14} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_14} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="424" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_15} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_15} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="3f4b6f07-a559-4a1f-abc0-737c2d3d1031"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="44" width="555" height="1" uuid="21d9d7f5-7eab-415d-b1ac-8de3ab226d70"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="45" y="30" width="483" height="1" uuid="53aea32f-1e39-43e6-bb13-2ceee8824615"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="45" y="15" width="509" height="1" uuid="2b0e9d5c-2e1a-4f83-9b4e-c56c5967884e"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="554" y="0" width="1" height="45" uuid="84b58b47-5f67-4e3b-9010-e91c2dc98b00"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="458" y="0" width="1" height="45" uuid="366ca291-5e8d-4e66-a926-f6a98e45488b"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="424" y="0" width="1" height="45" uuid="c73ebb9e-97ba-4b3a-ad5b-5f65660d84c0"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="389" y="0" width="1" height="45" uuid="8e2de323-4bfe-40bf-8639-302a20a4f6d5"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="355" y="0" width="1" height="45" uuid="7e0badf0-bdb1-428c-8286-14c4bae73a83"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="320" y="0" width="1" height="45" uuid="7a6459c3-6aff-40fe-8c21-7285145355b4"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="285" y="0" width="1" height="45" uuid="0b77aaf1-6852-4658-ae44-43b06929665c"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="250" y="0" width="1" height="45" uuid="c0d34a2b-c717-411c-86ca-8ed97fd8517a"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="216" y="0" width="1" height="45" uuid="333bb780-860d-45ae-b8f6-975f1a455e1a"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="182" y="0" width="1" height="45" uuid="f37240c7-0a0e-44ae-ba61-0de352e1cfb0"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="147" y="0" width="1" height="45" uuid="bdfee1a3-9ea5-4ae0-8957-1adf14070c41"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="113" y="0" width="1" height="45" uuid="82fc726d-4f46-4743-9c87-470c543f73eb"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="79" y="0" width="1" height="45" uuid="75e2e2a6-97b8-49a3-af81-ec01d56ce2d1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="45" y="0" width="1" height="45" uuid="cf1076c1-ca0b-4f52-994f-0853056f2748"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="45" uuid="54b4d3c4-68e5-488b-b6b6-6c071fed8c35"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField pattern="###0">
+				<reportElement x="492" y="16" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_17} == 0 ? "" : $F{numero_alunos_17}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="492" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_17} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_17} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="492" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[17 anos]]></text>
+			</staticText>
+			<textField pattern="###0">
+				<reportElement x="458" y="15" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_16} == 0 ? "" : $F{numero_alunos_16}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="458" y="30" width="35" height="15" uuid="1352b3f0-bdb1-4b6d-b49d-aafa5d215f16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero_alunos_16} == 0 ? "" : (new DecimalFormat("#,###,##0.00")).format((($F{numero_alunos_16} * 100)/$F{numero_alunos}))+"%"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="458" y="0" width="35" height="15" backcolor="#FEFEFE" uuid="d1595fd3-e08e-425e-b046-e8d35a5ee6b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[16 anos]]></text>
+			</staticText>
+			<line>
+				<reportElement x="492" y="0" width="1" height="45" uuid="c73ebb9e-97ba-4b3a-ad5b-5f65660d84c0"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="527" y="0" width="1" height="45" uuid="c73ebb9e-97ba-4b3a-ad5b-5f65660d84c0"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+</jasperReport>
