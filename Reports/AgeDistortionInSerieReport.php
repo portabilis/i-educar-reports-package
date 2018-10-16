@@ -5,7 +5,7 @@ use iEducar\Reports\JsonDataSource;
 require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'App/Model/IedFinder.php';
 
-class GraficoDistorcaoIdadeSerieReport extends Portabilis_Report_ReportCore
+class AgeDistortionInSerieReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
 
@@ -14,7 +14,7 @@ class GraficoDistorcaoIdadeSerieReport extends Portabilis_Report_ReportCore
      */
     public function templateName()
     {
-        return 'portabilis_distorcao_idade_serie';
+        return 'age-distortion-in-serie';
     }
 
     /**

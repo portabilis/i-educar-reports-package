@@ -1,9 +1,9 @@
 <?php
 
 require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/GraficoDistorcaoIdadeSerieReport.php';
+require_once 'Reports/Reports/AgeDistortionInSerieReport.php';
 
-class GraficoDistorcaoIdadeSerieController extends Portabilis_Controller_ReportCoreController
+class AgeDistortionInSerieController extends Portabilis_Controller_ReportCoreController
 {
     /**
      * @var string
@@ -53,12 +53,12 @@ class GraficoDistorcaoIdadeSerieController extends Portabilis_Controller_ReportC
     }
 
     /**
-     * @return GraficoDistorcaoIdadeSerieReport
+     * @return AgeDistortionInSerieReport
      *
      * @throws Exception
      */
     public function report()
     {
-        return new GraficoDistorcaoIdadeSerieReport();
+        return new AgeDistortionInSerieReport();
     }
 }
