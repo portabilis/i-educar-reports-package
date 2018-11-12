@@ -32,6 +32,12 @@ $j(function(){
     }
   });
 
+  if ($j('#exibir_apenas_professores_alocados').val() == 1) {
+    $j('#buscar_professor').val('on').attr('checked', 'checked');
+    $j('#buscar_professor').closest('tr').hide();
+    $j('#servidor').closest('tr').show();
+  }
+
   $j('#buscar_professor').on('click', function(){
     if($j('#buscar_professor').val() == 'on'){
       $j('#professor').val("");

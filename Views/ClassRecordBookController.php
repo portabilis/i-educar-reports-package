@@ -15,6 +15,11 @@ class ClassRecordBookController extends Portabilis_Controller_ReportCoreControll
 
     public function form()
     {
+        $clsInstituicao = new clsPmieducarInstituicao();
+        $instituicao = $clsInstituicao->primeiraAtiva();
+        $exibirApenasProfessoresAlocados = dbBool($instituicao['exibir_apenas_professores_alocados']);
+        $this->campoOculto('exibir_apenas_professores_alocados', $exibirApenasProfessoresAlocados);
+
         $this->inputsHelper()->dynamic(['ano', 'instituicao', 'escola', 'curso', 'serie', 'turma']);
 
         $this->inputsHelper()->dynamic(['etapa'], ['required' => false]);
@@ -35,10 +40,17 @@ class ClassRecordBookController extends Portabilis_Controller_ReportCoreControll
             10 => 'Todas'
         ];
         $this->campoLista('situacao', 'Situação', $opcoes, 10);
-        $this->inputsHelper()->checkbox('buscar_professor', ['label' => 'Buscar professor alocado?']);
-        $options = ['label' => 'Professor(a):', 'required' => false, 'size' => 30];
-        $this->inputsHelper()->text('professor', $options);
-        $this->inputsHelper()->simpleSearchServidor(null, ['required' => false, 'label' => 'Professor(a): ', 'size' => 30 ]);
+        
+        if ($exibirApenasProfessoresAlocados) {
+            $this->inputsHelper()->checkbox('buscar_professor', ['label' => 'Buscar professor alocado?']);
+            $this->inputsHelper()->simpleSearchServidor(null, ['required' => false, 'label' => 'Professor(a): ', 'size' => 30 ]);
+        } else {
+            $this->inputsHelper()->checkbox('buscar_professor', ['label' => 'Buscar professor alocado?']);
+            $options = ['label' => 'Professor(a):', 'required' => false, 'size' => 30];
+            $this->inputsHelper()->text('professor', $options);
+            $this->inputsHelper()->simpleSearchServidor(null, ['required' => false, 'label' => 'Professor(a): ', 'size' => 30 ]);
+        }
+
         $this->inputsHelper()->checkbox('buscar_disciplina', ['label' => 'Buscar disciplina?']);
         $options = ['label' => 'Disciplina:', 'required' => false, 'size' => 30];
         $this->inputsHelper()->text('disciplina', $options);
