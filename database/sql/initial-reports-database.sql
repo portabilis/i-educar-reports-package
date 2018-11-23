@@ -21,8 +21,6 @@ SELECT COALESCE(
                    WHERE ref_cod_escola = $1)); $_$;
 
 
-ALTER FUNCTION relatorio.get_ddd_escola(integer) OWNER TO postgres;
-
 --
 -- Name: get_mae_aluno(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
@@ -40,8 +38,6 @@ WHERE aluno.ativo = 1
   AND aluno.cod_aluno = $1; $_$;
 
 
-ALTER FUNCTION relatorio.get_mae_aluno(integer) OWNER TO postgres;
-
 --
 -- Name: situacao_matricula; Type: TABLE; Schema: relatorio; Owner: postgres
 --
@@ -51,8 +47,6 @@ CREATE TABLE situacao_matricula (
     descricao character varying(50) NOT NULL
 );
 
-
-ALTER TABLE situacao_matricula OWNER TO postgres;
 
 --
 -- Name: view_situacao; Type: VIEW; Schema: relatorio; Owner: ieducar
@@ -130,8 +124,6 @@ CREATE VIEW view_situacao AS
            END);
 
 
-ALTER TABLE view_situacao OWNER TO ieducar;
-
 --
 -- Name: get_max_sequencial_matricula(integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
@@ -148,8 +140,6 @@ CREATE FUNCTION get_max_sequencial_matricula(integer) RETURNS integer
                              WHERE ref_cod_matricula = $1;
                         $_$;
 
-
-ALTER FUNCTION relatorio.get_max_sequencial_matricula(integer) OWNER TO ieducar;
 
 --
 -- Name: get_media_geral_turma(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
@@ -173,8 +163,6 @@ CREATE FUNCTION get_media_geral_turma(turma_i integer, componente_i integer) RET
                                     AND mt.ref_cod_turma = turma_i);
                         END; $$;
 
-
-ALTER FUNCTION relatorio.get_media_geral_turma(turma_i integer, componente_i integer) OWNER TO ieducar;
 
 --
 -- Name: get_media_recuperacao_semestral(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
@@ -246,8 +234,6 @@ CREATE FUNCTION get_media_recuperacao_semestral(matricula integer, componente in
                                               END; $$;
 
 
-ALTER FUNCTION relatorio.get_media_recuperacao_semestral(matricula integer, componente integer) OWNER TO postgres;
-
 --
 -- Name: get_media_turma(integer, integer, integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
@@ -272,8 +258,6 @@ CREATE FUNCTION get_media_turma(turma_i integer, componente_i integer, etapa_i i
                       END; $$;
 
 
-ALTER FUNCTION relatorio.get_media_turma(turma_i integer, componente_i integer, etapa_i integer) OWNER TO postgres;
-
 --
 -- Name: get_nacionalidade(numeric); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
@@ -287,8 +271,6 @@ CREATE FUNCTION get_nacionalidade(nacionalidade_id numeric) RETURNS character va
                                                             ELSE 'Estrangeiro'
                                                         END); END; $$;
 
-
-ALTER FUNCTION relatorio.get_nacionalidade(nacionalidade_id numeric) OWNER TO ieducar;
 
 --
 -- Name: get_nome_modulo(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
@@ -312,8 +294,6 @@ INNER JOIN pmieducar.modulo ON (CASE
 WHERE turma.cod_turma = $1;$_$;
 
 
-ALTER FUNCTION relatorio.get_nome_modulo(integer) OWNER TO postgres;
-
 --
 -- Name: get_nota_exame(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
@@ -328,8 +308,6 @@ CREATE FUNCTION get_nota_exame(integer, integer) RETURNS character varying
                            AND nota_aluno.id = nota_componente_curricular.nota_aluno_id
                            AND nota_aluno.matricula_id = $2); $_$;
 
-
-ALTER FUNCTION relatorio.get_nota_exame(integer, integer) OWNER TO ieducar;
 
 --
 -- Name: get_pai_aluno(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
@@ -348,8 +326,6 @@ WHERE aluno.ativo = 1
   AND aluno.cod_aluno = $1; $_$;
 
 
-ALTER FUNCTION relatorio.get_pai_aluno(integer) OWNER TO postgres;
-
 --
 -- Name: get_qtde_alunos(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
@@ -363,8 +339,6 @@ WHERE matricula.ativo = 1
   AND (CASE WHEN 0 = $1 THEN TRUE ELSE matricula.ano = $1 END)
   AND (CASE WHEN 0 = $2 THEN TRUE ELSE matricula.ref_ref_cod_escola = $2 END); $_$;
 
-
-ALTER FUNCTION relatorio.get_qtde_alunos(integer, integer) OWNER TO postgres;
 
 --
 -- Name: get_qtde_alunos_situacao(integer, integer, character, integer, integer, integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
@@ -404,8 +378,6 @@ CREATE FUNCTION get_qtde_alunos_situacao(integer, integer, character, integer, i
 		           relatorio.view_situacao.cod_situacao = $2;
 	$_$;
 
-
-ALTER FUNCTION relatorio.get_qtde_alunos_situacao(integer, integer, character, integer, integer, integer) OWNER TO postgres;
 
 --
 -- Name: get_qtde_alunos_situacao(integer, integer, integer, integer, integer, integer, integer, integer, character, integer, integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
@@ -491,8 +463,6 @@ END;
 $$;
 
 
-ALTER FUNCTION relatorio.get_qtde_alunos_situacao(ano integer, instituicao integer, escola integer, curso integer, serie integer, turma integer, situacao integer, bairro integer, sexo character, idadeini integer, idadefim integer) OWNER TO postgres;
-
 --
 -- Name: get_qtde_etapa_disciplina_dispensada_matricula(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
@@ -508,8 +478,6 @@ CREATE FUNCTION get_qtde_etapa_disciplina_dispensada_matricula(integer, integer)
                                AND ref_cod_disciplina = $2;
                         $_$;
 
-
-ALTER FUNCTION relatorio.get_qtde_etapa_disciplina_dispensada_matricula(integer, integer) OWNER TO ieducar;
 
 --
 -- Name: get_qtde_modulo(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
@@ -532,8 +500,6 @@ INNER JOIN pmieducar.modulo ON (CASE
                                 END)
 WHERE turma.cod_turma = $1;$_$;
 
-
-ALTER FUNCTION relatorio.get_qtde_modulo(integer) OWNER TO postgres;
 
 --
 -- Name: get_situacao_componente(numeric); Type: FUNCTION; Schema: relatorio; Owner: ieducar
@@ -565,8 +531,6 @@ CREATE FUNCTION get_situacao_componente(cod_situacao numeric) RETURNS character 
                 $$;
 
 
-ALTER FUNCTION relatorio.get_situacao_componente(cod_situacao numeric) OWNER TO ieducar;
-
 --
 -- Name: get_situacao_historico(integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
@@ -587,8 +551,6 @@ CREATE FUNCTION get_situacao_historico(situacao integer) RETURNS character varyi
                                 ELSE ''::character varying
                             END AS situacao; $$;
 
-
-ALTER FUNCTION relatorio.get_situacao_historico(situacao integer) OWNER TO ieducar;
 
 --
 -- Name: get_situacao_historico_abreviado(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
@@ -611,8 +573,6 @@ SELECT CASE
        END AS situacao; $_$;
 
 
-ALTER FUNCTION relatorio.get_situacao_historico_abreviado(integer) OWNER TO postgres;
-
 --
 -- Name: get_telefone_escola(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
@@ -634,8 +594,6 @@ SELECT COALESCE(
                    WHERE escola_complemento.ref_cod_escola = $1)); $_$;
 
 
-ALTER FUNCTION relatorio.get_telefone_escola(integer) OWNER TO postgres;
-
 --
 -- Name: get_total_falta_componente(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
@@ -655,8 +613,6 @@ CREATE FUNCTION get_total_falta_componente(matricula_i integer, componente_i int
                         END; $$;
 
 
-ALTER FUNCTION relatorio.get_total_falta_componente(matricula_i integer, componente_i integer) OWNER TO ieducar;
-
 --
 -- Name: get_total_faltas(integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
@@ -675,8 +631,6 @@ CREATE FUNCTION get_total_faltas(matricula_i integer) RETURNS numeric
                         END; $$;
 
 
-ALTER FUNCTION relatorio.get_total_faltas(matricula_i integer) OWNER TO ieducar;
-
 --
 -- Name: get_total_geral_falta_componente(integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
@@ -694,8 +648,6 @@ CREATE FUNCTION get_total_geral_falta_componente(matricula_i integer) RETURNS nu
                                 falta_aluno.tipo_falta = 2);
                         END; $$;
 
-
-ALTER FUNCTION relatorio.get_total_geral_falta_componente(matricula_i integer) OWNER TO ieducar;
 
 --
 -- Name: get_ultima_matricula_turma(integer, integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
@@ -723,8 +675,6 @@ CREATE FUNCTION get_ultima_matricula_turma(integer, integer, integer) RETURNS bo
                         $_$;
 
 
-ALTER FUNCTION relatorio.get_ultima_matricula_turma(integer, integer, integer) OWNER TO ieducar;
-
 --
 -- Name: get_ultima_observacao_historico(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
@@ -746,8 +696,6 @@ WHERE she.ativo = 1
        AND s_he.ativo = 1); $_$;
 
 
-ALTER FUNCTION relatorio.get_ultima_observacao_historico(integer) OWNER TO postgres;
-
 --
 -- Name: get_valor_campo_auditoria(character varying, character varying, character varying); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
@@ -760,8 +708,6 @@ SELECT CASE
            ELSE substr($3, strpos($3, $1||':')+char_length($1)+1, ((strpos($3, $2||':')-1) - (strpos($3, $1)+char_length($1)+1)))
        END AS nome_instituicao;$_$;
 
-
-ALTER FUNCTION relatorio.get_valor_campo_auditoria(character varying, character varying, character varying) OWNER TO postgres;
 
 --
 -- Name: historico_carga_horaria_componente(character varying, character varying, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
@@ -780,8 +726,6 @@ CREATE FUNCTION historico_carga_horaria_componente(nome_componente character var
                                                                  AND es.ref_cod_serie = s.cod_serie)
                          ORDER BY ref_cod_escola LIMIT 1); END; $$;
 
-
-ALTER FUNCTION relatorio.historico_carga_horaria_componente(nome_componente character varying, nome_serie character varying, escola_id integer) OWNER TO ieducar;
 
 --
 -- Name: prioridade_historico(numeric); Type: FUNCTION; Schema: relatorio; Owner: ieducar
@@ -807,8 +751,6 @@ CREATE FUNCTION prioridade_historico(situacao numeric) RETURNS numeric
                         END;
                         $$;
 
-
-ALTER FUNCTION relatorio.prioridade_historico(situacao numeric) OWNER TO ieducar;
 
 --
 -- Name: view_auditoria; Type: VIEW; Schema: relatorio; Owner: postgres
@@ -887,8 +829,6 @@ CREATE VIEW view_auditoria AS
    FROM modules.auditoria;
 
 
-ALTER TABLE view_auditoria OWNER TO postgres;
-
 --
 -- Name: view_dados_aluno; Type: VIEW; Schema: relatorio; Owner: ieducar
 --
@@ -935,8 +875,6 @@ CREATE VIEW view_dados_aluno AS
   WHERE (matricula_turma.sequencial = get_max_sequencial_matricula(matricula_turma.ref_cod_matricula));
 
 
-ALTER TABLE view_dados_aluno OWNER TO ieducar;
-
 --
 -- Name: view_dados_escola; Type: VIEW; Schema: relatorio; Owner: ieducar
 --
@@ -970,8 +908,6 @@ CREATE VIEW view_dados_escola AS
         LEFT JOIN cadastro.fone_pessoa ON (((pessoa.idpes = fone_pessoa.idpes) AND (fone_pessoa.tipo = (3)::numeric))))
         LEFT JOIN cadastro.juridica ON (((juridica.idpes = fone_pessoa.idpes) AND (juridica.idpes = (escola.ref_idpes)::numeric))));
 
-
-ALTER TABLE view_dados_escola OWNER TO ieducar;
 
 --
 -- Name: view_dados_historico_posicionamento; Type: VIEW; Schema: relatorio; Owner: ieducar
@@ -1429,8 +1365,6 @@ CREATE VIEW view_dados_historico_posicionamento AS
     GROUP BY he.ref_cod_aluno, hd.nm_disciplina, he1.historico_grade_curso_id, he2.historico_grade_curso_id, he3.historico_grade_curso_id, he4.historico_grade_curso_id, he5.historico_grade_curso_id, he6.historico_grade_curso_id, he7.historico_grade_curso_id, he8.historico_grade_curso_id, he9.historico_grade_curso_id, he1.ano, he2.ano, he3.ano, he4.ano, he5.ano, he6.ano, he7.ano, he8.ano, he9.ano, he1.escola, he2.escola, he3.escola, he4.escola, he5.escola, he6.escola, he7.escola, he8.escola, he9.escola, he1.escola_cidade, he2.escola_cidade, he3.escola_cidade, he4.escola_cidade, he5.escola_cidade, he6.escola_cidade, he7.escola_cidade, he8.escola_cidade, he9.escola_cidade, he1.escola_uf, he2.escola_uf, he3.escola_uf, he4.escola_uf, he5.escola_uf, he6.escola_uf, he7.escola_uf, he8.escola_uf, he9.escola_uf, he1.nm_serie, he2.nm_serie, he3.nm_serie, he4.nm_serie, he5.nm_serie, he6.nm_serie, he7.nm_serie, he8.nm_serie, he9.nm_serie, he1.carga_horaria, he2.carga_horaria, he3.carga_horaria, he4.carga_horaria, he5.carga_horaria, he6.carga_horaria, he7.carga_horaria, he8.carga_horaria, he9.carga_horaria, he1.frequencia, he2.frequencia, he3.frequencia, he4.frequencia, he5.frequencia, he6.frequencia, he7.frequencia, he8.frequencia, he9.frequencia, he1.observacao, he2.observacao, he3.observacao, he4.observacao, he5.observacao, he6.observacao, he7.observacao, he8.observacao, he9.observacao, hd1.nota, hd2.nota, hd3.nota, hd4.nota, hd5.nota, hd6.nota, hd7.nota, hd8.nota, hd9.nota, hd1.carga_horaria_disciplina, hd2.carga_horaria_disciplina, hd3.carga_horaria_disciplina, hd4.carga_horaria_disciplina, hd5.carga_horaria_disciplina, hd6.carga_horaria_disciplina, hd7.carga_horaria_disciplina, hd8.carga_horaria_disciplina, hd9.carga_horaria_disciplina, hd1.faltas, hd2.faltas, hd3.faltas, hd4.faltas, hd5.faltas, hd6.faltas, hd7.faltas, hd8.faltas, hd9.faltas, he1.aceleracao, he2.aceleracao, he3.aceleracao, he4.aceleracao, he5.aceleracao, he6.aceleracao, he7.aceleracao, he8.aceleracao, he9.aceleracao, he1.aprovado, he2.aprovado, he3.aprovado, he4.aprovado, he5.aprovado, he6.aprovado, he7.aprovado, he8.aprovado, he9.aprovado;
 
 
-ALTER TABLE view_dados_historico_posicionamento OWNER TO ieducar;
-
 --
 -- Name: view_dados_modulo; Type: VIEW; Schema: relatorio; Owner: ieducar
 --
@@ -1470,8 +1404,6 @@ CREATE VIEW view_dados_modulo AS
       WHERE (curso.padrao_ano_escolar = 0)
       ORDER BY turma.nm_turma, turma.cod_turma, tm.sequencial);
 
-
-ALTER TABLE view_dados_modulo OWNER TO ieducar;
 
 --
 -- Name: view_historico_9anos; Type: VIEW; Schema: relatorio; Owner: ieducar
@@ -2601,8 +2533,6 @@ CREATE VIEW view_historico_9anos AS
     GROUP BY historico.disciplina, historico.cod_aluno, historico.nota_1serie, historico.nota_2serie, historico.nota_3serie, historico.nota_4serie, historico.nota_5serie, historico.nota_6serie, historico.nota_7serie, historico.nota_8serie, historico.nota_9serie, historico.ano_1serie, historico.ano_2serie, historico.ano_3serie, historico.ano_4serie, historico.ano_5serie, historico.ano_6serie, historico.ano_7serie, historico.ano_8serie, historico.ano_9serie, historico.escola_1serie, historico.escola_2serie, historico.escola_3serie, historico.escola_4serie, historico.escola_5serie, historico.escola_6serie, historico.escola_7serie, historico.escola_8serie, historico.escola_9serie, historico.escola_cidade_1serie, historico.escola_cidade_2serie, historico.escola_cidade_3serie, historico.escola_cidade_4serie, historico.escola_cidade_5serie, historico.escola_cidade_6serie, historico.escola_cidade_7serie, historico.escola_cidade_8serie, historico.escola_cidade_9serie, historico.escola_uf_1serie, historico.escola_uf_2serie, historico.escola_uf_3serie, historico.escola_uf_4serie, historico.escola_uf_5serie, historico.escola_uf_6serie, historico.escola_uf_7serie, historico.escola_uf_8serie, historico.escola_uf_9serie, historico.transferido1, historico.transferido2, historico.transferido3, historico.transferido4, historico.transferido5, historico.transferido6, historico.transferido7, historico.transferido8, historico.transferido9, historico.carga_horaria_disciplina1, historico.carga_horaria_disciplina2, historico.carga_horaria_disciplina3, historico.carga_horaria_disciplina4, historico.carga_horaria_disciplina5, historico.carga_horaria_disciplina6, historico.carga_horaria_disciplina7, historico.carga_horaria_disciplina8, historico.carga_horaria_disciplina9, historico.carga_horaria1, historico.carga_horaria2, historico.carga_horaria3, historico.carga_horaria4, historico.carga_horaria5, historico.carga_horaria6, historico.carga_horaria7, historico.carga_horaria8, historico.carga_horaria9, historico.disciplina_dependencia1, historico.disciplina_dependencia2, historico.disciplina_dependencia3, historico.disciplina_dependencia4, historico.disciplina_dependencia5, historico.disciplina_dependencia6, historico.disciplina_dependencia7, historico.disciplina_dependencia8, historico.disciplina_dependencia9, historico.ch_componente_1, historico.ch_componente_2, historico.ch_componente_3, historico.ch_componente_4, historico.ch_componente_5, historico.ch_componente_6, historico.ch_componente_7, historico.ch_componente_8, historico.ch_componente_9, historico.observacao_all, historico.matricula_transferido, historico.frequencia1, historico.frequencia2, historico.frequencia3, historico.frequencia4, historico.frequencia5, historico.frequencia6, historico.frequencia7, historico.frequencia8, historico.frequencia9;
 
 
-ALTER TABLE view_historico_9anos OWNER TO ieducar;
-
 --
 -- Name: view_historico_9anos_extra_curricular; Type: VIEW; Schema: relatorio; Owner: postgres
 --
@@ -2977,8 +2907,6 @@ CREATE VIEW view_historico_9anos_extra_curricular AS
     ORDER BY (public.fcn_upper((historico_disciplinas.nm_disciplina)::text));
 
 
-ALTER TABLE view_historico_9anos_extra_curricular OWNER TO postgres;
-
 --
 -- Name: view_modulo; Type: VIEW; Schema: relatorio; Owner: postgres
 --
@@ -3011,8 +2939,6 @@ CREATE VIEW view_modulo AS
         ELSE ano_letivo_modulo.sequencial
         END;
 
-
-ALTER TABLE view_modulo OWNER TO postgres;
 
 --
 -- Data for Name: situacao_matricula; Type: TABLE DATA; Schema: relatorio; Owner: postgres
