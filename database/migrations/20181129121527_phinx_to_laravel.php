@@ -101,18 +101,11 @@ class PhinxToLaravel extends AbstractMigration
 
             $phinx = $this->fetchAll('SELECT * FROM public.phinxlog;');
 
-            $rows = [];
-
             foreach ($phinx as $migration) {
                 if ($name = $this->ran($migration['migration_name'])) {
-                    $rows[] = [
-                        'migration' => $name,
-                        'batch' => 1,
-                    ];
+                    $this->execute("INSERT INTO public.migrations (migration, batch) VALUES ('{$name}', 1);");
                 }
             }
-
-            $this->table('migrations')->insert($rows)->save();
         }
     }
 
