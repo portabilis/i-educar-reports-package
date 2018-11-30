@@ -2963,10 +2963,3 @@ INSERT INTO situacao_matricula (cod_situacao, descricao) VALUES (3, 'Cursando');
 
 ALTER TABLE ONLY situacao_matricula
     ADD CONSTRAINT situacao_matricula_pkey PRIMARY KEY (cod_situacao);
-
-
-REVOKE ALL ON TABLE situacao_matricula FROM PUBLIC;
-REVOKE ALL ON TABLE situacao_matricula FROM postgres;
-GRANT ALL ON TABLE situacao_matricula TO postgres;
-GRANT ALL ON TABLE situacao_matricula TO ieducar;
-
