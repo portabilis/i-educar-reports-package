@@ -42,8 +42,8 @@ WHERE aluno.ativo = 1
 -- Name: situacao_matricula; Type: TABLE; Schema: relatorio; Owner: postgres
 --
 
-DROP VIEW view_situacao;
-DROP TABLE situacao_matricula;
+DROP VIEW IF EXISTS view_situacao;
+DROP TABLE IF EXISTS situacao_matricula;
 CREATE TABLE situacao_matricula (
     cod_situacao integer NOT NULL,
     descricao character varying(50) NOT NULL
