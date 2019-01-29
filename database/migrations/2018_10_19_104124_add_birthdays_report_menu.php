@@ -1,12 +1,12 @@
 <?php
 
-use Phinx\Migration\AbstractMigration;
+use Illuminate\Database\Migrations\Migration;
 
-class AddBirthdaysReportMenu extends AbstractMigration
+class AddBirthdaysReportMenu extends Migration
 {
     public function up()
     {
-        $this->execute(
+        DB::unprepared(
             '
                 INSERT INTO portal.menu_submenu (cod_menu_submenu, ref_cod_menu_menu, cod_sistema, nm_submenu, arquivo, title, nivel) 
                 VALUES (9998911, 55, 2, \'Relação de aniversariantes do mês\', \'module/Reports/Birthdays\', null, 3);
