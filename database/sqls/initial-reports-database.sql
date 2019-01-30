@@ -4,7 +4,7 @@ SET search_path = relatorio, pmieducar, public, pg_catalog;
 -- Name: get_ddd_escola(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_ddd_escola(integer) RETURNS numeric
+CREATE OR REPLACE FUNCTION get_ddd_escola(integer) RETURNS numeric
     LANGUAGE sql
     AS $_$
 SELECT COALESCE(
@@ -25,7 +25,7 @@ SELECT COALESCE(
 -- Name: get_mae_aluno(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_mae_aluno(integer) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_mae_aluno(integer) RETURNS character varying
     LANGUAGE sql
     AS $_$
 SELECT coalesce(
@@ -42,6 +42,8 @@ WHERE aluno.ativo = 1
 -- Name: situacao_matricula; Type: TABLE; Schema: relatorio; Owner: postgres
 --
 
+DROP VIEW IF EXISTS view_situacao;
+DROP TABLE IF EXISTS situacao_matricula;
 CREATE TABLE situacao_matricula (
     cod_situacao integer NOT NULL,
     descricao character varying(50) NOT NULL
@@ -52,7 +54,7 @@ CREATE TABLE situacao_matricula (
 -- Name: view_situacao; Type: VIEW; Schema: relatorio; Owner: ieducar
 --
 
-CREATE VIEW view_situacao AS
+CREATE OR REPLACE VIEW view_situacao AS
     SELECT matricula.cod_matricula,
         situacao_matricula.cod_situacao,
         matricula_turma.ref_cod_turma AS cod_turma,
@@ -128,7 +130,7 @@ CREATE VIEW view_situacao AS
 -- Name: get_max_sequencial_matricula(integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_max_sequencial_matricula(integer) RETURNS integer
+CREATE OR REPLACE FUNCTION get_max_sequencial_matricula(integer) RETURNS integer
     LANGUAGE sql
     AS $_$
                             SELECT MAX(matricula_turma.sequencial)
@@ -145,7 +147,7 @@ CREATE FUNCTION get_max_sequencial_matricula(integer) RETURNS integer
 -- Name: get_media_geral_turma(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_media_geral_turma(turma_i integer, componente_i integer) RETURNS numeric
+CREATE OR REPLACE FUNCTION get_media_geral_turma(turma_i integer, componente_i integer) RETURNS numeric
     LANGUAGE plpgsql
     AS $$
                         BEGIN
@@ -168,7 +170,7 @@ CREATE FUNCTION get_media_geral_turma(turma_i integer, componente_i integer) RET
 -- Name: get_media_recuperacao_semestral(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_media_recuperacao_semestral(matricula integer, componente integer) RETURNS numeric
+CREATE OR REPLACE FUNCTION get_media_recuperacao_semestral(matricula integer, componente integer) RETURNS numeric
     LANGUAGE plpgsql
     AS $$
                                               DECLARE
@@ -238,7 +240,7 @@ CREATE FUNCTION get_media_recuperacao_semestral(matricula integer, componente in
 -- Name: get_media_turma(integer, integer, integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_media_turma(turma_i integer, componente_i integer, etapa_i integer) RETURNS numeric
+CREATE OR REPLACE FUNCTION get_media_turma(turma_i integer, componente_i integer, etapa_i integer) RETURNS numeric
     LANGUAGE plpgsql
     AS $$
                       BEGIN
@@ -262,7 +264,7 @@ CREATE FUNCTION get_media_turma(turma_i integer, componente_i integer, etapa_i i
 -- Name: get_nacionalidade(numeric); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_nacionalidade(nacionalidade_id numeric) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_nacionalidade(nacionalidade_id numeric) RETURNS character varying
     LANGUAGE plpgsql
     AS $$ BEGIN RETURN
                                                 (SELECT CASE
@@ -276,7 +278,7 @@ CREATE FUNCTION get_nacionalidade(nacionalidade_id numeric) RETURNS character va
 -- Name: get_nome_modulo(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_nome_modulo(integer) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_nome_modulo(integer) RETURNS character varying
     LANGUAGE sql
     AS $_$
 SELECT MIN(modulo.nm_tipo)
@@ -298,7 +300,7 @@ WHERE turma.cod_turma = $1;$_$;
 -- Name: get_nota_exame(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_nota_exame(integer, integer) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_nota_exame(integer, integer) RETURNS character varying
     LANGUAGE sql
     AS $_$
                         (SELECT CASE WHEN nota_componente_curricular.nota_arredondada = '10' THEN '10,0' WHEN char_length(nota_componente_curricular.nota_arredondada) = 1 THEN replace(nota_componente_curricular.nota_arredondada,'.',',') || ',0' ELSE replace(nota_componente_curricular.nota_arredondada,'.',',') END
@@ -313,7 +315,7 @@ CREATE FUNCTION get_nota_exame(integer, integer) RETURNS character varying
 -- Name: get_pai_aluno(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_pai_aluno(integer) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_pai_aluno(integer) RETURNS character varying
     LANGUAGE sql
     AS $_$
 SELECT coalesce(
@@ -330,7 +332,7 @@ WHERE aluno.ativo = 1
 -- Name: get_qtde_alunos(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_qtde_alunos(integer, integer) RETURNS bigint
+CREATE OR REPLACE FUNCTION get_qtde_alunos(integer, integer) RETURNS bigint
     LANGUAGE sql
     AS $_$
 SELECT COUNT(*)
@@ -344,7 +346,7 @@ WHERE matricula.ativo = 1
 -- Name: get_qtde_alunos_situacao(integer, integer, character, integer, integer, integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_qtde_alunos_situacao(integer, integer, character, integer, integer, integer) RETURNS integer
+CREATE OR REPLACE FUNCTION get_qtde_alunos_situacao(integer, integer, character, integer, integer, integer) RETURNS integer
     LANGUAGE sql
     AS $_$
 		    SELECT COUNT(*)::integer AS situacao
@@ -383,7 +385,7 @@ CREATE FUNCTION get_qtde_alunos_situacao(integer, integer, character, integer, i
 -- Name: get_qtde_alunos_situacao(integer, integer, integer, integer, integer, integer, integer, integer, character, integer, integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_qtde_alunos_situacao(ano integer, instituicao integer, escola integer, curso integer, serie integer, turma integer, situacao integer, bairro integer, sexo character, idadeini integer, idadefim integer) RETURNS integer
+CREATE OR REPLACE FUNCTION get_qtde_alunos_situacao(ano integer, instituicao integer, escola integer, curso integer, serie integer, turma integer, situacao integer, bairro integer, sexo character, idadeini integer, idadefim integer) RETURNS integer
     LANGUAGE plpgsql
     AS $$
 
@@ -467,7 +469,7 @@ $$;
 -- Name: get_qtde_etapa_disciplina_dispensada_matricula(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_qtde_etapa_disciplina_dispensada_matricula(integer, integer) RETURNS integer
+CREATE OR REPLACE FUNCTION get_qtde_etapa_disciplina_dispensada_matricula(integer, integer) RETURNS integer
     LANGUAGE sql
     AS $_$
                             SELECT DISTINCT count(dispensa_etapa.etapa)::integer AS qtde_dispensa_etapa
@@ -483,7 +485,7 @@ CREATE FUNCTION get_qtde_etapa_disciplina_dispensada_matricula(integer, integer)
 -- Name: get_qtde_modulo(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_qtde_modulo(integer) RETURNS integer
+CREATE OR REPLACE FUNCTION get_qtde_modulo(integer) RETURNS integer
     LANGUAGE sql
     AS $_$
 SELECT COUNT(modulo.nm_tipo)::integer AS qtde
@@ -505,7 +507,7 @@ WHERE turma.cod_turma = $1;$_$;
 -- Name: get_situacao_componente(numeric); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_situacao_componente(cod_situacao numeric) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_situacao_componente(cod_situacao numeric) RETURNS character varying
     LANGUAGE plpgsql
     AS $$
                 DECLARE
@@ -535,7 +537,7 @@ CREATE FUNCTION get_situacao_componente(cod_situacao numeric) RETURNS character 
 -- Name: get_situacao_historico(integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_situacao_historico(situacao integer) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_situacao_historico(situacao integer) RETURNS character varying
     LANGUAGE sql
     AS $$
                         SELECT CASE
@@ -556,7 +558,7 @@ CREATE FUNCTION get_situacao_historico(situacao integer) RETURNS character varyi
 -- Name: get_situacao_historico_abreviado(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_situacao_historico_abreviado(integer) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_situacao_historico_abreviado(integer) RETURNS character varying
     LANGUAGE sql
     AS $_$
 SELECT CASE
@@ -577,7 +579,7 @@ SELECT CASE
 -- Name: get_telefone_escola(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_telefone_escola(integer) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_telefone_escola(integer) RETURNS character varying
     LANGUAGE sql
     AS $_$
 SELECT COALESCE(
@@ -598,7 +600,7 @@ SELECT COALESCE(
 -- Name: get_total_falta_componente(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_total_falta_componente(matricula_i integer, componente_i integer) RETURNS numeric
+CREATE OR REPLACE FUNCTION get_total_falta_componente(matricula_i integer, componente_i integer) RETURNS numeric
     LANGUAGE plpgsql
     AS $$
                         BEGIN
@@ -617,7 +619,7 @@ CREATE FUNCTION get_total_falta_componente(matricula_i integer, componente_i int
 -- Name: get_total_faltas(integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_total_faltas(matricula_i integer) RETURNS numeric
+CREATE OR REPLACE FUNCTION get_total_faltas(matricula_i integer) RETURNS numeric
     LANGUAGE plpgsql
     AS $$
                         BEGIN
@@ -635,7 +637,7 @@ CREATE FUNCTION get_total_faltas(matricula_i integer) RETURNS numeric
 -- Name: get_total_geral_falta_componente(integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_total_geral_falta_componente(matricula_i integer) RETURNS numeric
+CREATE OR REPLACE FUNCTION get_total_geral_falta_componente(matricula_i integer) RETURNS numeric
     LANGUAGE plpgsql
     AS $$
                         BEGIN
@@ -653,7 +655,7 @@ CREATE FUNCTION get_total_geral_falta_componente(matricula_i integer) RETURNS nu
 -- Name: get_ultima_matricula_turma(integer, integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION get_ultima_matricula_turma(integer, integer, integer) RETURNS boolean
+CREATE OR REPLACE FUNCTION get_ultima_matricula_turma(integer, integer, integer) RETURNS boolean
     LANGUAGE plpgsql
     AS $_$
                             DECLARE
@@ -679,7 +681,7 @@ CREATE FUNCTION get_ultima_matricula_turma(integer, integer, integer) RETURNS bo
 -- Name: get_ultima_observacao_historico(integer); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_ultima_observacao_historico(integer) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_ultima_observacao_historico(integer) RETURNS character varying
     LANGUAGE sql
     AS $_$
 SELECT (replace(textcat_all(observacao),'<br>',E'\n'))
@@ -700,7 +702,7 @@ WHERE she.ativo = 1
 -- Name: get_valor_campo_auditoria(character varying, character varying, character varying); Type: FUNCTION; Schema: relatorio; Owner: postgres
 --
 
-CREATE FUNCTION get_valor_campo_auditoria(character varying, character varying, character varying) RETURNS character varying
+CREATE OR REPLACE FUNCTION get_valor_campo_auditoria(character varying, character varying, character varying) RETURNS character varying
     LANGUAGE sql
     AS $_$
 SELECT CASE
@@ -713,7 +715,7 @@ SELECT CASE
 -- Name: historico_carga_horaria_componente(character varying, character varying, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION historico_carga_horaria_componente(nome_componente character varying, nome_serie character varying, escola_id integer) RETURNS numeric
+CREATE OR REPLACE FUNCTION historico_carga_horaria_componente(nome_componente character varying, nome_serie character varying, escola_id integer) RETURNS numeric
     LANGUAGE plpgsql
     AS $$ BEGIN RETURN
                         (SELECT to_number(ccae.carga_horaria::varchar,'999')
@@ -731,7 +733,7 @@ CREATE FUNCTION historico_carga_horaria_componente(nome_componente character var
 -- Name: prioridade_historico(numeric); Type: FUNCTION; Schema: relatorio; Owner: ieducar
 --
 
-CREATE FUNCTION prioridade_historico(situacao numeric) RETURNS numeric
+CREATE OR REPLACE FUNCTION prioridade_historico(situacao numeric) RETURNS numeric
     LANGUAGE plpgsql
     AS $$
                         DECLARE
@@ -751,12 +753,44 @@ CREATE FUNCTION prioridade_historico(situacao numeric) RETURNS numeric
                         END;
                         $$;
 
+--
+-- Name: exibe_aluno_conforme_parametro_alunos_diferenciados(integer, integer); Type: FUNCTION; Schema: relatorio; Owner: ieducar
+--
+
+CREATE OR REPLACE FUNCTION relatorio.exibe_aluno_conforme_parametro_alunos_diferenciados(
+    codigo_aluno integer,
+    alunos_diferenciados integer)
+  RETURNS boolean AS
+$BODY$
+    DECLARE
+    possui_deficiencia boolean;
+    BEGIN
+
+    possui_deficiencia := EXISTS
+(SELECT 1
+       FROM cadastro.fisica_deficiencia fd
+       JOIN pmieducar.aluno a ON fd.ref_idpes = a.ref_idpes
+       JOIN cadastro.deficiencia d ON d.cod_deficiencia = fd.ref_cod_deficiencia
+      WHERE a.cod_aluno = codigo_aluno
+AND d.desconsidera_regra_diferenciada = false
+      LIMIT 1
+    );
+
+    CASE alunos_diferenciados
+        WHEN 1 THEN RETURN possui_deficiencia = false;
+        WHEN 2 THEN RETURN possui_deficiencia = true;
+        ELSE RETURN true;
+    END CASE;
+
+    END; $BODY$
+LANGUAGE plpgsql VOLATILE
+COST 100;
 
 --
 -- Name: view_auditoria; Type: VIEW; Schema: relatorio; Owner: postgres
 --
 
-CREATE VIEW view_auditoria AS
+CREATE OR REPLACE VIEW view_auditoria AS
  SELECT (substr((auditoria.usuario)::text, 0, strpos((auditoria.usuario)::text, '-'::text)))::integer AS usuario_id,
     substr((auditoria.usuario)::text, (strpos((auditoria.usuario)::text, '-'::text) + 2)) AS usuario_matricula,
     auditoria.operacao,
@@ -833,7 +867,7 @@ CREATE VIEW view_auditoria AS
 -- Name: view_dados_aluno; Type: VIEW; Schema: relatorio; Owner: ieducar
 --
 
-CREATE VIEW view_dados_aluno AS
+CREATE OR REPLACE VIEW view_dados_aluno AS
  SELECT pessoa.idpes,
     fisica.cpf,
     aluno.cod_aluno,
@@ -879,7 +913,7 @@ CREATE VIEW view_dados_aluno AS
 -- Name: view_dados_escola; Type: VIEW; Schema: relatorio; Owner: ieducar
 --
 
-CREATE VIEW view_dados_escola AS
+CREATE OR REPLACE VIEW view_dados_escola AS
     SELECT escola.cod_escola,
         get_nome_escola(escola.cod_escola) AS nome,
         pessoa.email,
@@ -913,7 +947,7 @@ CREATE VIEW view_dados_escola AS
 -- Name: view_dados_historico_posicionamento; Type: VIEW; Schema: relatorio; Owner: ieducar
 --
 
-CREATE VIEW view_dados_historico_posicionamento AS
+CREATE OR REPLACE VIEW view_dados_historico_posicionamento AS
     SELECT he.ref_cod_aluno,
         public.fcn_upper(hd.nm_disciplina) AS nm_disciplina,
         ( SELECT COALESCE(min(hdd2.ordenamento), 9999) AS "coalesce"
@@ -1369,7 +1403,7 @@ CREATE VIEW view_dados_historico_posicionamento AS
 -- Name: view_dados_modulo; Type: VIEW; Schema: relatorio; Owner: ieducar
 --
 
-CREATE VIEW view_dados_modulo AS
+CREATE OR REPLACE VIEW view_dados_modulo AS
     ( SELECT turma.cod_turma,
           alm.sequencial,
           alm.ref_cod_modulo,
@@ -1409,7 +1443,7 @@ CREATE VIEW view_dados_modulo AS
 -- Name: view_historico_9anos; Type: VIEW; Schema: relatorio; Owner: ieducar
 --
 
-CREATE VIEW view_historico_9anos AS
+CREATE OR REPLACE VIEW view_historico_9anos AS
     SELECT historico.cod_aluno,
         historico.disciplina,
         historico.nota_1serie,
@@ -2537,7 +2571,7 @@ CREATE VIEW view_historico_9anos AS
 -- Name: view_historico_9anos_extra_curricular; Type: VIEW; Schema: relatorio; Owner: postgres
 --
 
-CREATE VIEW view_historico_9anos_extra_curricular AS
+CREATE OR REPLACE VIEW view_historico_9anos_extra_curricular AS
     SELECT historico_disciplinas.ref_ref_cod_aluno AS cod_aluno,
            public.fcn_upper((historico_disciplinas.nm_disciplina)::text) AS disciplina,
            ( SELECT
@@ -2911,7 +2945,7 @@ CREATE VIEW view_historico_9anos_extra_curricular AS
 -- Name: view_modulo; Type: VIEW; Schema: relatorio; Owner: postgres
 --
 
-CREATE VIEW view_modulo AS
+CREATE OR REPLACE VIEW view_modulo AS
     SELECT DISTINCT turma.cod_turma,
         modulo_curso.cod_modulo AS cod_modulo_curso,
         modulo_turma.cod_modulo AS cod_modulo_turma,
