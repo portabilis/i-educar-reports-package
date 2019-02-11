@@ -254,5 +254,6 @@ class AddViewHistoricoSeriesAnos extends Migration
     public function down()
     {
         DB::unprepared('DROP VIEW IF EXISTS relatorio.view_historico_series_anos;');
+        DB::unprepared('DROP EXTENSION IF EXISTS hstore;');
     }
 }
