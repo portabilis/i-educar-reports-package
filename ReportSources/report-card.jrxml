@@ -608,6 +608,15 @@
 						<categorySeries>
 							<seriesExpression><![CDATA["MÉDIA "+$F{nome_aluno}]]></seriesExpression>
 							<categoryExpression><![CDATA[$F{nome_disciplina}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{nota4num} != null ?
+	new BigDecimal($F{medianum}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
+: $F{nota3num} != null ?
+	new BigDecimal(($F{nota3num} + $F{nota2num} + $F{nota1num}) / 3).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
+	: $F{nota2num} != null ?
+		new BigDecimal(($F{nota2num} + $F{nota1num}) / 2).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
+		: $F{nota1num} != null  ?
+            new BigDecimal($F{nota1num}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
+            : null]]></valueExpression>
 						</categorySeries>
 						<categorySeries>
 							<seriesExpression><![CDATA["MÉDIA TURMA"]]></seriesExpression>
@@ -687,6 +696,15 @@
 						<categorySeries>
 							<seriesExpression><![CDATA["MÉDIA "+$F{nome_aluno}]]></seriesExpression>
 							<categoryExpression><![CDATA[$F{nome_disciplina}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{nota4num} != null ?
+	new BigDecimal($F{medianum}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
+: $F{nota3num} != null ?
+	new BigDecimal(($F{nota3num} + $F{nota2num} + $F{nota1num}) / 3).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
+	: $F{nota2num} != null ?
+		new BigDecimal(($F{nota2num} + $F{nota1num}) / 2).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
+		: $F{nota1num} != null  ?
+            new BigDecimal($F{nota1num}).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue()
+            : null]]></valueExpression>
 						</categorySeries>
 						<categorySeries>
 							<seriesExpression><![CDATA["MÉDIA TURMA"]]></seriesExpression>
