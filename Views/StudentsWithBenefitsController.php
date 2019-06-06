@@ -6,6 +6,11 @@ require_once 'Reports/Reports/StudentsWithBenefitsReport.php';
 class StudentsWithBenefitsController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999233;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório de alunos que recebem benefícios';

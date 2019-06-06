@@ -6,6 +6,11 @@ require_once 'Reports/Reports/VacancyCertificateReport.php';
 class VacancyCertificateController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999100;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório Atestado de Vaga';

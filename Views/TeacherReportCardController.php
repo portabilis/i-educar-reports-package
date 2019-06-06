@@ -6,6 +6,11 @@ require_once 'Reports/Reports/TeacherReportCardReport.php';
 class TeacherReportCardController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999205;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Boletim do Professor';

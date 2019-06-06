@@ -6,6 +6,11 @@ require_once 'Reports/Reports/RegistrationCertificateReport.php';
 class RegistrationCertificateController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999103;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório Atestado de Matrícula';

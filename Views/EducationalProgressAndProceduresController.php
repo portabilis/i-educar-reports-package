@@ -6,6 +6,11 @@ require_once 'Reports/Reports/EducationalProgressAndProceduresReport.php';
 class EducationalProgressAndProceduresController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999830;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório de rendimento e movimento escolar';

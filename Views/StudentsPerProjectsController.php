@@ -6,6 +6,11 @@ require_once 'Reports/Reports/StudentsPerProjectsReport.php';
 class StudentsPerProjectsController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999234;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relação de alunos participantes de projetos';

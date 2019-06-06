@@ -6,6 +6,11 @@ require_once 'Reports/Reports/StudentsWithDisabilitiesReport.php';
 class StudentsWithDisabilitiesController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999227;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório de Alunos com Deficiência';

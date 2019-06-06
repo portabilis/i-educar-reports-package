@@ -8,7 +8,7 @@ class LibraryAuthorsController extends Portabilis_Controller_ReportCoreControlle
     /**
      * @var int
      */
-    protected $_processoAp = 625;
+    protected $_processoAp = 999615;
 
     /**
      * @var string

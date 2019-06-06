@@ -6,6 +6,11 @@ require_once 'Reports/Reports/TransferenceCertificateReport.php';
 class TransferenceCertificateController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int 
+     */
+    protected $_processoAp = 999216;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Atestado de Transferência';

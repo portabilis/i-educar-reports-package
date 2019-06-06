@@ -6,6 +6,11 @@ require_once 'Reports/Reports/SchoolHistoryReport.php';
 class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999200;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Histórico Escolar';

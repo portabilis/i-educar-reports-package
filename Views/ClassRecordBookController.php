@@ -5,6 +5,11 @@ require_once 'Reports/Reports/ClassRecordBookReport.php';
 
 class ClassRecordBookController extends Portabilis_Controller_ReportCoreController
 {
+    /**
+     * @var int
+     */
+    protected $_processoAp = 999816;
+
     protected $_titulo = 'Diário de classe';
 
     protected function _preRender()

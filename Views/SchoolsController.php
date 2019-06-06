@@ -6,6 +6,11 @@ require_once 'Reports/Reports/SchoolsReport.php';
 class SchoolsController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999605;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório de Escolas';

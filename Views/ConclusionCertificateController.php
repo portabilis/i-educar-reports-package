@@ -6,6 +6,11 @@ require_once 'Reports/Reports/ConclusionCertificateReport.php';
 class ConclusionCertificateController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999812;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Declaração de Conclusão de Curso';
