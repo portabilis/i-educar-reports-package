@@ -7,6 +7,11 @@ require_once 'Portabilis/Date/Utils.php';
 class ClassAverageComparativeController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999872;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Comparativo de média da turma';

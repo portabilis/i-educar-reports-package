@@ -7,6 +7,11 @@ require_once 'Portabilis/Date/Utils.php';
 class StudentsEntranceAndAllocationController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999871;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relação de alunos por data de entrada e enturmação';

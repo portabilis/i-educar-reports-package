@@ -6,6 +6,11 @@ require_once 'Reports/Reports/AgeDistortionInSerieReport.php';
 class AgeDistortionInSerieController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999840;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório de distorção de idade na série';

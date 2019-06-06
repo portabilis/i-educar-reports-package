@@ -6,6 +6,11 @@ require_once 'Reports/Reports/FrequencyCertificateReport.php';
 class FrequencyCertificateController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999102;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Atestado de Frequência';

@@ -6,6 +6,11 @@ require_once 'Reports/Reports/StudentSheetReport.php';
 class StudentSheetController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999203;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Ficha do Aluno';

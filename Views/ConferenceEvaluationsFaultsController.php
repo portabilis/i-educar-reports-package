@@ -6,6 +6,11 @@ require_once 'Reports/Reports/ConferenceEvaluationsFaultsReport.php';
 class ConferenceEvaluationsFaultsController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999809;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório de Conferência de Notas e Faltas';

@@ -7,6 +7,11 @@ require_once 'Portabilis/String/Utils.php';
 class StudentsAverageController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999834;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório da relação de alunos com o melhor desempenho';

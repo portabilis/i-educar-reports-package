@@ -7,6 +7,11 @@ require_once 'Portabilis/Date/Utils.php';
 class StudentsPerClassController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999101;
+
+    /**
      * @inheritdoc
      */
     protected $_titulo = 'Relação de Alunos por Turma';

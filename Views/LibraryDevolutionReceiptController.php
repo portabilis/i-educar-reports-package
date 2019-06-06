@@ -8,7 +8,7 @@ class LibraryDevolutionReceiptController extends Portabilis_Controller_ReportCor
     /**
      * @var int
      */
-    protected $_processoAp = 625;
+    protected $_processoAp = 999621;
 
     /**
      * @var string

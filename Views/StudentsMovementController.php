@@ -7,6 +7,11 @@ require_once 'Reports/Reports/StudentsMovementReport.php';
 class StudentsMovementController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999201;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório de Movimento de Alunos e Enturmações';

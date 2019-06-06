@@ -6,6 +6,11 @@ require_once 'Reports/Reports/StudentDisciplinaryOccurrenceReport.php';
 class StudentDisciplinaryOccurrenceController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999217;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório de Ocorrências Disciplinares';

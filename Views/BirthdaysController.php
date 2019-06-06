@@ -7,6 +7,11 @@ require_once 'Portabilis/Date/Utils.php';
 class BirthdaysController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 9998911;
+
+    /**
      * @inheritdoc
      */
     protected $_titulo = 'Relação de aniversariantes do mês';

@@ -8,6 +8,11 @@ require_once 'Reports/Reports/DistributionOfUniformPerStudentReport.php';
 class DistributionOfUniformPerStudentController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int
+     */
+    protected $_processoAp = 999224;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Distribução de uniforme por aluno';

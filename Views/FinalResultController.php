@@ -6,6 +6,11 @@ require_once 'Reports/Reports/FinalResultReport.php';
 class FinalResultController extends Portabilis_Controller_ReportCoreController
 {
     /**
+     * @var int 
+     */
+    protected $_processoAp = 999608;
+
+    /**
      * @var string
      */
     protected $_titulo = 'Relatório do Resultado Final';
