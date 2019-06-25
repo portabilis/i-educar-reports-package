@@ -1,7 +1,7 @@
 <?php
 
+use App\Menu;
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
 
 class AddLibraryClientsReportMenu extends Migration
 {
@@ -12,18 +12,15 @@ class AddLibraryClientsReportMenu extends Migration
      */
     public function up()
     {
-        DB::unprepared(
-            '
-                INSERT INTO portal.menu_submenu (cod_menu_submenu, ref_cod_menu_menu, cod_sistema, nm_submenu, arquivo, title, nivel) 
-                VALUES (999845, 57, 2, \'Relatório de clientes\', \'module/Reports/LibraryClients\', null, 3);
-                
-                INSERT INTO pmicontrolesis.menu (cod_menu, ref_cod_menu_submenu, ref_cod_menu_pai, tt_menu, ord_menu, caminho, alvo, suprime_menu, ref_cod_tutormenu, ref_cod_ico, tipo_menu) 
-                VALUES (999845, 999845, 999905, \'Relatório de clientes\', 4, \'module/Reports/LibraryClients\', \'_self\', 1, 16, 192, null);
-                
-                INSERT INTO pmieducar.menu_tipo_usuario (ref_cod_tipo_usuario, ref_cod_menu_submenu, cadastra, visualiza, exclui) 
-                VALUES (1, 999845, 1, 1, 1);
-            '
-        );
+        Menu::query()->create([
+            'parent_id' => Menu::query()->where('old', 999905)->firstOrFail()->getKey(),
+            'title' => 'Relatório de clientes',
+            'description' => null,
+            'link' => '/module/Reports/LibraryClients',
+            'order' => 4,
+            'old' => 999845,
+            'process' => 999845,
+        ]);
     }
 
     /**
@@ -33,17 +30,6 @@ class AddLibraryClientsReportMenu extends Migration
      */
     public function down()
     {
-        DB::unprepared(
-            '
-                DELETE FROM pmieducar.menu_tipo_usuario 
-                WHERE ref_cod_menu_submenu = 999845;
-
-                DELETE FROM pmicontrolesis.menu 
-                WHERE cod_menu = 999845;
-
-                DELETE FROM portal.menu_submenu 
-                WHERE cod_menu_submenu = 999845;
-            '
-        );
+        Menu::query()->where('process', 999845)->delete();
     }
 }
