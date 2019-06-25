@@ -1,5 +1,7 @@
 <?php
 
+use App\Menu;
+
 require_once 'lib/Portabilis/Controller/ReportCoreController.php';
 require_once 'Reports/Reports/FrequencyCertificateReport.php';
 
@@ -91,9 +93,8 @@ class FrequencyCertificateController extends Portabilis_Controller_ReportCoreCon
      */
     public function titulo()
     {
-        $obj_menu = new clsPortalMenuSubmenu(999102);
-        $det_menu = $obj_menu->detalhe();
+        $menu = Menu::query()->where('process', $this->_processoAp);
 
-        return $det_menu['nm_submenu'];
+        return $menu->title;
     }
 }
