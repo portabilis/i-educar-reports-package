@@ -29,11 +29,11 @@ class AddFunctionRelatorioGetQtdeAlunosSituacao extends Migration
     public function down()
     {
         DB::unprepared(
-            'relatorio.get_qtde_alunos_situacao(ano integer, instituicao integer, escola integer, curso integer, serie integer, turma integer, situacao integer, bairro integer, sexo character, idadeini integer, idadefim integer)'
+            'DROP FUNCTION IF EXISTS relatorio.get_qtde_alunos_situacao(ano integer, instituicao integer, escola integer, curso integer, serie integer, turma integer, situacao integer, bairro integer, sexo character, idadeini integer, idadefim integer)'
         );
 
         DB::unprepared(
-            'DROP FUNCTION relatorio.get_qtde_alunos_situacao(integer, integer, character, integer, integer, integer);'
+            'DROP FUNCTION IF EXISTS relatorio.get_qtde_alunos_situacao(integer, integer, character, integer, integer, integer);'
         );
     }
 }
