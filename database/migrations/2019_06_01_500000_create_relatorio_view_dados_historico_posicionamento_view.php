@@ -13,6 +13,10 @@ class CreateRelatorioViewDadosHistoricoPosicionamentoView extends Migration
     public function up()
     {
         DB::unprepared(
+            'DROP VIEW IF EXISTS relatorio.view_dados_historico_posicionamento;'
+        );
+
+        DB::unprepared(
             file_get_contents(__DIR__ . '/../sqls/views/relatorio.view_dados_historico_posicionamento.sql')
         );
     }
@@ -25,7 +29,7 @@ class CreateRelatorioViewDadosHistoricoPosicionamentoView extends Migration
     public function down()
     {
         DB::unprepared(
-            'DROP VIEW relatorio.view_dados_historico_posicionamento;'
+            'DROP VIEW IF EXISTS relatorio.view_dados_historico_posicionamento;'
         );
     }
 }

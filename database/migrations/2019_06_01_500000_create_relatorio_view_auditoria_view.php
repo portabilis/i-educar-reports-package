@@ -13,6 +13,10 @@ class CreateRelatorioViewAuditoriaView extends Migration
     public function up()
     {
         DB::unprepared(
+            'DROP VIEW IF EXISTS relatorio.view_auditoria;'
+        );
+
+        DB::unprepared(
             file_get_contents(__DIR__ . '/../sqls/views/relatorio.view_auditoria.sql')
         );
     }
@@ -25,7 +29,7 @@ class CreateRelatorioViewAuditoriaView extends Migration
     public function down()
     {
         DB::unprepared(
-            'DROP VIEW relatorio.view_auditoria;'
+            'DROP VIEW IF EXISTS relatorio.view_auditoria;'
         );
     }
 }

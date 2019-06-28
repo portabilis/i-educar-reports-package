@@ -13,6 +13,10 @@ class CreateRelatorioViewHistorico9anosView extends Migration
     public function up()
     {
         DB::unprepared(
+            'DROP VIEW IF EXISTS relatorio.view_historico_9anos;'
+        );
+
+        DB::unprepared(
             file_get_contents(__DIR__ . '/../sqls/views/relatorio.view_historico_9anos.sql')
         );
     }
@@ -25,7 +29,7 @@ class CreateRelatorioViewHistorico9anosView extends Migration
     public function down()
     {
         DB::unprepared(
-            'DROP VIEW relatorio.view_historico_9anos;'
+            'DROP VIEW IF EXISTS relatorio.view_historico_9anos;'
         );
     }
 }
