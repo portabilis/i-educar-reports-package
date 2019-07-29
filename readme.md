@@ -19,10 +19,7 @@ Para adicionar os relatórios ao i-Educar clone este repositório em
 # Execute este comando na raiz do projeto i-educar
 git clone https://github.com/portabilis/i-educar-reports-package.git ieducar/modules/Reports
 
-# Instalação usando Docker
-docker-compose exec php artisan reports:install
-
-# Instalação direta no servidor
+# (Docker) docker-compose exec php artisan reports:install
 php artisan reports:install
 ```
 
