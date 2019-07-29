@@ -1,5 +1,7 @@
 <?php
 
+use App\Menu;
+
 require_once 'lib/Portabilis/Controller/ReportCoreController.php';
 require_once 'Reports/Reports/RegistrationCertificateReport.php';
 
@@ -81,9 +83,8 @@ class RegistrationCertificateController extends Portabilis_Controller_ReportCore
      */
     public function titulo()
     {
-        $obj_menu = new clsPortalMenuSubmenu(999103);
-        $det_menu = $obj_menu->detalhe();
+        $menu = Menu::query()->where('process', $this->_processoAp);
 
-        return $det_menu['nm_submenu'];
+        return $menu->title;
     }
 }

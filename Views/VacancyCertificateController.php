@@ -1,5 +1,7 @@
 <?php
 
+use App\Menu;
+
 require_once 'lib/Portabilis/Controller/ReportCoreController.php';
 require_once 'Reports/Reports/VacancyCertificateReport.php';
 
@@ -20,10 +22,9 @@ class VacancyCertificateController extends Portabilis_Controller_ReportCoreContr
      */
     public function titulo()
     {
-        $obj_menu = new clsPortalMenuSubmenu(999100);
-        $det_menu = $obj_menu->detalhe();
+        $menu = Menu::query()->where('process', $this->_processoAp);
 
-        return $det_menu['nm_submenu'];
+        return $menu->title;
     }
 
     /**
