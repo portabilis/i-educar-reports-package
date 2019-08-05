@@ -72,3 +72,6 @@ SELECT (substr((auditoria.usuario)::text, 0, strpos((auditoria.usuario)::text, '
        get_valor_campo_auditoria('nota'::character varying, 'etapa'::character varying, (auditoria.valor_antigo)::character varying) AS nota_antiga,
        get_valor_campo_auditoria('nota'::character varying, 'etapa'::character varying, (auditoria.valor_novo)::character varying) AS nota_nova
 FROM modules.auditoria;
+
+
+SET search_path = public, pg_catalog, relatorio, pmieducar;

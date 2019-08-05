@@ -281,3 +281,5 @@ GROUP BY historico_disciplinas.disciplina,
          historico_por_disciplina.carga_horaria_disciplina,
          historico_por_disciplina.dependencia
 ORDER BY historico_disciplinas.disciplina;
+
+SET search_path = public, pg_catalog;
