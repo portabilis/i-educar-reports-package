@@ -83,7 +83,7 @@ class RegistrationCertificateController extends Portabilis_Controller_ReportCore
      */
     public function titulo()
     {
-        $menu = Menu::query()->where('process', $this->_processoAp);
+        $menu = Menu::query()->where('process', $this->_processoAp)->first();
 
         return $menu->title;
     }
