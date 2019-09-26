@@ -22,7 +22,7 @@ class VacancyCertificateController extends Portabilis_Controller_ReportCoreContr
      */
     public function titulo()
     {
-        $menu = Menu::query()->where('process', $this->_processoAp);
+        $menu = Menu::query()->where('process', $this->_processoAp)->first();
 
         return $menu->title;
     }

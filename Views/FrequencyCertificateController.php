@@ -93,7 +93,7 @@ class FrequencyCertificateController extends Portabilis_Controller_ReportCoreCon
      */
     public function titulo()
     {
-        $menu = Menu::query()->where('process', $this->_processoAp);
+        $menu = Menu::query()->where('process', $this->_processoAp)->first();
 
         return $menu->title;
     }
