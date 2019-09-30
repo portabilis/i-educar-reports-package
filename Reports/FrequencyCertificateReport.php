@@ -62,7 +62,7 @@ SELECT vde.cod_escola        AS cod_escola,
        curso.nm_curso        AS nm_curso,
        serie.nm_serie        AS nm_serie,
        (SELECT DISTINCT '' || (replace(textcat_all(turma.nm_turma),' <br> ',' e '))) AS nm_turma,
-(SELECT DISTINCT '' || (replace(textcat_all((CASE WHEN turma_turno.id = 4 THEN (SELECT nome FROM pmieducar.turma_turno WHERE id = COALESCE(matricula.turno_id,4)) ELSE turma_turno.nome END)),' <br> ',' e '))) AS periodo,
+(SELECT DISTINCT '' || (replace(textcat_all((CASE WHEN turma_turno.id = 4 THEN (SELECT nome FROM pmieducar.turma_turno WHERE id = COALESCE(matricula_turma.turno_id,4)) ELSE turma_turno.nome END)),' <br> ',' e '))) AS periodo,
        (CASE WHEN modules.frequencia_da_matricula(matricula.cod_matricula) = 100 THEN
 	  100
                 ELSE round(modules.frequencia_da_matricula(matricula.cod_matricula)::numeric, 2) END) AS frequencia,
