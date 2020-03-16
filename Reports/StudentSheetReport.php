@@ -86,21 +86,13 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
    FROM cadastro.pessoa ps
    WHERE ps.idpes = fisica.idpes_pai) AS nm_pai,
 
-  (SELECT COALESCE(
-                     (SELECT public.formata_cpf(fisica_cpf.cpf)
-                      FROM cadastro.fisica_cpf
-                      WHERE fisica_cpf.idpes = fisica.idpes_mae),
-                     (SELECT public.formata_cpf(fs.cpf)
-                      FROM cadastro.fisica fs
-                      WHERE fs.idpes = fisica.idpes_mae))) AS cpf_mae,
+  (SELECT public.formata_cpf(fs.cpf)
+   FROM cadastro.fisica fs
+   WHERE fs.idpes = fisica.idpes_mae) AS cpf_mae,
 
-  (SELECT COALESCE(
-                     (SELECT public.formata_cpf(fisica_cpf.cpf)
-                      FROM cadastro.fisica_cpf
-                      WHERE fisica_cpf.idpes = fisica.idpes_mae),
-                     (SELECT public.formata_cpf(fs.cpf)
-                      FROM cadastro.fisica fs
-                      WHERE fs.idpes = fisica.idpes_pai))) AS cpf_pai,
+  (SELECT public.formata_cpf(fs.cpf)
+   FROM cadastro.fisica fs
+   WHERE fs.idpes = fisica.idpes_pai) AS cpf_pai,
 
   (SELECT textcat_all(aluno_beneficio.nm_beneficio)
    FROM pmieducar.aluno_beneficio,
