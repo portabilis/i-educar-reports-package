@@ -39,10 +39,6 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
 
         $this->inputsHelper()->checkbox('lote', ['label' => 'Emitir em lote?']);
 
-        $resources = [
-            3 => 'Série/Anos',
-        ];
-
         $this->inputsHelper()->checkbox('imprime_diretor_secretario', [
             'label' => 'Imprimir o nome do(a) secretário(a) e diretor(a)?'
         ]);
@@ -55,8 +51,21 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
 
         $this->inputsHelper()->checkbox('emitir_carga_horaria_frequentada', ['label' => 'Emitir Carga horária frequentada']);
 
+        $resources = [
+            1 => 'Série/Anos',
+            2 => 'Modelo 1'
+        ];
         $options = ['label' => 'Modelo', 'resources' => $resources, 'value' => 1];
         $this->inputsHelper()->select('modelo', $options);
+
+        $this->inputsHelper()->integer('ano_ini', ['placeholder' => '', 'required' => false, 'label' => 'Ano início', 'max_length' => 4, 'size' => 4]);
+        $this->inputsHelper()->integer('ano_fim', ['placeholder' => '','required' => false, 'label' => 'Ano final', 'max_length' => 4, 'size' => 4]);
+
+        $helperOptions = ['objectName' => 'cursoaluno'];
+        $options = ['label' => 'Cursos do aluno', 'size' => 120, 'required' => false, 'placeholder' => 'Todas', 'options' => ['value' => null]];
+        $this->inputsHelper()->multipleSearchCursoAluno('', $options, $helperOptions);
+        $this->inputsHelper()->checkbox('apenas_ultimo_registro', ['label' => 'Emitir informações do ano letivo apenas do último registro?']);
+        $this->campoOculto('sequencial', $this->sequencial);
 
         $this->loadResourceAssets($this->getDispatcher());
     }
@@ -81,6 +90,12 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
         $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
         $this->report->addArg('ano', (int) $this->getRequest()->ano);
         $this->report->addArg('emitir_carga_horaria_frequentada', (bool) $this->getRequest()->emitir_carga_horaria_frequentada);
+        $this->report->addArg('ano_ini', ($this->getRequest()->ano_ini == '' ? 0 : (int)$this->getRequest()->ano_ini));
+        $this->report->addArg('ano_fim', ($this->getRequest()->ano_fim == '' ? 0 : (int)$this->getRequest()->ano_fim));
+        $cursoaluno = implode(',', array_filter($this->getRequest()->cursoaluno));
+        $this->report->addArg('cursoaluno', trim($cursoaluno) == '' ? 0 : $cursoaluno);
+        $this->report->addArg('apenas_ultimo_registro', (bool)$this->getRequest()->apenas_ultimo_registro);
+        $this->report->addArg('sequencial', (int)$this->getRequest()->sequencial);
     }
 
     /**
