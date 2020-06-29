@@ -4,13 +4,18 @@ use iEducar\Reports\JsonDataSource;
 
 require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'App/Model/IedFinder.php';
-require_once 'Reports/Queries/QuerySchoolHistorySeriesYears.php';
-require_once 'Reports/Queries/QuerySchoolHistoryCrosstab.php';
-require_once 'Reports/Queries/QuerySchoolHistoryCrosstabDataset.php';
+require_once 'Reports/Queries/SchoolHistorySeriesYearsTrait.php';
+require_once 'Reports/Queries/SchoolHistoryCrosstabTrait.php';
+require_once 'Reports/Queries/SchoolHistoryCrosstabDatasetTrait.php';
 
 class SchoolHistoryReport extends Portabilis_Report_ReportCore
 {
-    use JsonDataSource;
+    use JsonDataSource, SchoolHistorySeriesYearsTrait, SchoolHistoryCrosstabTrait, SchoolHistoryCrosstabDatasetTrait {
+        SchoolHistorySeriesYearsTrait::query insteadof SchoolHistoryCrosstabTrait, SchoolHistoryCrosstabDatasetTrait;
+        SchoolHistorySeriesYearsTrait::query AS querySchoolHistorySeriesYears;
+        SchoolHistoryCrosstabTrait::query AS querySchoolHistoryCrosstab;
+        SchoolHistoryCrosstabDatasetTrait::query AS querySchoolHistoryCrosstabDataset;
+    }
 
     /**
      * @inheritdoc
@@ -41,14 +46,14 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 
         if ($this->args['modelo'] == 2) {
             return [
-                'main' => (new QuerySchoolHistoryCrosstab)->get($this->args),
-                'school-history-crosstab-dataset' => (new QuerySchoolHistoryCrosstabDataset)->get($this->args),
+                'main' => Portabilis_Utils_Database::fetchPreparedQuery($this->querySchoolHistoryCrosstab()),
+                'school-history-crosstab-dataset' => Portabilis_Utils_Database::fetchPreparedQuery($this->querySchoolHistoryCrosstabDataset()),
                 'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport)
             ];
         }
 
         return [
-            'main' => (new QuerySchoolHistorySeriesYears)->get($this->args),
+            'main' => Portabilis_Utils_Database::fetchPreparedQuery($this->querySchoolHistorySeriesYears()),
             'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport)
         ];
     }

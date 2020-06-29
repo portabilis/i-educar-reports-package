@@ -1,15 +1,17 @@
 <?php
 
-require_once 'Reports/Queries/QueryBridge.php';
-
-class QuerySchoolHistorySeriesYears extends QueryBridge
+trait SchoolHistorySeriesYearsTrait
 {
     /**
      * @inheritdoc
      */
     protected function query()
     {
-        return <<<'SQL'
+        $escola = $this->args['escola'];
+        $aluno = $this->args['aluno'];
+        $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'];
+
+        return <<<SQL
             SELECT
                 vhsa.cod_aluno,
                 vhsa.disciplina AS nm_disciplina,
@@ -105,19 +107,19 @@ class QuerySchoolHistorySeriesYears extends QueryBridge
                 (
                     SELECT municipio
                     FROM relatorio.view_dados_escola
-                    WHERE cod_escola = $P{escola}
+                    WHERE cod_escola = $escola
                 ) AS municipio,
                 (
                     SELECT fcn_upper(p.nome)
                     FROM cadastro.pessoa p
                     INNER JOIN pmieducar.escola e ON (e.ref_idpes_gestor = p.idpes)
-                    WHERE e.cod_escola = $P{escola}
+                    WHERE e.cod_escola = $escola
                 ) AS diretor,
                 (
                     SELECT fcn_upper(p.nome)
                     FROM cadastro.pessoa p
                     INNER JOIN pmieducar.escola e ON (p.idpes = e.ref_idpes_secretario_escolar)
-                    WHERE e.cod_escola = $P{escola}
+                    WHERE e.cod_escola = $escola
                 ) AS secretario,
                 (
                     SELECT max(COALESCE(ato_poder_publico,''))
@@ -126,7 +128,7 @@ class QuerySchoolHistorySeriesYears extends QueryBridge
                 (
                     SELECT COALESCE(fcn_upper(nm_curso),'')
                     FROM pmieducar.historico_escolar he
-                    WHERE he.ref_cod_aluno = $P{aluno}
+                    WHERE he.ref_cod_aluno = $aluno
                     AND he.ativo = 1
                     ORDER BY ano DESC, relatorio.prioridade_historico(he.aprovado) ASC
                     LIMIT 1
@@ -209,7 +211,7 @@ class QuerySchoolHistorySeriesYears extends QueryBridge
                     FROM pmieducar.historico_escolar he
                     WHERE he.ref_cod_aluno = vhsa.cod_aluno
                     AND he.ativo = 1
-                    AND (CASE WHEN $P!{nao_emitir_reprovado} THEN he.aprovado <> 2 ELSE 1=1 END)
+                    AND (CASE WHEN $nao_emitir_reprovado THEN he.aprovado <> 2 ELSE 1=1 END)
                     AND he.dependencia = 't'
                 ) AS possui_historico_dependencia,
 
@@ -220,7 +222,7 @@ class QuerySchoolHistorySeriesYears extends QueryBridge
                         FROM pmieducar.historico_escolar phe
                         WHERE phe.ref_cod_aluno = vhsa.cod_aluno
                         AND phe.ativo = 1
-                        AND (CASE WHEN $P!{nao_emitir_reprovado} THEN phe.aprovado <> 2 ELSE 1=1 END)
+                        AND (CASE WHEN $nao_emitir_reprovado THEN phe.aprovado <> 2 ELSE 1=1 END)
                         ORDER BY phe.ano
                     )tabl
                 ) AS observacao_all
@@ -230,20 +232,8 @@ class QuerySchoolHistorySeriesYears extends QueryBridge
                 INNER JOIN cadastro.fisica ON (fisica.idpes = aluno.ref_idpes)
                 LEFT JOIN modules.educacenso_cod_aluno eca ON (eca.cod_aluno = aluno.cod_aluno)
                 LEFT JOIN public.municipio ON (municipio.idmun = fisica.idmun_nascimento)
-                WHERE vhsa.cod_aluno = $P{aluno};
+                WHERE vhsa.cod_aluno = $aluno;
 
 SQL;
-    }
-
-    /***
-     * Retorna os parâmetros default do report
-     *
-     * @return array
-     */
-    protected function getDefaultData()
-    {
-        return [
-            'alunos_diferenciados' => 0,
-        ];
     }
 }

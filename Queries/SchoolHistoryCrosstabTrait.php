@@ -1,15 +1,22 @@
 <?php
 
-require_once 'Reports/Queries/QueryBridge.php';
-
-class QuerySchoolHistoryCrosstab extends QueryBridge
+trait SchoolHistoryCrosstabTrait
 {
     /**
      * @inheritdoc
      */
     protected function query()
     {
-        return <<<'SQL'
+        $aluno = $this->args['aluno'];
+        $ano_ini = $this->args['ano_ini'];
+        $ano_fim = $this->args['ano_fim'];
+        $instituicao = $this->args['instituicao'];
+        $escola = $this->args['escola'];
+        $sequencial = $this->args['sequencial'];
+        $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'];
+        $cursoaluno = $this->args['cursoaluno'];
+
+        return <<<SQL
             SELECT
                 ano,
                 carga_horaria,
@@ -33,11 +40,11 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                 (
                     SELECT ' ' || (replace(textcat_all(observacao),'<br>',E'\n'))
                     FROM pmieducar.historico_escolar phe
-                    WHERE phe.ref_cod_aluno = $P{aluno}
+                    WHERE phe.ref_cod_aluno = $aluno
                     AND phe.ativo = 1
-                    AND (CASE WHEN $P!{nao_emitir_reprovado} THEN phe.aprovado <> 2 ELSE 1=1 END)
-                    AND (CASE WHEN $P{ano_ini} = 0 THEN 1=1 ELSE phe.ano >= $P{ano_ini} END)
-                    AND (CASE WHEN $P{ano_fim} = 0 THEN 1=1 ELSE phe.ano <= $P{ano_fim} END)
+                    AND (CASE WHEN $nao_emitir_reprovado THEN phe.aprovado <> 2 ELSE 1=1 END)
+                    AND (CASE WHEN $ano_ini = 0 THEN 1=1 ELSE phe.ano >= $ano_ini END)
+                    AND (CASE WHEN $ano_fim = 0 THEN 1=1 ELSE phe.ano <= $ano_fim END)
                     AND (
                         (phe.aprovado <> 2)
                         OR (
@@ -60,7 +67,7 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                 (
                     SELECT cod_aluno_inep
                     FROM modules.educacenso_cod_aluno
-                    WHERE cod_aluno = $P{aluno}
+                    WHERE cod_aluno = $aluno
                 ) AS INEP,
                 (
                     CASE
@@ -80,9 +87,9 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                 (
                     SELECT aprovado
                     FROM pmieducar.historico_escolar
-                    WHERE ref_cod_instituicao = $P{instituicao}
+                    WHERE ref_cod_instituicao = $instituicao
                     AND ativo = 1
-                    AND ref_cod_aluno = $P{aluno}
+                    AND ref_cod_aluno = $aluno
                     ORDER BY ano DESC LIMIT 1
                 ) AS situacao_aluno,
                 (
@@ -93,9 +100,9 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                         END
                     ) AS serie
                     FROM pmieducar.historico_escolar
-                    WHERE ref_cod_instituicao = $P{instituicao}
+                    WHERE ref_cod_instituicao = $instituicao
                     AND ativo = 1
-                    AND ref_cod_aluno = $P{aluno}
+                    AND ref_cod_aluno = $aluno
                     ORDER BY ano DESC LIMIT 1
                 ) AS serie,
                 (
@@ -103,14 +110,14 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                         (
                             SELECT COALESCE (fcn_upper(ps.nome),fcn_upper(juridica.fantasia))
                             FROM cadastro.pessoa ps, cadastro.juridica, pmieducar.escola
-                            WHERE escola.cod_escola = $P{escola}
+                            WHERE escola.cod_escola = $escola
                             AND escola.ref_idpes = juridica.idpes
                             AND juridica.idpes = ps.idpes
                             AND ps.idpes = escola.ref_idpes
                         ), (
                             SELECT nm_escola
                             FROM pmieducar.escola_complemento
-                            WHERE ref_cod_escola = $P{escola}
+                            WHERE ref_cod_escola = $escola
                         )
                     )
                 ) AS nm_escola,
@@ -121,7 +128,7 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                                 (
                                     SELECT municipio.nome
                                     FROM public.municipio, cadastro.endereco_pessoa, cadastro.juridica, public.bairro, pmieducar.escola
-                                    WHERE escola.cod_escola = $P{escola}
+                                    WHERE escola.cod_escola = $escola
                                     AND endereco_pessoa.idbai = bairro.idbai
                                     AND bairro.idmun = municipio.idmun
                                     AND juridica.idpes = endereco_pessoa.idpes
@@ -130,13 +137,13 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                                     SELECT endereco_externo.cidade
                                     FROM cadastro.endereco_externo, pmieducar.escola
                                     WHERE endereco_externo.idpes = escola.ref_idpes
-                                    AND escola.cod_escola = $P{escola}
+                                    AND escola.cod_escola = $escola
                                 )
                             )
                         ), (
                             SELECT municipio
                             FROM pmieducar.escola_complemento
-                            WHERE ref_cod_escola = $P{escola}
+                            WHERE ref_cod_escola = $escola
                         )
                     )
                 ) AS municipio,
@@ -144,26 +151,26 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                     SELECT fcn_upper(p.nome)
                     FROM cadastro.pessoa p
                     INNER JOIN pmieducar.escola e ON (e.ref_idpes_gestor = p.idpes)
-                    WHERE e.cod_escola = $P{escola}
+                    WHERE e.cod_escola = $escola
                 ) AS diretor,
                 (
                     SELECT fcn_upper(p.nome)
                     FROM cadastro.pessoa p
                     INNER JOIN pmieducar.escola e ON (p.idpes = e.ref_idpes_secretario_escolar)
-                    WHERE e.cod_escola = $P{escola}
+                    WHERE e.cod_escola = $escola
                 ) AS secretario,
                 (
                     SELECT COALESCE(
                         (
                             SELECT ps.email
                             FROM cadastro.pessoa ps, cadastro.juridica, pmieducar.escola
-                            WHERE escola.cod_escola = $P{escola}
+                            WHERE escola.cod_escola = $escola
                             AND juridica.idpes = ps.idpes
                             AND juridica.idpes = escola.ref_idpes
                         ), (
                             SELECT email
                             FROM pmieducar.escola_complemento
-                            WHERE ref_cod_escola = $P{escola}
+                            WHERE ref_cod_escola = $escola
                         )
                     )
                 ) AS email,
@@ -175,7 +182,7 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                         cadastro.pessoa
                     WHERE pessoa.idpes = fisica.idpes
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $P{aluno}
+                    AND aluno.cod_aluno = $aluno
                 ) AS nome_aluno,
                 (
                     SELECT public.fcn_upper(fisica.nome_social)
@@ -185,7 +192,7 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                         cadastro.pessoa
                     WHERE pessoa.idpes = fisica.idpes
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $P{aluno}
+                    AND aluno.cod_aluno = $aluno
                 ) AS nome_social_aluno,
                 (
                     SELECT municipio.nome || '/' || municipio.sigla_uf
@@ -195,7 +202,7 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                         pmieducar.aluno
                     WHERE fisica.idmun_nascimento = municipio.idmun
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $P{aluno}
+                    AND aluno.cod_aluno = $aluno
                 ) AS cidade_nascimento_uf,
                 (
                     SELECT municipio.nome
@@ -205,7 +212,7 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                         pmieducar.aluno
                     WHERE fisica.idmun_nascimento = municipio.idmun
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $P{aluno}
+                    AND aluno.cod_aluno = $aluno
                 ) AS cidade_nascimento,
                 (
                     SELECT municipio.sigla_uf
@@ -215,7 +222,7 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                         pmieducar.aluno
                     WHERE fisica.idmun_nascimento = municipio.idmun
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $P{aluno}
+                    AND aluno.cod_aluno = $aluno
                 ) AS uf_nascimento,
                 (
                     SELECT to_char(fisica.data_nasc,'DD/MM/YYYY')
@@ -225,7 +232,7 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                         cadastro.pessoa
                     WHERE pessoa.idpes = fisica.idpes
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $P{aluno}
+                    AND aluno.cod_aluno = $aluno
                 ) AS data_nasc,
                 (
                     SELECT public.fcn_upper(
@@ -233,13 +240,13 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                             (
                                 SELECT pessoa_pai.nome
                                 FROM cadastro.fisica AS pessoa_aluno, cadastro.pessoa AS pessoa_pai, pmieducar.aluno
-                                WHERE aluno.cod_aluno = $P{aluno}
+                                WHERE aluno.cod_aluno = $aluno
                                 AND aluno.ref_idpes = pessoa_aluno.idpes
                                 AND pessoa_pai.idpes = pessoa_aluno.idpes_pai
                             ), (
                                 SELECT aluno.nm_pai
                                 FROM pmieducar.aluno
-                                WHERE aluno.cod_aluno = $P{aluno}
+                                WHERE aluno.cod_aluno = $aluno
                             )
                         )
                     )
@@ -250,13 +257,13 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                             (
                                 SELECT pessoa_mae.nome
                                 FROM cadastro.fisica AS pessoa_aluno, cadastro.pessoa AS pessoa_mae, pmieducar.aluno
-                                WHERE aluno.cod_aluno = $P{aluno}
+                                WHERE aluno.cod_aluno = $aluno
                                 AND aluno.ref_idpes = pessoa_aluno.idpes
                                 AND pessoa_mae.idpes = pessoa_aluno.idpes_mae
                             ), (
                                 SELECT aluno.nm_mae
                                 FROM pmieducar.aluno
-                                WHERE aluno.cod_aluno = $P{aluno}
+                                WHERE aluno.cod_aluno = $aluno
                             )
                         )
                     )
@@ -311,16 +318,16 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
                 (
                     SELECT nm_curso
                     FROM pmieducar.historico_escolar
-                    WHERE historico_escolar.ref_cod_aluno = $P{aluno}
+                    WHERE historico_escolar.ref_cod_aluno = $aluno
                     AND historico_escolar.ativo = 1
                     AND historico_escolar.ano = (
                         SELECT max(he.ano)
                         FROM pmieducar.historico_escolar AS he
                         WHERE he.ref_cod_aluno = historico_escolar.ref_cod_aluno
                         AND he.ativo = 1
-                        AND (CASE WHEN $P{ano_fim} = 0 THEN TRUE ELSE he.ano <= $P{ano_fim} END)
-                        AND (CASE WHEN $P{sequencial} = 0 THEN TRUE ELSE (he.nm_curso) IN ($P!{cursoaluno}::varchar) END))
-                    AND (CASE WHEN $P{sequencial} = 0 THEN TRUE ELSE (historico_escolar.nm_curso) IN ($P!{cursoaluno}::varchar) END) LIMIT 1
+                        AND (CASE WHEN $ano_fim = 0 THEN TRUE ELSE he.ano <= $ano_fim END)
+                        AND (CASE WHEN $sequencial = 0 THEN TRUE ELSE (he.nm_curso) IN ($cursoaluno::varchar) END))
+                    AND (CASE WHEN $sequencial = 0 THEN TRUE ELSE (historico_escolar.nm_curso) IN ($cursoaluno::varchar) END) LIMIT 1
                 ) AS nome_curso,
                 (
                     SELECT count(hd.nota)
@@ -331,15 +338,15 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
             FROM
                 pmieducar.historico_escolar,
                 pmieducar.historico_disciplinas
-            WHERE historico_escolar.ref_cod_aluno = $P{aluno}
+            WHERE historico_escolar.ref_cod_aluno = $aluno
             AND historico_escolar.ref_cod_aluno = historico_disciplinas.ref_ref_cod_aluno
-            AND (CASE WHEN $P{ano_ini} = 0 THEN 1=1 ELSE historico_escolar.ano >= $P{ano_ini} END)
-            AND (CASE WHEN $P{ano_fim} = 0 THEN 1=1 ELSE historico_escolar.ano <= $P{ano_fim} END)
-            AND (CASE WHEN $P!{nao_emitir_reprovado} THEN historico_escolar.aprovado <> 2 ELSE 1=1 END)
-            AND (CASE WHEN $P{sequencial} = 0 THEN TRUE ELSE (historico_escolar.nm_curso) IN ($P!{cursoaluno}::varchar) END)
+            AND (CASE WHEN $ano_ini = 0 THEN 1=1 ELSE historico_escolar.ano >= $ano_ini END)
+            AND (CASE WHEN $ano_fim = 0 THEN 1=1 ELSE historico_escolar.ano <= $ano_fim END)
+            AND (CASE WHEN $nao_emitir_reprovado THEN historico_escolar.aprovado <> 2 ELSE 1=1 END)
+            AND (CASE WHEN $sequencial = 0 THEN TRUE ELSE (historico_escolar.nm_curso) IN ($cursoaluno::varchar) END)
             AND historico_escolar.sequencial = historico_disciplinas.ref_sequencial
-            AND historico_escolar.ref_cod_instituicao = $P{instituicao}
-            AND historico_escolar.ref_cod_aluno = $P{aluno}
+            AND historico_escolar.ref_cod_instituicao = $instituicao
+            AND historico_escolar.ref_cod_aluno = $aluno
             AND (
                 (historico_escolar.aprovado <> 2)
                 OR (
@@ -354,17 +361,5 @@ class QuerySchoolHistoryCrosstab extends QueryBridge
             )
             ORDER BY ano ASC;
 SQL;
-    }
-
-    /***
-     * Retorna os parâmetros default do report
-     *
-     * @return array
-     */
-    protected function getDefaultData()
-    {
-        return [
-            'alunos_diferenciados' => 0,
-        ];
     }
 }
