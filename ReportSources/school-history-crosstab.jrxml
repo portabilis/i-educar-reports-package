@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="school-history-crosstab" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="181ff70d-bdbf-4542-b68c-0eca261e088e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 2" uuid="11e7eaf5-64fe-40e9-a5c2-67f24eb376bc">
+		<parameter name="aluno" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="nao_emitir_reprovado" class="java.lang.Boolean">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="ano_ini" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="ano_fim" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="escola" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="instituicao" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="apenas_ultimo_registro" class="java.lang.Boolean">
+			<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+		</parameter>
+		<parameter name="sequencial" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+		</parameter>
+		<parameter name="cursoaluno" class="java.lang.String">
+			<defaultValueExpression><![CDATA['0']]></defaultValueExpression>
+		</parameter>
+		<field name="ano" class="java.lang.Integer"/>
+		<field name="observacao_all" class="java.lang.String"/>
+		<field name="inep" class="java.lang.Long"/>
+		<field name="carga_horaria" class="java.lang.Double"/>
+		<field name="dias_letivos" class="java.lang.Integer"/>
+		<field name="escola" class="java.lang.String"/>
+		<field name="escola_cidade" class="java.lang.String"/>
+		<field name="escola_uf" class="java.lang.String"/>
+		<field name="observacao" class="java.lang.String"/>
+		<field name="aprovado" class="java.lang.Integer"/>
+		<field name="nm_serie" class="java.lang.String"/>
+		<field name="frequencia" class="java.math.BigDecimal"/>
+		<field name="registro" class="java.lang.String"/>
+		<field name="livro" class="java.lang.String"/>
+		<field name="folha" class="java.lang.String"/>
+		<field name="ref_cod_aluno" class="java.lang.Integer"/>
+		<field name="nm_disciplina" class="java.lang.String"/>
+		<field name="nota" class="java.lang.String"/>
+		<field name="situacao" class="java.lang.String"/>
+		<field name="nm_escola" class="java.lang.String"/>
+		<field name="logradouro" class="java.lang.String"/>
+		<field name="numero" class="java.lang.String"/>
+		<field name="bairro" class="java.lang.String"/>
+		<field name="municipio" class="java.lang.String"/>
+		<field name="uf_municipio" class="java.lang.String"/>
+		<field name="cep" class="java.lang.String"/>
+		<field name="fone_ddd" class="java.math.BigDecimal"/>
+		<field name="fone" class="java.lang.String"/>
+		<field name="email" class="java.lang.String"/>
+		<field name="data_atual" class="java.lang.String"/>
+		<field name="hora_atual" class="java.lang.String"/>
+		<field name="nome_aluno" class="java.lang.String"/>
+		<field name="cidade_nascimento_uf" class="java.lang.String"/>
+		<field name="cidade_nascimento" class="java.lang.String"/>
+		<field name="uf_nascimento" class="java.lang.String"/>
+		<field name="data_nasc" class="java.lang.String"/>
+		<field name="nome_do_pai" class="java.lang.String"/>
+		<field name="nome_da_mae" class="java.lang.String"/>
+		<field name="nm_instituicao" class="java.lang.String"/>
+		<field name="nm_responsavel" class="java.lang.String"/>
+		<field name="nm_serie_cursou" class="java.lang.String"/>
+		<field name="nome_serie_aux" class="java.lang.String"/>
+		<field name="nome_curso" class="java.lang.String"/>
+		<field name="notas_maiores_que_dez" class="java.lang.Long"/>
+	</subDataset>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="aluno" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="ano_ini" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano_fim" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<parameter name="cabecalho_alternativo" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="nm_secretario" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="nm_diretor" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="portaria_aprovacao_pontos" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="nao_emitir_reprovado" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="apenas_ultimo_registro" class="java.lang.Boolean" isForPrompting="false">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mostrar_msg" class="java.lang.Boolean" isForPrompting="false">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_secretario_escolar" class="java.lang.Boolean" isForPrompting="false">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_nome_diretor" class="java.lang.Boolean" isForPrompting="false">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sequencial" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cursoaluno" class="java.lang.String">
+		<defaultValueExpression><![CDATA['0']]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_carga_horaria_frequentada" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="database" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="emitir_historico_dependencia" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<parameter name="assinatura_secretario" class="java.lang.String"/>
+	<parameter name="modelo" class="java.lang.String"/>
+	<parameter name="boletim_transferencia" class="java.lang.Boolean"/>
+	<parameter name="curso" class="java.lang.Integer"/>
+	<parameter name="serie" class="java.lang.Integer"/>
+	<parameter name="turma" class="java.lang.Integer"/>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="diretor" class="java.lang.String"/>
+	<parameter name="secretario" class="java.lang.String"/>
+	<parameter name="data_emissao" class="java.lang.String"/>
+	<parameter name="dataemissao" class="java.lang.String"/>
+	<parameter name="emitir_assinatura_secretario_diretor" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="ano" class="java.lang.Integer"/>
+	<field name="observacao_all" class="java.lang.String"/>
+	<field name="carga_horaria_disciplina" class="java.lang.Long"/>
+	<field name="inep" class="java.lang.Long"/>
+	<field name="carga_horaria" class="java.lang.Double"/>
+	<field name="dias_letivos" class="java.lang.Integer"/>
+	<field name="escola" class="java.lang.String"/>
+	<field name="escola_cidade" class="java.lang.String"/>
+	<field name="escola_uf" class="java.lang.String"/>
+	<field name="observacao" class="java.lang.String"/>
+	<field name="aprovado" class="java.lang.Integer"/>
+	<field name="nm_serie" class="java.lang.String"/>
+	<field name="frequencia" class="java.math.BigDecimal"/>
+	<field name="registro" class="java.lang.String"/>
+	<field name="livro" class="java.lang.String"/>
+	<field name="folha" class="java.lang.String"/>
+	<field name="ref_cod_aluno" class="java.lang.Integer"/>
+	<field name="nm_disciplina" class="java.lang.String"/>
+	<field name="nota" class="java.lang.String"/>
+	<field name="situacao" class="java.lang.String"/>
+	<field name="situacao_aluno" class="java.lang.Integer"/>
+	<field name="serie" class="java.lang.String"/>
+	<field name="nm_escola" class="java.lang.String"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="diretor" class="java.lang.String"/>
+	<field name="secretario" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="data_atual" class="java.lang.String"/>
+	<field name="hora_atual" class="java.lang.String"/>
+	<field name="nome_aluno" class="java.lang.String"/>
+	<field name="nome_social_aluno" class="java.lang.String"/>
+	<field name="cidade_nascimento_uf" class="java.lang.String"/>
+	<field name="cidade_nascimento" class="java.lang.String"/>
+	<field name="uf_nascimento" class="java.lang.String"/>
+	<field name="data_nasc" class="java.lang.String"/>
+	<field name="nome_do_pai" class="java.lang.String"/>
+	<field name="nome_da_mae" class="java.lang.String"/>
+	<field name="nm_instituicao" class="java.lang.String"/>
+	<field name="nm_responsavel" class="java.lang.String"/>
+	<field name="nm_serie_cursou" class="java.lang.String"/>
+	<field name="nome_serie_aux" class="java.lang.String"/>
+	<field name="nome_curso" class="java.lang.String"/>
+	<field name="notas_maiores_que_dez" class="java.lang.Long"/>
+	<variable name="test" class="java.lang.String"/>
+	<group name="teste">
+		<groupExpression><![CDATA[true]]></groupExpression>
+		<groupFooter>
+			<band height="35" splitType="Stretch">
+				<textField>
+					<reportElement uuid="18b00aa8-4d89-4514-b512-85930f7b0714" positionType="Float" x="4" y="22" width="543" height="13">
+						<printWhenExpression><![CDATA[$F{notas_maiores_que_dez} > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{mostrar_msg} == false ? ($P{portaria_aprovacao_pontos} == null ? "(*) Conforme Portaria N/20/24/05/2010" : "(*) " + $P{portaria_aprovacao_pontos}) : ""]]></textFieldExpression>
+				</textField>
+				<elementGroup>
+					<elementGroup>
+						<elementGroup>
+							<crosstab>
+								<reportElement uuid="54f38ba3-d37a-4be8-8857-1a45fce70e03" style="Crosstab Data Text" stretchType="RelativeToBandHeight" x="4" y="5" width="543" height="17">
+									<printWhenExpression><![CDATA[!$P{emitir_carga_horaria_frequentada}]]></printWhenExpression>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<crosstabParameter name="mostrar_msg" class="java.lang.Boolean">
+									<parameterValueExpression><![CDATA[$P{mostrar_msg}]]></parameterValueExpression>
+								</crosstabParameter>
+								<crosstabHeaderCell>
+									<cellContents backcolor="#F2F1F0" mode="Transparent" style="Crosstab Data Text">
+										<staticText>
+											<reportElement uuid="e530db57-f4bd-4cf7-8c79-d668175338d2" style="table_TD" stretchType="RelativeToBandHeight" x="0" y="0" width="133" height="18" isPrintWhenDetailOverflows="true"/>
+											<box>
+												<pen lineWidth="0.25"/>
+												<topPen lineWidth="0.25"/>
+												<leftPen lineWidth="0.25"/>
+												<bottomPen lineWidth="0.25"/>
+												<rightPen lineWidth="0.25"/>
+											</box>
+											<textElement verticalAlignment="Middle">
+												<font fontName="DejaVu Sans" size="8" isBold="true"/>
+												<paragraph firstLineIndent="5"/>
+											</textElement>
+											<text><![CDATA[DISCIPLINA]]></text>
+										</staticText>
+									</cellContents>
+								</crosstabHeaderCell>
+								<rowGroup name="nm_disciplina" width="133" totalPosition="End">
+									<bucket class="java.lang.String">
+										<bucketExpression><![CDATA[$F{nm_disciplina}]]></bucketExpression>
+									</bucket>
+									<crosstabRowHeader>
+										<cellContents backcolor="#FAFAFA" mode="Opaque">
+											<box>
+												<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+											</box>
+											<textField isBlankWhenNull="true">
+												<reportElement uuid="6b950f4f-a55b-4cf7-a1b8-ba935c52a138" style="Crosstab Data Text" x="0" y="0" width="133" height="17"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Left" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8"/>
+													<paragraph firstLineIndent="5"/>
+												</textElement>
+												<textFieldExpression><![CDATA[$V{nm_disciplina}]]></textFieldExpression>
+											</textField>
+										</cellContents>
+									</crosstabRowHeader>
+									<crosstabTotalRowHeader>
+										<cellContents backcolor="#FFFFFF" mode="Opaque">
+											<box>
+												<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+											</box>
+											<staticText>
+												<reportElement uuid="eb51d25f-7003-46fa-85c5-f0364c44d088" style="table_TD" x="0" y="0" width="133" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Left" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8" isBold="true"/>
+													<paragraph firstLineIndent="5"/>
+												</textElement>
+												<text><![CDATA[CARGA HORÁRIA]]></text>
+											</staticText>
+											<staticText>
+												<reportElement uuid="8d2111fb-87cc-4882-95ca-49c329eede08" style="table_TD" x="0" y="18" width="133" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Left" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8" isBold="true"/>
+													<paragraph firstLineIndent="5"/>
+												</textElement>
+												<text><![CDATA[% FREQUÊNCIA]]></text>
+											</staticText>
+											<staticText>
+												<reportElement uuid="8d2111fb-87cc-4882-95ca-49c329eede08" style="table_TD" x="0" y="36" width="133" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Left" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8" isBold="true"/>
+													<paragraph firstLineIndent="5"/>
+												</textElement>
+												<text><![CDATA[RESULTADO FINAL]]></text>
+											</staticText>
+										</cellContents>
+									</crosstabTotalRowHeader>
+								</rowGroup>
+								<columnGroup name="ano" height="18" totalPosition="End">
+									<bucket class="java.lang.String">
+										<bucketExpression><![CDATA[$F{ano}]]></bucketExpression>
+									</bucket>
+									<crosstabColumnHeader>
+										<cellContents backcolor="#FFFFFF" mode="Opaque">
+											<box>
+												<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+											</box>
+											<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+												<reportElement uuid="f7a55310-9d92-421d-94b2-c3edc7e10d81" style="Crosstab Data Text" stretchType="RelativeToBandHeight" x="0" y="0" width="60" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8" isBold="true"/>
+													<paragraph tabStopWidth="60"/>
+												</textElement>
+												<textFieldExpression><![CDATA[$V{nm_serieMeasure}]]></textFieldExpression>
+											</textField>
+										</cellContents>
+									</crosstabColumnHeader>
+									<crosstabTotalColumnHeader>
+										<cellContents backcolor="#BFE1FF" mode="Opaque">
+											<box>
+												<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+											</box>
+										</cellContents>
+									</crosstabTotalColumnHeader>
+								</columnGroup>
+								<measure name="notaMeasure" class="java.lang.String" calculation="First">
+									<measureExpression><![CDATA[$F{nota}]]></measureExpression>
+								</measure>
+								<measure name="frequencia" class="java.lang.Double" calculation="First">
+									<measureExpression><![CDATA[$F{frequencia}]]></measureExpression>
+								</measure>
+								<measure name="situacao" class="java.lang.String" calculation="First">
+									<measureExpression><![CDATA[$F{situacao}]]></measureExpression>
+								</measure>
+								<measure name="carga_horaria" class="java.lang.Integer" calculation="First">
+									<measureExpression><![CDATA[$F{carga_horaria}]]></measureExpression>
+								</measure>
+								<measure name="chd" class="java.lang.Integer" calculation="First">
+									<measureExpression><![CDATA[$F{carga_horaria_disciplina}]]></measureExpression>
+								</measure>
+								<measure name="nm_serieMeasure" class="java.lang.String" calculation="First">
+									<measureExpression><![CDATA[$F{nm_serie}]]></measureExpression>
+								</measure>
+								<crosstabCell width="60" height="17">
+									<cellContents backcolor="#FAFAFA" mode="Opaque">
+										<box>
+											<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+											<topPen lineWidth="0.25"/>
+											<leftPen lineWidth="0.25"/>
+											<bottomPen lineWidth="0.25"/>
+											<rightPen lineWidth="0.25"/>
+										</box>
+										<textField pattern="#,##0.00" isBlankWhenNull="true">
+											<reportElement uuid="9f998cdf-e2ea-4bd3-892a-92ea604838ca" style="Crosstab Data Text" mode="Transparent" x="0" y="0" width="60" height="17" backcolor="#FAFAFA"/>
+											<box>
+												<pen lineWidth="0.25"/>
+												<topPen lineWidth="0.25"/>
+												<leftPen lineWidth="0.25"/>
+												<bottomPen lineWidth="0.25"/>
+												<rightPen lineWidth="0.25"/>
+											</box>
+											<textElement verticalAlignment="Middle">
+												<font fontName="DejaVu Sans" size="8"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$P{mostrar_msg} == false ? ($V{notaMeasure} == null || $V{notaMeasure} == "" ? '-'
+    : !$V{notaMeasure}.matches("[0-9]+|[0-9,.]+") ? $V{notaMeasure}
+    : Double.parseDouble($V{notaMeasure}.replace(",",".")) > 10 ? '*' + $V{notaMeasure}
+    : $V{notaMeasure}) : ($V{notaMeasure} == null || $V{notaMeasure} == "" ? '-'
+    : !$V{notaMeasure}.matches("[0-9]+|[0-9,.]+") ? $V{notaMeasure}
+    : Double.parseDouble($V{notaMeasure}.replace(",",".")) > 10 ? $V{notaMeasure}
+    : $V{notaMeasure})]]></textFieldExpression>
+										</textField>
+									</cellContents>
+								</crosstabCell>
+								<crosstabCell width="60" height="54" rowTotalGroup="nm_disciplina">
+									<cellContents backcolor="#FFFFFF" mode="Opaque">
+										<box>
+											<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+											<topPen lineWidth="0.25"/>
+											<leftPen lineWidth="0.25"/>
+											<bottomPen lineWidth="0.25"/>
+											<rightPen lineWidth="0.25"/>
+										</box>
+										<elementGroup>
+											<textField pattern="###" isBlankWhenNull="true">
+												<reportElement uuid="e3334ce8-1258-4b37-8d23-b832dbe1f117" style="table_TD" x="0" y="0" width="60" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Center" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8"/>
+												</textElement>
+												<textFieldExpression><![CDATA[!($V{carga_horaria} ? $V{carga_horaria} : $V{chd}) ? "-" : $V{carga_horaria} == null ? $V{chd} : $V{carga_horaria}]]></textFieldExpression>
+											</textField>
+										</elementGroup>
+										<textField isBlankWhenNull="true">
+											<reportElement uuid="10806aac-7b8c-45d9-a011-b01f67cf0415" style="table_TD" x="0" y="18" width="60" height="18"/>
+											<box>
+												<pen lineWidth="0.25"/>
+												<topPen lineWidth="0.25"/>
+												<leftPen lineWidth="0.25"/>
+												<bottomPen lineWidth="0.25"/>
+												<rightPen lineWidth="0.25"/>
+											</box>
+											<textElement textAlignment="Center" verticalAlignment="Middle">
+												<font fontName="DejaVu Sans" size="8"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$V{frequencia} == null ? '-' : $V{frequencia}]]></textFieldExpression>
+										</textField>
+										<textField isBlankWhenNull="true">
+											<reportElement uuid="10806aac-7b8c-45d9-a011-b01f67cf0415" style="table_TD" x="0" y="36" width="60" height="18"/>
+											<box>
+												<pen lineWidth="0.25"/>
+												<topPen lineWidth="0.25"/>
+												<leftPen lineWidth="0.25"/>
+												<bottomPen lineWidth="0.25"/>
+												<rightPen lineWidth="0.25"/>
+											</box>
+											<textElement textAlignment="Center" verticalAlignment="Middle">
+												<font fontName="DejaVu Sans" size="8"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$V{situacao}]]></textFieldExpression>
+										</textField>
+									</cellContents>
+								</crosstabCell>
+								<crosstabCell width="0" height="17" columnTotalGroup="ano">
+									<cellContents backcolor="#BFE1FF" mode="Opaque">
+										<box>
+											<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+										</box>
+									</cellContents>
+								</crosstabCell>
+								<crosstabCell width="0" height="54" rowTotalGroup="nm_disciplina" columnTotalGroup="ano">
+									<cellContents backcolor="#BFE1FF" mode="Opaque">
+										<box>
+											<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+										</box>
+									</cellContents>
+								</crosstabCell>
+							</crosstab>
+						</elementGroup>
+					</elementGroup>
+				</elementGroup>
+				<elementGroup>
+					<elementGroup>
+						<elementGroup>
+							<crosstab>
+								<reportElement uuid="54f38ba3-d37a-4be8-8857-1a45fce70e04" style="Crosstab Data Text" stretchType="RelativeToBandHeight" x="4" y="5" width="545" height="17">
+									<printWhenExpression><![CDATA[$P{emitir_carga_horaria_frequentada}]]></printWhenExpression>
+								</reportElement>
+								<box>
+									<pen lineWidth="0.25"/>
+									<topPen lineWidth="0.25"/>
+									<leftPen lineWidth="0.25"/>
+									<bottomPen lineWidth="0.25"/>
+									<rightPen lineWidth="0.25"/>
+								</box>
+								<crosstabParameter name="mostrar_msg" class="java.lang.Boolean">
+									<parameterValueExpression><![CDATA[$P{mostrar_msg}]]></parameterValueExpression>
+								</crosstabParameter>
+								<crosstabHeaderCell>
+									<cellContents backcolor="#F2F1F0" mode="Transparent" style="Crosstab Data Text">
+										<staticText>
+											<reportElement uuid="e530db57-f4bd-4cf7-8c79-d668175338d2" style="table_TD" stretchType="RelativeToBandHeight" x="0" y="0" width="133" height="18" isPrintWhenDetailOverflows="true"/>
+											<box>
+												<pen lineWidth="0.25"/>
+												<topPen lineWidth="0.25"/>
+												<leftPen lineWidth="0.25"/>
+												<bottomPen lineWidth="0.25"/>
+												<rightPen lineWidth="0.25"/>
+											</box>
+											<textElement verticalAlignment="Middle">
+												<font fontName="DejaVu Sans" size="8" isBold="true"/>
+												<paragraph firstLineIndent="5"/>
+											</textElement>
+											<text><![CDATA[DISCIPLINA]]></text>
+										</staticText>
+									</cellContents>
+								</crosstabHeaderCell>
+								<rowGroup name="nm_disciplina" width="133" totalPosition="End">
+									<bucket class="java.lang.String">
+										<bucketExpression><![CDATA[$F{nm_disciplina}]]></bucketExpression>
+									</bucket>
+									<crosstabRowHeader>
+										<cellContents backcolor="#FAFAFA" mode="Opaque">
+											<box>
+												<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+											</box>
+											<textField isBlankWhenNull="true">
+												<reportElement uuid="6b950f4f-a55b-4cf7-a1b8-ba935c52a138" style="Crosstab Data Text" x="0" y="0" width="133" height="17"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Left" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8"/>
+													<paragraph firstLineIndent="5"/>
+												</textElement>
+												<textFieldExpression><![CDATA[$V{nm_disciplina}]]></textFieldExpression>
+											</textField>
+										</cellContents>
+									</crosstabRowHeader>
+									<crosstabTotalRowHeader>
+										<cellContents backcolor="#FFFFFF" mode="Opaque">
+											<box>
+												<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+											</box>
+											<staticText>
+												<reportElement uuid="eb51d25f-7003-46fa-85c5-f0364c44d088" style="table_TD" x="0" y="0" width="133" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Left" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8" isBold="true"/>
+													<paragraph firstLineIndent="5"/>
+												</textElement>
+												<text><![CDATA[CARGA HORÁRIA FREQ.]]></text>
+											</staticText>
+											<staticText>
+												<reportElement uuid="8d2111fb-87cc-4882-95ca-49c329eede08" style="table_TD" x="0" y="36" width="133" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Left" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8" isBold="true"/>
+													<paragraph firstLineIndent="5"/>
+												</textElement>
+												<text><![CDATA[% FREQUÊNCIA]]></text>
+											</staticText>
+											<staticText>
+												<reportElement uuid="8d2111fb-87cc-4882-95ca-49c329eede08" style="table_TD" x="0" y="54" width="133" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Left" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8" isBold="true"/>
+													<paragraph firstLineIndent="5"/>
+												</textElement>
+												<text><![CDATA[RESULTADO FINAL]]></text>
+											</staticText>
+											<staticText>
+												<reportElement uuid="eb51d25f-7003-46fa-85c5-f0364c44d088" style="table_TD" x="0" y="18" width="133" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Left" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8" isBold="true"/>
+													<paragraph firstLineIndent="5"/>
+												</textElement>
+												<text><![CDATA[CARGA HORÁRIA]]></text>
+											</staticText>
+										</cellContents>
+									</crosstabTotalRowHeader>
+								</rowGroup>
+								<columnGroup name="ano" height="18" totalPosition="End">
+									<bucket class="java.lang.Integer">
+										<bucketExpression><![CDATA[$F{ano}]]></bucketExpression>
+									</bucket>
+									<crosstabColumnHeader>
+										<cellContents backcolor="#FFFFFF" mode="Opaque">
+											<box>
+												<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+											</box>
+											<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+												<reportElement uuid="f7a55310-9d92-421d-94b2-c3edc7e10d81" style="Crosstab Data Text" stretchType="RelativeToBandHeight" x="0" y="0" width="60" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8" isBold="true"/>
+													<paragraph tabStopWidth="60"/>
+												</textElement>
+												<textFieldExpression><![CDATA[$V{nm_serieMeasure}]]></textFieldExpression>
+											</textField>
+										</cellContents>
+									</crosstabColumnHeader>
+									<crosstabTotalColumnHeader>
+										<cellContents backcolor="#BFE1FF" mode="Opaque">
+											<box>
+												<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+											</box>
+										</cellContents>
+									</crosstabTotalColumnHeader>
+								</columnGroup>
+								<measure name="notaMeasure" class="java.lang.String" calculation="First">
+									<measureExpression><![CDATA[$F{nota}]]></measureExpression>
+								</measure>
+								<measure name="frequencia" class="java.lang.Double" calculation="First">
+									<measureExpression><![CDATA[$F{frequencia}]]></measureExpression>
+								</measure>
+								<measure name="situacao" class="java.lang.String" calculation="First">
+									<measureExpression><![CDATA[$F{situacao}]]></measureExpression>
+								</measure>
+								<measure name="carga_horaria" class="java.lang.Integer" calculation="First">
+									<measureExpression><![CDATA[$F{carga_horaria}]]></measureExpression>
+								</measure>
+								<measure name="chd" class="java.lang.Integer" calculation="First">
+									<measureExpression><![CDATA[$F{carga_horaria_disciplina}]]></measureExpression>
+								</measure>
+								<measure name="nm_serieMeasure" class="java.lang.String" calculation="Highest">
+									<measureExpression><![CDATA[$F{nm_serie}]]></measureExpression>
+								</measure>
+								<crosstabCell width="60" height="17">
+									<cellContents backcolor="#FAFAFA" mode="Opaque">
+										<box>
+											<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+											<topPen lineWidth="0.25"/>
+											<leftPen lineWidth="0.25"/>
+											<bottomPen lineWidth="0.25"/>
+											<rightPen lineWidth="0.25"/>
+										</box>
+										<textField pattern="#,##0.00" isBlankWhenNull="true">
+											<reportElement uuid="9f998cdf-e2ea-4bd3-892a-92ea604838ca" style="Crosstab Data Text" mode="Transparent" x="0" y="0" width="60" height="17" backcolor="#FAFAFA"/>
+											<box>
+												<pen lineWidth="0.25"/>
+												<topPen lineWidth="0.25"/>
+												<leftPen lineWidth="0.25"/>
+												<bottomPen lineWidth="0.25"/>
+												<rightPen lineWidth="0.25"/>
+											</box>
+											<textElement verticalAlignment="Middle">
+												<font fontName="DejaVu Sans" size="8"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$P{mostrar_msg} == false ? ($V{notaMeasure} == null || $V{notaMeasure} == "" ? '-'
+    : !$V{notaMeasure}.matches("[0-9]+|[0-9,.]+") ? $V{notaMeasure}
+    : Double.parseDouble($V{notaMeasure}.replace(",",".")) > 10 ? '*' + $V{notaMeasure}
+    : $V{notaMeasure}) : ($V{notaMeasure} == null || $V{notaMeasure} == "" ? '-'
+    : !$V{notaMeasure}.matches("[0-9]+|[0-9,.]+") ? $V{notaMeasure}
+    : Double.parseDouble($V{notaMeasure}.replace(",",".")) > 10 ? $V{notaMeasure}
+    : $V{notaMeasure})]]></textFieldExpression>
+										</textField>
+									</cellContents>
+								</crosstabCell>
+								<crosstabCell width="60" height="72" rowTotalGroup="nm_disciplina">
+									<cellContents backcolor="#FFFFFF" mode="Opaque">
+										<box>
+											<pen lineWidth="0.25" lineStyle="Solid" lineColor="#000000"/>
+											<topPen lineWidth="0.25"/>
+											<leftPen lineWidth="0.25"/>
+											<bottomPen lineWidth="0.25"/>
+											<rightPen lineWidth="0.25"/>
+										</box>
+										<elementGroup>
+											<textField pattern="###" isBlankWhenNull="true">
+												<reportElement uuid="e3334ce8-1258-4b37-8d23-b832dbe1f117" style="table_TD" x="0" y="18" width="60" height="18"/>
+												<box>
+													<pen lineWidth="0.25"/>
+													<topPen lineWidth="0.25"/>
+													<leftPen lineWidth="0.25"/>
+													<bottomPen lineWidth="0.25"/>
+													<rightPen lineWidth="0.25"/>
+												</box>
+												<textElement textAlignment="Center" verticalAlignment="Middle">
+													<font fontName="DejaVu Sans" size="8"/>
+												</textElement>
+												<textFieldExpression><![CDATA[!($V{carga_horaria} ? $V{carga_horaria} : $V{chd}) ? "-" : $V{carga_horaria} == null ? $V{chd} : $V{carga_horaria}]]></textFieldExpression>
+											</textField>
+										</elementGroup>
+										<textField pattern="###0.0" isBlankWhenNull="true">
+											<reportElement uuid="10806aac-7b8c-45d9-a011-b01f67cf0415" style="table_TD" x="0" y="0" width="60" height="18"/>
+											<box>
+												<pen lineWidth="0.25"/>
+												<topPen lineWidth="0.25"/>
+												<leftPen lineWidth="0.25"/>
+												<bottomPen lineWidth="0.25"/>
+												<rightPen lineWidth="0.25"/>
+											</box>
+											<textElement textAlignment="Center" verticalAlignment="Middle">
+												<font fontName="DejaVu Sans" size="8"/>
+											</textElement>
+											<textFieldExpression><![CDATA[(!($V{carga_horaria} ? $V{carga_horaria} : $V{chd}) || !$V{frequencia}) ? "-" : ((($V{carga_horaria} ? $V{carga_horaria} : $V{chd}) * $V{frequencia}) / 100)]]></textFieldExpression>
+										</textField>
+										<textField isBlankWhenNull="true">
+											<reportElement uuid="10806aac-7b8c-45d9-a011-b01f67cf0415" style="table_TD" x="0" y="54" width="60" height="18"/>
+											<box>
+												<pen lineWidth="0.25"/>
+												<topPen lineWidth="0.25"/>
+												<leftPen lineWidth="0.25"/>
+												<bottomPen lineWidth="0.25"/>
+												<rightPen lineWidth="0.25"/>
+											</box>
+											<textElement textAlignment="Center" verticalAlignment="Middle">
+												<font fontName="DejaVu Sans" size="8"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$V{situacao}]]></textFieldExpression>
+										</textField>
+										<textField isBlankWhenNull="true">
+											<reportElement uuid="10806aac-7b8c-45d9-a011-b01f67cf0415" style="table_TD" x="0" y="36" width="60" height="18"/>
+											<box>
+												<pen lineWidth="0.25"/>
+												<topPen lineWidth="0.25"/>
+												<leftPen lineWidth="0.25"/>
+												<bottomPen lineWidth="0.25"/>
+												<rightPen lineWidth="0.25"/>
+											</box>
+											<textElement textAlignment="Center" verticalAlignment="Middle">
+												<font fontName="DejaVu Sans" size="8"/>
+											</textElement>
+											<textFieldExpression><![CDATA[$V{frequencia} == null ? '-' : $V{frequencia}]]></textFieldExpression>
+										</textField>
+									</cellContents>
+								</crosstabCell>
+								<crosstabCell width="0" height="17" columnTotalGroup="ano">
+									<cellContents backcolor="#BFE1FF" mode="Opaque">
+										<box>
+											<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+										</box>
+									</cellContents>
+								</crosstabCell>
+								<crosstabCell width="0" height="72" rowTotalGroup="nm_disciplina" columnTotalGroup="ano">
+									<cellContents backcolor="#BFE1FF" mode="Opaque">
+										<box>
+											<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+										</box>
+									</cellContents>
+								</crosstabCell>
+							</crosstab>
+						</elementGroup>
+					</elementGroup>
+				</elementGroup>
+			</band>
+			<band height="15" splitType="Stretch">
+				<subreport>
+					<reportElement uuid="c0aede92-d36f-45fe-be53-f6bdf0b577c7" positionType="Float" stretchType="RelativeToBandHeight" x="4" y="0" width="545" height="15"/>
+					<subreportParameter name="source">
+						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "school-history-crosstab-dataset.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+			<band height="17" splitType="Stretch">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="42924f94-244a-4738-9617-02a2ba19fb07" x="4" y="3" width="546" height="13" isPrintWhenDetailOverflows="true"/>
+					<textElement markup="none">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{observacao_all}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="50" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="c0aede92-d36f-45fe-be53-f6bdf0b577c7" positionType="Float" stretchType="RelativeToBandHeight" x="4" y="0" width="545" height="50"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_escola">
+					<subreportParameterExpression><![CDATA[$P{escola}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait-history.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="94">
+			<rectangle>
+				<reportElement uuid="3ec15633-bffe-4511-9c71-f41777cb10a3" x="4" y="0" width="545" height="93"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement uuid="2ecb2743-c58c-413b-be13-b89d9e9b878d" x="5" y="75" width="543" height="16">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} != 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="DejaVu Sans" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cabecalho_alternativo} == 2 ? "HISTÓRICO ESCOLAR DO(A) ENSINO FUNDAMENTAL" : "HISTÓRICO ESCOLAR DO(A) "+($F{nome_curso}.equals("") ? "ENSINO FUNDAMENTAL" : $F{nome_curso}.toUpperCase())]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="97c48f6d-6455-413e-b197-fad5e21fd3a0" x="5" y="23" width="544" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="fce47b1c-f9b8-4a81-8f7c-409935586157" x="9" y="27" width="533" height="46">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} != 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Certificamos que "+($F{nome_social_aluno} ? $F{nome_social_aluno} +", nome de registro " + $F{nome_aluno} : $F{nome_aluno}) + ", matrícula "+$F{ref_cod_aluno}+($F{inep} == null ? "" : ", cód. INEP: "+$F{inep}) + ", natural de "+$F{cidade_nascimento_uf}+", nascido(a) em "+$F{data_nasc}+", filho(a) de "+ (($F{nome_do_pai} == "") && ($F{nome_da_mae} == "") ? "NÃO INFORMADO" : ((($F{nome_do_pai} != "") && ($F{nome_da_mae} != "")) ? ($F{nome_do_pai} + " e " + $F{nome_da_mae}) : (($F{nome_do_pai} == "") ? $F{nome_da_mae} : $F{nome_do_pai}))) +", "+  $F{nome_serie_aux} +" conforme Histórico Escolar."]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="42924f94-244a-4738-9617-02a2ba19fb07" x="337" y="26" width="179" height="13">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>INEP:</b> "+($F{inep} == null ? "" : $F{inep})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="42924f94-244a-4738-9617-02a2ba19fb07" x="10" y="26" width="313" height="13">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Aluno(a):</b> "+($F{nome_social_aluno} ? $F{nome_social_aluno} +", nome de registro " + $F{nome_aluno} : $F{nome_aluno})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="42924f94-244a-4738-9617-02a2ba19fb07" x="10" y="38" width="316" height="13">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Natural de:</b> "+$F{cidade_nascimento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="42924f94-244a-4738-9617-02a2ba19fb07" x="10" y="51" width="316" height="12">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Data de nascimento:</b> "+$F{data_nasc}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="42924f94-244a-4738-9617-02a2ba19fb07" x="10" y="62" width="316" height="13">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Filho de: </b>"+ (($F{nome_do_pai} == "") && ($F{nome_da_mae} == "") ? "NÃO INFORMADO" :  ((($F{nome_do_pai} != "") && ($F{nome_da_mae} != "")) ? ($F{nome_do_pai} + " e " + $F{nome_da_mae}) : (($F{nome_do_pai} == "") ? $F{nome_da_mae} : $F{nome_do_pai})))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cd3e26b6-e0aa-4cd7-afc7-44c3dd3c084f" x="337" y="38" width="192" height="10">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>" + "Estado: "  + "</b>" + $F{uf_nascimento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e7908934-4522-43e7-a521-0f40b6e4d543" x="23" y="5" width="507" height="15"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="DejaVu Sans" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cabecalho_alternativo} == 1 ? "HISTÓRICO ESCOLAR" : ($P{cabecalho_alternativo} == 2) ? "CERTIFICADO DE CONCLUSÃO DO(A) ENSINO FUNDAMENTAL" : ("CERTIFICADO DE CONCLUSÃO DE SÉRIE E/OU " + ($F{nome_curso} == "" ? "ENSINO FUNDAMENTAL" : $F{nome_curso}.toUpperCase()))]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="42" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="3ec15633-bffe-4511-9c71-f41777cb10a3" x="4" y="4" width="545" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="b9462350-7d8d-44fd-83ff-7c08af48cdf2" x="7" y="6" width="76" height="13"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Município e Data:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="7b8eed87-99ea-4452-ade6-c47d2369ee7b" x="4" y="22" width="545" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="8d1f8a33-abc5-4539-836a-46ea9c1b57bb" x="78" y="6" width="142" height="13"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{municipio}+", "+$F{data_atual}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2d98e6e1-0513-4165-9313-0d478211309e" x="7" y="25" width="51" height="13">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Registro Nº:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="bec25f94-c432-4881-8506-5381274514ad" x="57" y="25" width="112" height="13">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{registro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b96b6dc2-365c-490a-b90a-2b8daea11250" x="220" y="25" width="27" height="13">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Livro:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2491e4b2-bcc4-4d0f-9ac7-dacdf453fa48" x="248" y="25" width="84" height="13">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{livro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3d9ac865-1e7b-4aa3-8e33-266fdc62fcfa" x="394" y="6" width="42" height="13"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Diretor(a):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8ea2c8fa-86ec-4585-8289-f8ed4cdb5bc7" x="394" y="25" width="32" height="13">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Folha:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f7615dff-6a50-4c9e-bb60-b04218dd2a6b" x="426" y="25" width="109" height="12">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 0]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{folha}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="5d35371f-9063-41eb-9b2a-7a192fcc71c4" x="218" y="4" width="1" height="19"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="a1a66412-eb01-4bdf-9dbb-5eaaec30f2c7" x="392" y="3" width="1" height="20"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="66622429-0456-4f67-a469-a2484977c464" x="7" y="26" width="218" height="13">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[* Disciplina da parte diversificada.]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="5d35371f-9063-41eb-9b2a-7a192fcc71c4" x="218" y="22" width="1" height="18">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="5d35371f-9063-41eb-9b2a-7a192fcc71c4" x="392" y="22" width="1" height="19">
+					<printWhenExpression><![CDATA[$P{cabecalho_alternativo} == 0]]></printWhenExpression>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e9928c8a-aa9c-404c-8326-52ed9dbf5f00" x="220" y="6" width="169" height="13"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Secretário(a): " + ($P{nm_secretario} ? $P{nm_secretario} : $P{emitir_secretario_escolar} ? $F{secretario} : "")]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9eb5aa9b-6b1a-4a47-84a5-3f49b82676ed" x="435" y="6" width="113" height="13"/>
+				<textElement>
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nm_diretor} ? $P{nm_diretor} : $P{emitir_nome_diretor} ? $F{diretor} : ""]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

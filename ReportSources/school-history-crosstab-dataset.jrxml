@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="school-history-crosstab-dataset" language="groovy" pageWidth="545" pageHeight="802" columnWidth="545" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d0fe67f1-b370-4e00-9258-401b9aa27029">
+	<property name="ireport.zoom" value="1.3310000000000266"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<queryString language="json">
+		<![CDATA[school-history-crosstab-dataset]]>
+	</queryString>
+	<field name="ano" class="java.lang.Integer"/>
+	<field name="nm_serie" class="java.lang.String"/>
+	<field name="nm_escola" class="java.lang.String"/>
+	<field name="escola" class="java.lang.String"/>
+	<field name="escola_cidade" class="java.lang.String"/>
+	<field name="escola_uf" class="java.lang.String"/>
+	<columnHeader>
+		<band height="16">
+			<staticText>
+				<reportElement uuid="bbf55fc0-8c4d-47bd-ac89-74918e6b2c9b" x="0" y="0" width="50" height="16"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fd87a5ae-c1e9-450d-8248-c93b4e5cab23" x="50" y="0" width="75" height="16"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANO LETIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5533880a-1703-4e58-8340-346fcada05de" x="125" y="0" width="420" height="16"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTABELECIMENTO DE ENSINO - MUNICÍPIO - UF]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16">
+			<textField>
+				<reportElement uuid="33573f3d-c258-4534-9f1f-59872a73bd19" x="50" y="0" width="75" height="16"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d91f0ea9-1e53-4160-bb08-775a10c3ac4c" x="125" y="0" width="420" height="16"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{escola}+' - '+$F{escola_cidade}+' - '+$F{escola_uf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e19680d5-56a4-4f20-896e-bfb1196fd7b3" x="0" y="0" width="50" height="16"/>
+				<box leftPadding="5">
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font fontName="DejaVu Sans" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_serie}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

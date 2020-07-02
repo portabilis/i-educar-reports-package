@@ -20,6 +20,8 @@
 	<parameter name="cabecalho_alternativo" class="java.lang.Integer"/>
 	<parameter name="nm_secretario" class="java.lang.String"/>
 	<parameter name="nm_diretor" class="java.lang.String"/>
+	<parameter name="modelo" class="java.lang.Integer"/>
+	<parameter name="data_emissao" class="java.lang.String"/>
 	<parameter name="portaria_aprovacao_pontos" class="java.lang.String"/>
 	<parameter name="nao_emitir_reprovado" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -28,9 +30,6 @@
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<parameter name="mostrar_msg" class="java.lang.Boolean">
-		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
-	</parameter>
-	<parameter name="emitir_historico_dependencia" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
 	</parameter>
 	<parameter name="emitir_secretario_escolar" class="java.lang.Boolean">
@@ -42,21 +41,17 @@
 	<parameter name="emitir_carga_horaria_frequentada" class="java.lang.Boolean">
 		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
 	</parameter>
-	<parameter name="modelo" class="java.lang.String"/>
-	<parameter name="ano_ini" class="java.lang.String"/>
-	<parameter name="ano_fim" class="java.lang.String"/>
-	<parameter name="apenas_ultimo_registro" class="java.lang.String"/>
-	<parameter name="boletim_transferencia" class="java.lang.String"/>
-	<parameter name="curso" class="java.lang.String"/>
-	<parameter name="serie" class="java.lang.String"/>
-	<parameter name="turma" class="java.lang.String"/>
-	<parameter name="ano" class="java.lang.String"/>
-	<parameter name="diretor" class="java.lang.String"/>
-	<parameter name="secretario" class="java.lang.String"/>
-	<parameter name="emitir_assinatura_secretario_diretor" class="java.lang.String"/>
+	<parameter name="curso" class="java.lang.Integer"/>
+	<parameter name="serie" class="java.lang.Integer"/>
+	<parameter name="turma" class="java.lang.Integer"/>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="ano_ini" class="java.lang.Integer"/>
+	<parameter name="ano_fim" class="java.lang.Integer"/>
+	<parameter name="sequencial" class="java.lang.Integer"/>
 	<parameter name="cursoaluno" class="java.lang.String"/>
-	<parameter name="sequencial" class="java.lang.String"/>
-	<parameter name="data_emissao" class="java.lang.String"/>
+	<parameter name="apenas_ultimo_registro" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+	</parameter>
 	<parameter name="source" class="java.lang.String"/>
 	<field name="cod_aluno" class="java.lang.Integer"/>
 	<field name="nm_disciplina" class="java.lang.String"/>
