@@ -14,7 +14,7 @@ class Portabilis_Model_Report_TipoBoletim extends CoreExt_Enum
 
     protected $_reports = [
         self::BIMESTRAL => 'report-card',
-        self::PARECER_DESCRITIVO_GERAL => 'general-opinion-bulletin'
+        self::PARECER_DESCRITIVO_GERAL => 'general-opinion-report-card'
     ];
 
     public function getReports()
