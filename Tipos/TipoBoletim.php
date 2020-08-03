@@ -5,14 +5,17 @@ require_once 'CoreExt/Enum.php';
 class Portabilis_Model_Report_TipoBoletim extends CoreExt_Enum
 {
     const BIMESTRAL = 1;
+    const PARECER_DESCRITIVO_GERAL = 10;
 
-    protected $_data = array(
-        self::BIMESTRAL => 'Bimestral'
-    );
+    protected $_data = [
+        self::BIMESTRAL => 'Bimestral',
+        self::PARECER_DESCRITIVO_GERAL => 'Parecer descritivo geral'
+    ];
 
-    protected $_reports = array(
-        self::BIMESTRAL => 'report-card'
-    );
+    protected $_reports = [
+        self::BIMESTRAL => 'report-card',
+        self::PARECER_DESCRITIVO_GERAL => 'general-opinion-report-card'
+    ];
 
     public function getReports()
     {
