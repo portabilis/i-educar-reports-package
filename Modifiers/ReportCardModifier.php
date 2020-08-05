@@ -1,0 +1,113 @@
+<?php
+
+use iEducar\Reports\BaseModifier;
+
+class ReportCardModifier extends BaseModifier
+{
+    /**
+    * @inheritdoc
+    */
+    public function modify($data)
+    {
+        $main = $data['main'];
+
+        $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
+        if ($this->templateName != $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL]) {
+            return $data;
+        }
+
+        foreach ($main as $key => $value) {
+            $line = $main[$key];
+            $examAverage = bcdiv(($value['media_recuperacao'] ?: 0.00), 1, 1);
+            $average = $this->getFormattedScore($value['media'], $value['qtd_casas_decimais']);
+            $average = ($value['nota4num'] ? ($value['nota4num'] >= 0.00 ? ($value['media'] >= $examAverage ? $average : "<b> $average </b>") : null): null);
+            $score1 = $this->getFormattedScore($value['nota1'], $value['qtd_casas_decimais']);
+            $score2 = $this->getFormattedScore($value['nota2'], $value['qtd_casas_decimais']);
+            $score3 = $this->getFormattedScore($value['nota3'], $value['qtd_casas_decimais']);
+            $score4 = $this->getFormattedScore($value['nota4'], $value['qtd_casas_decimais']);
+            $totalAbsencesByDiscipline = $value['total_faltas_componente'];
+            $workloadByDiscipline = $value['carga_horaria_componente'];
+            $absenceHours = $value['curso_hora_falta'];
+            $line['nome_instituicao'] = strtoupper($value['nome_instituicao']);
+            $line['nome_responsavel'] = strtoupper($value['nome_responsavel']);
+            $line['nome_aluno'] = strtoupper($value['nome_aluno']);
+            $line['nota1'] = ($value['nota1num'] < $examAverage ? "<b> $score1 </b>" : $score1);
+            $line['nota2'] = ($value['nota2num'] < $examAverage ? "<b> $score2 </b>" : $score2);
+            $line['nota3'] = ($value['nota3num'] < $examAverage ? "<b> $score3 </b>" : $score3);
+            $line['nota4'] = ($value['nota4num'] < $examAverage ? "<b> $score4 </b>" : $score4);
+            $line['media_recuperacao'] = $examAverage;
+            $line['media'] = $average;
+            $line['curso_hora_falta'] = $absenceHours;
+            $line['frequencia'] = $this->getAttendanceByDiscipline($totalAbsencesByDiscipline, $absenceHours, $workloadByDiscipline);
+            $line['nota_exame'] = $this->args['emitir_nota_exame'] ? $this->getFormattedScore($value['nota_exame'], $value['qtd_casas_decimais']) : null;
+
+            $absenceType = $line['tipo_presenca'];
+            $schoolDays = $line['dias_letivos'];
+            $workload = $line['carga_horaria_serie'];
+            $grandTotalOfAbsences = $absenceType == RegraAvaliacao_Model_TipoPresenca::GERAL ? $value['total_faltas'] : $value['total_geral_faltas_componente'] ;
+
+            $line['media_frequencia'] = $this->getAttendance($absenceType, $grandTotalOfAbsences, $schoolDays, $workload, $absenceHours);
+            
+            $numericScores = [
+                $value['nota1num'],
+                $value['nota2num'],
+                $value['nota3num'],
+                $value['nota4num'],
+            ];
+            $line['media_grafico'] = $this->calculatesAverageForTheGraph($numericScores);
+            $line['resultado_exame'] = $this->args['termo_recuperacao_final'];
+
+            $data['main'][$key] = $line;
+        }
+
+        return $data;
+    }
+
+    public function getAttendance($absenceType, $totalAbsences, $schoolDays, $workload, $absenceHours)
+    {
+        if ($absenceType == RegraAvaliacao_Model_TipoPresenca::GERAL) {
+            return bcdiv(((($schoolDays - $totalAbsences) * 100) / $schoolDays), 1, 1);
+        }
+
+        return bcdiv(100 - (($totalAbsences * ($absenceHours * 100)) / $workload), 1, 1);
+    }
+
+    public function getAttendanceByDiscipline($totalAbsencesByDiscipline, $absenceHours, $workloadByDiscipline) {
+        if (!$totalAbsencesByDiscipline) {
+            return 100.0;
+        }
+
+        if (empty($workloadByDiscipline) || $workloadByDiscipline == 0) {
+            throw new Exception('Não foi possivel calcular a frequência, pois existem disciplinas sem carga horária informada.');
+        }
+
+        return bcdiv(100 - (($totalAbsencesByDiscipline * ($absenceHours * 100)) / $workloadByDiscipline), 1, 1);
+    }
+
+    public function getFormattedScore($score, $decimalPlace)
+    {
+        if (!is_numeric($score) || empty($score)) {
+            return $score;
+        }
+
+        return str_replace('.', ',', bcdiv($score, 1, $decimalPlace));
+    }
+
+    /**
+     * Calcula média usada no gráfico
+     *
+     * @param array $notas
+     * @return float|void
+     */
+    private function calculatesAverageForTheGraph($scores = [])
+    {
+        $scores = array_filter($scores);
+
+        if (count($scores) == 0) {
+            return;
+        }
+
+        return array_sum($scores) / count($scores);
+    }
+}
+

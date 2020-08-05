@@ -7,6 +7,7 @@ require_once 'Reports/Tipos/TipoBoletim.php';
 require_once 'App/Model/IedFinder.php';
 require_once 'Reports/Queries/GeneralOpinionsTrait.php';
 require_once 'Reports/Queries/BimonthlyReportCardTrait.php';
+require_once 'Reports/Modifiers/ReportCardModifier.php';
 
 class ReportCardReport extends Portabilis_Report_ReportCore
 {
@@ -15,6 +16,13 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         GeneralOpinionsTrait::query AS QueryGeneralOpinions;
         BimonthlyReportCardTrait::query AS QueryBimonthlyReportCard;
     }
+
+    /**
+     * @var array
+     */
+    public $modifiers = [
+        ReportCardModifier::class,
+    ];
 
     /**
      * @return string
@@ -52,13 +60,11 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
         $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : '';
 
-
         if (empty($template)) {
             throw new Exception('Não foi possivel recuperar nome do template para o boletim.');
         }
 
         return $template;
-
     }
 
     /**
