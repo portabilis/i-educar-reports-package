@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\LegacyEvaluationRuleGradeYear;
 use iEducar\Reports\BaseModifier;
 
 class ReportCardModifier extends BaseModifier
@@ -10,11 +11,17 @@ class ReportCardModifier extends BaseModifier
     public function modify($data)
     {
         $main = $data['main'];
-
         $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
-        if ($this->templateName != $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL]) {
+        $templetesUsingThisModifier = [
+            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL],
+            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL]
+        ];
+
+        if (!in_array($this->templateName, $templetesUsingThisModifier)) {
             return $data;
         }
+
+        $scoreCaption = $this->getScoreCaption($this->args['serie'], $this->args['ano']);
 
         foreach ($main as $key => $value) {
             $line = $main[$key];
@@ -56,6 +63,7 @@ class ReportCardModifier extends BaseModifier
             ];
             $line['media_grafico'] = $this->calculatesAverageForTheGraph($numericScores);
             $line['resultado_exame'] = $this->args['termo_recuperacao_final'];
+            $line['legenda_notas'] = $scoreCaption;
 
             $data['main'][$key] = $line;
         }
@@ -108,6 +116,29 @@ class ReportCardModifier extends BaseModifier
         }
 
         return array_sum($scores) / count($scores);
+    }
+
+    private function getScoreCaption($grade, $year)
+    {
+        $evaluationRuleGradeYear = LegacyEvaluationRuleGradeYear::query()
+            ->where('serie_id', $grade)
+            ->where('ano_letivo', $year)
+            ->first();
+
+        $roundingValues = $evaluationRuleGradeYear
+            ->evaluationRule
+            ->roundingTable
+            ->roundingValues
+            ->pluck('descricao', 'nome')
+            ->toArray();
+
+        return implode(', ', array_map(
+            function ($value, $key) {
+                return sprintf("%s - %s", $key, $value);
+            },
+            $roundingValues,
+            array_keys($roundingValues)
+        ));
     }
 }
 

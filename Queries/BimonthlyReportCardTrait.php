@@ -32,6 +32,8 @@ trait BimonthlyReportCardTrait
               turma_turno.nome AS periodo,
               view_situacao.texto_situacao AS situacao,
               view_componente_curricular.nome AS nome_disciplina,
+              area_conhecimento.nome AS area_conhecimento,
+              area_conhecimento.secao AS secao,
               nota_etapa1.nota AS nota1num,
               nota_etapa1.nota_arredondada AS nota1,
               nota_etapa2.nota AS nota2num,
@@ -90,6 +92,7 @@ trait BimonthlyReportCardTrait
                                            )
                                       AND turma.ativo = 1)
         INNER JOIN relatorio.view_componente_curricular ON (view_componente_curricular.cod_turma = turma.cod_turma)
+        INNER JOIN modules.area_conhecimento ON (area_conhecimento.id = view_componente_curricular.area_conhecimento_id)
         INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
         INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula
                                           AND matricula.ref_ref_cod_escola = escola.cod_escola

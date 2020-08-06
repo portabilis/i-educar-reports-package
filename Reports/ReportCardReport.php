@@ -80,42 +80,19 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         $this->addRequiredArg('turma');
     }
 
-    public function useJson()
-    {
-        $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
-        $template = $this->templateName();
-
-        switch ($template) {
-            case $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL]:
-            case $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL]:
-                return true;
-
-            default:
-                return false;
-        }
-    }
-
     public function getJsonData()
     {
-
         $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
         $template = $this->templateName();
+        $queryByTemplate = [
+            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL] => $this->QueryBimonthlyReportCard(),
+            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL] => $this->QueryBimonthlyReportCard(),
+            $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL] => $this->QueryGeneralOpinions(),
+        ];
 
-        switch ($template) {
-            case $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL]:
-                return [
-                    'main' => Portabilis_Utils_Database::fetchPreparedQuery($this->QueryBimonthlyReportCard()),
-                    'header' => Portabilis_Utils_Database::fetchPreparedQuery($this->getSqlHeaderReport())
-                ];
-
-            case $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL]:
-                return [
-                    'main' => Portabilis_Utils_Database::fetchPreparedQuery($this->QueryGeneralOpinions()),
-                    'header' => Portabilis_Utils_Database::fetchPreparedQuery($this->getSqlHeaderReport())
-                ];
-
-            default:
-                return [];
-        }
+        return [
+            'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryByTemplate[$template]),
+            'header' => Portabilis_Utils_Database::fetchPreparedQuery($this->getSqlHeaderReport())
+        ];
     }
 }

@@ -9,11 +9,13 @@ var tipoBoletimDiferenciado;
 var imprimirDoisBoletins = false;
 
 var arrayShowObservacoes = [
-    'report-card'
+    'report-card',
+    'conceptual-bimonthly-report-card',
 ];
 
 var arrayShowMensagemAniversario = [
-    'report-card'
+    'report-card',
+    'conceptual-bimonthly-report-card',
 ];
 
 var arrayShowGraficoMediaTurma = [
