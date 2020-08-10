@@ -67,7 +67,7 @@ class ReportCardModifier extends BaseModifier
 
             $data['main'][$key] = $line;
         }
-
+        var_dump($data); die;
         return $data;
     }
 
@@ -81,7 +81,7 @@ class ReportCardModifier extends BaseModifier
     }
 
     public function getAttendanceByDiscipline($totalAbsencesByDiscipline, $absenceHours, $workloadByDiscipline) {
-        if (!$totalAbsencesByDiscipline) {
+        if (empty($totalAbsencesByDiscipline)) {
             return 100.0;
         }
 
