@@ -67,7 +67,7 @@ class ReportCardModifier extends BaseModifier
 
             $data['main'][$key] = $line;
         }
-        var_dump($data); die;
+
         return $data;
     }
 
