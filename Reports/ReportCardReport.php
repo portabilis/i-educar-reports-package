@@ -82,17 +82,22 @@ class ReportCardReport extends Portabilis_Report_ReportCore
 
     public function getJsonData()
     {
-        $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
         $template = $this->templateName();
-        $queryByTemplate = [
+
+        return [
+            'main' => Portabilis_Utils_Database::fetchPreparedQuery($this->getQueryByTemplate()[$template]),
+            'header' => Portabilis_Utils_Database::fetchPreparedQuery($this->getSqlHeaderReport())
+        ];
+    }
+
+    private function getQueryByTemplate()
+    {
+        $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
+
+        return [
             $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL] => $this->QueryBimonthlyReportCard(),
             $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL] => $this->QueryBimonthlyReportCard(),
             $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL] => $this->QueryGeneralOpinions(),
-        ];
-
-        return [
-            'main' => Portabilis_Utils_Database::fetchPreparedQuery($queryByTemplate[$template]),
-            'header' => Portabilis_Utils_Database::fetchPreparedQuery($this->getSqlHeaderReport())
         ];
     }
 }
