@@ -7,6 +7,7 @@ require_once 'Reports/Tipos/TipoBoletim.php';
 require_once 'App/Model/IedFinder.php';
 require_once 'Reports/Queries/GeneralOpinionsTrait.php';
 require_once 'Reports/Queries/BimonthlyReportCardTrait.php';
+require_once 'Reports/Modifiers/ReportCardModifier.php';
 
 class ReportCardReport extends Portabilis_Report_ReportCore
 {
@@ -15,6 +16,13 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         GeneralOpinionsTrait::query AS QueryGeneralOpinions;
         BimonthlyReportCardTrait::query AS QueryBimonthlyReportCard;
     }
+
+    /**
+     * @var array
+     */
+    public $modifiers = [
+        ReportCardModifier::class,
+    ];
 
     /**
      * @return string
@@ -52,13 +60,11 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
         $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : '';
 
-
         if (empty($template)) {
             throw new Exception('Não foi possivel recuperar nome do template para o boletim.');
         }
 
         return $template;
-
     }
 
     /**
@@ -74,42 +80,24 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         $this->addRequiredArg('turma');
     }
 
-    public function useJson()
-    {
-        $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
-        $template = $this->templateName();
-
-        switch ($template) {
-            case $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL]:
-            case $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL]:
-                return true;
-
-            default:
-                return false;
-        }
-    }
-
     public function getJsonData()
     {
-
-        $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
         $template = $this->templateName();
 
-        switch ($template) {
-            case $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL]:
-                return [
-                    'main' => Portabilis_Utils_Database::fetchPreparedQuery($this->QueryBimonthlyReportCard()),
-                    'header' => Portabilis_Utils_Database::fetchPreparedQuery($this->getSqlHeaderReport())
-                ];
+        return [
+            'main' => Portabilis_Utils_Database::fetchPreparedQuery($this->getQueryByTemplate()[$template]),
+            'header' => Portabilis_Utils_Database::fetchPreparedQuery($this->getSqlHeaderReport())
+        ];
+    }
 
-            case $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL]:
-                return [
-                    'main' => Portabilis_Utils_Database::fetchPreparedQuery($this->QueryGeneralOpinions()),
-                    'header' => Portabilis_Utils_Database::fetchPreparedQuery($this->getSqlHeaderReport())
-                ];
+    private function getQueryByTemplate()
+    {
+        $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
 
-            default:
-                return [];
-        }
+        return [
+            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL] => $this->QueryBimonthlyReportCard(),
+            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL] => $this->QueryBimonthlyReportCard(),
+            $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL] => $this->QueryGeneralOpinions(),
+        ];
     }
 }

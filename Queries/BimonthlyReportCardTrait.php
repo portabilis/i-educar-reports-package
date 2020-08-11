@@ -32,17 +32,18 @@ trait BimonthlyReportCardTrait
               turma_turno.nome AS periodo,
               view_situacao.texto_situacao AS situacao,
               view_componente_curricular.nome AS nome_disciplina,
-              TRUNC(nota_etapa1.nota::NUMERIC, 1) AS nota1num,
-              TRUNC(nota_etapa1.nota_arredondada::NUMERIC, 1) AS nota1,
-              TRUNC(nota_etapa2.nota::NUMERIC, 1) AS nota2num,
-              TRUNC(nota_etapa2.nota_arredondada::NUMERIC, 1) AS nota2,
-              TRUNC(nota_etapa3.nota::NUMERIC, 1) AS nota3num,
-              TRUNC(nota_etapa3.nota_arredondada::NUMERIC, 1) AS nota3,
-              TRUNC(nota_etapa4.nota::NUMERIC, 1) AS nota4num,
-              TRUNC(nota_etapa4.nota_arredondada::NUMERIC, 1) AS nota4,
-              TRUNC(nota_exame.nota::NUMERIC, 1) AS exame,
+              area_conhecimento.nome AS area_conhecimento,
+              area_conhecimento.secao AS secao,
+              nota_etapa1.nota AS nota1num,
+              nota_etapa1.nota_arredondada AS nota1,
+              nota_etapa2.nota AS nota2num,
+              nota_etapa2.nota_arredondada AS nota2,
+              nota_etapa3.nota AS nota3num,
+              nota_etapa3.nota_arredondada AS nota3,
+              nota_etapa4.nota AS nota4num,
+              nota_etapa4.nota_arredondada AS nota4,
+              nota_exame.nota AS exame,
               matricula.cod_matricula AS matricula,
-              modules.frequencia_da_matricula(matricula.cod_matricula) AS frequencia,
               fisica.data_nasc AS dt_nasc,
               relatorio.get_media_turma(turma.cod_turma, view_componente_curricular.id, 1) AS nota1numturma,
               relatorio.get_media_turma(turma.cod_turma, view_componente_curricular.id, 2) AS nota2numturma,
@@ -58,13 +59,17 @@ trait BimonthlyReportCardTrait
               falta_componente4.quantidade AS faltas_componente_et4,
               relatorio.get_total_geral_falta_componente(matricula.cod_matricula) AS total_geral_faltas_componente,
               relatorio.get_total_faltas(matricula.cod_matricula) AS total_faltas,
-              curso.hora_falta * 100 AS curso_hora_falta,
+              curso.hora_falta AS curso_hora_falta,
               componente_curricular_ano_escolar.carga_horaria::int AS carga_horaria_componente,
               serie.carga_horaria AS carga_horaria_serie,
-              TRUNC(nota_componente_curricular_media.media_arredondada::NUMERIC, 1) AS media,
-              TRUNC(nota_componente_curricular_media.media::NUMERIC, 1) AS medianum,
-              TRUNC(nota_exame.nota_arredondada::NUMERIC, 1) AS nota_exame,
-              TRUNC(coalesce(regra_avaliacao.media, 0.00), 1) AS media_recuperacao,
+              serie.dias_letivos,
+              nota_componente_curricular_media.media_arredondada AS media,
+              nota_componente_curricular_media.media AS medianum,
+              nota_exame.nota_arredondada AS nota_exame,
+              regra_avaliacao.qtd_casas_decimais,
+              regra_avaliacao.tipo_presenca,
+              falta_aluno.id AS falta_aluno_id,
+              coalesce(regra_avaliacao.media, 0.00) AS media_recuperacao,
               relatorio.get_media_geral_turma(turma.cod_turma, view_componente_curricular.id) AS medianumturma,
               relatorio.get_total_falta_componente(matricula.cod_matricula, view_componente_curricular.id) AS total_faltas_componente
         FROM pmieducar.instituicao
@@ -87,6 +92,7 @@ trait BimonthlyReportCardTrait
                                            )
                                       AND turma.ativo = 1)
         INNER JOIN relatorio.view_componente_curricular ON (view_componente_curricular.cod_turma = turma.cod_turma)
+        INNER JOIN modules.area_conhecimento ON (area_conhecimento.id = view_componente_curricular.area_conhecimento_id)
         INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
         INNER JOIN pmieducar.matricula ON (matricula.cod_matricula = matricula_turma.ref_cod_matricula
                                           AND matricula.ref_ref_cod_escola = escola.cod_escola
