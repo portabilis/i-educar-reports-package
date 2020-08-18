@@ -42,7 +42,7 @@ trait BimonthlyReportCardTrait
               nota_etapa3.nota_arredondada AS nota3,
               nota_etapa4.nota AS nota4num,
               nota_etapa4.nota_arredondada AS nota4,
-              nota_exame.nota AS exame,
+              nota_exame.nota AS nota_exame,
               matricula.cod_matricula AS matricula,
               fisica.data_nasc AS dt_nasc,
               relatorio.get_media_turma(turma.cod_turma, view_componente_curricular.id, 1) AS nota1numturma,
