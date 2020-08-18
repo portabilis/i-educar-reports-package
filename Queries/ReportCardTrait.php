@@ -1,6 +1,6 @@
 <?php
 
-trait BimonthlyReportCardTrait
+trait ReportCardTrait
 {
     /**
      * @inheritdoc

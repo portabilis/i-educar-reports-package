@@ -6,15 +6,15 @@ require_once 'lib/Portabilis/Report/ReportCore.php';
 require_once 'Reports/Tipos/TipoBoletim.php';
 require_once 'App/Model/IedFinder.php';
 require_once 'Reports/Queries/GeneralOpinionsTrait.php';
-require_once 'Reports/Queries/BimonthlyReportCardTrait.php';
+require_once 'Reports/Queries/ReportCardTrait.php';
 require_once 'Reports/Modifiers/ReportCardModifier.php';
 
 class ReportCardReport extends Portabilis_Report_ReportCore
 {
-    use JsonDataSource, GeneralOpinionsTrait, BimonthlyReportCardTrait {
-        GeneralOpinionsTrait::query insteadof BimonthlyReportCardTrait;
+    use JsonDataSource, GeneralOpinionsTrait, ReportCardTrait {
+        GeneralOpinionsTrait::query insteadof ReportCardTrait;
         GeneralOpinionsTrait::query AS QueryGeneralOpinions;
-        BimonthlyReportCardTrait::query AS QueryBimonthlyReportCard;
+        ReportCardTrait::query AS QueryReportCard;
     }
 
     /**
@@ -95,8 +95,8 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
 
         return [
-            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL] => $this->QueryBimonthlyReportCard(),
-            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL] => $this->QueryBimonthlyReportCard(),
+            $templates[Portabilis_Model_Report_TipoBoletim::NUMERIC] => $this->QueryReportCard(),
+            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL] => $this->QueryReportCard(),
             $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL] => $this->QueryGeneralOpinions(),
         ];
     }

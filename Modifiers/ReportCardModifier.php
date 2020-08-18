@@ -16,7 +16,7 @@ class ReportCardModifier extends BaseModifier
         $main = $data['main'];
         $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
         $templetesUsingThisModifier = [
-            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL],
+            $templates[Portabilis_Model_Report_TipoBoletim::NUMERIC],
             $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL]
         ];
 
