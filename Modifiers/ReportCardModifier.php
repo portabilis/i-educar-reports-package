@@ -1,7 +1,10 @@
 <?php
 
 use App\Models\LegacyEvaluationRuleGradeYear;
+use App\Models\LegacySchoolClass;
 use iEducar\Reports\BaseModifier;
+
+require_once 'Portabilis/Utils/CustomLabel.php';
 
 class ReportCardModifier extends BaseModifier
 {
@@ -13,7 +16,7 @@ class ReportCardModifier extends BaseModifier
         $main = $data['main'];
         $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
         $templetesUsingThisModifier = [
-            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL],
+            $templates[Portabilis_Model_Report_TipoBoletim::NUMERIC],
             $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL]
         ];
 
@@ -22,12 +25,11 @@ class ReportCardModifier extends BaseModifier
         }
 
         $scoreCaption = $this->getScoreCaption($this->args['serie'], $this->args['ano']);
+        $numberOfSteps = $this->getNumeberOfSteps($this->args['turma']);
 
         foreach ($main as $key => $value) {
             $line = $main[$key];
             $examAverage = bcdiv(($value['media_recuperacao'] ?: 0.00), 1, 1);
-            $average = $this->getFormattedScore($value['media'], $value['qtd_casas_decimais']);
-            $average = ($value['nota4num'] ? ($value['nota4num'] >= 0.00 ? ($value['media'] >= $examAverage ? $average : "<b> $average </b>") : null): null);
             $score1 = $this->getFormattedScore($value['nota1'], $value['qtd_casas_decimais']);
             $score2 = $this->getFormattedScore($value['nota2'], $value['qtd_casas_decimais']);
             $score3 = $this->getFormattedScore($value['nota3'], $value['qtd_casas_decimais']);
@@ -42,11 +44,9 @@ class ReportCardModifier extends BaseModifier
             $line['nota2'] = ($value['nota2num'] < $examAverage ? "<b> $score2 </b>" : $score2);
             $line['nota3'] = ($value['nota3num'] < $examAverage ? "<b> $score3 </b>" : $score3);
             $line['nota4'] = ($value['nota4num'] < $examAverage ? "<b> $score4 </b>" : $score4);
-            $line['media_recuperacao'] = $examAverage;
-            $line['media'] = $average;
             $line['curso_hora_falta'] = $absenceHours;
             $line['frequencia'] = $this->getAttendanceByDiscipline($totalAbsencesByDiscipline, $absenceHours, $workloadByDiscipline);
-            $line['nota_exame'] = $this->args['emitir_nota_exame'] ? $this->getFormattedScore($value['nota_exame'], $value['qtd_casas_decimais']) : null;
+            $line['nota_exame'] = $this->getFormattedScore($value['nota_exame'], $value['qtd_casas_decimais']);
 
             $absenceType = $line['tipo_presenca'];
             $schoolDays = $line['dias_letivos'];
@@ -61,9 +61,21 @@ class ReportCardModifier extends BaseModifier
                 $value['nota3num'],
                 $value['nota4num'],
             ];
+
+            $average = $this->getAverage(
+                $value['media'],
+                $numericScores,
+                $numberOfSteps,
+                $examAverage,
+                $value['qtd_casas_decimais']
+            );
+
+            $line['media_recuperacao'] = $examAverage;
+            $line['media'] = $average;
             $line['media_grafico'] = $this->calculatesAverageForTheGraph($numericScores);
-            $line['resultado_exame'] = $this->args['termo_recuperacao_final'];
+            $line['resultado_exame'] = _cl('report.termo_recuperacao_final');
             $line['legenda_notas'] = $scoreCaption;
+            $line['quantidade_etapas'] = $numberOfSteps;
 
             $data['main'][$key] = $line;
         }
@@ -140,5 +152,29 @@ class ReportCardModifier extends BaseModifier
             array_keys($roundingValues)
         ));
     }
-}
 
+    private function getNumeberOfSteps($schoolClassId)
+    {
+        return LegacySchoolClass::find($schoolClassId)->stages->count();
+    }
+
+    private function getAverage($average, $scores, $numberOfSteps, $examAverage, $decimalPlace)
+    {
+        $scores = array_filter($scores);
+        $formattedAverage = $this->getFormattedScore($average, $decimalPlace);
+
+        if (empty($average)) {
+            return;
+        }
+
+        if (count($scores) < $numberOfSteps) {
+            return;
+        }
+
+        if ($average < $examAverage) {
+            return "<b> $formattedAverage </b>";
+        }
+
+        return $formattedAverage;
+    }
+}
