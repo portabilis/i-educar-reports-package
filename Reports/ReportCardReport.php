@@ -8,13 +8,16 @@ require_once 'App/Model/IedFinder.php';
 require_once 'Reports/Queries/GeneralOpinionsTrait.php';
 require_once 'Reports/Queries/ReportCardTrait.php';
 require_once 'Reports/Modifiers/ReportCardModifier.php';
+require_once 'Reports/Queries/DescriptiveOpinionsTrait.php';
 
 class ReportCardReport extends Portabilis_Report_ReportCore
 {
-    use JsonDataSource, GeneralOpinionsTrait, ReportCardTrait {
+    use JsonDataSource, GeneralOpinionsTrait, ReportCardTrait, DescriptiveOpinionsTrait {
+        DescriptiveOpinionsTrait::query insteadof GeneralOpinionsTrait;
         GeneralOpinionsTrait::query insteadof ReportCardTrait;
-        GeneralOpinionsTrait::query AS QueryGeneralOpinions;
-        ReportCardTrait::query AS QueryReportCard;
+        DescriptiveOpinionsTrait::query as QueryDescriptiveOpinions;
+        GeneralOpinionsTrait::query as QueryGeneralOpinions;
+        ReportCardTrait::query as QueryReportCard;
     }
 
     /**
@@ -97,7 +100,9 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         return [
             $templates[Portabilis_Model_Report_TipoBoletim::NUMERIC] => $this->QueryReportCard(),
             $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL] => $this->QueryReportCard(),
+            $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_COMPONENTE] => $this->QueryDescriptiveOpinions(),
             $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL] => $this->QueryGeneralOpinions(),
+
         ];
     }
 }
