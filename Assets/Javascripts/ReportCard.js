@@ -11,12 +11,12 @@ var imprimirDoisBoletins = false;
 
 var arrayShowObservacoes = [
     'report-card',
-    'conceptual-bimonthly-report-card',
+    'conceptual-report-card',
 ];
 
 var arrayShowMensagemAniversario = [
     'report-card',
-    'conceptual-bimonthly-report-card',
+    'conceptual-report-card',
 ];
 
 var arrayShowGraficoMediaTurma = [
@@ -29,10 +29,9 @@ var arrayShowEtapa = [
 
 var arrayShowEtapaNaoObrigatorio = [
   'report-card',
-  'conceptual-bimonthly-report-card',
+  'conceptual-report-card',
   'general-opinion-report-card',
 ];
-
 
 var handleGetTipoBoletimTurma = function(dataResponse) {
     tipoBoletim = dataResponse['tipo-boletim'];

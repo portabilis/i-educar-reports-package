@@ -99,7 +99,7 @@ class ReportCardReport extends Portabilis_Report_ReportCore
 
         return [
             $templates[Portabilis_Model_Report_TipoBoletim::NUMERIC] => $this->QueryReportCard(),
-            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL] => $this->QueryReportCard(),
+            $templates[Portabilis_Model_Report_TipoBoletim::CONCEPTUAL] => $this->QueryReportCard(),
             $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_COMPONENTE] => $this->QueryDescriptiveOpinions(),
             $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL] => $this->QueryGeneralOpinions(),
 
