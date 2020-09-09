@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_boletim_primeiro_ano_bimestral" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2a004eae-d897-4de6-8a61-b0ebdf3de862">
-	<property name="ireport.zoom" value="1.3995221406292109"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="31"/>
+	<property name="ireport.zoom" value="1.8627639691774802"/>
+	<property name="ireport.x" value="354"/>
+	<property name="ireport.y" value="250"/>
 	<style name="listra" isDefault="true" mode="Opaque" backcolor="#FFFFFF">
 		<box>
 			<pen lineWidth="0.0" lineColor="#000000"/>
@@ -124,6 +124,7 @@
 	<field name="legenda_notas" class="java.lang.String"/>
 	<field name="legenda_orientacao" class="java.lang.String"/>
 	<field name="tabela_conversao" class="java.lang.String"/>
+	<field name="quantidade_etapas" class="java.lang.Integer"/>
 	<group name="matricula" isStartNewPage="true" keepTogether="true">
 		<groupExpression><![CDATA[$F{matricula}]]></groupExpression>
 		<groupHeader>
@@ -339,6 +340,7 @@
 		<groupExpression><![CDATA[$F{area_conhecimento}]]></groupExpression>
 		<groupHeader>
 			<band height="23">
+				<printWhenExpression><![CDATA[$F{quantidade_etapas} == 4]]></printWhenExpression>
 				<rectangle>
 					<reportElement uuid="9fa1b2ad-e3ac-4fc4-a325-415642bf8042" style="listra" mode="Transparent" x="0" y="0" width="555" height="23"/>
 					<graphicElement>
@@ -535,6 +537,368 @@
 					<textFieldExpression><![CDATA[$F{media_frequencia}]]></textFieldExpression>
 				</textField>
 			</band>
+			<band height="23">
+				<printWhenExpression><![CDATA[$F{quantidade_etapas} == 3]]></printWhenExpression>
+				<rectangle>
+					<reportElement uuid="9fa1b2ad-e3ac-4fc4-a325-415642bf8042" style="listra" mode="Transparent" x="0" y="0" width="555" height="23"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</rectangle>
+				<textField>
+					<reportElement uuid="2fea2055-ecf0-4c36-9dc7-56f42b900bb2" mode="Transparent" x="3" y="0" width="361" height="21"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{secao} != null ? $F{secao}+" - " : "" )+$F{area_conhecimento}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="cb2fd864-4c76-4963-a6af-ae224b3f64d2" mode="Transparent" x="366" y="1" width="20" height="11" printWhenGroupChanges="secao"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[1º T]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="fa940a22-5e2f-4567-a5c7-d6589eae7dfb" mode="Transparent" x="407" y="1" width="19" height="11" printWhenGroupChanges="secao"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[2º T]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="fa940a22-5e2f-4567-a5c7-d6589eae7dfb" mode="Transparent" x="447" y="1" width="19" height="11" printWhenGroupChanges="secao"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[3º T]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="467" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="487" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" mode="Transparent" x="520" y="0" width="1" height="23" isPrintWhenDetailOverflows="true"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="387" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="404" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="427" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="444" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="364" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement uuid="41080531-929e-4185-8831-6ff7c64eacef" mode="Transparent" x="389" y="2" width="14" height="10"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[F]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c4b2a6fe-f8a4-493a-a007-1371e53eb490" mode="Transparent" x="429" y="2" width="14" height="10"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[F]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="264b6194-581d-429a-af78-e67466d33d15" mode="Transparent" x="471" y="2" width="14" height="10"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[F]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="348e284c-0d47-437b-9230-429b044338b2" mode="Transparent" x="471" y="12" width="14" height="11">
+						<printWhenExpression><![CDATA[$F{tipo_presenca} == 1]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_faltas_et3}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="8d71a904-25e9-4424-b2c9-b727fe45c5c7" mode="Transparent" x="429" y="12" width="14" height="11">
+						<printWhenExpression><![CDATA[$F{tipo_presenca} == 1]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_faltas_et2}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="1830e99c-b5a7-4807-92a3-bfc0846a9f0f" mode="Transparent" x="389" y="12" width="14" height="11">
+						<printWhenExpression><![CDATA[$F{tipo_presenca} == 1]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_faltas_et1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8cb2f590-4d76-4f27-8b30-065049c8f7bf" mode="Transparent" x="488" y="1" width="32" height="18"/>
+					<textElement textAlignment="Center" markup="none">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Faltas"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="264b6194-581d-429a-af78-e67466d33d15" mode="Transparent" x="521" y="1" width="32" height="17"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Freq.%]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="348e284c-0d47-437b-9230-429b044338b2" mode="Transparent" x="488" y="12" width="32" height="11">
+						<printWhenExpression><![CDATA[$F{total_faltas_et1} != null && $F{tipo_presenca} == 1]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_faltas_geral}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement uuid="348e284c-0d47-437b-9230-429b044338b2" mode="Transparent" x="521" y="12" width="32" height="11"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{media_frequencia}]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="23">
+				<printWhenExpression><![CDATA[$F{quantidade_etapas} == 2]]></printWhenExpression>
+				<rectangle>
+					<reportElement uuid="9fa1b2ad-e3ac-4fc4-a325-415642bf8042" style="listra" mode="Transparent" x="0" y="0" width="555" height="23"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</rectangle>
+				<textField>
+					<reportElement uuid="2fea2055-ecf0-4c36-9dc7-56f42b900bb2" mode="Transparent" x="3" y="0" width="400" height="21"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{secao} != null ? $F{secao}+" - " : "" )+$F{area_conhecimento}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="fa940a22-5e2f-4567-a5c7-d6589eae7dfb" mode="Transparent" x="407" y="1" width="19" height="11" printWhenGroupChanges="secao"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[1º S]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="fa940a22-5e2f-4567-a5c7-d6589eae7dfb" mode="Transparent" x="447" y="1" width="19" height="11" printWhenGroupChanges="secao"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[2º S]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="467" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="487" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" mode="Transparent" x="520" y="0" width="1" height="23" isPrintWhenDetailOverflows="true"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="404" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="427" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="444" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement uuid="c4b2a6fe-f8a4-493a-a007-1371e53eb490" mode="Transparent" x="429" y="2" width="14" height="10"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[F]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="264b6194-581d-429a-af78-e67466d33d15" mode="Transparent" x="471" y="2" width="14" height="10"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[F]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="348e284c-0d47-437b-9230-429b044338b2" mode="Transparent" x="471" y="12" width="14" height="11">
+						<printWhenExpression><![CDATA[$F{tipo_presenca} == 1]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_faltas_et2}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="8d71a904-25e9-4424-b2c9-b727fe45c5c7" mode="Transparent" x="429" y="12" width="14" height="11">
+						<printWhenExpression><![CDATA[$F{tipo_presenca} == 1]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_faltas_et1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8cb2f590-4d76-4f27-8b30-065049c8f7bf" mode="Transparent" x="488" y="1" width="32" height="18"/>
+					<textElement textAlignment="Center" markup="none">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Faltas"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="264b6194-581d-429a-af78-e67466d33d15" mode="Transparent" x="521" y="1" width="32" height="17"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Freq.%]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="348e284c-0d47-437b-9230-429b044338b2" mode="Transparent" x="488" y="12" width="32" height="11">
+						<printWhenExpression><![CDATA[$F{total_faltas_et1} != null && $F{tipo_presenca} == 1]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_faltas_geral}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement uuid="348e284c-0d47-437b-9230-429b044338b2" mode="Transparent" x="521" y="12" width="32" height="11"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{media_frequencia}]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="23">
+				<printWhenExpression><![CDATA[$F{quantidade_etapas} == 1]]></printWhenExpression>
+				<rectangle>
+					<reportElement uuid="9fa1b2ad-e3ac-4fc4-a325-415642bf8042" style="listra" mode="Transparent" x="0" y="0" width="555" height="23"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</rectangle>
+				<textField>
+					<reportElement uuid="2fea2055-ecf0-4c36-9dc7-56f42b900bb2" mode="Transparent" x="3" y="0" width="447" height="21"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{secao} != null ? $F{secao}+" - " : "" )+$F{area_conhecimento}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="fa940a22-5e2f-4567-a5c7-d6589eae7dfb" mode="Transparent" x="452" y="1" width="34" height="20" printWhenGroupChanges="secao"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[NOTA]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="450" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" mode="Transparent" x="487" y="0" width="1" height="23" printWhenGroupChanges="secao"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" mode="Transparent" x="520" y="0" width="1" height="23" isPrintWhenDetailOverflows="true"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8cb2f590-4d76-4f27-8b30-065049c8f7bf" mode="Transparent" x="488" y="1" width="32" height="18"/>
+					<textElement textAlignment="Center" markup="none">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Faltas"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="264b6194-581d-429a-af78-e67466d33d15" mode="Transparent" x="521" y="1" width="32" height="17"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Freq.%]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="348e284c-0d47-437b-9230-429b044338b2" mode="Transparent" x="488" y="12" width="32" height="11">
+						<printWhenExpression><![CDATA[$F{total_faltas_et1} != null && $F{tipo_presenca} == 1]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{total_faltas_geral}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement uuid="348e284c-0d47-437b-9230-429b044338b2" mode="Transparent" x="521" y="12" width="32" height="11"/>
+					<textElement textAlignment="Center">
+						<font fontName="DejaVu Sans" size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{media_frequencia}]]></textFieldExpression>
+				</textField>
+			</band>
 		</groupHeader>
 	</group>
 	<background>
@@ -551,6 +915,7 @@
 	</columnHeader>
 	<detail>
 		<band height="16" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{quantidade_etapas} == 4]]></printWhenExpression>
 			<rectangle>
 				<reportElement uuid="94f0232b-aeeb-4f29-b679-84ded08e0834" style="listra" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="16"/>
 				<graphicElement>
@@ -558,7 +923,7 @@
 				</graphicElement>
 			</rectangle>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement uuid="d9f78fe8-bc9a-4719-9f91-5dbe4772ace6" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="326" height="16" isPrintWhenDetailOverflows="true"/>
+				<reportElement uuid="d9f78fe8-bc9a-4719-9f91-5dbe4772ace6" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="326" height="14" isPrintWhenDetailOverflows="true"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8"/>
 					<paragraph leftIndent="2" spacingBefore="2" spacingAfter="2"/>
@@ -566,28 +931,28 @@
 				<textFieldExpression><![CDATA[$F{nome_disciplina}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" mode="Transparent" x="327" y="1" width="20" height="13"/>
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="327" y="1" width="20" height="13"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota1}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" mode="Transparent" x="367" y="1" width="20" height="13"/>
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="367" y="1" width="20" height="13"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota2}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" mode="Transparent" x="406" y="1" width="20" height="13"/>
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="406" y="1" width="20" height="13"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nota3}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" mode="Transparent" x="446" y="1" width="20" height="13"/>
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="446" y="1" width="20" height="13"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
 					<font fontName="DejaVu Sans" size="7"/>
 				</textElement>
@@ -654,7 +1019,7 @@
 				</graphicElement>
 			</line>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" mode="Transparent" x="350" y="1" width="14" height="13">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="350" y="1" width="14" height="13">
 					<printWhenExpression><![CDATA[$F{tipo_presenca} == 2]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -663,7 +1028,7 @@
 				<textFieldExpression><![CDATA[$F{faltas_componente_et1}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" mode="Transparent" x="389" y="1" width="14" height="13">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="389" y="1" width="14" height="13">
 					<printWhenExpression><![CDATA[$F{tipo_presenca} == 2]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -672,14 +1037,14 @@
 				<textFieldExpression><![CDATA[$F{faltas_componente_et2}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" mode="Transparent" x="429" y="1" width="14" height="13"/>
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="429" y="1" width="14" height="13"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{faltas_componente_et3}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" mode="Transparent" x="470" y="1" width="14" height="13">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="470" y="1" width="14" height="13">
 					<printWhenExpression><![CDATA[$F{tipo_presenca} == 2]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -688,7 +1053,7 @@
 				<textFieldExpression><![CDATA[$F{faltas_componente_et4}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" mode="Transparent" x="488" y="1" width="32" height="13">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="488" y="1" width="32" height="13">
 					<printWhenExpression><![CDATA[$F{faltas_componente_et1} != null && $F{tipo_presenca} == 2]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -697,7 +1062,297 @@
 				<textFieldExpression><![CDATA[$F{total_faltas_componente}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
-				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" mode="Transparent" x="521" y="1" width="32" height="13">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="521" y="1" width="32" height="13">
+					<printWhenExpression><![CDATA[$F{tipo_presenca} == 2]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{frequencia}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="16">
+			<printWhenExpression><![CDATA[$F{quantidade_etapas} == 3]]></printWhenExpression>
+			<rectangle>
+				<reportElement uuid="94f0232b-aeeb-4f29-b679-84ded08e0834" style="listra" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="d9f78fe8-bc9a-4719-9f91-5dbe4772ace6" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="364" height="14" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="2" spacingBefore="2" spacingAfter="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_disciplina}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="367" y="1" width="20" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="406" y="1" width="20" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="446" y="1" width="20" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota3}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="444" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="487" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" stretchType="RelativeToBandHeight" mode="Transparent" x="520" y="-2" width="1" height="18" printWhenGroupChanges="secao"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="364" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="404" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="387" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="427" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="467" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="389" y="1" width="14" height="13">
+					<printWhenExpression><![CDATA[$F{tipo_presenca} == 2]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{faltas_componente_et1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="429" y="1" width="14" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{faltas_componente_et2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="470" y="1" width="14" height="13">
+					<printWhenExpression><![CDATA[$F{tipo_presenca} == 2]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{faltas_componente_et3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="488" y="1" width="32" height="13">
+					<printWhenExpression><![CDATA[$F{faltas_componente_et1} != null && $F{tipo_presenca} == 2]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_faltas_componente}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="521" y="1" width="32" height="13">
+					<printWhenExpression><![CDATA[$F{tipo_presenca} == 2]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{frequencia}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="16">
+			<printWhenExpression><![CDATA[$F{quantidade_etapas} == 2]]></printWhenExpression>
+			<rectangle>
+				<reportElement uuid="94f0232b-aeeb-4f29-b679-84ded08e0834" style="listra" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="d9f78fe8-bc9a-4719-9f91-5dbe4772ace6" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="403" height="14" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="2" spacingBefore="2" spacingAfter="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_disciplina}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="406" y="1" width="20" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="446" y="1" width="20" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota2}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="444" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="487" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" stretchType="RelativeToBandHeight" mode="Transparent" x="520" y="-2" width="1" height="18" printWhenGroupChanges="secao"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="404" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="427" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="467" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="429" y="1" width="14" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{faltas_componente_et1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="470" y="1" width="14" height="13">
+					<printWhenExpression><![CDATA[$F{tipo_presenca} == 2]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{faltas_componente_et2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="488" y="1" width="32" height="13">
+					<printWhenExpression><![CDATA[$F{faltas_componente_et1} != null && $F{tipo_presenca} == 2]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_faltas_componente}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="521" y="1" width="32" height="13">
+					<printWhenExpression><![CDATA[$F{tipo_presenca} == 2]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{frequencia}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="16">
+			<printWhenExpression><![CDATA[$F{quantidade_etapas} == 1]]></printWhenExpression>
+			<rectangle>
+				<reportElement uuid="94f0232b-aeeb-4f29-b679-84ded08e0834" style="listra" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="d9f78fe8-bc9a-4719-9f91-5dbe4772ace6" positionType="Float" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="450" height="14" isPrintWhenDetailOverflows="true"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph leftIndent="2" spacingBefore="2" spacingAfter="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_disciplina}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="452" y="1" width="34" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="450" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="2a8303c6-c044-460c-b3f6-5e89319a2a85" stretchType="RelativeToBandHeight" mode="Transparent" x="487" y="-2" width="1" height="18" isPrintWhenDetailOverflows="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="f0df5084-cf13-422e-80ea-0d61e85e6eaf" stretchType="RelativeToBandHeight" mode="Transparent" x="520" y="-2" width="1" height="18" printWhenGroupChanges="secao"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="488" y="1" width="32" height="13">
+					<printWhenExpression><![CDATA[$F{faltas_componente_et1} != null && $F{tipo_presenca} == 2]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_faltas_componente}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="d0bc1942-9721-4880-9497-82343c520885" stretchType="RelativeToBandHeight" mode="Transparent" x="521" y="1" width="32" height="13">
 					<printWhenExpression><![CDATA[$F{tipo_presenca} == 2]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
