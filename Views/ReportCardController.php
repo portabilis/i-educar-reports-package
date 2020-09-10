@@ -43,6 +43,17 @@ class ReportCardController extends Portabilis_Controller_ReportCoreController
             'turma',
             'etapa'
         ]);
+
+        $this->inputsHelper()->select('orientacao', [
+            'label' => 'Orientação da página',
+            'resources' => [
+                1 => 'Retrato',
+                2 => 'Paisagem'
+            ],
+            'required' => false,
+            'value' => 1
+        ]);
+
         $this->inputsHelper()->dynamic('matricula', ['required' => false]);
 
         $resources = [
@@ -103,6 +114,7 @@ class ReportCardController extends Portabilis_Controller_ReportCoreController
         $this->report->addArg('alunos_diferenciados', (int) ($this->getRequest()->alunos_diferenciados ?: 0));
         $this->report->addArg('etapa', (int) ($this->getRequest()->etapa));
         $this->report->addArg('observacoes', $this->getRequest()->observacoes);
+        $this->report->addArg('orientacao', (int) $this->getRequest()->orientacao);
 
         if (is_null($this->getRequest()->ref_cod_matricula)) {
             $this->report->addArg('matricula', 0);

@@ -6,6 +6,7 @@ class Portabilis_Model_Report_TipoBoletim extends CoreExt_Enum
 {
     const NUMERIC = 1;
     const CONCEPTUAL = 2;
+    const CONCEPTUAL_LANDSCAPE = 3;
     const PARECER_DESCRITIVO_COMPONENTE = 9;
     const PARECER_DESCRITIVO_GERAL = 10;
 
@@ -19,6 +20,7 @@ class Portabilis_Model_Report_TipoBoletim extends CoreExt_Enum
     protected $_reports = [
         self::NUMERIC => 'report-card',
         self::CONCEPTUAL => 'conceptual-report-card',
+        self::CONCEPTUAL_LANDSCAPE => 'conceptual-landscape-report-card',
         self::PARECER_DESCRITIVO_COMPONENTE => 'descriptive-opinion-report-card',
         self::PARECER_DESCRITIVO_GERAL => 'general-opinion-report-card',
     ];
