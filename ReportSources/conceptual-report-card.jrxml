@@ -75,6 +75,7 @@
 	<parameter name="data_emissao" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
+	<parameter name="orientacao" class="java.lang.Integer"/>
 	<parameter name="source" class="java.lang.String"/>
 	<field name="nome_instituicao" class="java.lang.String"/>
 	<field name="nome_responsavel" class="java.lang.String"/>
