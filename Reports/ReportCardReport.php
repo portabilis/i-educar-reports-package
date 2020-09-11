@@ -63,6 +63,10 @@ class ReportCardReport extends Portabilis_Report_ReportCore
         $templates = Portabilis_Model_Report_TipoBoletim::getInstance()->getReports();
         $template = !empty($templates[$flagTipoBoletimTurma]) ? $templates[$flagTipoBoletimTurma] : '';
 
+        if ($this->args['orientacao'] == 2) {
+            $template = $templates[Portabilis_Model_Report_TipoBoletim::CONCEPTUAL_LANDSCAPE];
+        }
+
         if (empty($template)) {
             throw new Exception('Não foi possivel recuperar nome do template para o boletim.');
         }
@@ -99,7 +103,8 @@ class ReportCardReport extends Portabilis_Report_ReportCore
 
         return [
             $templates[Portabilis_Model_Report_TipoBoletim::NUMERIC] => $this->QueryReportCard(),
-            $templates[Portabilis_Model_Report_TipoBoletim::BIMESTRAL_CONCEITUAL] => $this->QueryReportCard(),
+            $templates[Portabilis_Model_Report_TipoBoletim::CONCEPTUAL] => $this->QueryReportCard(),
+            $templates[Portabilis_Model_Report_TipoBoletim::CONCEPTUAL_LANDSCAPE] => $this->QueryReportCard(),
             $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_COMPONENTE] => $this->QueryDescriptiveOpinions(),
             $templates[Portabilis_Model_Report_TipoBoletim::PARECER_DESCRITIVO_GERAL] => $this->QueryGeneralOpinions(),
 

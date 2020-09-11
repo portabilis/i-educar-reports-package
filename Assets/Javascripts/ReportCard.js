@@ -4,6 +4,7 @@ $j('#mensagem_aniversario').closest('tr').hide();
 $j('#imprimir_mensagem_aniversario').closest('tr').hide();
 $j('#grafico_media_turma').closest('tr').hide();
 $j('#grafico_preto').closest('tr').hide();
+$j('#orientacao').closest('tr').hide();
 
 var tipoBoletim;
 var tipoBoletimDiferenciado;
@@ -11,12 +12,12 @@ var imprimirDoisBoletins = false;
 
 var arrayShowObservacoes = [
     'report-card',
-    'conceptual-bimonthly-report-card',
+    'conceptual-report-card',
 ];
 
 var arrayShowMensagemAniversario = [
     'report-card',
-    'conceptual-bimonthly-report-card',
+    'conceptual-report-card',
 ];
 
 var arrayShowGraficoMediaTurma = [
@@ -29,10 +30,13 @@ var arrayShowEtapa = [
 
 var arrayShowEtapaNaoObrigatorio = [
   'report-card',
-  'conceptual-bimonthly-report-card',
+  'conceptual-report-card',
   'general-opinion-report-card',
 ];
 
+var arrayShowOrientation = [
+  'conceptual-report-card',
+];
 
 var handleGetTipoBoletimTurma = function(dataResponse) {
     tipoBoletim = dataResponse['tipo-boletim'];
@@ -62,6 +66,12 @@ var handleGetTipoBoletimTurma = function(dataResponse) {
         $j('#grafico_media_turma').closest('tr').hide();
         $j('#grafico_preto').closest('tr').hide();
         $j('#emitir_pareceres_componente_curricular').closest('tr').hide();
+    }
+
+    if ($j.inArray(tipoBoletim, arrayShowOrientation) > -1) {
+      $j('#orientacao').closest('tr').show();
+    } else {
+        $j('#orientacao').closest('tr').hide();
     }
 
     if ($j.inArray(tipoBoletim, arrayShowEtapa) > -1 || $j.inArray(tipoBoletimDiferenciado, arrayShowEtapa) > -1) {
