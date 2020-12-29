@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_cabecalho_boletim_retrato" language="groovy" pageWidth="555" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d2ddb19-fbc0-4ec9-9b68-1b3f41c8ef77">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="header-landscape-report-card" language="groovy" pageWidth="802" pageHeight="555" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d2ddb19-fbc0-4ec9-9b68-1b3f41c8ef77">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="856"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="logo" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -40,7 +40,7 @@
 	<pageHeader>
 		<band height="69" splitType="Stretch">
 			<rectangle>
-				<reportElement uuid="ce1ccc48-8a5a-4a2b-bff8-7ed28ea98e1c" x="0" y="0" width="555" height="69"/>
+				<reportElement uuid="ce1ccc48-8a5a-4a2b-bff8-7ed28ea98e1c" x="0" y="0" width="802" height="69"/>
 				<graphicElement>
 					<pen lineWidth="0.25"/>
 				</graphicElement>
@@ -53,7 +53,7 @@
 				<textFieldExpression><![CDATA[$F{nm_responsavel}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="de5dcc36-c27c-47f6-88de-f44249194344" x="361" y="21" width="74" height="14">
+				<reportElement uuid="de5dcc36-c27c-47f6-88de-f44249194344" x="602" y="21" width="74" height="14">
 					<printWhenExpression><![CDATA[$F{fone} != null]]></printWhenExpression>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -62,21 +62,21 @@
 				<textFieldExpression><![CDATA["(" + $F{fone_ddd} + ")" + $F{fone}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="e85db618-7546-41b2-8e74-bbaf14b3e5cf" x="497" y="21" width="41" height="14"/>
+				<reportElement uuid="e85db618-7546-41b2-8e74-bbaf14b3e5cf" x="736" y="21" width="41" height="14"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{ano}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="bbe00646-736e-4ef8-a31b-a49f09ea97c0" x="331" y="2" width="207" height="20"/>
+				<reportElement uuid="bbe00646-736e-4ef8-a31b-a49f09ea97c0" x="572" y="2" width="207" height="20"/>
 				<textElement verticalAlignment="Middle" markup="none">
 					<font fontName="DejaVu Sans" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="b3e1cc99-36b8-4999-8d0d-9724924c4b60" x="331" y="21" width="30" height="14"/>
+				<reportElement uuid="b3e1cc99-36b8-4999-8d0d-9724924c4b60" x="572" y="21" width="30" height="14"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
@@ -90,21 +90,21 @@
 				<textFieldExpression><![CDATA[$F{logradouro} + ", " + $F{bairro}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement uuid="744b5242-84b8-4164-b8a4-8a73ffac0626" x="331" y="34" width="38" height="15"/>
+				<reportElement uuid="744b5242-84b8-4164-b8a4-8a73ffac0626" x="572" y="34" width="38" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[E-mail:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement uuid="77f27174-8b22-495c-ac1a-5222bcbd859a" x="442" y="21" width="69" height="14"/>
+				<reportElement uuid="77f27174-8b22-495c-ac1a-5222bcbd859a" x="683" y="21" width="69" height="14"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Ano Letivo:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement uuid="a513366d-7524-4f44-9a4e-90bb939d38e0" x="366" y="34" width="172" height="15"/>
+				<reportElement uuid="a513366d-7524-4f44-9a4e-90bb939d38e0" x="607" y="34" width="172" height="15"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="DejaVu Sans" size="8" isBold="true"/>
 				</textElement>
