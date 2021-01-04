@@ -127,7 +127,6 @@
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
 	<parameter name="source" class="java.lang.String"/>
-	<parameter name="orientacao" class="java.lang.Integer"/>
 	<field name="nome_instituicao" class="java.lang.String"/>
 	<field name="nome_responsavel" class="java.lang.String"/>
 	<field name="nm_escola" class="java.lang.String"/>
