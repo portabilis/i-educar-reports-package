@@ -86,7 +86,6 @@
 	<parameter name="assinatura_secretario" class="java.lang.String"/>
 	<parameter name="database" class="java.lang.String"/>
 	<parameter name="data_emissao" class="java.lang.String"/>
-	<parameter name="orientacao" class="java.lang.Integer"/>
 	<field name="ano" class="java.lang.Integer"/>
 	<field name="nome_responsavel" class="java.lang.String"/>
 	<field name="nm_escola" class="java.lang.String"/>
