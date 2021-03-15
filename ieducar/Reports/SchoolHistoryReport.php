@@ -2,12 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-require_once 'Reports/Queries/SchoolHistorySeriesYearsTrait.php';
-require_once 'Reports/Queries/SchoolHistoryCrosstabTrait.php';
-require_once 'Reports/Queries/SchoolHistoryCrosstabDatasetTrait.php';
-
 class SchoolHistoryReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource, SchoolHistorySeriesYearsTrait, SchoolHistoryCrosstabTrait, SchoolHistoryCrosstabDatasetTrait {

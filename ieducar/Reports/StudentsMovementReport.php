@@ -2,9 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-
 class StudentsMovementReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
@@ -46,8 +43,8 @@ class StudentsMovementReport extends Portabilis_Report_ReportCore
         $turma = $this->args['turma'] ?: 0;
 
         return "
-        
-SELECT 
+
+SELECT
     public.fcn_upper(nm_instituicao) AS nome_instituicao,
     public.fcn_upper(nm_responsavel) AS nome_responsavel,
     instituicao.cidade AS cidade_instituicao,

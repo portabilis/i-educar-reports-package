@@ -1,9 +1,5 @@
 <?php
 
-require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/LibraryClientsReport.php';
-require_once 'lib/Portabilis/Date/Utils.php';
-
 class LibraryClientsController extends Portabilis_Controller_ReportCoreController
 {
     /**

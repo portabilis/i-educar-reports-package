@@ -2,9 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-
 class LibraryAuthorsReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
@@ -40,7 +37,7 @@ class LibraryAuthorsReport extends Portabilis_Report_ReportCore
 
         return "
 
-        SELECT 
+        SELECT
         public.fcn_upper(instituicao.nm_instituicao) as nm_instituicao,
        cod_acervo_autor,
        public.fcn_upper(relatorio.get_texto_sem_caracter_especial(nm_autor)) as nm_autor,
@@ -127,13 +124,13 @@ class LibraryAuthorsReport extends Portabilis_Report_ReportCore
               juridica.idpes = escola.ref_idpes),(SELECT email FROM pmieducar.escola_complemento where ref_cod_escola = escola.cod_escola))) AS email
 
             FROM pmieducar.instituicao
-            INNER JOIN pmieducar.escola ON TRUE 
+            INNER JOIN pmieducar.escola ON TRUE
                 AND escola.ref_cod_instituicao = instituicao.cod_instituicao
-            INNER JOIN pmieducar.biblioteca ON TRUE 
+            INNER JOIN pmieducar.biblioteca ON TRUE
                 AND biblioteca.ref_cod_escola = escola.cod_escola
-            INNER JOIN  pmieducar.acervo_autor ON TRUE 
+            INNER JOIN  pmieducar.acervo_autor ON TRUE
                 AND acervo_autor.ref_cod_biblioteca = biblioteca.cod_biblioteca
-            WHERE TRUE 
+            WHERE TRUE
                 AND instituicao.cod_instituicao = {$instituicao}
                 AND escola.cod_escola = {$escola}
                 AND acervo_autor.ativo = 1

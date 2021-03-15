@@ -1,9 +1,5 @@
 <?php
 
-require_once 'lib/Portabilis/Date/Utils.php';
-require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/StudentsMovementReport.php';
-
 class StudentsMovementController extends Portabilis_Controller_ReportCoreController
 {
     /**

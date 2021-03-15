@@ -2,9 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-
 class TeachersAndCoursesTaughtByClassReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
@@ -28,7 +25,7 @@ class TeachersAndCoursesTaughtByClassReport extends Portabilis_Report_ReportCore
         $this->addRequiredArg('curso');
         $this->addRequiredArg('serie');
     }
-    
+
     public function getSqlMainReport()
     {
         $ano = $this->args['ano'] ?: 0;
@@ -40,16 +37,16 @@ class TeachersAndCoursesTaughtByClassReport extends Portabilis_Report_ReportCore
 
         return "
 
-SELECT 
+SELECT
     nm_curso,
     nm_serie,
     turma.cod_turma,
     turma.nm_turma,
     (
-        CASE WHEN ARRAY[2,3,4,5,6] <@ dias_semana THEN 
-            'Seg à Sex' 
-        ELSE 
-            '' 
+        CASE WHEN ARRAY[2,3,4,5,6] <@ dias_semana THEN
+            'Seg à Sex'
+        ELSE
+            ''
         END
     ) AS seg_sex,
     replace
@@ -71,11 +68,11 @@ SELECT
     escolaridade.descricao AS escolaridade,
     view_componente_curricular.nome AS disciplina,
     (
-        SELECT 
+        SELECT
             to_char(sum(cast(servidor_alocacao.carga_horaria as interval)), 'HH24:MI')::varchar
-        FROM 
+        FROM
             pmieducar.servidor_alocacao
-        WHERE TRUE 
+        WHERE TRUE
             AND servidor_alocacao.ref_cod_servidor = servidor.cod_servidor
             AND servidor_alocacao.ref_cod_escola   = escola.cod_escola
             AND servidor_alocacao.ano = {$ano}
@@ -111,55 +108,55 @@ SELECT
         END
     ) AS vinculo
 FROM pmieducar.instituicao
-INNER JOIN pmieducar.escola ON TRUE 
+INNER JOIN pmieducar.escola ON TRUE
     AND escola.ref_cod_instituicao = instituicao.cod_instituicao
-INNER JOIN pmieducar.escola_curso ON TRUE 
+INNER JOIN pmieducar.escola_curso ON TRUE
     AND escola_curso.ativo = 1
     AND escola_curso.ref_cod_escola = escola.cod_escola
-INNER JOIN pmieducar.curso ON TRUE 
+INNER JOIN pmieducar.curso ON TRUE
     AND curso.cod_curso = escola_curso.ref_cod_curso
     AND curso.ativo = 1
-INNER JOIN pmieducar.escola_serie ON TRUE 
+INNER JOIN pmieducar.escola_serie ON TRUE
     AND escola_serie.ativo = 1
     AND escola_serie.ref_cod_escola = escola.cod_escola
-INNER JOIN pmieducar.serie ON TRUE 
+INNER JOIN pmieducar.serie ON TRUE
     AND serie.cod_serie = escola_serie.ref_cod_serie
     AND serie.ativo = 1
-INNER JOIN pmieducar.turma ON TRUE 
+INNER JOIN pmieducar.turma ON TRUE
     AND turma.ref_ref_cod_escola = escola.cod_escola
     AND turma.ref_cod_curso = escola_curso.ref_cod_curso
     AND turma.ref_ref_cod_serie = escola_serie.ref_cod_serie
     AND turma.ativo = 1
-INNER JOIN modules.professor_turma ON TRUE 
+INNER JOIN modules.professor_turma ON TRUE
     AND professor_turma.turma_id = turma.cod_turma
     AND professor_turma.funcao_exercida IN(1,5,6)
-INNER JOIN pmieducar.servidor ON TRUE 
+INNER JOIN pmieducar.servidor ON TRUE
     AND servidor.cod_servidor = professor_turma.servidor_id
     AND servidor.ativo = 1
-INNER JOIN cadastro.pessoa ON TRUE 
+INNER JOIN cadastro.pessoa ON TRUE
     AND pessoa.idpes = servidor.cod_servidor
-INNER JOIN cadastro.fisica ON TRUE 
+INNER JOIN cadastro.fisica ON TRUE
     AND fisica.idpes = servidor.cod_servidor
-LEFT JOIN educacenso_cod_docente ON TRUE 
+LEFT JOIN educacenso_cod_docente ON TRUE
     AND educacenso_cod_docente.cod_servidor = servidor.cod_servidor
-LEFT JOIN cadastro.escolaridade ON TRUE 
+LEFT JOIN cadastro.escolaridade ON TRUE
     AND escolaridade.idesco = servidor.ref_idesco
-INNER JOIN relatorio.view_componente_curricular ON TRUE 
+INNER JOIN relatorio.view_componente_curricular ON TRUE
     AND view_componente_curricular.cod_turma = turma.cod_turma
-INNER JOIN modules.professor_turma_disciplina ON TRUE 
+INNER JOIN modules.professor_turma_disciplina ON TRUE
     AND professor_turma_disciplina.professor_turma_id = professor_turma.id
     AND professor_turma_disciplina.componente_curricular_id = view_componente_curricular.id
-WHERE TRUE 
+WHERE TRUE
     AND instituicao.cod_instituicao = {$instituicao}
     AND escola.cod_escola = {$escola}
     AND curso.cod_curso = {$curso}
     AND serie.cod_serie = {$serie}
-    AND 
+    AND
     (
-        CASE WHEN {$turma} = 0 THEN 
-            TRUE 
-        ELSE 
-            turma.cod_turma = {$turma} 
+        CASE WHEN {$turma} = 0 THEN
+            TRUE
+        ELSE
+            turma.cod_turma = {$turma}
         END
     )
     AND turma.ano = {$ano}
@@ -175,13 +172,13 @@ GROUP BY
     escolaridade.descricao,
     view_componente_curricular.nome,
     servidor.cod_servidor
-ORDER BY 
+ORDER BY
     curso.nm_curso,
     serie.nm_serie,
     turma.nm_turma,
     pessoa.nome,
     disciplina
-    
+
         ";
     }
 }

@@ -2,9 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-
 class TransportationRoutesReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
@@ -48,7 +45,7 @@ class TransportationRoutesReport extends Portabilis_Report_ReportCore
 
     /**
      * Retorna o SQL específico para o modelo "simplificado".
-     * 
+     *
      * @return string
      */
     private function getSqlTransportationRoutesReport()

@@ -2,8 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-
 class ConclusionCertificateReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;

@@ -2,9 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-
 class LibraryWorksReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
@@ -30,7 +27,7 @@ class LibraryWorksReport extends Portabilis_Report_ReportCore
      * Retorna o SQL para buscar os dados do relatório principal.
      *
      * TODO refactor query
-     * 
+     *
      * @return string
      */
     public function getSqlMainReport()

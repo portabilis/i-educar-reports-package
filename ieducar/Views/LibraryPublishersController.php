@@ -1,8 +1,5 @@
 <?php
 
-require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/LibraryPublishersReport.php';
-
 class LibraryPublishersController extends Portabilis_Controller_ReportCoreController
 {
     /**

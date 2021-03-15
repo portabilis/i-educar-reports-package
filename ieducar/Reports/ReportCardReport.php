@@ -2,14 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'Reports/Tipos/TipoBoletim.php';
-require_once 'App/Model/IedFinder.php';
-require_once 'Reports/Queries/GeneralOpinionsTrait.php';
-require_once 'Reports/Queries/ReportCardTrait.php';
-require_once 'Reports/Modifiers/ReportCardModifier.php';
-require_once 'Reports/Queries/DescriptiveOpinionsTrait.php';
-
 class ReportCardReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource, GeneralOpinionsTrait, ReportCardTrait, DescriptiveOpinionsTrait {

@@ -2,9 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-
 class ClassRecordBookReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
@@ -81,13 +78,13 @@ class ClassRecordBookReport extends Portabilis_Report_ReportCore
                 to_char(current_timestamp, 'HH24:MI:SS') AS hora_atual,
                 instituicao.ref_sigla_uf as uf,
                 instituicao.cidade,
-            
+
                 (SELECT CASE
                     WHEN {$buscar_professor} AND {$servidor_id} <> 0 THEN
                         (SELECT nome FROM cadastro.pessoa WHERE idpes = {$servidor_id} )
                     ELSE '{$professor}'
                 END) AS professor,
-            
+
                 (SELECT p.nome FROM cadastro.pessoa p WHERE escola.ref_idpes_gestor = p.idpes) as diretor,
                 turma_turno.nome AS periodo,
                 view_dados_escola.nome AS nm_escola,
@@ -184,10 +181,10 @@ class ClassRecordBookReport extends Portabilis_Report_ReportCore
                 AND view_situacao.cod_situacao = {$situacao}
                 AND (CASE WHEN {$turma} = 0 THEN TRUE ELSE turma.cod_turma = {$turma} END)
             UNION ALL
-            
+
             SELECT null, null, null, null, null, null, {$turma}, null, null, null, null, null, null, null, null
             FROM generate_series(1,{$linha})
-            
+
             ) ORDER BY cod_turma, sequencial_fechamento, nome_aluno;
         ";
 

@@ -1,7 +1,5 @@
 <?php
 
-require_once 'CoreExt/Enum.php';
-
 class Portabilis_Model_Report_TipoBoletim extends CoreExt_Enum
 {
     const NUMERIC = 1;

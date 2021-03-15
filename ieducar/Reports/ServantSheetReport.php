@@ -2,9 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-
 class ServantSheetReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
@@ -76,25 +73,25 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
 
         return "
 
-            SELECT 
+            SELECT
                 pmieducar.instituicao.nm_instituicao as \"nome_instituicao\",
                 cadastro.juridica.fantasia as \"nm_escola\",
                 to_char(CURRENT_DATE,'dd/mm/yyyy') AS data_atual,
                 to_char(current_timestamp, 'HH24:MI:SS') AS hora_atual
-            FROM 
+            FROM
                 pmieducar.instituicao
-            INNER JOIN pmieducar.escola ON TRUE 
+            INNER JOIN pmieducar.escola ON TRUE
                 AND escola.ref_cod_instituicao = instituicao.cod_instituicao
-            INNER JOIN cadastro.juridica ON TRUE 
+            INNER JOIN cadastro.juridica ON TRUE
                 AND juridica.idpes = escola.ref_idpes
-            WHERE TRUE 
+            WHERE TRUE
                 AND instituicao.cod_instituicao = {$instituicao}
                 AND cod_escola = {$escola}
-            GROUP BY 
+            GROUP BY
                 nome_instituicao, nm_escola
-            ORDER BY 
+            ORDER BY
                 nm_escola
-            
+
         ";
     }
 
@@ -157,37 +154,37 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 (
                     CASE WHEN telefone.fone IS NOT NULL
                         AND telefone_add.fone IS NOT NULL
-                        AND telefone_fax.fone IS NOT NULL 
-                    THEN 
+                        AND telefone_fax.fone IS NOT NULL
+                    THEN
                         '(' || telefone.ddd || ') ' || telefone.fone || ' - ' || '('|| telefone_add.ddd ||') '|| telefone_add.fone || ' - '|| 'FAX: (' || telefone_fax.ddd ||') '|| telefone_fax.fone ||'.'
                     WHEN telefone.fone IS NOT NULL
                         AND telefone_add.fone IS NULL
-                        AND telefone_fax.fone IS NULL 
+                        AND telefone_fax.fone IS NULL
                     THEN '(' || telefone.ddd || ') ' || telefone.fone
                     WHEN telefone.fone IS NULL
                         AND telefone_add.fone IS NOT NULL
-                        AND telefone_fax.fone IS NULL 
-                    THEN 
+                        AND telefone_fax.fone IS NULL
+                    THEN
                         '(' || telefone_add.ddd || ') ' || telefone_add.fone
                     WHEN telefone.fone IS NULL
                         AND telefone_add.fone IS NULL
-                        AND telefone_fax.fone IS NOT NULL 
-                    THEN 
+                        AND telefone_fax.fone IS NOT NULL
+                    THEN
                         '(' || telefone_fax.ddd || ') ' || telefone_fax.fone
                     WHEN telefone.fone IS NOT NULL
                         AND telefone_add.fone IS NOT NULL
-                        AND telefone_fax.fone IS NULL 
-                    THEN 
+                        AND telefone_fax.fone IS NULL
+                    THEN
                         '(' || telefone.ddd || ') ' || telefone.fone || ' - ' || '('|| telefone_add.ddd ||') '|| telefone_add.fone || '.'
                     WHEN telefone.fone IS NOT NULL
                         AND telefone_add.fone IS NULL
-                        AND telefone_fax.fone IS NOT NULL 
-                    THEN 
+                        AND telefone_fax.fone IS NOT NULL
+                    THEN
                         '(' || telefone.ddd || ') ' || telefone.fone || ' - ' || 'FAX: (' || telefone_fax.ddd ||') '|| telefone_fax.fone || '.'
                     WHEN telefone.fone IS NULL
                         AND telefone_add.fone IS NOT NULL
-                        AND telefone_fax.fone IS NOT NULL 
-                    THEN 
+                        AND telefone_fax.fone IS NOT NULL
+                    THEN
                         '('|| telefone_add.ddd ||') '|| telefone_add.fone || ' - '|| 'FAX: (' || telefone_fax.ddd ||') '|| telefone_fax.fone || '.'
                     ELSE ''
                  END
@@ -196,66 +193,66 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 celular.fone AS celular_fone,
                 fisica_foto.caminho,
                 fisica.data_admissao AS dt_adimissao
-            FROM 
+            FROM
                 cadastro.pessoa pessoa
-            INNER JOIN cadastro.fisica ON TRUE 
+            INNER JOIN cadastro.fisica ON TRUE
                 AND pessoa.idpes = fisica.idpes
-            INNER JOIN pmieducar.servidor ON TRUE 
+            INNER JOIN pmieducar.servidor ON TRUE
                 AND pessoa.idpes = servidor.cod_servidor
-            LEFT JOIN cadastro.estado_civil ON TRUE 
+            LEFT JOIN cadastro.estado_civil ON TRUE
                 AND estado_civil.ideciv = fisica.ideciv
-            LEFT JOIN pmieducar.religiao ON TRUE 
+            LEFT JOIN pmieducar.religiao ON TRUE
                 AND fisica.ref_cod_religiao = religiao.cod_religiao
-            LEFT JOIN cadastro.documento ON TRUE 
+            LEFT JOIN cadastro.documento ON TRUE
                 AND pessoa.idpes = documento.idpes
-            LEFT JOIN cadastro.endereco_pessoa ON TRUE 
+            LEFT JOIN cadastro.endereco_pessoa ON TRUE
                 AND pessoa.idpes = endereco_pessoa.idpes
-            LEFT JOIN public.logradouro ON TRUE 
+            LEFT JOIN public.logradouro ON TRUE
                 AND logradouro.idlog = endereco_pessoa.idlog
-            LEFT JOIN public.municipio municipio_mora ON TRUE 
+            LEFT JOIN public.municipio municipio_mora ON TRUE
                 AND logradouro.idmun = municipio_mora.idmun
-            LEFT JOIN public.bairro ON TRUE 
+            LEFT JOIN public.bairro ON TRUE
                 AND bairro.idbai = endereco_pessoa.idbai
-            LEFT JOIN cadastro.orgao_emissor_rg ON TRUE 
+            LEFT JOIN cadastro.orgao_emissor_rg ON TRUE
                 AND orgao_emissor_rg.idorg_rg = documento.idorg_exp_rg
-            LEFT JOIN cadastro.fone_pessoa telefone ON TRUE 
-                AND telefone.idpes = pessoa.idpes 
+            LEFT JOIN cadastro.fone_pessoa telefone ON TRUE
+                AND telefone.idpes = pessoa.idpes
                 AND telefone.tipo = 1
-            LEFT JOIN cadastro.fone_pessoa telefone_add ON TRUE 
+            LEFT JOIN cadastro.fone_pessoa telefone_add ON TRUE
                 AND telefone_add.idpes = pessoa.idpes
                 AND telefone_add.tipo = 2
-            LEFT JOIN cadastro.fone_pessoa celular ON TRUE 
+            LEFT JOIN cadastro.fone_pessoa celular ON TRUE
                 AND celular.idpes = pessoa.idpes
                 AND celular.tipo = 3
-            LEFT JOIN cadastro.fone_pessoa telefone_fax ON TRUE 
+            LEFT JOIN cadastro.fone_pessoa telefone_fax ON TRUE
                 AND telefone_fax.idpes = pessoa.idpes
                 AND telefone_fax.tipo = 4
-            LEFT JOIN public.municipio municipio_nasceu ON TRUE 
+            LEFT JOIN public.municipio municipio_nasceu ON TRUE
                 AND municipio_nasceu.idmun = fisica.idmun_nascimento
-            LEFT JOIN public.uf ON TRUE 
+            LEFT JOIN public.uf ON TRUE
                 AND municipio_nasceu.sigla_uf = uf.sigla_uf
-            LEFT JOIN public.pais pais_nasceu ON TRUE 
+            LEFT JOIN public.pais pais_nasceu ON TRUE
                 AND pais_nasceu.idpais = uf.idpais
-            LEFT JOIN cadastro.pessoa pessoa_mae ON TRUE 
+            LEFT JOIN cadastro.pessoa pessoa_mae ON TRUE
                 AND pessoa_mae.idpes = fisica.idpes_mae
-            LEFT JOIN cadastro.pessoa pessoa_pai ON TRUE 
+            LEFT JOIN cadastro.pessoa pessoa_pai ON TRUE
                 AND pessoa_pai.idpes = fisica.idpes_pai
-            LEFT JOIN pmieducar.servidor_alocacao ON TRUE 
+            LEFT JOIN pmieducar.servidor_alocacao ON TRUE
                 AND servidor_alocacao.ref_cod_servidor = servidor.cod_servidor
-            LEFT JOIN cadastro.fisica_foto ON TRUE 
+            LEFT JOIN cadastro.fisica_foto ON TRUE
                 AND fisica_foto.idpes = pessoa.idpes
-            LEFT JOIN cadastro.v_pessoa_fisica ON TRUE 
+            LEFT JOIN cadastro.v_pessoa_fisica ON TRUE
                 AND v_pessoa_fisica.idpes = pessoa.idpes
             WHERE TRUE
                 -- AND servidor_alocacao.ano = {$ano}
                 -- AND servidor.ref_cod_instituicao = {$instituicao}
                 -- AND servidor_alocacao.ref_cod_escola = {$escola}
-                AND 
+                AND
                 (
-                    SELECT CASE WHEN {$servidor} = 0 THEN 
-                        TRUE 
-                    ELSE 
-                        servidor.cod_servidor = {$servidor} 
+                    SELECT CASE WHEN {$servidor} = 0 THEN
+                        TRUE
+                    ELSE
+                        servidor.cod_servidor = {$servidor}
                     END
                 )
         ";
@@ -280,9 +277,9 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
         $servidoresIds = implode(', ', $servidoresIds);
 
         $sql = "
-        
+
             SELECT DISTINCT
-                servidor.cod_servidor, 
+                servidor.cod_servidor,
                 translate(upper(pessoa.nome),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS nm_servidor,
                 translate(upper(escolaridade.descricao),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS escolaridade,
                 translate(upper(faculdade_um.nome),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS faculdade_um,
@@ -335,32 +332,32 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 (ARRAY[2] <@ servidor.pos_graduacao)::INTEGER AS pos_mestrado,
                 (ARRAY[3] <@ servidor.pos_graduacao)::INTEGER AS pos_doutorado,
                 (ARRAY[4] <@ servidor.pos_graduacao)::INTEGER AS pos_nenhuma
-            FROM 
+            FROM
                 cadastro.pessoa pessoa
-            INNER JOIN cadastro.fisica ON TRUE 
+            INNER JOIN cadastro.fisica ON TRUE
                 AND pessoa.idpes = fisica.idpes
-            INNER JOIN pmieducar.servidor ON TRUE 
+            INNER JOIN pmieducar.servidor ON TRUE
                 AND pessoa.idpes = servidor.cod_servidor
-            LEFT JOIN cadastro.escolaridade ON TRUE 
+            LEFT JOIN cadastro.escolaridade ON TRUE
                 AND escolaridade.idesco = servidor.ref_idesco
-            LEFT JOIN modules.educacenso_ies faculdade_um ON 
+            LEFT JOIN modules.educacenso_ies faculdade_um ON
                 TRUE AND faculdade_um.id = servidor.instituicao_curso_superior_1
-            LEFT JOIN modules.educacenso_ies faculdade_dois ON 
+            LEFT JOIN modules.educacenso_ies faculdade_dois ON
                 TRUE AND faculdade_dois.id = servidor.instituicao_curso_superior_2
-            LEFT JOIN modules.educacenso_ies faculdade_tres ON 
+            LEFT JOIN modules.educacenso_ies faculdade_tres ON
                 TRUE AND faculdade_tres.id = servidor.instituicao_curso_superior_3
-            LEFT JOIN pmieducar.servidor_alocacao ON TRUE 
+            LEFT JOIN pmieducar.servidor_alocacao ON TRUE
                 AND servidor_alocacao.ref_cod_servidor = servidor.cod_servidor
-            LEFT JOIN modules.educacenso_curso_superior curso_um ON 
+            LEFT JOIN modules.educacenso_curso_superior curso_um ON
                 TRUE AND curso_um.id = servidor.codigo_curso_superior_1
-            LEFT JOIN modules.educacenso_curso_superior curso_dois ON 
+            LEFT JOIN modules.educacenso_curso_superior curso_dois ON
                 TRUE AND curso_dois.id = servidor.codigo_curso_superior_2
-            LEFT JOIN modules.educacenso_curso_superior curso_tres ON 
+            LEFT JOIN modules.educacenso_curso_superior curso_tres ON
                 TRUE AND curso_tres.id = servidor.codigo_curso_superior_3
-            WHERE TRUE 
+            WHERE TRUE
                 AND servidor.ref_cod_instituicao = {$instituicao}
                 AND servidor.cod_servidor IN ({$servidoresIds})
-        
+
         ";
 
         return Portabilis_Utils_Database::fetchPreparedQuery($sql);
@@ -386,8 +383,8 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
         $servidoresIds = implode(', ', $servidoresIds);
 
         $sql = "
-        
-            SELECT DISTINCT 
+
+            SELECT DISTINCT
                 servidor.cod_servidor,
                 translate(upper(pessoa.nome),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS nm_servidor,
                 translate(upper(turma_turno.nome),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS turno,
@@ -408,7 +405,7 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                     ))),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ'
                 ) AS curso,
                 juridica.fantasia
-            FROM 
+            FROM
                 cadastro.pessoa pessoa
             INNER JOIN cadastro.fisica ON TRUE
                 AND pessoa.idpes = fisica.idpes
@@ -428,22 +425,22 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 AND servidor_funcao.cod_servidor_funcao = servidor_alocacao.ref_cod_servidor_funcao
             LEFT JOIN pmieducar.funcao ON TRUE
                 AND servidor_funcao.ref_cod_funcao = funcao.cod_funcao
-            LEFT JOIN pmieducar.servidor_disciplina ON TRUE 
+            LEFT JOIN pmieducar.servidor_disciplina ON TRUE
                 AND servidor_disciplina.ref_cod_servidor = servidor.cod_servidor
                 AND servidor_disciplina.ref_ref_cod_instituicao = servidor_funcao.ref_cod_funcao
-            LEFT JOIN pmieducar.curso ON TRUE 
+            LEFT JOIN pmieducar.curso ON TRUE
                 AND curso.cod_curso = servidor_disciplina.ref_cod_curso
-            LEFT JOIN pmieducar.escola ON TRUE 
+            LEFT JOIN pmieducar.escola ON TRUE
                 AND escola.cod_escola = servidor_alocacao.ref_cod_escola
-            LEFT JOIN cadastro.juridica ON TRUE 
+            LEFT JOIN cadastro.juridica ON TRUE
                 AND escola.ref_idpes = juridica.idpes
-            WHERE TRUE 
+            WHERE TRUE
                 AND servidor_alocacao.ano = {$ano}
                 AND servidor.ref_cod_instituicao = {$instituicao}
                 AND servidor.cod_servidor IN ({$servidoresIds})
                 AND servidor_alocacao.ativo = 1
                 AND fisica.ativo = 1
-        
+
         ";
 
         return Portabilis_Utils_Database::fetchPreparedQuery($sql);

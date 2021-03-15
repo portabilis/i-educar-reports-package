@@ -1,9 +1,5 @@
 <?php
 
-require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/ClassAverageComparativeReport.php';
-require_once 'Portabilis/Date/Utils.php';
-
 class ClassAverageComparativeController extends Portabilis_Controller_ReportCoreController
 {
     /**

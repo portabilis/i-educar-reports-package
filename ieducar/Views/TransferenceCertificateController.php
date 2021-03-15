@@ -2,13 +2,10 @@
 
 use App\Menu;
 
-require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/TransferenceCertificateReport.php';
-
 class TransferenceCertificateController extends Portabilis_Controller_ReportCoreController
 {
     /**
-     * @var int 
+     * @var int
      */
     protected $_processoAp = 999216;
 

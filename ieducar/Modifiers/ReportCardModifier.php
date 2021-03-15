@@ -4,8 +4,6 @@ use App\Models\LegacyEvaluationRuleGradeYear;
 use App\Models\LegacySchoolClass;
 use iEducar\Reports\BaseModifier;
 
-require_once 'Portabilis/Utils/CustomLabel.php';
-
 class ReportCardModifier extends BaseModifier
 {
     /**
@@ -55,7 +53,7 @@ class ReportCardModifier extends BaseModifier
             $grandTotalOfAbsences = $absenceType == RegraAvaliacao_Model_TipoPresenca::GERAL ? $value['total_faltas'] : $value['total_geral_faltas_componente'] ;
 
             $line['media_frequencia'] = $this->getAttendance($absenceType, $grandTotalOfAbsences, $schoolDays, $workload, $absenceHours);
-            
+
             $numericScores = [
                 $value['nota1num'],
                 $value['nota2num'],

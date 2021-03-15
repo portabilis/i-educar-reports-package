@@ -1,7 +1,6 @@
 <?php
 
 use iEducar\Reports\JsonDataSource;
-require_once 'lib/Portabilis/Report/ReportCore.php';
 
 class ConferenceEvaluationsFaultsReport extends Portabilis_Report_ReportCore
 {
@@ -15,7 +14,7 @@ class ConferenceEvaluationsFaultsReport extends Portabilis_Report_ReportCore
         if ($this->useJson()) {
             return 'conference-evaluations-faults';
         }
-        
+
         return  $this->args['modelo'] == 0 ? 'portabilis_conferencia_notas_faltas' : 'portabilis_conferencia_notas_faltas_simplificado';
     }
 

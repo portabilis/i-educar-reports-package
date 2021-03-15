@@ -2,9 +2,6 @@
 
 use App\Menu;
 
-require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/VacancyCertificateReport.php';
-
 class VacancyCertificateController extends Portabilis_Controller_ReportCoreController
 {
     /**

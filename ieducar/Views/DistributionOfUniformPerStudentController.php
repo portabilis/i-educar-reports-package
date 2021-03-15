@@ -1,10 +1,5 @@
 <?php
 
-require_once 'Portabilis/String/Utils.php';
-require_once 'Portabilis/Date/Utils.php';
-require_once 'lib/Portabilis/Controller/ReportCoreController.php';
-require_once 'Reports/Reports/DistributionOfUniformPerStudentReport.php';
-
 class DistributionOfUniformPerStudentController extends Portabilis_Controller_ReportCoreController
 {
     /**

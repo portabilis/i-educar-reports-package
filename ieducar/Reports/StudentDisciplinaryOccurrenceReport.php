@@ -2,9 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-
 class StudentDisciplinaryOccurrenceReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;

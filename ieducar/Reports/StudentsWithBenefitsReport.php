@@ -2,9 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-
 class StudentsWithBenefitsReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
@@ -41,7 +38,7 @@ class StudentsWithBenefitsReport extends Portabilis_Report_ReportCore
         $curso = $this->args['curso'];
         $serie = $this->args['serie'];
         $turma = $this->args['turma'];
-        
+
         return "
 SELECT cod_aluno,
        pessoa.nome AS aluno,

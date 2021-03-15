@@ -2,9 +2,6 @@
 
 use iEducar\Reports\JsonDataSource;
 
-require_once 'lib/Portabilis/Report/ReportCore.php';
-require_once 'App/Model/IedFinder.php';
-
 class SchoolsReport extends Portabilis_Report_ReportCore
 {
     use JsonDataSource;
@@ -57,41 +54,41 @@ select
 	p.nome as nm_escola,
 	to_char(current_date,'dd/mm/yyyy') AS data_atual,
 	to_char(current_timestamp, 'HH24:MI:SS') AS hora_atual
-from pmieducar.instituicao i 
-inner join pmieducar.escola e 
-on e.ref_cod_instituicao = i.cod_instituicao 
-inner join cadastro.pessoa p 
-on p.idpes = e.ref_idpes 
-inner join pmieducar.escola_ano_letivo eal 
-on eal.ref_cod_escola = e.cod_escola 
-left join public.person_has_place php 
-on php.person_id = p.idpes 
-left join public.addresses a 
-on a.id = php.place_id 
-left join cadastro.fone_pessoa fp 
-on fp.idpes = p.idpes 
+from pmieducar.instituicao i
+inner join pmieducar.escola e
+on e.ref_cod_instituicao = i.cod_instituicao
+inner join cadastro.pessoa p
+on p.idpes = e.ref_idpes
+inner join pmieducar.escola_ano_letivo eal
+on eal.ref_cod_escola = e.cod_escola
+left join public.person_has_place php
+on php.person_id = p.idpes
+left join public.addresses a
+on a.id = php.place_id
+left join cadastro.fone_pessoa fp
+on fp.idpes = p.idpes
 and fp.tipo = 1
 left join cadastro.fone_pessoa fp_cel
-on fp_cel.idpes = p.idpes 
+on fp_cel.idpes = p.idpes
 and fp_cel.tipo = 3
-left join modules.educacenso_cod_escola ece 
-on ece.cod_escola = e.cod_escola 
-where true 
+left join modules.educacenso_cod_escola ece
+on ece.cod_escola = e.cod_escola
+where true
 and i.cod_instituicao = $instituicao
-and e.ativo = 1 
-and eal.ano = $ano 
-and eal.ativo = 1 
+and e.ativo = 1
+and eal.ano = $ano
+and eal.ativo = 1
 and (
 	select case when $curso = 0 then 1 = 1
 	else (
-		select 1 
-		from pmieducar.escola_curso ec 
-		where ec.ref_cod_escola = e.cod_escola 
+		select 1
+		from pmieducar.escola_curso ec
+		where ec.ref_cod_escola = e.cod_escola
 		and ec.ref_cod_curso = $curso
 	) is not null
 	end
 )
-order by 
+order by
 	p.nome
 SQL;
     }
