@@ -1,0 +1,24 @@
+{
+    "name": "portabilis/i-educar-reports-package",
+    "authors": [
+        {
+            "name": "Portabilis Tecnologia",
+            "email": "contato@portabilis.com.br"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "ieducar"
+        ],
+        "psr-4": {
+            "iEducar\\Community\\Reports\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "iEducar\\Community\\Reports\\Providers\\ReportsServiceProvider"
+            ]
+        }
+    }
+}

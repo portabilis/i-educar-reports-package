@@ -12,12 +12,13 @@ Para intermediar a conexão entre PHP e Java, é utilizada a biblioteca [JasperS
 
 ## Instalação
 
-Para adicionar os relatórios ao i-Educar clone este repositório em 
-`ieducar/modules/Reports` e faça a instalação:
+Para adicionar o pacote de relatórios execute estes comandos na raiz do projeto:
 
 ```bash
-# Execute este comando na raiz do projeto i-educar
-git clone https://github.com/portabilis/i-educar-reports-package.git ieducar/modules/Reports
+git clone https://github.com/portabilis/i-educar-reports-package.git packages/portabilis/i-educar-reports-package
+
+# (Docker) docker-compose exec php composer update --plug-and-play
+composer update --plug-and-play
 
 # (Docker) docker-compose exec php artisan reports:install
 php artisan reports:install
