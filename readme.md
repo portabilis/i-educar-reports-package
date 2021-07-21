@@ -1,18 +1,18 @@
 # Relatórios do i-Educar
 
-Os relatórios utilizam a biblioteca [JasperReports](https://community.jaspersoft.com/project/jasperreports-library), 
+Os relatórios utilizam a biblioteca [JasperReports](https://community.jaspersoft.com/project/jasperreports-library)
 desenvolvida em Java para renderizar os arquivos em PDF.
 
-Para intermediar a conexão entre PHP e Java, é utilizada a biblioteca [JasperStarter](http://jasperstarter.cenote.de/).
+Para intermediar a conexão entre PHP e Java é utilizada a biblioteca [JasperStarter](http://jasperstarter.cenote.de/).
 
 ## Dependências
 
-- É necessário que o PHP tenha permissão para executar as funções `exec` e `passthru`.
-- Ter o [OpenJDK](https://openjdk.java.net/) instalado no servidor.
+- PHP ter permissão para executar as funções `exec` e `passthru` no servidor.
+- [OpenJDK](https://openjdk.java.net/) 8 instalado no servidor.
 
 ## Instalação
 
-Para adicionar o pacote de relatórios execute estes comandos na raiz do projeto:
+Para adicionar o pacote de relatórios execute estes comandos na raiz do projeto i-Educar:
 
 ```bash
 git clone https://github.com/portabilis/i-educar-reports-package.git packages/portabilis/i-educar-reports-package
