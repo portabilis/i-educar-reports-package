@@ -16,7 +16,7 @@ class AddTeachersAndCoursesTaughtByClassReportMenu extends Migration
             'parent_id' => Menu::query()->where('old', 999914)->firstOrFail()->getKey(),
             'title' => 'Relatório de docentes e disciplinas lecionadas por turma',
             'description' => null,
-            'link' => '/module/Reports/StudentsWithDisabilities',
+            'link' => '/module/Reports/TeachersAndCoursesTaughtByClass',
             'order' => 0,
             'old' => 999860,
             'process' => 999860,
