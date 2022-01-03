@@ -626,7 +626,7 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
                          ELSE 'UTILIZA'
                      END) AS transporte_aluno,
 
-  (SELECT to_char(data_cadastro, 'dd/MM/yyyy')
+  (SELECT to_char(COALESCE(data_matricula, data_cadastro), 'dd/MM/yyyy')
    FROM pmieducar.matricula
    WHERE cod_matricula = {$matricula}
      AND matricula.ativo = 1
