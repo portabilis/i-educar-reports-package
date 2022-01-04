@@ -34,7 +34,6 @@ class ConclusionCertificateController extends Portabilis_Controller_ReportCoreCo
         $this->inputsHelper()->dynamic(['ano', 'instituicao', 'escola', 'curso', 'serie']);
         $this->inputsHelper()->dynamic('turma', (['required' => false]));
         $this->inputsHelper()->simpleSearchMatricula(null, ['required' => false]);
-        $this->inputsHelper()->checkbox('lote', ['label' => 'Emitir em lote?']);
         $this->inputsHelper()->checkbox('mostrar_prazo_entrega_historico', ['label' => 'Emitir prazo de entrega do histórico escolar?']);
         $this->inputsHelper()->integer('prazo_entrega_historico', [
             'required' => false,
@@ -58,13 +57,9 @@ class ConclusionCertificateController extends Portabilis_Controller_ReportCoreCo
         $this->report->addArg('instituicao', (int) $this->getRequest()->ref_cod_instituicao);
         $this->report->addArg('escola', (int) $this->getRequest()->ref_cod_escola);
         $this->report->addArg('matricula', (int) $this->getRequest()->matricula_id);
-
-        if ((bool) $this->getRequest()->lote) {
-            $this->report->addArg('curso', (int) $this->getRequest()->ref_cod_curso);
-            $this->report->addArg('serie', (int) $this->getRequest()->ref_cod_serie);
-            $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
-        }
-
+        $this->report->addArg('curso', (int) $this->getRequest()->ref_cod_curso);
+        $this->report->addArg('serie', (int) $this->getRequest()->ref_cod_serie);
+        $this->report->addArg('turma', (int) $this->getRequest()->ref_cod_turma);
         $this->report->addArg('mostrar_prazo_entrega_historico', (bool) $this->getRequest()->mostrar_prazo_entrega_historico);
         $this->report->addArg('prazo_entrega_historico', (int) $this->getRequest()->prazo_entrega_historico);
         $this->report->addArg('observacao', $this->getRequest()->observacao);
