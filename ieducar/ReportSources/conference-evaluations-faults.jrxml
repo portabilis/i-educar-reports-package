@@ -884,7 +884,7 @@
 														<rightPen lineWidth="0.5"/>
 													</box>
 													<textElement textAlignment="Right" verticalAlignment="Middle">
-														<font fontName="Droid Sans" size="8"/>
+														<font fontName="DejaVu Sans" size="8"/>
 														<paragraph rightIndent="2"/>
 													</textElement>
 													<textFieldExpression><![CDATA[$V{ROW_COUNT}]]></textFieldExpression>
@@ -928,7 +928,7 @@
 														<rightPen lineWidth="0.5"/>
 													</box>
 													<textElement textAlignment="Left" verticalAlignment="Middle">
-														<font fontName="Droid Sans" size="8"/>
+														<font fontName="DejaVu Sans" size="8"/>
 														<paragraph leftIndent="2"/>
 													</textElement>
 													<textFieldExpression><![CDATA[$V{nm_aluno}]]></textFieldExpression>
@@ -961,7 +961,7 @@
 														<rightPen lineWidth="0.5"/>
 													</box>
 													<textElement textAlignment="Center" verticalAlignment="Middle">
-														<font fontName="Droid Sans" size="8"/>
+														<font fontName="DejaVu Sans" size="8"/>
 														<paragraph rightIndent="2"/>
 													</textElement>
 													<textFieldExpression><![CDATA[$V{situacao_simplificado}]]></textFieldExpression>
@@ -1057,7 +1057,7 @@
 													<rightPen lineWidth="0.5"/>
 												</box>
 												<textElement verticalAlignment="Middle">
-													<font fontName="Droid Sans" size="8"/>
+													<font fontName="DejaVu Sans" size="8"/>
 												</textElement>
 												<textFieldExpression><![CDATA[$V{measureNota4} == null ? "-" : $V{measureNota4}]]></textFieldExpression>
 											</textField>
@@ -1068,7 +1068,7 @@
 													<rightPen lineWidth="0.5"/>
 												</box>
 												<textElement verticalAlignment="Middle">
-													<font fontName="Droid Sans" size="8"/>
+													<font fontName="DejaVu Sans" size="8"/>
 												</textElement>
 												<textFieldExpression><![CDATA[$V{measureFalta4} == null ? "-" : $V{measureFalta4}]]></textFieldExpression>
 											</textField>
