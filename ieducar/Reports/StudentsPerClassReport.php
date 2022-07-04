@@ -104,13 +104,13 @@ class StudentsPerClassReport extends Portabilis_Report_ReportCore
                 AND serie.ativo = 1
             INNER JOIN pmieducar.turma ON TRUE
                 AND turma.ref_ref_cod_escola = escola.cod_escola
-                AND turma.ref_cod_curso = escola_curso.ref_cod_curso
-                AND turma.ref_ref_cod_serie = escola_serie.ref_cod_serie
                 AND turma.ativo = 1
             INNER JOIN pmieducar.matricula_turma ON TRUE
                 AND matricula_turma.ref_cod_turma = turma.cod_turma
             INNER JOIN pmieducar.matricula ON TRUE
                 AND matricula.cod_matricula = matricula_turma.ref_cod_matricula
+                AND matricula.ref_cod_curso = curso.cod_curso
+                AND matricula.ref_ref_cod_serie = serie.cod_serie
                 AND matricula.ativo = 1
             INNER JOIN relatorio.view_situacao ON TRUE
                 AND view_situacao.cod_matricula = matricula.cod_matricula
