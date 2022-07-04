@@ -99,11 +99,11 @@ trait DescriptiveOpinionsTrait
                                                      AND escola_serie.ativo = 1)
              INNER JOIN pmieducar.serie ON (serie.cod_serie = escola_serie.ref_cod_serie
                                               AND serie.ref_cod_curso = escola_curso.ref_cod_curso)
-             INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_escola = escola.cod_escola
-                                             AND turma.ref_ref_cod_serie = serie.cod_serie
-                                             AND turma.ref_cod_curso = escola_curso.ref_cod_curso)
+             INNER JOIN pmieducar.turma ON (turma.ref_ref_cod_escola = escola.cod_escola)
              INNER JOIN pmieducar.matricula_turma ON (matricula_turma.ref_cod_turma = turma.cod_turma)
              INNER JOIN pmieducar.matricula ON (matricula.ref_ref_cod_escola = escola.cod_escola
+                                                AND matricula.ref_ref_cod_serie = serie.cod_serie
+                                                AND matricula.ref_cod_curso = curso.cod_curso
                                                 AND matricula.cod_matricula = matricula_turma.ref_cod_matricula
                                 AND matricula.ano = escola_ano_letivo.ano)
              INNER JOIN pmieducar.turma_turno ON (turma_turno.id = turma.turma_turno_id)
