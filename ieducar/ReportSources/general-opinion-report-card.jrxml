@@ -368,7 +368,7 @@
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Justified" verticalAlignment="Top">
+				<textElement textAlignment="Justified" verticalAlignment="Top" markup="html">
 					<font fontName="DejaVu Sans" size="10"/>
 					<paragraph leftIndent="49" rightIndent="10"/>
 				</textElement>
