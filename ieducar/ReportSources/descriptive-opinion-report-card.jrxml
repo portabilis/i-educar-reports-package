@@ -479,7 +479,7 @@
                 <subreportParameter name="source">
                     <subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
                 </subreportParameter>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait-report-card.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-landscape-report-card.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</pageHeader>
