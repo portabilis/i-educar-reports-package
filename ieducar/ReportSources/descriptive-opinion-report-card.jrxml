@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_boletim_parecer" language="groovy" pageWidth="842" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1cbd6c8d-2329-4968-a1db-f173bd1ccd02">
 	<property name="ireport.zoom" value="1.6105100000000048"/>
-	<property name="ireport.x" value="180"/>
+	<property name="ireport.x" value="162"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="ano" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
@@ -51,7 +51,7 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String">
 		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
 	</parameter>
-    <parameter name="source" class="java.lang.String"/>
+	<parameter name="source" class="java.lang.String"/>
 	<parameter name="diario" class="java.lang.String"/>
 	<parameter name="orientacao" class="java.lang.String"/>
 	<parameter name="selecionar_areas_conhecimento" class="java.lang.String"/>
@@ -476,10 +476,10 @@
 				<subreportParameter name="ano">
 					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
 				</subreportParameter>
-                <subreportParameter name="source">
-                    <subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
-                </subreportParameter>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait-report-card.jasper"]]></subreportExpression>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-landscape-report-card.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</pageHeader>
@@ -512,7 +512,7 @@
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement uuid="bf43577a-d7f6-4702-8382-8424b1223f59" positionType="Float" stretchType="RelativeToBandHeight" x="152" y="1" width="572" height="15"/>
-				<textElement textAlignment="Justified">
+				<textElement textAlignment="Justified" markup="html">
 					<font fontName="DejaVu Sans" size="8"/>
 					<paragraph lineSpacing="1_1_2"/>
 				</textElement>
