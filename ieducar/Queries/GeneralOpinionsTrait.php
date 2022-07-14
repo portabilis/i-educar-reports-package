@@ -107,8 +107,6 @@ trait GeneralOpinionsTrait
             AND serie.ativo = 1
         INNER JOIN pmieducar.turma AS turma
             ON turma.ref_ref_cod_escola = escola.cod_escola
-            AND turma.ref_cod_curso = escola_curso.ref_cod_curso
-            AND turma.ref_ref_cod_serie = escola_serie.ref_cod_serie
             AND turma.ativo = 1
         JOIN modules.regra_avaliacao_serie_ano rasa
           ON serie.cod_serie = rasa.serie_id
@@ -124,7 +122,9 @@ trait GeneralOpinionsTrait
         INNER JOIN
             pmieducar.matricula AS m
             ON m.cod_matricula = mt.ref_cod_matricula
-                          AND m.ano = turma.ano
+            AND m.ref_cod_curso = curso.cod_curso
+            AND m.ref_ref_cod_serie = serie.cod_serie
+            AND m.ano = turma.ano
         INNER JOIN
             pmieducar.aluno AS aluno
             ON aluno.cod_aluno = m.ref_cod_aluno

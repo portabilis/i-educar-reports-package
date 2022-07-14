@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\LegacySchoolClassGrade;
 use iEducar\Reports\JsonDataSource;
 
 class ReportCardReport extends Portabilis_Report_ReportCore
@@ -28,6 +29,16 @@ class ReportCardReport extends Portabilis_Report_ReportCore
     public function templateName()
     {
         $flagTipoBoletimTurma = App_Model_IedFinder::getTurma($codTurma = $this->args['turma']);
+
+        if ($flagTipoBoletimTurma['multiseriada'] == 1) {
+            $boletimSerie = LegacySchoolClassGrade::query()
+                ->where('turma_id', $this->args['turma'])
+                ->where('serie_id', $this->args['serie'])
+                ->first();
+
+            $flagTipoBoletimTurma['tipo_boletim'] = $boletimSerie->boletim_id;
+            $flagTipoBoletimTurma['tipo_boletim_diferenciado'] = $boletimSerie->boletim_diferenciado_id;
+        }
 
         if (
             $flagTipoBoletimTurma['tipo_boletim_diferenciado']
