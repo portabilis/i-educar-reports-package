@@ -8,6 +8,10 @@ class GeneralMovementReport extends Portabilis_Report_ReportCore
         GeneralMovementTrait::query as QueryGeneralMovement;
     }
 
+    public $modifiers = [
+        GeneralMovementModifier::class,
+    ];
+
     public function templateName()
     {
         return 'general-movement';
