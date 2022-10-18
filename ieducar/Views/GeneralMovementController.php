@@ -2,6 +2,8 @@
 
 class GeneralMovementController extends Portabilis_Controller_ReportCoreController
 {
+    protected $_processoAp = 9998868;
+
     protected $_titulo = 'Relatório de movimento geral';
 
     protected function _preRender()
