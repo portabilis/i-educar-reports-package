@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_relacao_etiquetas_mala_direta" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="660c525a-0168-4141-8483-3075f389d9a9">
+    <property name="ireport.zoom" value="1.2396694214876038"/>
+    <property name="ireport.x" value="39"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="ano" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+    </parameter>
+    <parameter name="instituicao" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+    </parameter>
+    <parameter name="escola" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+    </parameter>
+    <parameter name="curso" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+    </parameter>
+    <parameter name="serie" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+    </parameter>
+    <parameter name="turma" class="java.lang.Integer"/>
+    <parameter name="logo" class="java.lang.String"/>
+    <parameter name="situacao" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+    </parameter>
+    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+    </parameter>
+    <parameter name="database" class="java.lang.String">
+        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+    </parameter>
+    <parameter name="data_emissao" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+    </parameter>
+    <parameter name="proerd" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+    </parameter>
+    <parameter name="source" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="sequencial_fechamento" class="java.lang.Integer"/>
+    <field name="cod_aluno" class="java.lang.Integer"/>
+    <field name="nome_aluno" class="java.lang.String"/>
+    <field name="fone" class="java.math.BigDecimal"/>
+    <field name="ddd" class="java.math.BigDecimal"/>
+    <field name="fone2" class="java.math.BigDecimal"/>
+    <field name="ddd2" class="java.math.BigDecimal"/>
+    <field name="nm_mae" class="java.lang.String"/>
+    <field name="nm_pai" class="java.lang.String"/>
+    <field name="numero_aluno" class="java.lang.String"/>
+    <field name="apartamento_aluno" class="java.lang.Integer"/>
+    <field name="complemento_aluno" class="java.lang.String"/>
+    <field name="cep_aluno" class="java.lang.String"/>
+    <field name="logradouro_aluno" class="java.lang.String"/>
+    <field name="municipio_aluno" class="java.lang.String"/>
+    <field name="sigla_uf_aluno" class="java.lang.String"/>
+    <field name="bairro_aluno" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <detail>
+        <band height="45" splitType="Stretch">
+            <rectangle>
+                <reportElement uuid="5ff9c9be-0d6d-4d68-a70d-9c062492bb50" x="0" y="0" width="555" height="40"/>
+                <graphicElement>
+                    <pen lineWidth="0.5"/>
+                </graphicElement>
+            </rectangle>
+            <textField>
+                <reportElement uuid="122f99e7-43e7-4a80-b518-ad3abb2b964f" x="2" y="16" width="553" height="10"/>
+                <textElement markup="html">
+                    <font fontName="DejaVu Sans" size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA["<b>Endereço:</b> "+($F{logradouro_aluno} != null ? $F{logradouro_aluno}+", " : "" )+($F{logradouro_aluno} != null ? ($F{numero_aluno} != null ? $F{numero_aluno} : "S/N") : "") +($F{bairro_aluno} != null ? ", "+$F{bairro_aluno} : "" )+($F{municipio_aluno} != null ? " - "+$F{municipio_aluno} : "" )+($F{sigla_uf_aluno} != null ? " - "+$F{sigla_uf_aluno} : "" )+($F{municipio_aluno} != null ? " - CEP: "+$F{cep_aluno} : "" )]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="122f99e7-43e7-4a80-b518-ad3abb2b964f" x="2" y="2" width="553" height="12"/>
+                <textElement>
+                    <font fontName="DejaVu Sans" size="9" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nome_aluno}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="1176d12b-48c8-4a50-8104-f9daf02dc0d4" x="2" y="28" width="150" height="10"/>
+                <textElement markup="html">
+                    <font fontName="DejaVu Sans" size="8" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA["<b>Telefone:</b> "+($F{ddd} != null ? "("+$F{ddd}+")" : "(  )")+($F{fone} != null ? $F{fone} : "")]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="1176d12b-48c8-4a50-8104-f9daf02dc0d4" x="168" y="28" width="150" height="10"/>
+                <textElement markup="html">
+                    <font fontName="DejaVu Sans" size="8" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA["<b>Celular:</b> "+($F{ddd2} != null ? "("+$F{ddd2}+")" : "(  )")+($F{fone2} != null ? $F{fone2} : "")]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>
