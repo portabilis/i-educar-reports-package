@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_estatisticas_json" language="groovy" pageWidth="289" pageHeight="52" orientation="Landscape" columnWidth="289" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d2ddb19-fbc0-4ec9-9b68-1b3f41c8ef77">
+	<property name="ireport.zoom" value="2.3579476910000023"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cod_instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cod_escola" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ano" class="java.lang.Integer"/>
+	<parameter name="titulo" class="java.lang.String"/>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<queryString language="json">
+		<![CDATA[statistics]]>
+	</queryString>
+	<field name="students" class="java.lang.String"/>
+	<field name="approved" class="java.lang.String"/>
+	<field name="disapproved" class="java.lang.String"/>
+	<field name="studying" class="java.lang.String"/>
+	<field name="transferred" class="java.lang.String"/>
+	<field name="reclassified" class="java.lang.String"/>
+	<field name="abandonment" class="java.lang.String"/>
+	<field name="deceased" class="java.lang.String"/>
+	<field name="dependency" class="java.lang.String"/>
+	<field name="relocated" class="java.lang.String"/>
+	<pageHeader>
+		<band height="52" splitType="Stretch">
+			<elementGroup>
+				<textField>
+					<reportElement uuid="9196a87d-1ba1-411f-b3ad-7df32fed8489" x="67" y="2" width="20" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{students}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="05eb35c2-28cd-4219-a7f6-73ca742cfc6e" x="167" y="14" width="20" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{studying}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="67fcfb55-035e-4136-9b06-216525242475" x="67" y="14" width="20" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{approved}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="e6814b60-20ed-4f50-98e0-6e5bd4a8061a" x="67" y="26" width="20" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{disapproved}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="241f9b0a-a76b-4e28-b027-92cd9e8731ef" x="67" y="38" width="20" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{dependency}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="8f1d630b-4cc5-4dc9-9b95-7849339dbdbb" x="167" y="26" width="20" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{transferred}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="d0efb7ff-32b6-4f65-8f28-42cbb1f4ac7b" x="267" y="14" width="20" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{reclassified}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="2cd07cef-b692-4d0d-bb4c-cb80a5aab9ea" x="267" y="26" width="20" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{abandonment}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="bd35193d-367b-4dd5-a79d-7825c6f08c76" x="267" y="38" width="20" height="12"/>
+					<textElement textAlignment="Right">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{deceased}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<staticText>
+					<reportElement uuid="130c027a-a6d7-4dc2-a27b-fbfc53a34a92" x="2" y="2" width="65" height="12"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Estatísticas:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="fbbfa6a2-c376-4c95-b1d9-3835e0e18005" x="2" y="14" width="65" height="12"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Aprovados:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4b68b7cd-0753-4fee-ae47-8a7b44e5f652" x="2" y="26" width="65" height="12"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Reprovados:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4b68b7cd-0753-4fee-ae47-8a7b44e5f652" x="2" y="38" width="65" height="12"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Cursando dep.:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4b68b7cd-0753-4fee-ae47-8a7b44e5f652" x="102" y="14" width="65" height="12"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Cursandos:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4b1390b6-1769-4771-a4b9-bd5a45ad7fad" x="102" y="26" width="65" height="12"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Transferidos:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="89452db7-4b51-4eb5-a74d-ff5aec6bf980" x="102" y="38" width="65" height="12"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Remanejados:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4b68b7cd-0753-4fee-ae47-8a7b44e5f652" x="202" y="14" width="65" height="12"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Reclassificados:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4b68b7cd-0753-4fee-ae47-8a7b44e5f652" x="202" y="26" width="65" height="12"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Abandonados:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4b68b7cd-0753-4fee-ae47-8a7b44e5f652" x="202" y="38" width="65" height="12"/>
+					<textElement>
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<text><![CDATA[Falecidos:]]></text>
+				</staticText>
+			</elementGroup>
+			<rectangle>
+				<reportElement uuid="5bcda42b-491a-4621-866a-03441c13db82" mode="Transparent" x="0" y="0" width="289" height="52"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</rectangle>
+			<textField>
+				<reportElement uuid="39e282c9-c431-4223-8411-1deeda9bf5fd" x="167" y="38" width="20" height="12"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{relocated}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>
