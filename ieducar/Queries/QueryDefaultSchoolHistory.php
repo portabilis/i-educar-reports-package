@@ -38,7 +38,6 @@ class QueryDefaultSchoolHistory extends QueryBridge
                             AND historico_escolar.extra_curricular = 0
                             AND historico_escolar.ref_cod_aluno = he.ref_cod_aluno
                             AND historico_escolar.aprovado IN (1, 2, 3, 14)
-                            AND $P!{eja_exibir_curso}
                         ORDER BY ano desc,(CASE WHEN historico_escolar.aprovado = 3 THEN 1 WHEN historico_escolar.aprovado IN (2, 14) THEN 2 WHEN historico_escolar.aprovado = 1 THEN 3 END), substring(nm_curso, 1, 1) desc
                         LIMIT 1) as aprovado_eja,
                 he.faltas_globalizadas,
@@ -57,7 +56,6 @@ class QueryDefaultSchoolHistory extends QueryBridge
                             AND historico_escolar.extra_curricular = 0
                             AND historico_escolar.ref_cod_aluno = he.ref_cod_aluno
                             AND historico_escolar.aprovado IN (1, 2, 3, 14)
-                            AND $P!{eja_exibir_curso}
                         ORDER BY ano desc,(CASE WHEN historico_escolar.aprovado = 3 THEN 1 WHEN historico_escolar.aprovado IN (2, 14) THEN 2 WHEN historico_escolar.aprovado = 1 THEN 3 END),
                         ano desc, substring(nm_curso, 1, 1) desc
                         LIMIT 1),

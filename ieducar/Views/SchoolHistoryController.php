@@ -100,7 +100,6 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
         $this->report->addArg('cursoaluno', trim($cursoaluno) == '' ? 0 : $cursoaluno);
         $this->report->addArg('apenas_ultimo_registro', (bool)$this->getRequest()->apenas_ultimo_registro);
         $this->report->addArg('sequencial', (int)$this->getRequest()->sequencial);
-        $this->report->addArg('eja_exibir_curso', config('legacy.report.historico_escolar.eja_exibir_curso', false));
         $this->report->addArg('assinatura_secretario', urldecode((string) $this->getRequest()->assinatura_secretario));
     }
 
