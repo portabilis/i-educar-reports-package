@@ -21,6 +21,7 @@
 	<parameter name="nm_secretario" class="java.lang.String"/>
 	<parameter name="nm_diretor" class="java.lang.String"/>
 	<parameter name="modelo" class="java.lang.Integer"/>
+    <parameter name="assinatura_secretario" class="java.lang.String"/>
 	<parameter name="data_emissao" class="java.lang.String"/>
 	<parameter name="portaria_aprovacao_pontos" class="java.lang.String"/>
 	<parameter name="nao_emitir_reprovado" class="java.lang.Boolean">
