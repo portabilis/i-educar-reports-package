@@ -19,6 +19,8 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
             4 => 'school-history-eja'
         ];
 
+        $this->lote = $this->args['lote'];
+
         return $templates[$this->args['modelo']];
     }
 

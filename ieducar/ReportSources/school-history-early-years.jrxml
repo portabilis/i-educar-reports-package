@@ -93,6 +93,7 @@
 	<parameter name="alunos" class="java.lang.String"/>
 	<parameter name="grade_curso_eja" class="java.lang.String"/>
 	<parameter name="view_score" class="java.lang.String"/>
+	<parameter name="lote" class="java.lang.Boolean"/>
 	<field name="municipio" class="java.lang.String"/>
 	<field name="cod_aluno" class="java.lang.Integer"/>
 	<field name="nome_aluno" class="java.lang.String"/>

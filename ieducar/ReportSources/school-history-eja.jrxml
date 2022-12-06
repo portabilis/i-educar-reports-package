@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_historico_escolar_eja_jcarei" language="groovy" pageWidth="595" pageHeight="842" columnWidth="545" leftMargin="25" rightMargin="25" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="b207692a-3e84-4d74-845d-329366699ea8">
-	<property name="ireport.zoom" value="2.1435888100000042"/>
+	<property name="ireport.zoom" value="1.6105100000000032"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="1"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<style name="table">
 		<box>
@@ -134,6 +134,7 @@
 	<parameter name="alunos" class="java.lang.String"/>
 	<parameter name="grade_curso_eja" class="java.lang.Integer"/>
 	<parameter name="view_score" class="java.lang.String"/>
+	<parameter name="lote" class="java.lang.Boolean"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -319,7 +320,7 @@
 	<variable name="chd1_1" class="java.lang.Integer" resetType="Group" resetGroup="cod_aluno" calculation="Sum">
 		<variableExpression><![CDATA[$F{chd1}]]></variableExpression>
 	</variable>
-	<group name="cod_aluno" minHeightToStartNewPage="300" keepTogether="true">
+	<group name="cod_aluno" isStartNewPage="true" minHeightToStartNewPage="300" keepTogether="true">
 		<groupExpression><![CDATA[$F{cod_aluno}]]></groupExpression>
 		<groupFooter>
 			<band height="69">
