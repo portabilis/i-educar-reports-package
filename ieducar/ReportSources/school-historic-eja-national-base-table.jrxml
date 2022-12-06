@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_historico_escolar_eja_jacarei_tabela_base_nacional.jrxml" language="groovy" pageWidth="495" pageHeight="842" columnWidth="495" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="934ce63e-ab36-4880-bee7-4355f98785af">
+    <property name="ireport.zoom" value="3.138428376721004"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <style name="table">
+        <pen lineStyle="Solid"/>
+        <box>
+            <pen lineWidth="1.0" lineColor="#000000"/>
+            <topPen lineWidth="0.0"/>
+            <leftPen lineWidth="0.0"/>
+            <bottomPen lineWidth="0.0"/>
+            <rightPen lineWidth="0.5"/>
+        </box>
+    </style>
+    <style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$F{sequencial} %2 == 0]]></conditionExpression>
+            <style mode="Opaque" backcolor="#CDCDCD"/>
+        </conditionalStyle>
+    </style>
+    <parameter name="aluno" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+    </parameter>
+    <parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+        <defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+    </parameter>
+    <parameter name="source" class="java.lang.String"/>
+    <parameter name="dir" class="java.lang.String"/>
+    <queryString language="json">
+        <![CDATA[query_empty_sub]]>
+    </queryString>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <detail>
+        <band height="40" splitType="Stretch">
+            <rectangle>
+                <reportElement uuid="173bf33b-9685-45c5-a1a7-eb5b4c362c7e" stretchType="RelativeToBandHeight" x="65" y="30" width="431" height="9"/>
+                <graphicElement>
+                    <pen lineWidth="0.5"/>
+                </graphicElement>
+            </rectangle>
+            <subreport isUsingCache="false" runToBottom="false">
+                <reportElement uuid="0b24ea53-fd8a-4e26-b3f3-d1de9a8a49d7" positionType="Float" x="64" y="30" width="429" height="10"/>
+                <subreportParameter name="source">
+                    <subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="aluno">
+                    <subreportParameterExpression><![CDATA[$P{aluno}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportExpression><![CDATA[$P{dir} + "school-history-eja-scores.jasper"]]></subreportExpression>
+            </subreport>
+            <textField>
+                <reportElement uuid="d46f4317-7985-42ed-9064-e4dfb83d852a" stretchType="RelativeToBandHeight" x="0" y="0" width="65" height="40"/>
+                <box>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA["ART. 38"]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement uuid="bf9bfb53-a4c3-4e06-abf2-31bae5e220a6" x="65" y="0" width="199" height="30"/>
+                <box>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[COMPONENTES CURRICULARES]]></text>
+            </staticText>
+            <staticText>
+                <reportElement uuid="896d1363-f768-4f7e-a4d6-e98714b96f12" x="264" y="0" width="232" height="15"/>
+                <box>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[CONCEITOS OU NOTAS]]></text>
+            </staticText>
+            <staticText>
+                <reportElement uuid="72ff496f-7809-4d2b-86f0-2daa6b7ef62f" x="265" y="15" width="58" height="15"/>
+                <box>
+                    <bottomPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[1ª ETAPA]]></text>
+            </staticText>
+            <staticText>
+                <reportElement uuid="0b7db9df-4a35-4a9e-b3fc-a1ce5aeee7f4" x="323" y="15" width="58" height="15"/>
+                <box>
+                    <bottomPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[2ª ETAPA]]></text>
+            </staticText>
+            <staticText>
+                <reportElement uuid="cd050eb6-f3ae-49e6-8e16-7cfda67b549f" x="381" y="15" width="58" height="15"/>
+                <box>
+                    <bottomPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[3ª ETAPA]]></text>
+            </staticText>
+            <staticText>
+                <reportElement uuid="684d5936-e180-4e85-9bdb-53de7349f835" x="438" y="15" width="58" height="15"/>
+                <box>
+                    <bottomPen lineWidth="0.5"/>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[4º ETAPA]]></text>
+            </staticText>
+        </band>
+        <band height="19">
+            <rectangle>
+                <reportElement uuid="173bf33b-9685-45c5-a1a7-eb5b4c362c7e" stretchType="RelativeToBandHeight" x="65" y="0" width="431" height="19"/>
+                <graphicElement>
+                    <pen lineWidth="0.5"/>
+                </graphicElement>
+            </rectangle>
+            <subreport isUsingCache="false" runToBottom="false">
+                <reportElement uuid="0b24ea53-fd8a-4e26-b3f3-d1de9a8a49d7" positionType="Float" x="64" y="0" width="429" height="19"/>
+                <subreportParameter name="source">
+                    <subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="aluno">
+                    <subreportParameterExpression><![CDATA[$P{aluno}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportExpression><![CDATA[$P{dir} + "school-history-eja-scores-diversified.jasper"]]></subreportExpression>
+            </subreport>
+            <textField isStretchWithOverflow="true">
+                <reportElement uuid="d46f4317-7985-42ed-9064-e4dfb83d852a" stretchType="RelativeToBandHeight" x="0" y="0" width="65" height="19"/>
+                <box>
+                    <rightPen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="8" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Parte diversificada"]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement uuid="dd6304ef-6a0c-4706-bce1-6b2017f7e23e" x="1" y="-1" width="495" height="1"/>
+                <graphicElement>
+                    <pen lineWidth="0.5"/>
+                </graphicElement>
+            </line>
+        </band>
+    </detail>
+</jasperReport>

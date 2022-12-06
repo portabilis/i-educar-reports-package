@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="school-history-crosstab-dataset" language="groovy" pageWidth="545" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="545" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d0fe67f1-b370-4e00-9258-401b9aa27029">
+	<property name="ireport.zoom" value="2.3579476910000725"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<parameter name="aluno" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="matricula_transferido" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<queryString language="json">
+		<![CDATA[registration_transfer_diversified(cod_matricula == $P{matricula_transferido})]]>
+	</queryString>
+	<field name="nm_curso" class="java.lang.String"/>
+	<field name="nm_turma" class="java.lang.String"/>
+	<field name="periodo" class="java.lang.String"/>
+	<field name="ano" class="java.lang.String"/>
+	<field name="nm_serie" class="java.lang.String"/>
+	<field name="nota1" class="java.lang.String"/>
+	<field name="nota2" class="java.lang.String"/>
+	<field name="nota3" class="java.lang.String"/>
+	<field name="nota4" class="java.lang.String"/>
+	<field name="disciplina" class="java.lang.String"/>
+	<columnHeader>
+		<band height="20">
+			<textField>
+				<reportElement uuid="fa5ce3a3-40db-4c9d-a062-ed3b7ba7ac13" x="0" y="0" width="545" height="20"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA["BASE DIVERSIFICADA"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13">
+			<rectangle>
+				<reportElement uuid="31f4ee65-09f0-489c-b178-f91ba385052f" mode="Opaque" x="1" y="0" width="543" height="12" forecolor="#FFFFFF" backcolor="#F0F0F0">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement uuid="2ee08ad7-e0ed-4584-9ec2-a598ba6958e5" x="474" y="0" width="71" height="13"/>
+				<box>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota4} ? $F{nota4} : " - "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b351c20-e1a4-456c-9d9a-66155fde1b28" x="259" y="0" width="71" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota1} ? $F{nota1} : " - "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="40b0a625-155c-4055-96b6-9d1bb7ed9b89" x="331" y="0" width="71" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota2} ? $F{nota2} : " - "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6520f0fd-738e-4c65-908b-ecba76e5da3d" x="0" y="0" width="260" height="13"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{disciplina}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8571cb67-dcbd-4241-92b8-bf701f08485c" x="403" y="0" width="71" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nota3} ? $F{nota3} : " - "]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
