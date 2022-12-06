@@ -46,7 +46,7 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 
         if (in_array($this->args['modelo'], [3, 4])) {
             $this->args['grade_curso_eja'] = $this->args['modelo'] === 4 ? 3 : 0;
-            $this->args['view_score'] = 'view_historico_series_anos';
+            $this->args['view_score'] = $this->args['modelo'] === 4 ? 'view_historico_eja' : 'view_historico_series_anos';
             $this->args['alunos'] = 0;
             if ($this->lote) {
                 $this->args['alunos'] = $this->getStudentsByShoolClass() ?: 0;

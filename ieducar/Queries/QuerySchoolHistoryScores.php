@@ -16,7 +16,7 @@ class QuerySchoolHistoryScores extends QueryBridge
                 vhsa.nota_3serie,
                 vhsa.nota_4serie,
                 vhsa.nota_5serie
-            FROM relatorio.$P{view_score} vhsa
+            FROM relatorio.$P!{view_score} vhsa
             WHERE cod_aluno = $P{aluno}
             AND (select max(unnest) from unnest(tipos_base)) != 2;
 SQL;
