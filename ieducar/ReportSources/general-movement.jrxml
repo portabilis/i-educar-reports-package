@@ -1,0 +1,1088 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="general-movement" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="885834ab-0b34-45d7-b7fb-e4afb42af879">
+	<property name="ireport.zoom" value="2.928200000000013"/>
+	<property name="ireport.x" value="1316"/>
+	<property name="ireport.y" value="139"/>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#ECECEC"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="ano" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="instituicao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="curso" class="java.lang.String">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_emissao" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_inicial" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_final" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<parameter name="database" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="escola" class="java.lang.String"/>
+	<field name="ciclo" class="java.lang.String"/>
+	<field name="aee" class="java.lang.String"/>
+	<field name="localizacao" class="java.lang.String"/>
+	<field name="ed_inf_int" class="java.lang.Long"/>
+	<field name="ed_inf_parc" class="java.lang.Long"/>
+	<field name="ano_1" class="java.lang.Long"/>
+	<field name="ano_2" class="java.lang.Long"/>
+	<field name="ano_3" class="java.lang.Long"/>
+	<field name="ano_4" class="java.lang.Long"/>
+	<field name="ano_5" class="java.lang.Long"/>
+	<field name="ano_6" class="java.lang.Long"/>
+	<field name="ano_7" class="java.lang.Long"/>
+	<field name="ano_8" class="java.lang.Long"/>
+	<field name="ano_9" class="java.lang.Long"/>
+	<field name="total_series" class="java.lang.Long"/>
+	<field name="admitidos" class="java.lang.Long"/>
+	<field name="aband" class="java.lang.Long"/>
+	<field name="transf" class="java.lang.Long"/>
+	<field name="recla" class="java.lang.Long"/>
+	<field name="obito" class="java.lang.Long"/>
+	<field name="rem" class="java.lang.Long"/>
+	<field name="total_linha" class="java.lang.Integer"/>
+	<field name="total_linha_rodape" class="java.lang.Integer"/>
+	<field name="total_geral_linha" class="java.lang.Integer"/>
+	<field name="total_geral_linha_rodape" class="java.lang.Integer"/>
+	<variable name="tot_ed_inf_int" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ed_inf_int}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_ano_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ano_1}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_ed_inf_par" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ed_inf_parc}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_ano_2" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ano_2}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_ano_3" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ano_3}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_ano_4" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ano_4}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_ano_5" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ano_5}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_ano_6" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ano_6}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_ano_7" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ano_7}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_ano_8" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ano_8}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_ano_9" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{ano_9}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_admitidos" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{admitidos}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_trans" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{transf}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_abando" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{aband}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_rem" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{rem}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_recla" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{recla}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_obito" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{obito}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="tot_escolas" class="java.lang.Long" calculation="Count">
+		<variableExpression><![CDATA[$F{escola}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<pageHeader>
+		<band height="79">
+			<subreport>
+				<reportElement uuid="d00ac594-5b06-4353-b4ad-8b728c317b4e" stretchType="RelativeToBandHeight" x="0" y="0" width="802" height="79"/>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="titulo">
+					<subreportParameterExpression><![CDATA["Movimento geral"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_instituicao">
+					<subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="data_emissao">
+					<subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="source">
+					<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-landscape.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="46">
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="0" y="22" width="175" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Escola]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="175" y="22" width="29" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ed. Inf. Integ.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="204" y="22" width="29" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ed. Inf.
+Parc.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="233" y="22" width="29" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1°
+Ano]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="262" y="22" width="29" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2°
+Ano]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="291" y="22" width="29" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3°
+Ano]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="320" y="22" width="29" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4°
+Ano]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="349" y="22" width="30" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[5°
+Ano]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="379" y="22" width="30" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[6°
+Ano]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="409" y="22" width="30" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[7°
+Ano]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="439" y="22" width="29" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[8°
+Ano]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="468" y="22" width="29" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[9°
+Ano]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="497" y="22" width="35" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="532" y="22" width="90" height="12" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Movimentações]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="532" y="34" width="30" height="12" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="562" y="34" width="30" height="12" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="592" y="34" width="30" height="12" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="622" y="22" width="32" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="654" y="22" width="32" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recla]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="686" y="22" width="30" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Óbito]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="716" y="22" width="38" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total geral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" mode="Opaque" x="754" y="22" width="47" height="24" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Localização]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="bd05c90a-3fb9-4193-b0ff-819745c611d6" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="181" height="17" isPrintWhenDetailOverflows="true"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{escola}+' '+$F{aee}+$F{ciclo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="562" y="0" width="30" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aband} == 0 ? '-' : $F{aband}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="61b4f26b-e207-44a2-af00-6247ca5d5e46" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="233" y="0" width="29" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano_1} == 0 ? '-' : $F{ano_1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="439" y="0" width="29" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano_8} == 0 ? '-' : $F{ano_8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="532" y="0" width="30" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{admitidos} == 0 ? '-' : $F{admitidos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="6833c624-046a-42cc-aa23-845ad2ae3859" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="291" y="0" width="29" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano_3} == 0 ? '-' : $F{ano_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="716" y="0" width="38" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_geral_linha} < 1 ? '-' : $F{total_geral_linha}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8499e345-80eb-4922-b70e-62ec37c02ed4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="409" y="0" width="30" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano_7} == 0 ? '-' : $F{ano_7}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e2872500-1efe-4743-a8d3-d78a510da9c9" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="175" y="0" width="29" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ed_inf_int} == 0 ? '-' : $F{ed_inf_int}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="622" y="0" width="32" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rem} == 0 ? '-' : $F{rem}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="379" y="0" width="30" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano_6} == 0 ? '-' : $F{ano_6}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="bd05c90a-3fb9-4193-b0ff-819745c611d6" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="204" y="0" width="29" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ed_inf_parc} == 0 ? '-' : $F{ed_inf_parc}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="468" y="0" width="29" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano_9} == 0 ? '-' : $F{ano_9}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="592" y="0" width="30" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transf} == 0 ? '-' : $F{transf}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="686" y="0" width="30" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{obito} == 0 ? '-' : $F{obito}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8499e345-80eb-4922-b70e-62ec37c02ed4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="349" y="0" width="30" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano_5}  == 0 ? '-' : $F{ano_5}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="654" y="0" width="32" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recla} == 0 ? '-' : $F{recla}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="497" y="0" width="35" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_linha} == 0 ? '-' : $F{total_linha}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f7f6ba5a-79f4-4b49-90ec-ae9c60fb7e04" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="754" y="0" width="47" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{localizacao}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="320" y="0" width="29" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano_4} == 0 ? '-' : $F{ano_4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="196128bb-7bfb-45c1-a851-b00e5b07949d" style="table 1_TD" stretchType="RelativeToBandHeight" mode="Opaque" x="262" y="0" width="29" height="17"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano_2}  == 0 ? '-' : $F{ano_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40">
+			<staticText>
+				<reportElement uuid="43ae1b1b-d397-4d21-9ac7-c202485b9f11" x="600" y="8" width="100" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Data inicial:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ebd0bc5a-1b82-4518-acda-3aa5f3ad77f0" x="600" y="23" width="100" height="15"/>
+				<textElement>
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<text><![CDATA[Data final:]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="baba38fa-0aa3-498b-b1aa-2ded3ebb521b" x="700" y="8" width="100" height="15"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{data_inicial}.substring(8,10)+"/"+$P{data_inicial}.substring(5,7)+"/"+$P{data_inicial}.substring(0,4)]]></textFieldExpression>
+			</textField>
+			<textField pattern="&quot;dd/MM/yyyy&quot;" isBlankWhenNull="true">
+				<reportElement uuid="231599c0-52c5-4c3f-bcae-3a17e7166161" x="700" y="23" width="100" height="15"/>
+				<textElement markup="none">
+					<font fontName="DejaVu Sans"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{data_final}.substring(8,10)+"/"+$P{data_final}.substring(5,7)+"/"+$P{data_final}.substring(0,4)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4aa194ea-8a0e-4a50-bcc4-7116f348b5cf" x="0" y="0" width="204" height="10"/>
+				<box leftPadding="2"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Legenda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0ee50087-f814-4363-90bd-5ef4136f45ae" x="20" y="10" width="184" height="10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[- Escola possui AEE.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d09e99c9-9e02-4fba-8944-282c2a4d654f" x="0" y="10" width="20" height="10"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[*]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e7bfe770-4f69-4c66-ae3a-46d1647db614" x="0" y="20" width="20" height="10"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[**]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="23bb95ed-e401-4ec8-9c8e-234c04ff1861" x="0" y="30" width="20" height="10"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[***]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4e9a09c2-a9c9-4204-b982-c8bc95e4f609" x="20" y="20" width="184" height="10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[- Escola possui regime por Ciclo.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b9c4d3ae-1665-4bfd-ae57-86e535ad0592" x="20" y="30" width="184" height="10"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[- Escola possui regime por Ciclo e AEE.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="82">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="754" y="0" width="47" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA['-']]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="82ad93d1-e619-42a4-be1f-bc685f8362d4" isPrintRepeatedValues="false" x="296" y="59" width="250" height="11" isPrintInFirstWholeBand="true"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<text><![CDATA[Assinatura do responsável]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="320" y="0" width="29" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ano_4} == 0 ? '-' : $V{tot_ano_4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="497" y="0" width="35" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_linha_rodape} == 0 ? '-' : $F{total_linha_rodape}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="686" y="0" width="30" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_obito} == 0 ? '-' : $V{tot_obito}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="622" y="0" width="32" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_rem} == 0 ? '-' : $V{tot_rem}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="532" y="0" width="30" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_admitidos} == 0 ? '-' : $V{tot_admitidos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="592" y="0" width="30" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_trans} == 0 ? '-' : $V{tot_trans}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8499e345-80eb-4922-b70e-62ec37c02ed4" stretchType="RelativeToBandHeight" mode="Opaque" x="409" y="0" width="30" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ano_7} == 0 ? '-' : $V{tot_ano_7}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="6833c624-046a-42cc-aa23-845ad2ae3859" stretchType="RelativeToBandHeight" mode="Opaque" x="262" y="0" width="29" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ano_2} == 0 ? '-' : $V{tot_ano_2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="bd05c90a-3fb9-4193-b0ff-819745c611d6" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="43" height="17" isPrintWhenDetailOverflows="true" backcolor="#DEDEDE"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOTAL"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="379" y="0" width="30" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ano_6} == 0 ? '-' : $V{tot_ano_6}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="716" y="0" width="38" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_geral_linha_rodape} < 1 ? '-' : $F{total_geral_linha_rodape}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="61b4f26b-e207-44a2-af00-6247ca5d5e46" stretchType="RelativeToBandHeight" mode="Opaque" x="233" y="0" width="29" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ano_1} == 0 ? '-' : $V{tot_ano_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="f67cd069-89ac-4181-a3a3-89334b91bc87" isPrintRepeatedValues="false" x="296" y="58" width="250" height="1" isPrintInFirstWholeBand="true"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="562" y="0" width="30" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_abando} == 0 ? '-' : $V{tot_abando}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="439" y="0" width="29" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ano_8} == 0 ? '-' : $V{tot_ano_8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e2872500-1efe-4743-a8d3-d78a510da9c9" stretchType="RelativeToBandHeight" mode="Opaque" x="175" y="0" width="29" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ed_inf_int} == 0 ? '-' : $V{tot_ed_inf_int}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="654" y="0" width="32" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_recla} == 0 ? '-' : $V{tot_recla}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="bd05c90a-3fb9-4193-b0ff-819745c611d6" stretchType="RelativeToBandHeight" mode="Opaque" x="204" y="0" width="29" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ed_inf_par} == 0 ? '-' : $V{tot_ed_inf_par}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="196128bb-7bfb-45c1-a851-b00e5b07949d" stretchType="RelativeToBandHeight" mode="Opaque" x="291" y="0" width="29" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ano_3} == 0 ? '-' : $V{tot_ano_3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e2872500-1efe-4743-a8d3-d78a510da9c9" stretchType="RelativeToBandHeight" mode="Opaque" x="43" y="0" width="132" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_escolas}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8499e345-80eb-4922-b70e-62ec37c02ed4" stretchType="RelativeToBandHeight" mode="Opaque" x="349" y="0" width="30" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ano_5} == 0 ? '-' : $V{tot_ano_5}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" stretchType="RelativeToBandHeight" mode="Opaque" x="468" y="0" width="29" height="17" backcolor="#DEDEDE"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{tot_ano_9} == 0 ? '-' : $V{tot_ano_9}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
