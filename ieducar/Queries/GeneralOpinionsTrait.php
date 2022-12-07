@@ -41,9 +41,9 @@ trait GeneralOpinionsTrait
                 (
                     CASE
                         WHEN fa.tipo_falta = 1 THEN
-                            (SELECT SUM(fg.quantidade) FROM modules.falta_geral AS fg WHERE fg.falta_aluno_id = fa.id AND fg.etapa = '$etapa')
+                            (SELECT SUM(fg.quantidade) FROM modules.falta_geral AS fg WHERE fg.falta_aluno_id = fa.id)
                         WHEN fa.tipo_falta = 2 THEN
-                            (SELECT SUM(fcc.quantidade) FROM modules.falta_componente_curricular AS fcc WHERE fcc.falta_aluno_id = fa.id AND fcc.etapa = '$etapa')
+                            (SELECT SUM(fcc.quantidade) FROM modules.falta_componente_curricular AS fcc WHERE fcc.falta_aluno_id = fa.id)
                     END
                 )
             ) AS falta,
@@ -51,9 +51,9 @@ trait GeneralOpinionsTrait
             (
                 SELECT CASE
                     WHEN (SELECT padrao_ano_escolar FROM pmieducar.curso c WHERE cod_curso = curso.cod_curso) = 1 THEN
-                        ('$etapa'||'º '||(
+                        (
                             SELECT
-                                modulo.nm_tipo
+                                CONCAT(padrao.sequencial, 'º ', modulo.nm_tipo)
                             FROM
                                 pmieducar.ano_letivo_modulo AS padrao,
                                 pmieducar.modulo
@@ -61,23 +61,19 @@ trait GeneralOpinionsTrait
                                 padrao.ref_ano = turma.ano
                                 AND padrao.ref_ref_cod_escola = escola.cod_escola
                                 AND padrao.ref_cod_modulo = modulo.cod_modulo
-                                AND modulo.ativo = 1
-                                AND padrao.sequencial::varchar = '$etapa' LIMIT 1
-                            )
+                                AND modulo.ativo = 1 LIMIT 1
                         )
                     ELSE
-                        ('$etapa'||'º '||(
+                        (
                             SELECT
-                                modulo.nm_tipo
+                                CONCAT(tm.sequencial, 'º ', modulo.nm_tipo)
                             FROM
                                 pmieducar.turma_modulo AS tm,
                                 pmieducar.modulo
                                 WHERE
                                     tm.ref_cod_turma = turma.cod_turma
                                     AND tm.ref_cod_modulo = modulo.cod_modulo
-                                    AND modulo.ativo = 1
-                                    AND tm.sequencial::varchar = '$etapa' LIMIT 1
-                            )
+                                    AND modulo.ativo = 1 LIMIT 1                            
                         )
                     END
             ) AS etapa
@@ -145,18 +141,15 @@ trait GeneralOpinionsTrait
         LEFT JOIN
             modules.parecer_geral AS pg
             ON pg.parecer_aluno_id = pa.id
-            AND pg.etapa = '$etapa'
         LEFT JOIN
             modules.falta_aluno AS fa
             ON fa.matricula_id = m.cod_matricula
         LEFT JOIN
             modules.falta_geral AS fg
             ON fg.falta_aluno_id = fa.id
-            AND fg.etapa = '$etapa'
         LEFT JOIN
             modules.falta_componente_curricular AS fcc
             ON fcc.falta_aluno_id = fa.id
-            AND fcc.etapa = '$etapa'
         WHERE
             instituicao.cod_instituicao = $instituicao
             AND escola.cod_escola = $escola
