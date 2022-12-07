@@ -1,0 +1,1416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_movimento_mensal" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="885834ab-0b34-45d7-b7fb-e4afb42af879">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="189"/>
+    <property name="ireport.y" value="0"/>
+    <style name="table">
+        <box>
+            <pen lineWidth="1.0" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_TH" mode="Opaque" backcolor="#A9A9A9">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_CH" mode="Opaque" backcolor="#DEDEDE">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+        <conditionalStyle>
+            <conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+            <style backcolor="#FFEFEF"/>
+        </conditionalStyle>
+    </style>
+    <style name="table 1">
+        <box>
+            <pen lineWidth="1.0" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 1_TH" mode="Opaque" backcolor="#C0C0C0">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 1_CH" mode="Opaque" backcolor="#DEDEDE">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+    </style>
+    <style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+        <box>
+            <pen lineWidth="0.5" lineColor="#000000"/>
+        </box>
+        <conditionalStyle>
+            <conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+            <style backcolor="#ECECEC"/>
+        </conditionalStyle>
+    </style>
+    <parameter name="ano" class="java.lang.Integer"/>
+    <parameter name="instituicao" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+    </parameter>
+    <parameter name="escola" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+    </parameter>
+    <parameter name="curso" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+    </parameter>
+    <parameter name="serie" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+    </parameter>
+    <parameter name="turma" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+    </parameter>
+    <parameter name="data_emissao" class="java.lang.Integer"/>
+    <parameter name="logo" class="java.lang.String"/>
+    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+    </parameter>
+    <parameter name="data_inicial" class="java.lang.String"/>
+    <parameter name="data_final" class="java.lang.String"/>
+    <parameter name="database" class="java.lang.String"/>
+    <parameter name="modalidade" class="java.lang.String"/>
+    <parameter name="tipos_atendimento" class="java.lang.String"/>
+    <parameter name="modalidade_eja" class="java.lang.String"/>
+    <parameter name="filtrar_datas_calendario" class="java.lang.String"/>
+    <parameter name="data_inicial_calendario" class="java.lang.String">
+        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+    </parameter>
+    <parameter name="data_final_calendario" class="java.lang.String">
+        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+    </parameter>
+    <parameter name="source" class="java.lang.String"/>
+    <field name="cod_escola" class="java.lang.Integer"/>
+    <field name="nm_escola" class="java.lang.String"/>
+    <field name="cod_serie" class="java.lang.Integer"/>
+    <field name="nm_serie" class="java.lang.String"/>
+    <field name="cod_turma" class="java.lang.Integer"/>
+    <field name="nm_turma" class="java.lang.String"/>
+    <field name="turno" class="java.lang.String"/>
+    <field name="mat_ini_m" class="java.lang.Long"/>
+    <field name="mat_ini_f" class="java.lang.Long"/>
+    <field name="mat_ini" class="java.lang.Long"/>
+    <field name="mat_transf_m" class="java.lang.Long"/>
+    <field name="mat_transf_f" class="java.lang.Long"/>
+    <field name="mat_aband_m" class="java.lang.Long"/>
+    <field name="mat_aband_f" class="java.lang.Long"/>
+    <field name="mat_admit_m" class="java.lang.Long"/>
+    <field name="mat_admit_f" class="java.lang.Long"/>
+    <field name="mat_falecido_m" class="java.lang.Long"/>
+    <field name="mat_falecido_f" class="java.lang.Long"/>
+    <field name="mat_reclassificados_m" class="java.lang.Long"/>
+    <field name="mat_reclassificados_f" class="java.lang.Long"/>
+    <field name="mat_reclassificadose_m" class="java.lang.Long"/>
+    <field name="mat_reclassificadose_f" class="java.lang.Long"/>
+    <field name="mat_trocae_m" class="java.lang.Long"/>
+    <field name="mat_trocae_f" class="java.lang.Long"/>
+    <field name="mat_trocas_m" class="java.lang.Long"/>
+    <field name="mat_trocas_f" class="java.lang.Long"/>
+    <field name="mat_fim_m" class="java.lang.Long"/>
+    <field name="mat_fim_f" class="java.lang.Long"/>
+    <field name="mat_fim" class="java.lang.Long"/>
+    <variable name="turma_cont" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Count">
+        <variableExpression><![CDATA[$F{nm_turma}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="turno_count" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="DistinctCount">
+        <variableExpression><![CDATA[$F{turno}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_ini_m_sum" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_ini_m}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_ini_f_sum" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_ini_f}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_ini_t_sum" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_ini}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_transf_m" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_transf_m}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_transf_f" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_transf_f}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_aband_m" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_aband_m}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_aband_f" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_aband_f}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_admit_m" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_admit_m}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_admit_f" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_admit_f}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_trocae_m" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_trocae_m}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_trocae_f" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_trocae_f}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_trocas_m" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_trocas_m}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_trocas_f" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_trocas_f}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_fim_m" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_fim_m}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_fim_f" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_fim_f}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_fim_t" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_fim}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <variable name="mat_falecido_m_sum" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_falecido_m}]]></variableExpression>
+    </variable>
+    <variable name="mat_falecido_f_sum" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_falecido_f}]]></variableExpression>
+    </variable>
+    <variable name="mat_reclassificado_m_sum" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_reclassificados_m}]]></variableExpression>
+    </variable>
+    <variable name="mat_reclassificado_f_sum" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_reclassificados_f}]]></variableExpression>
+    </variable>
+    <variable name="mat_reclassificadoe_m_sum" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_reclassificadose_m}]]></variableExpression>
+    </variable>
+    <variable name="mat_reclassificadoe_f_sum" class="java.lang.Integer" resetType="Group" resetGroup="Escola" calculation="Sum">
+        <variableExpression><![CDATA[$F{mat_reclassificadose_f}]]></variableExpression>
+    </variable>
+    <group name="Escola" isStartNewPage="true">
+        <groupExpression><![CDATA[$F{cod_escola}]]></groupExpression>
+        <groupHeader>
+            <band height="30">
+                <rectangle>
+                    <reportElement uuid="cd1c1cda-ca9e-4433-9f92-e193d8929803" x="1" y="0" width="800" height="30"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25" lineStyle="Solid"/>
+                    </graphicElement>
+                </rectangle>
+                <textField>
+                    <reportElement uuid="e2872500-1efe-4743-a8d3-d78a510da9c9" x="2" y="0" width="799" height="30"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="11" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{nm_escola}]]></textFieldExpression>
+                </textField>
+            </band>
+            <band height="70">
+                <rectangle>
+                    <reportElement uuid="a38b2445-66b5-482d-b37d-4a5476167e5a" x="371" y="0" width="320" height="70" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="da67e605-698a-4a50-a0ac-fd598ff57129" x="1" y="0" width="100" height="70" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="3aef02f0-3b4f-484f-95d6-1cdf0205bfb6" x="101" y="0" width="92" height="70" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="d165008e-bc81-4dc3-a784-c6f7857d38c4" x="193" y="0" width="80" height="70" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="9fa49ef9-eb31-4894-860d-6ef0df37bc52" x="273" y="0" width="98" height="70" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="b33a427c-c8ed-467f-bfe6-5bf78a5e74ed" x="273" y="0" width="98" height="23" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="0f343245-c52b-4b8c-9b88-bc8f9734e864" x="305" y="23" width="33" height="47" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="e70b4642-e19e-4f54-81e4-41a4935cfbe7" x="691" y="0" width="110" height="70" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="9401103d-d53e-434e-8300-7214db18b494" x="691" y="0" width="110" height="23" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="d3ca9010-d886-433e-a14b-9a4ee9ca93dc" x="728" y="23" width="35" height="47" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="19c55452-cef1-41d0-9623-ce3016c21af0" x="371" y="0" width="320" height="23" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="543eb458-1cd6-4ac9-9c55-07b9aafd173b" x="371" y="23" width="40" height="23" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="5a43ce74-a687-4fbc-aea8-e65a722c27b9" x="411" y="23" width="40" height="23" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="4bf03b4f-9326-4c08-86aa-955dbd8e2967" x="491" y="23" width="40" height="23" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="02e3e713-f3d0-44dd-8b9a-325b547b3182" x="611" y="23" width="80" height="23" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="4bf03b4f-9326-4c08-86aa-955dbd8e2967" x="531" y="23" width="80" height="23" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="4bf03b4f-9326-4c08-86aa-955dbd8e2967" x="451" y="23" width="40" height="23" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" x="371" y="46" width="40" height="24" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" x="391" y="46" width="20" height="24" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" x="471" y="46" width="20" height="24" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" x="591" y="46" width="20" height="24" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" x="611" y="34" width="80" height="12" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="66af3b78-6379-4da2-9c6a-79a771e6a640" mode="Transparent" x="631" y="46" width="20" height="24"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="a0efcd1e-82c3-4775-bf2f-7059144d12e3" mode="Transparent" x="511" y="46" width="20" height="24"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="cc6f045e-7235-4eed-9c73-7d416ae42d3b" mode="Transparent" x="551" y="46" width="20" height="24"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="968d1f1e-29a2-4f6a-b584-71aed34db8bb" mode="Transparent" x="431" y="46" width="20" height="24"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="9e3e99c2-de06-462a-bc88-4acdacc83ca8" mode="Transparent" x="671" y="46" width="20" height="24"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="f2cad7dd-1686-43b8-b185-01f7bb30d4d4" mode="Transparent" x="451" y="46" width="40" height="24"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="2" y="0" width="98" height="70"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[SÉRIE]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="102" y="0" width="91" height="70"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[TURMA]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="451" y="23" width="40" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="9"/>
+                    </textElement>
+                    <text><![CDATA[ADMIT.]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="491" y="23" width="40" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="9"/>
+                    </textElement>
+                    <text><![CDATA[ÓBITO]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="371" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[M]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="391" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[F]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="273" y="23" width="33" height="46"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[M]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="305" y="23" width="33" height="46"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[F]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="338" y="22" width="33" height="47"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[T]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="764" y="23" width="38" height="46"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[T]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="692" y="24" width="38" height="46"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[M]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="728" y="24" width="35" height="46"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[F]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="193" y="0" width="79" height="70"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[TURNO]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="531" y="24" width="80" height="10"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="8"/>
+                    </textElement>
+                    <text><![CDATA[RECLASSIFICADO]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="431" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[F]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="411" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[M]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="471" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[F]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="451" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[M]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="491" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[M]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="511" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[F]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="551" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[F]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="531" y="47" width="19" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[M]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="611" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[M]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="631" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[F]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="651" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[M]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="671" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[F]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="691" y="0" width="111" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[MATRÍCULA FINAL]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="273" y="0" width="98" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="9"/>
+                    </textElement>
+                    <text><![CDATA[MATRÍCULA INICIAL]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="371" y="0" width="320" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[ALUNOS]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="411" y="23" width="40" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="9"/>
+                    </textElement>
+                    <text><![CDATA[ABAND.]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="371" y="23" width="40" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="9"/>
+                    </textElement>
+                    <text><![CDATA[TRANSF.]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="571" y="47" width="19" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[M]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="591" y="47" width="20" height="23"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <text><![CDATA[F]]></text>
+                </staticText>
+                <rectangle>
+                    <reportElement uuid="f03df872-597b-46c5-b2af-6f26961f0f40" x="531" y="34" width="80" height="12" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="f03df872-597b-46c5-b2af-6f26961f0f40" x="571" y="34" width="40" height="12" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="f03df872-597b-46c5-b2af-6f26961f0f40" x="651" y="34" width="40" height="12" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="531" y="35" width="40" height="10"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="8"/>
+                    </textElement>
+                    <text><![CDATA[SAIU]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="571" y="35" width="40" height="10"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="8"/>
+                    </textElement>
+                    <text><![CDATA[ENTROU]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="611" y="24" width="80" height="10"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="8"/>
+                    </textElement>
+                    <text><![CDATA[REMANEJADO]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="611" y="35" width="40" height="11"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="8"/>
+                    </textElement>
+                    <text><![CDATA[SAIU]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="651" y="35" width="40" height="10"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" size="8"/>
+                    </textElement>
+                    <text><![CDATA[ENTROU]]></text>
+                </staticText>
+            </band>
+        </groupHeader>
+        <groupFooter>
+            <band height="20">
+                <rectangle>
+                    <reportElement uuid="5b77124d-74d9-43c5-b5cd-e6cd8367c6b6" x="338" y="0" width="33" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="e19fea86-0f45-41af-bdcb-964325a78934" x="161" y="0" width="112" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="b1fe6574-aaf1-40a8-acae-2d611fc58bc8" x="1" y="0" width="100" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="6c34aa7a-6362-47a9-80f9-d0e9db7e8256" x="101" y="0" width="92" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="794f7349-c498-4dc0-b955-952ef4e7ce13" x="391" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="3a306ac5-1000-40c5-91fc-97410bc2af63" x="305" y="0" width="33" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="b9b83556-c2ee-4c0e-9371-bd853812c3b5" x="371" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="0d7655a6-df8f-4f84-92be-21f5be23dab9" x="571" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="66af3b78-6379-4da2-9c6a-79a771e6a640" x="591" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="85055688-82f0-4954-9d60-9adf265ee73a" x="728" y="0" width="35" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="9e3e99c2-de06-462a-bc88-4acdacc83ca8" x="631" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="a9362a8a-d3c4-4783-9072-8495a9a74553" x="691" y="0" width="37" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="1426407e-31cb-418c-8dee-49700d356550" x="763" y="0" width="38" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="968d1f1e-29a2-4f6a-b584-71aed34db8bb" x="411" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="daf06813-8985-4811-b8e5-f9bed0f876cc" x="273" y="0" width="32" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="4b85fdfd-851d-4811-b4e3-652efdf341bd" x="611" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="f2cad7dd-1686-43b8-b185-01f7bb30d4d4" x="431" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="a0efcd1e-82c3-4775-bf2f-7059144d12e3" x="491" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="cc6f045e-7235-4eed-9c73-7d416ae42d3b" x="511" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="cc6f045e-7235-4eed-9c73-7d416ae42d3b" x="531" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <staticText>
+                    <reportElement uuid="34322490-09db-4bc3-bd46-1819c55bddce" x="0" y="0" width="100" height="20"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[TOTAL]]></text>
+                </staticText>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="100" y="1" width="93" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{turma_cont}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="193" y="1" width="79" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{turno_count}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="273" y="1" width="31" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_ini_m_sum} == 0 ? " - " : $V{mat_ini_m_sum}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="306" y="1" width="33" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_ini_f_sum} == 0 ? " - " : $V{mat_ini_f_sum}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="338" y="1" width="33" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_ini_t_sum} == 0 ? " - " : $V{mat_ini_t_sum}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="371" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_transf_m} == 0 ? " - " : $V{mat_transf_m}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="391" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_transf_f} == 0 ? " - " : $V{mat_transf_f}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="411" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_aband_m} == 0 ? " - "  : $V{mat_aband_m}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="431" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_aband_f} == 0 ? " - " : $V{mat_aband_f}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="571" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_reclassificadoe_m_sum} == 0 ? " - " : $V{mat_reclassificadoe_m_sum}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="591" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_reclassificadoe_f_sum} == 0 ? " - " : $V{mat_reclassificadoe_f_sum}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="611" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_trocas_m} == 0 ? " - " : $V{mat_trocas_m}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="631" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_trocas_f} == 0 ? " - " : $V{mat_trocas_f}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="692" y="1" width="36" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_fim_m} == 0 ? " - " : $V{mat_fim_m}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="730" y="1" width="33" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_fim_f} == 0 ? " - " : $V{mat_fim_f}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="763" y="1" width="38" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_fim_t} == 0 ? " - " : $V{mat_fim_t}]]></textFieldExpression>
+                </textField>
+                <rectangle>
+                    <reportElement uuid="a0efcd1e-82c3-4775-bf2f-7059144d12e3" x="451" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="cc6f045e-7235-4eed-9c73-7d416ae42d3b" x="471" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="451" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_admit_m} == 0 ? " - " : $V{mat_admit_m}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="471" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_admit_f} == 0 ? " - " : $V{mat_admit_f}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="511" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_falecido_f_sum} == 0 ? " - " : $V{mat_falecido_f_sum}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="491" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_falecido_m_sum} == 0 ? " - " : $V{mat_falecido_m_sum}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="531" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_reclassificado_m_sum} == 0 ? " - " : $V{mat_reclassificado_m_sum}]]></textFieldExpression>
+                </textField>
+                <rectangle>
+                    <reportElement uuid="cc6f045e-7235-4eed-9c73-7d416ae42d3b" x="551" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="551" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_reclassificado_f_sum} == 0 ? " - " : $V{mat_reclassificado_f_sum}]]></textFieldExpression>
+                </textField>
+                <rectangle>
+                    <reportElement uuid="9e3e99c2-de06-462a-bc88-4acdacc83ca8" x="651" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <rectangle>
+                    <reportElement uuid="9e3e99c2-de06-462a-bc88-4acdacc83ca8" x="671" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                    <graphicElement>
+                        <pen lineWidth="0.25"/>
+                    </graphicElement>
+                </rectangle>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="651" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_trocae_m} == 0 ? " - " : $V{mat_trocae_m}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="04193d81-88fd-44c2-97ea-daaa9dd51b97" x="671" y="1" width="20" height="19"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$V{mat_trocae_f} == 0 ? " - " : $V{mat_trocae_f}]]></textFieldExpression>
+                </textField>
+            </band>
+        </groupFooter>
+    </group>
+    <pageHeader>
+        <band height="79">
+            <subreport>
+                <reportElement uuid="d00ac594-5b06-4353-b4ad-8b728c317b4e" stretchType="RelativeToBandHeight" x="0" y="0" width="802" height="79"/>
+                <subreportParameter name="logo">
+                    <subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="cod_instituicao">
+                    <subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="titulo">
+                    <subreportParameterExpression><![CDATA["Movimento Mensal"]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="cod_escola">
+                    <subreportParameterExpression><![CDATA[$F{cod_escola}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="ano">
+                    <subreportParameterExpression><![CDATA[$P{ano}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="data_emissao">
+                    <subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="source">
+                    <subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-landscape.jasper"]]></subreportExpression>
+            </subreport>
+        </band>
+    </pageHeader>
+    <columnHeader>
+        <band height="18"/>
+    </columnHeader>
+    <detail>
+        <band height="20" splitType="Stretch">
+            <rectangle>
+                <reportElement uuid="31f4ee65-09f0-489c-b178-f91ba385052f" mode="Opaque" x="2" y="0" width="799" height="20" forecolor="#FFFFFF" backcolor="#F0F0F0">
+                    <printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 0)]]></printWhenExpression>
+                </reportElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="b1fe6574-aaf1-40a8-acae-2d611fc58bc8" mode="Transparent" x="1" y="0" width="100" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="6c34aa7a-6362-47a9-80f9-d0e9db7e8256" mode="Transparent" x="101" y="0" width="92" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="e19fea86-0f45-41af-bdcb-964325a78934" mode="Transparent" x="193" y="0" width="80" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="daf06813-8985-4811-b8e5-f9bed0f876cc" mode="Transparent" x="273" y="0" width="32" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="3a306ac5-1000-40c5-91fc-97410bc2af63" mode="Transparent" x="305" y="0" width="33" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="5b77124d-74d9-43c5-b5cd-e6cd8367c6b6" mode="Transparent" x="338" y="0" width="33" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="a9362a8a-d3c4-4783-9072-8495a9a74553" mode="Transparent" x="691" y="0" width="37" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="85055688-82f0-4954-9d60-9adf265ee73a" mode="Transparent" x="728" y="0" width="35" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="1426407e-31cb-418c-8dee-49700d356550" mode="Transparent" x="763" y="0" width="38" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" mode="Transparent" x="371" y="0" width="40" height="20" backcolor="#DEDEDE"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="66af3b78-6379-4da2-9c6a-79a771e6a640" mode="Transparent" x="631" y="0" width="20" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="a0efcd1e-82c3-4775-bf2f-7059144d12e3" mode="Transparent" x="511" y="0" width="20" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="cc6f045e-7235-4eed-9c73-7d416ae42d3b" mode="Transparent" x="551" y="0" width="20" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="968d1f1e-29a2-4f6a-b584-71aed34db8bb" mode="Transparent" x="431" y="0" width="20" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="9e3e99c2-de06-462a-bc88-4acdacc83ca8" mode="Transparent" x="671" y="0" width="20" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="f2cad7dd-1686-43b8-b185-01f7bb30d4d4" mode="Transparent" x="451" y="0" width="40" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" mode="Transparent" x="471" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" mode="Transparent" x="391" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" mode="Transparent" x="591" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" mode="Transparent" x="531" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="968d1f1e-29a2-4f6a-b584-71aed34db8bb" mode="Transparent" x="411" y="0" width="20" height="20"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" mode="Transparent" x="491" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" mode="Transparent" x="571" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" mode="Transparent" x="611" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement uuid="be010692-b25f-4fb7-a92b-42d8bcab5cff" mode="Transparent" x="651" y="0" width="20" height="20" backcolor="#DEDEDE"/>
+                <graphicElement>
+                    <pen lineWidth="0.25"/>
+                </graphicElement>
+            </rectangle>
+            <textField>
+                <reportElement uuid="bd05c90a-3fb9-4193-b0ff-819745c611d6" x="0" y="0" width="100" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nm_serie}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="bd05c90a-3fb9-4193-b0ff-819745c611d6" x="100" y="0" width="93" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nm_turma}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="e2872500-1efe-4743-a8d3-d78a510da9c9" x="193" y="0" width="80" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="61b4f26b-e207-44a2-af00-6247ca5d5e46" x="273" y="0" width="32" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_ini_m} == 0 ? " - " : $F{mat_ini_m}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="8499e345-80eb-4922-b70e-62ec37c02ed4" mode="Transparent" x="391" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_transf_f} == 0 ? " - " : $F{mat_transf_f}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="f7f6ba5a-79f4-4b49-90ec-ae9c60fb7e04" x="690" y="0" width="37" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_fim_m}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="f7f6ba5a-79f4-4b49-90ec-ae9c60fb7e04" x="728" y="0" width="35" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_fim_f}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="f7f6ba5a-79f4-4b49-90ec-ae9c60fb7e04" x="763" y="0" width="39" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_fim}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="411" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_aband_m} == 0 ? " - " : $F{mat_aband_m}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="451" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_admit_m} == 0 ? " - " : $F{mat_admit_m}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="8499e345-80eb-4922-b70e-62ec37c02ed4" mode="Transparent" x="431" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_aband_f} == 0 ? " - " : $F{mat_aband_f}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="471" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_admit_f} == 0 ? " - " : $F{mat_admit_f}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="491" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_falecido_m} == 0 ? " - " : $F{mat_falecido_m}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="511" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_falecido_f} == 0 ? " - " : $F{mat_falecido_f}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="531" y="0" width="19" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_reclassificados_m} == 0 ? " - " : $F{mat_reclassificados_m}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="551" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_reclassificados_f} == 0 ? " - " : $F{mat_reclassificados_f}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="611" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_trocas_m} == 0 ? " - " : $F{mat_trocas_m}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="631" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_trocas_f} == 0 ? " - " : $F{mat_trocas_f}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="651" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_trocae_m} == 0 ? " - " : $F{mat_trocae_m}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="671" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_trocae_f} == 0 ? " - " : $F{mat_trocae_f}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="6833c624-046a-42cc-aa23-845ad2ae3859" x="305" y="0" width="33" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_ini_f} == 0 ? " - " : $F{mat_ini_f}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="196128bb-7bfb-45c1-a851-b00e5b07949d" x="338" y="0" width="33" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[($F{mat_ini_m} + $F{mat_ini_f}) == 0 ? " - " : ($F{mat_ini_m} + $F{mat_ini_f})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="371" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_transf_m} == 0 ? " - " : $F{mat_transf_m}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="591" y="0" width="20" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_reclassificadose_f} == 0 ? " - " : $F{mat_reclassificadose_f}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="90cd471b-7bd4-4ec7-a622-04217443c2a4" x="571" y="0" width="19" height="20"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{mat_reclassificadose_m} == 0 ? " - " : $F{mat_reclassificadose_m}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="51">
+            <staticText>
+                <reportElement uuid="43ae1b1b-d397-4d21-9ac7-c202485b9f11" x="1" y="21" width="100" height="15"/>
+                <textElement>
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <text><![CDATA[Data inicial:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement uuid="ebd0bc5a-1b82-4518-acda-3aa5f3ad77f0" x="1" y="36" width="100" height="15"/>
+                <textElement>
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <text><![CDATA[Data final:]]></text>
+            </staticText>
+            <textField pattern="">
+                <reportElement uuid="baba38fa-0aa3-498b-b1aa-2ded3ebb521b" x="101" y="21" width="100" height="15"/>
+                <textElement markup="none">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{data_inicial}.substring(8,10)+"/"+$P{data_inicial}.substring(5,7)+"/"+$P{data_inicial}.substring(0,4)]]></textFieldExpression>
+            </textField>
+            <textField pattern="&quot;dd/MM/yyyy&quot;">
+                <reportElement uuid="231599c0-52c5-4c3f-bcae-3a17e7166161" x="101" y="36" width="100" height="15"/>
+                <textElement markup="none">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{data_final}.substring(8,10)+"/"+$P{data_final}.substring(5,7)+"/"+$P{data_final}.substring(0,4)]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement uuid="43ae1b1b-d397-4d21-9ac7-c202485b9f11" x="240" y="21" width="561" height="30"/>
+                <textElement textAlignment="Right">
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <text><![CDATA[* Campos referente a alunos remanejados, sendo que Troca (entrou) são alunos que entraram nas turmas e Troca (saiu) alunos que saíram.]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+</jasperReport>
