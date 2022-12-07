@@ -137,6 +137,7 @@
 		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
 	</parameter>
 	<parameter name="source" class="java.lang.String"/>
+    <parameter name="lote" class="java.lang.Boolean"/>
 	<parameter name="cabecalho_alternativo" class="java.lang.Integer" isForPrompting="false"/>
 	<parameter name="nm_secretario" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="nm_diretor" class="java.lang.String" isForPrompting="false"/>

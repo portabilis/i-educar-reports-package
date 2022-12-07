@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="school-history-crosstab-dataset" language="groovy" pageWidth="445" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="445" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d0fe67f1-b370-4e00-9258-401b9aa27029">
+    <property name="ireport.zoom" value="2.3579476910000725"/>
+    <property name="ireport.x" value="39"/>
+    <property name="ireport.y" value="0"/>
+    <style name="Crosstab Data Text" hAlign="Center"/>
+    <parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+        <defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+    </parameter>
+    <parameter name="source" class="java.lang.String"/>
+    <parameter name="aluno" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+    </parameter>
+    <queryString language="json">
+        <![CDATA[scores_diversified(cod_aluno == $P{aluno})]]>
+    </queryString>
+    <field name="ano" class="java.lang.Integer"/>
+    <field name="nm_serie" class="java.lang.String"/>
+    <field name="nm_escola" class="java.lang.String"/>
+    <field name="escola" class="java.lang.String"/>
+    <field name="escola_cidade" class="java.lang.String"/>
+    <field name="escola_uf" class="java.lang.String"/>
+    <field name="disciplina" class="java.lang.String"/>
+    <field name="nota_1serie" class="java.lang.String"/>
+    <field name="nota_2serie" class="java.lang.String"/>
+    <field name="nota_3serie" class="java.lang.String"/>
+    <field name="nota_4serie" class="java.lang.String"/>
+    <field name="nota_5serie" class="java.lang.String"/>
+    <detail>
+        <band height="13">
+            <rectangle>
+                <reportElement uuid="31f4ee65-09f0-489c-b178-f91ba385052f" mode="Opaque" x="0" y="0" width="445" height="13" forecolor="#FFFFFF" backcolor="#F0F0F0">
+                    <printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT} % 2) == 0)]]></printWhenExpression>
+                </reportElement>
+            </rectangle>
+            <textField>
+                <reportElement uuid="33573f3d-c258-4534-9f1f-59872a73bd19" x="155" y="0" width="58" height="13"/>
+                <box leftPadding="5">
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+                    <font fontName="DejaVu Sans" size="8" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nota_1serie} ? $F{nota_1serie} : " - "]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="d91f0ea9-1e53-4160-bb08-775a10c3ac4c" x="213" y="0" width="58" height="13"/>
+                <box leftPadding="5">
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+                    <font fontName="DejaVu Sans" size="8" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nota_2serie} ? $F{nota_2serie} : " - "]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="e19680d5-56a4-4f20-896e-bfb1196fd7b3" x="0" y="0" width="155" height="13"/>
+                <box leftPadding="5">
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                </box>
+                <textElement verticalAlignment="Middle" markup="none">
+                    <font fontName="DejaVu Sans" size="8" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{disciplina}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="d91f0ea9-1e53-4160-bb08-775a10c3ac4c" x="271" y="0" width="58" height="13"/>
+                <box leftPadding="5">
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+                    <font fontName="DejaVu Sans" size="8" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nota_3serie} ? $F{nota_3serie} : " - "]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="d91f0ea9-1e53-4160-bb08-775a10c3ac4c" x="329" y="0" width="58" height="13"/>
+                <box leftPadding="5">
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+                    <font fontName="DejaVu Sans" size="8" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nota_4serie} ? $F{nota_4serie} : " - "]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="d91f0ea9-1e53-4160-bb08-775a10c3ac4c" x="387" y="0" width="58" height="13"/>
+                <box leftPadding="5">
+                    <topPen lineWidth="0.0"/>
+                    <leftPen lineWidth="0.0"/>
+                    <bottomPen lineWidth="0.0"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+                    <font fontName="DejaVu Sans" size="8" isBold="false"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nota_5serie} ? $F{nota_1serie} : " - "]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

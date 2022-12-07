@@ -1,6 +1,7 @@
 // subescreve parametro escola_id definido em SimpleSearchAluno.js, listando alunos de todas escolas
 simpleSearchAlunoOptions.params.escola_id = 0;
-
+var modelosPadroes = ['1','2'];
+exibirCheckCargaFrequentada();
 $j("#nm_secretario").closest('tr').hide();
 $j("#nm_diretor").closest('tr').hide();
 $j("#ano_ini").closest('tr').hide();
@@ -68,3 +69,31 @@ $j("#modelo").on('click', function(){
         $j("#cursoaluno").closest('tr').hide();
     }
 });
+
+function exibirCheckCargaFrequentada() {
+  const exibir = $j.inArray($j('#modelo').val(), modelosPadroes) != -1;
+  $j('#tr_emitir_carga_horaria_frequentada').hide();
+  if (exibir) {
+    $j('#tr_emitir_carga_horaria_frequentada').show();
+  }
+}
+
+$j('#modelo').change(function () {
+  exibirCheckCargaFrequentada();
+});
+
+$j(function($){
+  let toggleBolsaFamiliaVisibility = () => {
+    let $container = $('#exibir_informacao_bolsa_familia').closest('tr');
+    if (['1', '2'].include($('#modelo').val())) {
+      $container.show();
+    } else {
+      $container.hide();
+    }
+  };
+
+  $('#modelo').on('change', toggleBolsaFamiliaVisibility);
+
+  toggleBolsaFamiliaVisibility();
+});
+

@@ -1,17 +1,13 @@
 <?php
 
-trait SchoolHistorySeriesYearsTrait
+class QuerySchoolHistorySeriesYears extends QueryBridge
 {
     /**
      * @inheritdoc
      */
     protected function query()
     {
-        $escola = $this->args['escola'];
-        $aluno = $this->args['aluno'];
-        $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'];
-
-        return <<<SQL
+        return <<<'SQL'
             SELECT
                 vhsa.cod_aluno,
                 vhsa.disciplina AS nm_disciplina,
@@ -107,19 +103,19 @@ trait SchoolHistorySeriesYearsTrait
                 (
                     SELECT municipio
                     FROM relatorio.view_dados_escola
-                    WHERE cod_escola = $escola
+                    WHERE cod_escola = $P{escola}
                 ) AS municipio,
                 (
                     SELECT fcn_upper(p.nome)
                     FROM cadastro.pessoa p
                     INNER JOIN pmieducar.escola e ON (e.ref_idpes_gestor = p.idpes)
-                    WHERE e.cod_escola = $escola
+                    WHERE e.cod_escola = $P{escola}
                 ) AS diretor,
                 (
                     SELECT fcn_upper(p.nome)
                     FROM cadastro.pessoa p
                     INNER JOIN pmieducar.escola e ON (p.idpes = e.ref_idpes_secretario_escolar)
-                    WHERE e.cod_escola = $escola
+                    WHERE e.cod_escola = $P{escola}
                 ) AS secretario,
                 (
                     SELECT max(COALESCE(ato_poder_publico,''))
@@ -128,7 +124,7 @@ trait SchoolHistorySeriesYearsTrait
                 (
                     SELECT COALESCE(fcn_upper(nm_curso),'')
                     FROM pmieducar.historico_escolar he
-                    WHERE he.ref_cod_aluno = $aluno
+                    WHERE he.ref_cod_aluno = $P{aluno}
                     AND he.ativo = 1
                     ORDER BY ano DESC, relatorio.prioridade_historico(he.aprovado) ASC
                     LIMIT 1
@@ -211,7 +207,7 @@ trait SchoolHistorySeriesYearsTrait
                     FROM pmieducar.historico_escolar he
                     WHERE he.ref_cod_aluno = vhsa.cod_aluno
                     AND he.ativo = 1
-                    AND (CASE WHEN $nao_emitir_reprovado THEN he.aprovado <> 2 ELSE 1=1 END)
+                    AND (CASE WHEN $P!{nao_emitir_reprovado} THEN he.aprovado <> 2 ELSE true END)
                     AND he.dependencia = 't'
                 ) AS possui_historico_dependencia,
 
@@ -222,7 +218,7 @@ trait SchoolHistorySeriesYearsTrait
                         FROM pmieducar.historico_escolar phe
                         WHERE phe.ref_cod_aluno = vhsa.cod_aluno
                         AND phe.ativo = 1
-                        AND (CASE WHEN $nao_emitir_reprovado THEN phe.aprovado <> 2 ELSE 1=1 END)
+                        AND (CASE WHEN $P!{nao_emitir_reprovado} THEN phe.aprovado <> 2 ELSE true END)
                         ORDER BY phe.ano
                     )tabl
                 ) AS observacao_all
@@ -232,7 +228,7 @@ trait SchoolHistorySeriesYearsTrait
                 INNER JOIN cadastro.fisica ON (fisica.idpes = aluno.ref_idpes)
                 LEFT JOIN modules.educacenso_cod_aluno eca ON (eca.cod_aluno = aluno.cod_aluno)
                 LEFT JOIN public.municipio ON (municipio.idmun = fisica.idmun_nascimento)
-                WHERE vhsa.cod_aluno = $aluno;
+                WHERE vhsa.cod_aluno = $P{aluno};
 
 SQL;
     }

@@ -1,22 +1,13 @@
 <?php
 
-trait SchoolHistoryCrosstabTrait
+class QuerySchoolHistoryCrosstab extends QueryBridge
 {
     /**
      * @inheritdoc
      */
     protected function query()
     {
-        $aluno = $this->args['aluno'];
-        $ano_ini = $this->args['ano_ini'];
-        $ano_fim = $this->args['ano_fim'];
-        $instituicao = $this->args['instituicao'];
-        $escola = $this->args['escola'];
-        $sequencial = $this->args['sequencial'];
-        $nao_emitir_reprovado = $this->args['nao_emitir_reprovado'];
-        $cursoaluno = $this->args['cursoaluno'];
-
-        return <<<SQL
+        return <<<'SQL'
             SELECT
                 ano,
                 carga_horaria,
@@ -40,11 +31,11 @@ trait SchoolHistoryCrosstabTrait
                 (
                     SELECT ' ' || (replace(textcat_all(observacao),'<br>',E'\n'))
                     FROM pmieducar.historico_escolar phe
-                    WHERE phe.ref_cod_aluno = $aluno
+                    WHERE phe.ref_cod_aluno = $P{aluno}
                     AND phe.ativo = 1
-                    AND (CASE WHEN $nao_emitir_reprovado THEN phe.aprovado <> 2 ELSE 1=1 END)
-                    AND (CASE WHEN $ano_ini = 0 THEN 1=1 ELSE phe.ano >= $ano_ini END)
-                    AND (CASE WHEN $ano_fim = 0 THEN 1=1 ELSE phe.ano <= $ano_fim END)
+                    AND (CASE WHEN $P!{nao_emitir_reprovado} THEN phe.aprovado <> 2 ELSE 1=1 END)
+                    AND (CASE WHEN $P{ano_ini} = 0 THEN 1=1 ELSE phe.ano >= $P{ano_ini} END)
+                    AND (CASE WHEN $P{ano_fim} = 0 THEN 1=1 ELSE phe.ano <= $P{ano_fim} END)
                     AND (
                         (phe.aprovado <> 2)
                         OR (
@@ -67,7 +58,7 @@ trait SchoolHistoryCrosstabTrait
                 (
                     SELECT cod_aluno_inep
                     FROM modules.educacenso_cod_aluno
-                    WHERE cod_aluno = $aluno
+                    WHERE cod_aluno = $P{aluno}
                 ) AS INEP,
                 (
                     CASE
@@ -87,9 +78,9 @@ trait SchoolHistoryCrosstabTrait
                 (
                     SELECT aprovado
                     FROM pmieducar.historico_escolar
-                    WHERE ref_cod_instituicao = $instituicao
+                    WHERE ref_cod_instituicao = $P{instituicao}
                     AND ativo = 1
-                    AND ref_cod_aluno = $aluno
+                    AND ref_cod_aluno = $P{aluno}
                     ORDER BY ano DESC LIMIT 1
                 ) AS situacao_aluno,
                 (
@@ -100,9 +91,9 @@ trait SchoolHistoryCrosstabTrait
                         END
                     ) AS serie
                     FROM pmieducar.historico_escolar
-                    WHERE ref_cod_instituicao = $instituicao
+                    WHERE ref_cod_instituicao = $P{instituicao}
                     AND ativo = 1
-                    AND ref_cod_aluno = $aluno
+                    AND ref_cod_aluno = $P{aluno}
                     ORDER BY ano DESC LIMIT 1
                 ) AS serie,
                 (
@@ -110,14 +101,14 @@ trait SchoolHistoryCrosstabTrait
                         (
                             SELECT COALESCE (fcn_upper(ps.nome),fcn_upper(juridica.fantasia))
                             FROM cadastro.pessoa ps, cadastro.juridica, pmieducar.escola
-                            WHERE escola.cod_escola = $escola
+                            WHERE escola.cod_escola = $P{escola}
                             AND escola.ref_idpes = juridica.idpes
                             AND juridica.idpes = ps.idpes
                             AND ps.idpes = escola.ref_idpes
                         ), (
                             SELECT nm_escola
                             FROM pmieducar.escola_complemento
-                            WHERE ref_cod_escola = $escola
+                            WHERE ref_cod_escola = $P{escola}
                         )
                     )
                 ) AS nm_escola,
@@ -128,7 +119,7 @@ trait SchoolHistoryCrosstabTrait
                                 (
                                     SELECT municipio.nome
                                     FROM public.municipio, cadastro.endereco_pessoa, cadastro.juridica, public.bairro, pmieducar.escola
-                                    WHERE escola.cod_escola = $escola
+                                    WHERE escola.cod_escola = $P{escola}
                                     AND endereco_pessoa.idbai = bairro.idbai
                                     AND bairro.idmun = municipio.idmun
                                     AND juridica.idpes = endereco_pessoa.idpes
@@ -137,13 +128,13 @@ trait SchoolHistoryCrosstabTrait
                                     SELECT endereco_externo.cidade
                                     FROM cadastro.endereco_externo, pmieducar.escola
                                     WHERE endereco_externo.idpes = escola.ref_idpes
-                                    AND escola.cod_escola = $escola
+                                    AND escola.cod_escola = $P{escola}
                                 )
                             )
                         ), (
                             SELECT municipio
                             FROM pmieducar.escola_complemento
-                            WHERE ref_cod_escola = $escola
+                            WHERE ref_cod_escola = $P{escola}
                         )
                     )
                 ) AS municipio,
@@ -151,26 +142,26 @@ trait SchoolHistoryCrosstabTrait
                     SELECT fcn_upper(p.nome)
                     FROM cadastro.pessoa p
                     INNER JOIN pmieducar.escola e ON (e.ref_idpes_gestor = p.idpes)
-                    WHERE e.cod_escola = $escola
+                    WHERE e.cod_escola = $P{escola}
                 ) AS diretor,
                 (
                     SELECT fcn_upper(p.nome)
                     FROM cadastro.pessoa p
                     INNER JOIN pmieducar.escola e ON (p.idpes = e.ref_idpes_secretario_escolar)
-                    WHERE e.cod_escola = $escola
+                    WHERE e.cod_escola = $P{escola}
                 ) AS secretario,
                 (
                     SELECT COALESCE(
                         (
                             SELECT ps.email
                             FROM cadastro.pessoa ps, cadastro.juridica, pmieducar.escola
-                            WHERE escola.cod_escola = $escola
+                            WHERE escola.cod_escola = $P{escola}
                             AND juridica.idpes = ps.idpes
                             AND juridica.idpes = escola.ref_idpes
                         ), (
                             SELECT email
                             FROM pmieducar.escola_complemento
-                            WHERE ref_cod_escola = $escola
+                            WHERE ref_cod_escola = $P{escola}
                         )
                     )
                 ) AS email,
@@ -182,7 +173,7 @@ trait SchoolHistoryCrosstabTrait
                         cadastro.pessoa
                     WHERE pessoa.idpes = fisica.idpes
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $aluno
+                    AND aluno.cod_aluno = $P{aluno}
                 ) AS nome_aluno,
                 (
                     SELECT public.fcn_upper(fisica.nome_social)
@@ -192,7 +183,7 @@ trait SchoolHistoryCrosstabTrait
                         cadastro.pessoa
                     WHERE pessoa.idpes = fisica.idpes
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $aluno
+                    AND aluno.cod_aluno = $P{aluno}
                 ) AS nome_social_aluno,
                 (
                     SELECT municipio.nome || '/' || municipio.sigla_uf
@@ -202,7 +193,7 @@ trait SchoolHistoryCrosstabTrait
                         pmieducar.aluno
                     WHERE fisica.idmun_nascimento = municipio.idmun
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $aluno
+                    AND aluno.cod_aluno = $P{aluno}
                 ) AS cidade_nascimento_uf,
                 (
                     SELECT municipio.nome
@@ -212,7 +203,7 @@ trait SchoolHistoryCrosstabTrait
                         pmieducar.aluno
                     WHERE fisica.idmun_nascimento = municipio.idmun
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $aluno
+                    AND aluno.cod_aluno = $P{aluno}
                 ) AS cidade_nascimento,
                 (
                     SELECT municipio.sigla_uf
@@ -222,7 +213,7 @@ trait SchoolHistoryCrosstabTrait
                         pmieducar.aluno
                     WHERE fisica.idmun_nascimento = municipio.idmun
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $aluno
+                    AND aluno.cod_aluno = $P{aluno}
                 ) AS uf_nascimento,
                 (
                     SELECT to_char(fisica.data_nasc,'DD/MM/YYYY')
@@ -232,7 +223,7 @@ trait SchoolHistoryCrosstabTrait
                         cadastro.pessoa
                     WHERE pessoa.idpes = fisica.idpes
                     AND fisica.idpes = aluno.ref_idpes
-                    AND aluno.cod_aluno = $aluno
+                    AND aluno.cod_aluno = $P{aluno}
                 ) AS data_nasc,
                 (
                     SELECT public.fcn_upper(
@@ -240,13 +231,13 @@ trait SchoolHistoryCrosstabTrait
                             (
                                 SELECT pessoa_pai.nome
                                 FROM cadastro.fisica AS pessoa_aluno, cadastro.pessoa AS pessoa_pai, pmieducar.aluno
-                                WHERE aluno.cod_aluno = $aluno
+                                WHERE aluno.cod_aluno = $P{aluno}
                                 AND aluno.ref_idpes = pessoa_aluno.idpes
                                 AND pessoa_pai.idpes = pessoa_aluno.idpes_pai
                             ), (
                                 SELECT aluno.nm_pai
                                 FROM pmieducar.aluno
-                                WHERE aluno.cod_aluno = $aluno
+                                WHERE aluno.cod_aluno = $P{aluno}
                             )
                         )
                     )
@@ -257,13 +248,13 @@ trait SchoolHistoryCrosstabTrait
                             (
                                 SELECT pessoa_mae.nome
                                 FROM cadastro.fisica AS pessoa_aluno, cadastro.pessoa AS pessoa_mae, pmieducar.aluno
-                                WHERE aluno.cod_aluno = $aluno
+                                WHERE aluno.cod_aluno = $P{aluno}
                                 AND aluno.ref_idpes = pessoa_aluno.idpes
                                 AND pessoa_mae.idpes = pessoa_aluno.idpes_mae
                             ), (
                                 SELECT aluno.nm_mae
                                 FROM pmieducar.aluno
-                                WHERE aluno.cod_aluno = $aluno
+                                WHERE aluno.cod_aluno = $P{aluno}
                             )
                         )
                     )
@@ -318,16 +309,16 @@ trait SchoolHistoryCrosstabTrait
                 (
                     SELECT nm_curso
                     FROM pmieducar.historico_escolar
-                    WHERE historico_escolar.ref_cod_aluno = $aluno
+                    WHERE historico_escolar.ref_cod_aluno = $P{aluno}
                     AND historico_escolar.ativo = 1
                     AND historico_escolar.ano = (
                         SELECT max(he.ano)
                         FROM pmieducar.historico_escolar AS he
                         WHERE he.ref_cod_aluno = historico_escolar.ref_cod_aluno
                         AND he.ativo = 1
-                        AND (CASE WHEN $ano_fim = 0 THEN TRUE ELSE he.ano <= $ano_fim END)
-                        AND (CASE WHEN $sequencial = 0 THEN TRUE ELSE (he.nm_curso) IN ($cursoaluno::varchar) END))
-                    AND (CASE WHEN $sequencial = 0 THEN TRUE ELSE (historico_escolar.nm_curso) IN ($cursoaluno::varchar) END) LIMIT 1
+                        AND (CASE WHEN $P{ano_fim} = 0 THEN TRUE ELSE he.ano <= $P{ano_fim} END)
+                        AND (CASE WHEN $P{sequencial} = 0 THEN TRUE ELSE (he.nm_curso) IN ($P{cursoaluno}::varchar) END))
+                    AND (CASE WHEN $P{sequencial} = 0 THEN TRUE ELSE (historico_escolar.nm_curso) IN ($P{cursoaluno}::varchar) END) LIMIT 1
                 ) AS nome_curso,
                 (
                     SELECT count(hd.nota)
@@ -338,15 +329,15 @@ trait SchoolHistoryCrosstabTrait
             FROM
                 pmieducar.historico_escolar,
                 pmieducar.historico_disciplinas
-            WHERE historico_escolar.ref_cod_aluno = $aluno
+            WHERE historico_escolar.ref_cod_aluno = $P{aluno}
             AND historico_escolar.ref_cod_aluno = historico_disciplinas.ref_ref_cod_aluno
-            AND (CASE WHEN $ano_ini = 0 THEN 1=1 ELSE historico_escolar.ano >= $ano_ini END)
-            AND (CASE WHEN $ano_fim = 0 THEN 1=1 ELSE historico_escolar.ano <= $ano_fim END)
-            AND (CASE WHEN $nao_emitir_reprovado THEN historico_escolar.aprovado <> 2 ELSE 1=1 END)
-            AND (CASE WHEN $sequencial = 0 THEN TRUE ELSE (historico_escolar.nm_curso) IN ($cursoaluno::varchar) END)
+            AND (CASE WHEN $P{ano_ini} = 0 THEN 1=1 ELSE historico_escolar.ano >= $P{ano_ini} END)
+            AND (CASE WHEN $P{ano_fim} = 0 THEN 1=1 ELSE historico_escolar.ano <= $P{ano_fim} END)
+            AND (CASE WHEN $P!{nao_emitir_reprovado} THEN historico_escolar.aprovado <> 2 ELSE 1=1 END)
+            AND (CASE WHEN $P{sequencial} = 0 THEN TRUE ELSE (historico_escolar.nm_curso) IN ($P{cursoaluno}::varchar) END)
             AND historico_escolar.sequencial = historico_disciplinas.ref_sequencial
-            AND historico_escolar.ref_cod_instituicao = $instituicao
-            AND historico_escolar.ref_cod_aluno = $aluno
+            AND historico_escolar.ref_cod_instituicao = $P{instituicao}
+            AND historico_escolar.ref_cod_aluno = $P{aluno}
             AND (
                 (historico_escolar.aprovado <> 2)
                 OR (
