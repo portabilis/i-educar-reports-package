@@ -113,18 +113,14 @@
 				<textFieldExpression><![CDATA["<b>E-mail:</b> "+($F{email} != null ? $F{email} : "")]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
-				<reportElement x="570" y="13" width="135" height="13" uuid="87541580-69bf-4d1f-b67c-9a2fc57807bc">
-					<printWhenExpression><![CDATA[$P{data_emissao} == 1]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="570" y="13" width="135" height="13" uuid="87541580-69bf-4d1f-b67c-9a2fc57807bc"/>
 				<textElement textAlignment="Right" markup="html">
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["<b>Emitido em:</b>"]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy hh:mm">
-				<reportElement x="661" y="13" width="135" height="13" uuid="87541580-69bf-4d1f-b67c-9a2fc57807bc">
-					<printWhenExpression><![CDATA[$P{data_emissao} == 1]]></printWhenExpression>
-				</reportElement>
+				<reportElement x="661" y="13" width="135" height="13" uuid="87541580-69bf-4d1f-b67c-9a2fc57807bc"/>
 				<textElement textAlignment="Right" markup="html">
 					<font fontName="DejaVu Sans" size="10" isBold="false"/>
 				</textElement>
