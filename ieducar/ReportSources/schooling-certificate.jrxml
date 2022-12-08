@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_atestado_escolaridade" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ebfea547-cf8a-408f-af8a-1e9e8f07874e">
+    <property name="ireport.zoom" value="1.6105100000000074"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="ano" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+    </parameter>
+    <parameter name="instituicao" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+    </parameter>
+    <parameter name="escola" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+    </parameter>
+    <parameter name="matricula" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+    </parameter>
+    <parameter name="observacao" class="java.lang.String"/>
+    <parameter name="logo" class="java.lang.String"/>
+    <parameter name="data_emissao" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+    </parameter>
+    <parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+    </parameter>
+    <parameter name="cabecalho_alternativo" class="java.lang.Integer">
+        <defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+    </parameter>
+    <parameter name="emitir_nome_diretor" class="java.lang.Boolean">
+        <defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+    </parameter>
+    <parameter name="database" class="java.lang.String">
+        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+    </parameter>
+    <parameter name="emitir_secretario_escolar" class="java.lang.Boolean">
+        <defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+    </parameter>
+    <parameter name="emitir_ra" class="java.lang.Boolean">
+        <defaultValueExpression><![CDATA[false]]></defaultValueExpression>
+    </parameter>
+    <parameter name="titulo" class="java.lang.String">
+        <defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+    </parameter>
+    <parameter name="source" class="java.lang.String"/>
+    <parameter name="assinatura_secretario" class="java.lang.String"/>
+    <parameter name="assinatura_diretor" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="cod_escola" class="java.lang.Integer"/>
+    <field name="ano" class="java.lang.Integer"/>
+    <field name="altera_atestado_para_declaracao" class="java.lang.Boolean"/>
+    <field name="nome_social" class="java.lang.String"/>
+    <field name="nome" class="java.lang.String"/>
+    <field name="nm_pai" class="java.lang.String"/>
+    <field name="nm_mae" class="java.lang.String"/>
+    <field name="data_nasc" class="java.lang.String"/>
+    <field name="municipio_uf_nascimento" class="java.lang.String"/>
+    <field name="nm_serie" class="java.lang.String"/>
+    <field name="sigla_curso" class="java.lang.String"/>
+    <field name="nm_curso" class="java.lang.String"/>
+    <field name="cidade" class="java.lang.String"/>
+    <field name="data_atual" class="java.lang.String"/>
+    <field name="cod_inep" class="java.lang.Long"/>
+    <field name="aluno_estado_id" class="java.lang.String"/>
+    <field name="secretario" class="java.lang.String"/>
+    <field name="diretor" class="java.lang.String"/>
+    <field name="periodo" class="java.lang.String"/>
+    <field name="matricula" class="java.lang.Integer"/>
+    <group name="matricula" isStartNewPage="true">
+        <groupExpression><![CDATA[$F{matricula}]]></groupExpression>
+        <groupFooter>
+            <band height="81">
+                <printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true || $P{emitir_nome_diretor} == true]]></printWhenExpression>
+                <textField>
+                    <reportElement uuid="acb35541-433f-46d1-942d-58b7e890aaa6" x="171" y="43" width="193" height="37">
+                        <printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == false]]></printWhenExpression>
+                    </reportElement>
+                    <textElement textAlignment="Center">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{emitir_secretario_escolar} ? ($F{secretario} == null ? $P{assinatura_secretario} : $F{secretario} + "\n" + $P{assinatura_secretario}) : ($P{assinatura_secretario})]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement uuid="4c9c2119-06e0-4e13-96e3-82a8347b7399" x="171" y="43" width="193" height="38">
+                        <printWhenExpression><![CDATA[$P{emitir_nome_diretor} == true && $P{emitir_secretario_escolar} == false]]></printWhenExpression>
+                    </reportElement>
+                    <textElement textAlignment="Center">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{emitir_nome_diretor} ? ($F{diretor} == null ? $P{assinatura_diretor} : $F{diretor} + "\n" + $P{assinatura_diretor}) : ($P{assinatura_diretor})]]></textFieldExpression>
+                </textField>
+                <line>
+                    <reportElement uuid="0d179794-4148-414e-aa50-655ce102c43f" x="21" y="41" width="193" height="1">
+                        <printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == true]]></printWhenExpression>
+                    </reportElement>
+                </line>
+                <line>
+                    <reportElement uuid="0d179794-4148-414e-aa50-655ce102c43f" x="171" y="41" width="193" height="1">
+                        <printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == false]]></printWhenExpression>
+                    </reportElement>
+                </line>
+                <textField>
+                    <reportElement uuid="acb35541-433f-46d1-942d-58b7e890aaa6" x="21" y="43" width="193" height="37">
+                        <printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == true]]></printWhenExpression>
+                    </reportElement>
+                    <textElement textAlignment="Center">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{emitir_secretario_escolar} ? ($F{secretario} == null ? $P{assinatura_secretario} : $F{secretario} + "\n" + $P{assinatura_secretario}) : ($P{assinatura_secretario})]]></textFieldExpression>
+                </textField>
+                <line>
+                    <reportElement uuid="0d179794-4148-414e-aa50-655ce102c43f" x="171" y="41" width="193" height="1">
+                        <printWhenExpression><![CDATA[$P{emitir_nome_diretor} == true && $P{emitir_secretario_escolar} == false]]></printWhenExpression>
+                    </reportElement>
+                </line>
+                <line>
+                    <reportElement uuid="0d179794-4148-414e-aa50-655ce102c43f" x="341" y="41" width="193" height="1">
+                        <printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == true]]></printWhenExpression>
+                    </reportElement>
+                </line>
+                <textField>
+                    <reportElement uuid="4c9c2119-06e0-4e13-96e3-82a8347b7399" x="341" y="43" width="193" height="38">
+                        <printWhenExpression><![CDATA[$P{emitir_secretario_escolar} == true && $P{emitir_nome_diretor} == true]]></printWhenExpression>
+                    </reportElement>
+                    <textElement textAlignment="Center">
+                        <font fontName="DejaVu Sans"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$P{emitir_nome_diretor} ? ($F{diretor} == null ? $P{assinatura_diretor} : $F{diretor} + "\n" + $P{assinatura_diretor}) : ($P{assinatura_diretor})]]></textFieldExpression>
+                </textField>
+            </band>
+        </groupFooter>
+    </group>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band splitType="Stretch"/>
+    </title>
+    <pageHeader>
+        <band height="60" splitType="Stretch">
+            <subreport>
+                <reportElement uuid="e6eefa8a-1dc1-488b-8b46-27481a434ee2" x="0" y="0" width="555" height="60"/>
+                <subreportParameter name="logo">
+                    <subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="titulo">
+                    <subreportParameterExpression><![CDATA[""]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="cod_instituicao">
+                    <subreportParameterExpression><![CDATA[$P{instituicao}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="cod_escola">
+                    <subreportParameterExpression><![CDATA[$P{escola} == 0 ? $F{cod_escola} : $P{escola}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="ano">
+                    <subreportParameterExpression><![CDATA[$F{ano}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="data_emissao">
+                    <subreportParameterExpression><![CDATA[$P{data_emissao}]]></subreportParameterExpression>
+                </subreportParameter>
+                <subreportParameter name="source">
+                    <subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
+                </subreportParameter>
+                <connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+                <subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "header-portrait.jasper"]]></subreportExpression>
+            </subreport>
+        </band>
+    </pageHeader>
+    <detail>
+        <band height="451" splitType="Stretch">
+            <textField isStretchWithOverflow="true" pattern="">
+                <reportElement uuid="09b1099f-fbaf-45f9-aaa9-9fa8f5d23f8d" x="21" y="45" width="513" height="158"/>
+                <textElement textAlignment="Justified">
+                    <font fontName="DejaVu Sans" size="11"/>
+                    <paragraph lineSpacing="1_1_2" firstLineIndent="30"/>
+                </textElement>
+                <textFieldExpression><![CDATA[($F{altera_atestado_para_declaracao} ? "Declaramos" : "Atestamos") +" para os devidos fins de direitos, que o (a) aluno (a) " + ($F{nome_social} ? $F{nome_social} + ', nome de registro ' + $F{nome} : $F{nome}) +
+", filho(a) de " + ($F{nm_pai}.equals("") && $F{nm_mae}.equals("") ? "Não Informado" : (!$F{nm_pai}.equals("") && $F{nm_mae}.equals("") ? $F{nm_pai} : ($F{nm_pai}.equals("") && !$F{nm_mae}.equals("") ? $F{nm_mae} : ($F{nm_mae} + " e de " + $F{nm_pai})))) +  ", nascido (a) em " + $F{data_nasc} +
+", natural de " + $F{municipio_uf_nascimento} +
+", está regularmente matriculado (a) no " + $F{nm_serie} + ($F{sigla_curso} ? "/" + $F{sigla_curso} : "") +
+", do " + $F{nm_curso} + ", no turno " + $F{periodo} + " do ano letivo de " + $F{ano} + "."]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement uuid="ba7cb218-2999-4bf4-9b20-ce90405335b9" positionType="Float" stretchType="RelativeToBandHeight" x="92" y="361" width="442" height="90"/>
+                <textElement textAlignment="Justified">
+                    <font fontName="DejaVu Sans" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{observacao}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement uuid="ab1f2689-54cc-433f-b62f-82b85d2a2d23" x="21" y="361" width="71" height="13">
+                    <printWhenExpression><![CDATA[$P{observacao} != null]]></printWhenExpression>
+                </reportElement>
+                <textElement markup="none">
+                    <font fontName="DejaVu Sans" size="10"/>
+                </textElement>
+                <text><![CDATA[Observação:]]></text>
+            </staticText>
+            <textField>
+                <reportElement uuid="0bc10215-1dc4-4d5f-a4ad-1d5c49e64d5d" x="0" y="8" width="555" height="15"/>
+                <textElement textAlignment="Center" markup="none">
+                    <font fontName="DejaVu Sans" size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{titulo}.toUpperCase()]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="c7c8cb7e-6ef3-449c-b963-c92c76e077f8" x="21" y="203" width="534" height="13"/>
+                <textElement>
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Código nacional (INEP): " + ($F{cod_inep} == null ? "" : $F{cod_inep})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement uuid="c7c8cb7e-6ef3-449c-b963-c92c76e077f8" x="21" y="220" width="534" height="13">
+                    <printWhenExpression><![CDATA[$P{emitir_ra}]]></printWhenExpression>
+                </reportElement>
+                <textElement>
+                    <font fontName="DejaVu Sans"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Código estado (RA):      " + ($F{aluno_estado_id} == null ? "" : $F{aluno_estado_id})]]></textFieldExpression>
+            </textField>
+        </band>
+        <band height="26" splitType="Stretch">
+            <textField isBlankWhenNull="true">
+                <reportElement uuid="90b88942-ea8c-4d08-a9e9-63d3f59a46b0" stretchType="RelativeToBandHeight" x="0" y="12" width="534" height="14"/>
+                <textElement textAlignment="Right">
+                    <font fontName="DejaVu Sans" size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{cidade}+", "+$F{data_atual}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="60">
+            <printWhenExpression><![CDATA[$P{database} == "parauapebas"]]></printWhenExpression>
+            <staticText>
+                <reportElement uuid="0ba183ec-3acc-4236-8041-08de0b5f62b9" x="0" y="0" width="555" height="60">
+                    <printWhenExpression><![CDATA[$P{database} == "parauapebas"]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="DejaVu Sans" size="10"/>
+                </textElement>
+                <text><![CDATA[Departamento de Inspeção e Documentação Escolar - DIDE
+Rua C, 610, Cidade Nova, Parauapebas-PA, Cep: 68.515 - 000, Fone (94) 3346-4757
+E-Mail - dide.semed@parauapebas.pa.gov.br]]></text>
+            </staticText>
+        </band>
+    </pageFooter>
+</jasperReport>
