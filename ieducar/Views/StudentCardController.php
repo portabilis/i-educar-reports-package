@@ -102,7 +102,7 @@ class StudentCardController extends Portabilis_Controller_ReportCoreController
         $this->report->addArg('cor_de_fundo', (int) $this->getRequest()->cor_de_fundo);
 
         $configPath = config('legacy.report.caminho_fundo_carteira_transporte');
-        $path = empty($configPath) ? '/var/www/ieducar/ieducar/modules/Reports/Assets/Images/StudentCard' : '';
+        $path = empty($configPath) ? '/var/www/ieducar/ieducar/modules/Reports/Assets/Images/StudentCard' : $configPath;
 
         $this->report->addArg('caminho_fundo_carteira_transporte', $path);
         if (!isset($_POST['ref_cod_matricula'])) {
