@@ -77,6 +77,8 @@ class ConferenceEvaluationsFaultsReport extends Portabilis_Report_ReportCore
         $curso = $this->args['curso'];
         $serie = $this->args['serie'];
         $turma = $this->args['turma'];
+        $situacaoMatricula = $this->args['situacaoMatricula'];
+
 
         return "
 SELECT matricula.cod_matricula AS cod_matricula,
@@ -244,7 +246,7 @@ LEFT JOIN modules.nota_componente_curricular AS nota_componente_curricular_etapa
                                                                                       AND nota_componente_curricular_etapa4.etapa = '4')
 INNER JOIN relatorio.view_situacao ON (view_situacao.cod_matricula = matricula.cod_matricula
                                        AND view_situacao.sequencial = matricula_turma.sequencial
-                                       AND view_situacao.cod_situacao = 9)
+                                       AND view_situacao.cod_situacao = {$situacaoMatricula})
 WHERE instituicao.cod_instituicao = {$instituicao}
   AND matricula.ano = {$ano}
   AND escola.cod_escola = {$escola}
