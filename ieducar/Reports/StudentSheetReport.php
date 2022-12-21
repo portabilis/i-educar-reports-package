@@ -51,7 +51,7 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
                     fcn_upper(COALESCE(relatorio.get_mae_aluno(aluno.cod_aluno), 'NAO INFORMADO')) AS nm_mae,
                     fisica.sexo,
                     to_char(fisica.data_nasc,'dd/mm/yyyy') AS data_nasc,
-                    religiao.nm_religiao AS religiao,
+                    religions.name AS religiao,
                     relatorio.get_nacionalidade(fisica.nacionalidade) AS nacionalidade,
                     (CASE
                          WHEN aluno.analfabeto = 0 THEN 'Sim'
@@ -659,7 +659,7 @@ INNER JOIN pmieducar.aluno ON (aluno.cod_aluno = matricula.ref_cod_aluno)
 INNER JOIN cadastro.pessoa ON (pessoa.idpes = aluno.ref_idpes)
 LEFT JOIN cadastro.fisica ON (fisica.idpes = pessoa.idpes)
 LEFT JOIN modules.transporte_aluno ON (aluno.cod_aluno = transporte_aluno.aluno_id)
-LEFT JOIN pmieducar.religiao ON (religiao.cod_religiao = fisica.ref_cod_religiao)
+LEFT JOIN pmieducar.religions ON (religions.id = fisica.ref_cod_religiao)
 LEFT JOIN cadastro.fisica_raca ON (pessoa.idpes = fisica_raca.ref_idpes)
 LEFT JOIN cadastro.raca ON (fisica_raca.ref_cod_raca = raca.cod_raca)
 INNER JOIN pmieducar.turma_tipo ON (turma.ref_cod_turma_tipo = turma_tipo.cod_turma_tipo)

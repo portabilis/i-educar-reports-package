@@ -33,6 +33,7 @@ class ConferenceEvaluationsFaultsController extends Portabilis_Controller_Report
     {
         $this->inputsHelper()->dynamic(['ano', 'instituicao', 'escola', 'curso', 'serie', 'turma']);
         $this->inputsHelper()->dynamic(['etapa'], ['required' => false]);
+        $this->inputsHelper()->dynamic('situacaoMatricula');
         $this->inputsHelper()->checkbox('emitir_legenda', ['label' => 'Emitir legenda?', 'required' => false]);
         $this->campoLista('modelo', 'Modelo', [
             1 => 'Simplificado'
@@ -51,6 +52,7 @@ class ConferenceEvaluationsFaultsController extends Portabilis_Controller_Report
         $this->report->addArg('serie', (int)$this->getRequest()->ref_cod_serie);
         $this->report->addArg('turma', (int)$this->getRequest()->ref_cod_turma);
         $this->report->addArg('etapa', (int)$this->getRequest()->etapa);
+        $this->report->addArg('situacaoMatricula', (int)$this->getRequest()->situacao_matricula_id);
         $this->report->addArg('modelo', (int)$this->getRequest()->modelo);
         $this->report->addArg('emitir_legenda', (bool)$this->getRequest()->emitir_legenda);
     }
