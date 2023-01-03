@@ -14,6 +14,14 @@ class QueryDefaultSchoolHistory extends QueryBridge
                 e.ato_autorizativo,
                 he.ref_cod_aluno AS cod_aluno,
                 p.nome as nome_aluno,
+                a.aluno_estado_id AS cod_ra,
+                d.rg AS cod_rg,
+                CASE WHEN tipo_cert_civil = 91
+                    THEN 'Termo: ' || coalesce(d.num_termo::text, '') ||
+                    ' Livro: ' || coalesce(d.num_livro, '') ||
+                    ' Folha: ' || coalesce(d.num_folha::text, '')
+                    ELSE d.certidao_nascimento
+                END AS registro_nascimento,
                 f.nome_social as nome_social_aluno,
                 eca.cod_aluno_inep AS cod_inep,
                 c.name || '/' || s.abbreviation AS cidade_nascimento_uf,
@@ -93,6 +101,7 @@ class QueryDefaultSchoolHistory extends QueryBridge
             JOIN pmieducar.aluno a ON a.cod_aluno = he.ref_cod_aluno
             JOIN cadastro.pessoa p ON p.idpes = a.ref_idpes
             JOIN cadastro.fisica f ON f.idpes = a.ref_idpes
+            LEFT JOIN cadastro.documento d ON (d.idpes = a.ref_idpes)
             LEFT JOIN public.cities c ON c.id = f.idmun_nascimento
             LEFT JOIN public.states s ON s.id = c.state_id
             LEFT JOIN modules.educacenso_cod_aluno eca ON (eca.cod_aluno = a.cod_aluno)
