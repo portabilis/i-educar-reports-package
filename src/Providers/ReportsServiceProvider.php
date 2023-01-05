@@ -20,6 +20,10 @@ class ReportsServiceProvider extends ServiceProvider
             $this->commands([
                 CommunityReportsLinkCommand::class,
             ]);
+
+            $this->publishes([
+                __DIR__ . '/../../ieducar/Assets' => public_path('vendor/legacy/Reports/Assets')
+            ], ['reports-assets']);
         }
     }
 
