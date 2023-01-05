@@ -117,22 +117,24 @@ class BaseMenus extends Migration
             'order' => 10,
             'parent_old' => 21127,
         ]);
-        Menu::query()->updateOrCreate([
-            'old' => 999614,
-        ], [
-            'parent_id' => Menu::query()->where('old', Process::MENU_LIBRARY)->firstOrFail()->getKey(),
-            'title' => 'Relatórios',
-            'order' => 3,
-            'parent_old' => 16,
-        ]);
-        Menu::query()->updateOrCreate([
-            'old' => 999831,
-        ], [
-            'parent_id' => Menu::query()->where('old', Process::MENU_LIBRARY)->firstOrFail()->getKey(),
-            'title' => 'Documentos',
-            'order' => 4,
-            'parent_old' => 16,
-        ]);
+        if ($menu = Menu::query()->where('old', Process::MENU_LIBRARY)->first()) {
+            Menu::query()->updateOrCreate([
+                'old' => 999614,
+            ], [
+                'parent_id' => $menu->getKey(),
+                'title' => 'Relatórios',
+                'order' => 3,
+                'parent_old' => 16,
+            ]);
+            Menu::query()->updateOrCreate([
+                'old' => 999831,
+            ], [
+                'parent_id' => $menu->getKey(),
+                'title' => 'Documentos',
+                'order' => 4,
+                'parent_old' => 16,
+            ]);
+        }
         Menu::query()->updateOrCreate([
             'old' => 999905,
         ], [
@@ -157,14 +159,16 @@ class BaseMenus extends Migration
             'order' => 3,
             'parent_old' => 999831,
         ]);
-        Menu::query()->updateOrCreate([
-            'old' => 20712,
-        ], [
-            'parent_id' => Menu::query()->where('old', Process::MENU_TRANSPORT)->firstOrFail()->getKey(),
-            'title' => 'Relatórios',
-            'order' => 3,
-            'parent_old' => 17,
-        ]);
+        if ($menu = Menu::query()->where('old', Process::MENU_TRANSPORT)->first()) {
+            Menu::query()->updateOrCreate([
+                'old' => 20712,
+            ], [
+                'parent_id' => $menu->getKey(),
+                'title' => 'Relatórios',
+                'order' => 3,
+                'parent_old' => 17,
+            ]);
+        }
         Menu::query()->updateOrCreate([
             'old' => 9998847,
         ], [
