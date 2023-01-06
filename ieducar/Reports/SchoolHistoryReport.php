@@ -16,7 +16,8 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
             1 => 'school-history-series-years',
             2 => 'school-history-crosstab',
             3 => 'school-history-early-years',
-            4 => 'school-history-eja'
+            4 => 'school-history-eja',
+            5 => 'school-history-nine-years'
         ];
 
         $this->lote = $this->args['lote'];
@@ -58,6 +59,21 @@ class SchoolHistoryReport extends Portabilis_Report_ReportCore
 
             return [
                 'main' => (new QueryDefaultSchoolHistory)->get($this->args),
+                'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport)
+            ];
+        }
+
+        if ($this->args['modelo'] == 5) {
+            $this->args['alunos'] = 0;
+            if ($this->lote) {
+                $this->args['alunos'] = $this->getStudentsByShoolClass() ?: 0;
+            }
+
+            $this->modifiers[] = SchoolHistoryNineYearsModifier::class;
+
+            return [
+                'main' => (new QuerySchoolHistoryNineYears())->get($this->args),
+                'extra-curricular-dataset' => (new QuerySchoolHistoryNineYearsExtraCurricular())->get($this->args),
                 'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport)
             ];
         }

@@ -55,6 +55,7 @@ class SchoolHistoryController extends Portabilis_Controller_ReportCoreController
 
         $resources = [
             1 => 'Série/Anos',
+            5 => '9 anos',
             2 => 'Modelo 1',
             3 => 'Anos iniciais',
             4 => 'Modelo EJA',
