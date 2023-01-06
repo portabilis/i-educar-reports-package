@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="portabilis_historico_escolar_9anos_camposdojordao" language="groovy" pageWidth="555" pageHeight="842" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b207692a-3e84-4d74-845d-329366699ea8">
+	<property name="ireport.zoom" value="1.9487171000000123"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="aluno" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new java.lang.Integer(0)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="net.sf.jasperreports.json.source" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{source}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="source" class="java.lang.String"/>
+	<queryString language="json">
+		<![CDATA[extra-curricular-dataset(cod_aluno == $P{aluno})]]>
+	</queryString>
+	<field name="cod_aluno" class="java.lang.Integer"/>
+	<field name="nome_aluno" class="java.lang.String"/>
+	<field name="ano_1serie" class="java.lang.Integer"/>
+	<field name="ano_2serie" class="java.lang.Integer"/>
+	<field name="ano_3serie" class="java.lang.Integer"/>
+	<field name="ano_4serie" class="java.lang.Integer"/>
+	<field name="ano_5serie" class="java.lang.Integer"/>
+	<field name="ano_6serie" class="java.lang.Integer"/>
+	<field name="ano_7serie" class="java.lang.Integer"/>
+	<field name="ano_8serie" class="java.lang.Integer"/>
+	<field name="ano_9serie" class="java.lang.Integer"/>
+	<field name="nm_disciplina" class="java.lang.String"/>
+	<field name="transferido1" class="java.lang.Boolean"/>
+	<field name="transferido2" class="java.lang.Boolean"/>
+	<field name="transferido3" class="java.lang.Boolean"/>
+	<field name="transferido4" class="java.lang.Boolean"/>
+	<field name="transferido5" class="java.lang.Boolean"/>
+	<field name="transferido6" class="java.lang.Boolean"/>
+	<field name="transferido7" class="java.lang.Boolean"/>
+	<field name="transferido8" class="java.lang.Boolean"/>
+	<field name="transferido9" class="java.lang.Boolean"/>
+	<field name="nota_1serie" class="java.lang.String"/>
+	<field name="nota_2serie" class="java.lang.String"/>
+	<field name="nota_3serie" class="java.lang.String"/>
+	<field name="nota_4serie" class="java.lang.String"/>
+	<field name="nota_5serie" class="java.lang.String"/>
+	<field name="nota_6serie" class="java.lang.String"/>
+	<field name="nota_7serie" class="java.lang.String"/>
+	<field name="nota_8serie" class="java.lang.String"/>
+	<field name="nota_9serie" class="java.lang.String"/>
+	<field name="carga_horaria1" class="java.lang.Double"/>
+	<field name="carga_horaria2" class="java.lang.Double"/>
+	<field name="carga_horaria3" class="java.lang.Double"/>
+	<field name="carga_horaria4" class="java.lang.Double"/>
+	<field name="carga_horaria5" class="java.lang.Double"/>
+	<field name="carga_horaria6" class="java.lang.Double"/>
+	<field name="carga_horaria7" class="java.lang.Double"/>
+	<field name="carga_horaria8" class="java.lang.Double"/>
+	<field name="carga_horaria9" class="java.lang.Double"/>
+	<group name="aluno" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{nome_aluno}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<staticText>
+					<reportElement uuid="201cc03d-25eb-4016-a8e1-4cf80d1e7643" mode="Opaque" x="355" y="0" width="40" height="16" backcolor="#D2D2D2"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[5º Ano]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="635180f8-e6e3-44c0-9fca-39fe926f6e72" mode="Opaque" x="395" y="0" width="40" height="16" backcolor="#D2D2D2"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[6º Ano]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="541a7ee9-e32f-4324-a53e-037477aa5148" mode="Opaque" x="195" y="0" width="40" height="16" backcolor="#D2D2D2"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[1º Ano]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="92ab7d33-d5ad-48cc-acff-c9b75685dc71" x="0" y="0" width="195" height="16"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="10" isBold="true"/>
+						<paragraph lineSpacing="1_1_2"/>
+					</textElement>
+					<text><![CDATA[ATIVIDADES COMPLEMENTARES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="b0685dfc-fddb-49b8-be3f-810ff9ecb2d8" mode="Opaque" x="515" y="0" width="40" height="16" backcolor="#D2D2D2"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[9º Ano]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="29b246ed-2065-4401-b2ca-6763599b7aa7" mode="Opaque" x="275" y="0" width="40" height="16" backcolor="#D2D2D2"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[3º Ano]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c6a21768-f8e5-4e77-8d8d-893b26d7a9c1" mode="Opaque" x="315" y="0" width="40" height="16" backcolor="#D2D2D2"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[4º Ano]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="dbdb5518-ffb4-431b-9eef-616466f1c63e" mode="Opaque" x="475" y="0" width="40" height="16" backcolor="#D2D2D2"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[8º Ano]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="c596b2fc-898e-4fdc-b794-fd66c795dcd5" mode="Opaque" x="435" y="0" width="40" height="16" backcolor="#D2D2D2"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[7º Ano]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="a2e51f0c-21d2-440e-9318-c2fa18f1892c" mode="Opaque" x="235" y="0" width="40" height="16" backcolor="#D2D2D2"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[2º Ano]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="20">
+				<textField pattern="###" isBlankWhenNull="true">
+					<reportElement uuid="e19c0600-1181-483f-9d80-31c6dc4f0f72" x="235" y="0" width="40" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carga_horaria2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###" isBlankWhenNull="true">
+					<reportElement uuid="e19c0600-1181-483f-9d80-31c6dc4f0f72" x="355" y="0" width="40" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carga_horaria5}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###" isBlankWhenNull="true">
+					<reportElement uuid="e19c0600-1181-483f-9d80-31c6dc4f0f72" x="275" y="0" width="40" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carga_horaria3}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###" isBlankWhenNull="true">
+					<reportElement uuid="e19c0600-1181-483f-9d80-31c6dc4f0f72" x="395" y="0" width="40" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carga_horaria6}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###" isBlankWhenNull="true">
+					<reportElement uuid="e19c0600-1181-483f-9d80-31c6dc4f0f72" x="515" y="0" width="40" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carga_horaria9}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###" isBlankWhenNull="true">
+					<reportElement uuid="e19c0600-1181-483f-9d80-31c6dc4f0f72" x="195" y="0" width="40" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carga_horaria1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###" isBlankWhenNull="true">
+					<reportElement uuid="e19c0600-1181-483f-9d80-31c6dc4f0f72" x="475" y="0" width="40" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carga_horaria8}]]></textFieldExpression>
+				</textField>
+				<textField pattern="###" isBlankWhenNull="true">
+					<reportElement uuid="e19c0600-1181-483f-9d80-31c6dc4f0f72" x="435" y="0" width="40" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carga_horaria7}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="92ab7d33-d5ad-48cc-acff-c9b75685dc71" x="0" y="0" width="195" height="20"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="7" isBold="false"/>
+						<paragraph lineSpacing="Single" firstLineIndent="1"/>
+					</textElement>
+					<text><![CDATA[Total da Carga Horária Atividades Complementares]]></text>
+				</staticText>
+				<textField pattern="###" isBlankWhenNull="true">
+					<reportElement uuid="e19c0600-1181-483f-9d80-31c6dc4f0f72" x="315" y="0" width="40" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<box>
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="DejaVu Sans" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{carga_horaria4}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="7105e560-82f0-4c6f-9d82-bed6636acd45" stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="13"/>
+				<graphicElement>
+					<pen lineWidth="1.0"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="40c7d2c2-7e4c-4a11-b8b9-870b88bad31a" stretchType="RelativeToBandHeight" x="395" y="0" width="40" height="13" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transferido6} ? ($V{COLUMN_COUNT} <= 11 ? new String("TRANSFERIDO").toString().charAt($V{COLUMN_COUNT}-1) : '-')  : ($F{nota_6serie} == null || $F{nota_6serie} == "" ? '-' : $F{nota_6serie})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="0a15f8d7-1190-41c1-a104-3594a8411d47" stretchType="RelativeToBandHeight" x="515" y="0" width="40" height="13" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transferido9} ? ($V{COLUMN_COUNT} <= 11 ? new String("TRANSFERIDO").toString().charAt($V{COLUMN_COUNT}-1) : '-')  : ($F{nota_9serie} == null || $F{nota_9serie} == "" ? '-' : $F{nota_9serie})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="370b36a9-c901-4c21-8f6d-aab57527a001" stretchType="RelativeToBandHeight" x="235" y="0" width="40" height="13" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transferido2} ? ($V{COLUMN_COUNT} <= 11 ? new String("TRANSFERIDO").toString().charAt($V{COLUMN_COUNT}-1) : '-')  : ($F{nota_2serie} == null || $F{nota_2serie} == "" ? '-' : $F{nota_2serie})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="c183421b-a182-4d18-ad1c-6311344b37b2" stretchType="RelativeToBandHeight" x="435" y="0" width="40" height="13" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transferido7} ? ($V{COLUMN_COUNT} <= 11 ? new String("TRANSFERIDO").toString().charAt($V{COLUMN_COUNT}-1) : '-')  : ($F{nota_7serie} == null || $F{nota_7serie} == "" ? '-' : $F{nota_7serie})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="3e9e57bd-48b3-48cf-a805-1c7707e110fe" stretchType="RelativeToBandHeight" x="475" y="0" width="40" height="13" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transferido8} ? ($V{COLUMN_COUNT} <= 11 ? new String("TRANSFERIDO").toString().charAt($V{COLUMN_COUNT}-1) : '-')  : ($F{nota_8serie} == null || $F{nota_8serie} == "" ? '-' : $F{nota_8serie})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="d838c1cd-587a-4902-9764-adb61c630fe9" stretchType="RelativeToBandHeight" x="195" y="0" width="40" height="13" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transferido1} ? ($V{COLUMN_COUNT} <= 11 ? new String("TRANSFERIDO").toString().charAt($V{COLUMN_COUNT}-1) : '-')  : ($F{nota_1serie} == null || $F{nota_1serie} == "" ? '-' : $F{nota_1serie})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="39a059b6-42bf-4172-87d7-c235f0caf018" stretchType="RelativeToBandHeight" x="315" y="0" width="40" height="13" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transferido4} ? ($V{COLUMN_COUNT} <= 11 ? new String("TRANSFERIDO").toString().charAt($V{COLUMN_COUNT}-1) : '-')  : ($F{nota_4serie} == null || $F{nota_4serie} == "" ? '-' : $F{nota_4serie})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="169bc2f9-f8b5-4668-9141-f76c299fc219" stretchType="RelativeToBandHeight" x="355" y="0" width="40" height="13" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transferido5} ? ($V{COLUMN_COUNT} <= 11 ? new String("TRANSFERIDO").toString().charAt($V{COLUMN_COUNT}-1) : '-')  : ($F{nota_5serie} == null || $F{nota_5serie} == "" ? '-' : $F{nota_5serie})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="c7398cbb-e3a2-4194-b181-81f5318edda3" stretchType="RelativeToBandHeight" x="275" y="0" width="40" height="13" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{transferido3} ? ($V{COLUMN_COUNT} <= 11 ? new String("TRANSFERIDO").toString().charAt($V{COLUMN_COUNT}-1) : '-')  : ($F{nota_3serie} == null || $F{nota_3serie} == "" ? '-' : $F{nota_3serie})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement uuid="53661c8e-23c8-4f4b-8d90-ae4b10cc0c49" stretchType="RelativeToBandHeight" x="0" y="0" width="195" height="13" isRemoveLineWhenBlank="true"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="DejaVu Sans" size="8"/>
+					<paragraph firstLineIndent="1" leftIndent="2" spacingBefore="1" spacingAfter="1"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nm_disciplina} == null ? "-" : $F{nm_disciplina}.toUpperCase()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
