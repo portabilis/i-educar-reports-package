@@ -34,166 +34,101 @@ class StudentsPerClassReport extends Portabilis_Report_ReportCore
     public function getSqlMainReport()
     {
         return "
-
             SELECT
-                matricula_turma.sequencial_fechamento AS sequencial_fechamento,
-                aluno.cod_aluno AS cod_aluno,
-                aluno.aluno_estado_id AS serie_ciasc,
-                educacenso_cod_aluno.cod_aluno_inep AS inep,
-                fcn_upper(pessoa.nome) AS nome_aluno,
-                (
-                    CASE WHEN fisica.sexo = 'M' THEN 'Mas' ELSE 'Fem' END
-                ) AS sexo,
-                to_char(fisica.data_nasc,'dd/mm/yyyy') AS data_nasc,
+                mt.sequencial_fechamento AS sequencial_fechamento,
+                coalesce((case when d.rg ='0' then null else 'RG: ' || d.rg end),'RG: Não informado') as rg,
+				coalesce((case when f.cpf =0 then null else 'CPF: ' || replace(to_char(f.cpf, '000:000:000-00'), ':', '.') end)::text,'CPF: Não informado') as cpf,
+                upper(ma.nome) AS nome_mae,
+				upper(pa.nome) AS nome_pai,
+                a.cod_aluno AS cod_aluno,
+                a.aluno_estado_id AS serie_ciasc,
+                eca.cod_aluno_inep AS inep,
+                fcn_upper(p.nome) AS nome_aluno,
+                fcn_upper(f.nome_social) AS nome_social,
+                t.sgl_turma AS prodesp_gdae,
+                (CASE WHEN f.sexo = 'M' THEN 'Mas' WHEN f.sexo = 'F' THEN 'Fem' END) AS sexo,
+                to_char(f.data_nasc,'dd/mm/yyyy') AS data_nasc,
                 nis_pis_pasep,
-                curso.nm_curso AS nome_curso,
-                turma.nm_turma AS nome_turma,
-                serie.nm_serie AS nome_serie,
-                turma.cod_turma AS cod_turma,
-                escola.cod_escola AS cod_escola,
-                juridica.fantasia AS nm_escola,
-                turma_turno.nome AS periodo,
-                (
-                    SELECT
-                        infra_predio.nm_predio
-                    FROM
-                        pmieducar.infra_predio_comodo,
-                        pmieducar.infra_comodo_funcao,
-                        pmieducar.infra_predio
-                    WHERE TRUE
-                        AND infra_comodo_funcao.cod_infra_comodo_funcao = infra_predio_comodo.ref_cod_infra_comodo_funcao
-                        AND infra_comodo_funcao.ref_cod_escola = escola.cod_escola
-                        AND infra_predio.cod_infra_predio = infra_predio_comodo.ref_cod_infra_predio
-                        AND infra_predio.ref_cod_escola = escola.cod_escola
-                        AND infra_predio.ativo = 1
-                        AND infra_predio_comodo.cod_infra_predio_comodo = turma.ref_cod_infra_predio_comodo
-                ) AS predio,
-                (
-                    SELECT nm_comodo
-                    FROM
-                        pmieducar.infra_predio_comodo,
-                        pmieducar.infra_comodo_funcao,
-                        pmieducar.infra_predio
-                    WHERE TRUE
-                        AND infra_comodo_funcao.cod_infra_comodo_funcao = infra_predio_comodo.ref_cod_infra_comodo_funcao
-                        AND infra_comodo_funcao.ref_cod_escola = escola.cod_escola
-                        AND infra_predio.cod_infra_predio = infra_predio_comodo.ref_cod_infra_predio
-                        AND infra_predio.ref_cod_escola = escola.cod_escola
-                        AND infra_predio.ativo = 1
-                        AND infra_predio_comodo.cod_infra_predio_comodo = turma.ref_cod_infra_predio_comodo
-                ) AS sala,
-                view_situacao.texto_situacao AS situacao,
-                matricula.dependencia
-            FROM
-                pmieducar.instituicao
-            INNER JOIN pmieducar.escola ON TRUE
-                AND escola.ref_cod_instituicao = instituicao.cod_instituicao
-            INNER JOIN pmieducar.escola_ano_letivo ON TRUE
-                AND pmieducar.escola_ano_letivo.ref_cod_escola = pmieducar.escola.cod_escola
-            INNER JOIN pmieducar.escola_curso ON TRUE
-                AND escola_curso.ativo = 1
-                AND escola_curso.ref_cod_escola = escola.cod_escola
-            INNER JOIN pmieducar.curso ON TRUE
-                AND curso.cod_curso = escola_curso.ref_cod_curso
-                AND curso.ativo = 1
-            INNER JOIN pmieducar.escola_serie ON TRUE
-                AND escola_serie.ativo = 1
-                AND escola_serie.ref_cod_escola = escola.cod_escola
-            INNER JOIN pmieducar.serie ON TRUE
-                AND serie.cod_serie = escola_serie.ref_cod_serie
-                AND serie.ativo = 1
-            INNER JOIN pmieducar.turma ON TRUE
-                AND turma.ref_ref_cod_escola = escola.cod_escola
-                AND turma.ativo = 1
-            INNER JOIN pmieducar.matricula_turma ON TRUE
-                AND matricula_turma.ref_cod_turma = turma.cod_turma
-            INNER JOIN pmieducar.matricula ON TRUE
-                AND matricula.cod_matricula = matricula_turma.ref_cod_matricula
-                AND matricula.ref_cod_curso = curso.cod_curso
-                AND matricula.ref_ref_cod_serie = serie.cod_serie
-                AND matricula.ativo = 1
-            INNER JOIN relatorio.view_situacao ON TRUE
-                AND view_situacao.cod_matricula = matricula.cod_matricula
-                AND view_situacao.cod_turma = turma.cod_turma
-                AND view_situacao.cod_situacao = '{$this->args['situacao']}'
-                AND matricula_turma.sequencial = view_situacao.sequencial
-            LEFT JOIN pmieducar.turma_turno ON TRUE
-                AND turma_turno.id = turma.turma_turno_id
-                AND turma.cod_turma = matricula_turma.ref_cod_turma
-            INNER JOIN pmieducar.aluno ON TRUE
-                AND pmieducar.matricula.ref_cod_aluno = pmieducar.aluno.cod_aluno
-            INNER JOIN cadastro.fisica ON TRUE
-                AND cadastro.fisica.idpes = pmieducar.aluno.ref_idpes
-            INNER JOIN cadastro.pessoa ON TRUE
-                AND cadastro.pessoa.idpes = cadastro.fisica.idpes
-            LEFT JOIN cadastro.juridica ON TRUE
-                AND juridica.idpes = escola.ref_idpes
-            LEFT JOIN cadastro.documento ON TRUE
-                AND documento.idpes = fisica.idpes
-            LEFT JOIN modules.educacenso_cod_aluno ON TRUE
-                AND educacenso_cod_aluno.cod_aluno = aluno.cod_aluno
-            WHERE TRUE
-                AND pmieducar.instituicao.cod_instituicao = '{$this->args['instituicao']}'
-                AND pmieducar.escola_ano_letivo.ano = '{$this->args['ano']}'
-                AND pmieducar.matricula.ano = pmieducar.escola_ano_letivo.ano
-                AND
-                (
-                    SELECT CASE WHEN '{$this->args['escola']}' = 0 THEN
-                        TRUE
-                    ELSE
-                        escola.cod_escola = '{$this->args['escola']}'
-                    END
-                )
-                AND
-                (
-                    SELECT CASE WHEN '{$this->args['curso']}' = 0 THEN
-                        TRUE
-                    ELSE
-                        pmieducar.escola_curso.ref_cod_curso = '{$this->args['curso']}'
-                    END
-                )
-                AND
-                (
-                    SELECT CASE WHEN '{$this->args['serie']}' = 0 THEN
-                        TRUE
-                    ELSE
-                        pmieducar.serie.cod_serie = '{$this->args['serie']}'
-                    END
-                )
-                AND
-                (
-                    SELECT CASE WHEN '{$this->args['turma']}' = 0 THEN
-                        TRUE
-                    ELSE
-                        pmieducar.turma.cod_turma = '{$this->args['turma']}'
-                    END
-                )
-                AND
-                (
-                    CASE WHEN '{$this->args['dependencia']}' = 1 THEN
-                        matricula.dependencia = TRUE
-                    WHEN '{$this->args['dependencia']}' = 2 THEN
-                        matricula.dependencia = FALSE
-                    ELSE
-                        TRUE
+                c.nm_curso AS nome_curso,
+                t.nm_turma AS nome_turma,
+                s.nm_serie AS nome_serie,
+                s.cod_serie AS cod_serie,
+                t.cod_turma AS cod_turma,
+                tt.nome AS periodo,
+                e.cod_escola AS cod_escola,
+                j.fantasia AS nm_escola,
+                ct.name AS naturalidade,
+                st.abbreviation AS uf_naturalidade,
+                vsr.texto_situacao AS situacao,
+                m.dependencia,
+                CASE m.modalidade_ensino
+                    WHEN 0 THEN 'Semipresencial'::varchar
+                    WHEN 1 THEN 'EAD'::varchar
+                    WHEN 2 THEN 'Off-line'::varchar
+                    ELSE 'Presencial'::varchar
+                END AS modalidade_ensino,
+                m.modalidade_ensino AS cod_modalidade_ensino
+            FROM pmieducar.matricula m
+            JOIN pmieducar.matricula_turma mt ON mt.ref_cod_matricula = m.cod_matricula
+            JOIN relatorio.view_situacao_relatorios vsr ON true
+                AND vsr.cod_matricula = m.cod_matricula
+                AND vsr.cod_turma = mt.ref_cod_turma
+                AND vsr.sequencial = mt.sequencial
+                AND vsr.cod_situacao = {$this->args['situacao']}
+            JOIN pmieducar.turma t ON true
+                AND t.cod_turma = mt.ref_cod_turma
+                AND t.ativo = 1
+            JOIN pmieducar.turma_turno tt ON tt.id = t.turma_turno_id
+            JOIN pmieducar.serie s ON true
+                AND s.cod_serie = m.ref_ref_cod_serie
+                AND s.ativo = 1
+            JOIN pmieducar.curso c ON true
+                AND c.cod_curso = m.ref_cod_curso
+                AND c.ativo = 1
+            JOIN pmieducar.escola e ON true
+                AND e.cod_escola = m.ref_ref_cod_escola
+                AND e.ativo = 1
+            JOIN pmieducar.instituicao i ON true
+                AND i.cod_instituicao = e.ref_cod_instituicao
+                AND i.ativo = 1
+            JOIN pmieducar.aluno a ON true
+                AND a.cod_aluno = m.ref_cod_aluno
+                AND a.ativo = 1
+            LEFT JOIN modules.educacenso_cod_aluno eca ON eca.cod_aluno = a.cod_aluno
+            JOIN cadastro.pessoa p ON p.idpes = a.ref_idpes
+            JOIN cadastro.fisica f ON f.idpes = a.ref_idpes
+			LEFT JOIN cadastro.pessoa ma ON ma.idpes = f.idpes_mae
+			LEFT JOIN cadastro.pessoa pa ON pa.idpes = f.idpes_pai
+            LEFT JOIN public.cities ct ON ct.id = f.idmun_nascimento::integer
+            LEFT JOIN public.states st ON st.id = ct.state_id
+            LEFT JOIN cadastro.juridica j ON (j.idpes = e.ref_idpes)
+            LEFT JOIN cadastro.pessoa pj ON (pj.idpes = j.idpes)
+            LEFT JOIN cadastro.documento d ON (d.idpes = f.idpes)
+            WHERE true
+                AND i.cod_instituicao = {$this->args['instituicao']}
+                AND m.ano = {$this->args['ano']}
+                AND CASE WHEN {$this->args['escola']} = 0 THEN TRUE ELSE e.cod_escola = {$this->args['escola']} END
+                AND CASE WHEN {$this->args['curso']} = 0 THEN TRUE ELSE c.cod_curso = {$this->args['curso']} END
+                AND CASE WHEN {$this->args['serie']} = 0 THEN TRUE ELSE s.cod_serie = {$this->args['serie']} END
+                AND CASE WHEN {$this->args['turma']}= 0 THEN TRUE ELSE t.cod_turma = {$this->args['turma']} END
+                AND (CASE WHEN '{$this->args['data_inicial']}' = '' THEN true ELSE  m.data_matricula::text >= '{$this->args['data_inicial']}' END)
+                AND (CASE WHEN '{$this->args['data_final']}' = '' THEN true ELSE  m.data_matricula::text <= '{$this->args['data_final']}' END)
+                AND (
+                    CASE
+                        WHEN {$this->args['dependencia']} = 1 THEN m.dependencia = TRUE
+                        WHEN {$this->args['dependencia']} = 2 THEN m.dependencia = FALSE
+                        ELSE true
                     END
                 )
             ORDER BY
-                nm_escola,
-                nome_curso,
-                nome_serie,
-                nome_turma,
-                cod_turma,
-                (
-                    CASE WHEN matricula.dependencia THEN
-                        1
-                    ELSE
-                        0
-                    END
-                ),
-                sequencial_fechamento,
-                nome_aluno
-
+                j.fantasia,
+				c.nm_curso,
+				s.nm_serie,
+				t.nm_turma,
+				t.cod_turma,
+				(CASE WHEN m.dependencia THEN 1 ELSE 0 END),
+				mt.sequencial_fechamento,
+				(COALESCE(f.nome_social, p.nome));
         ";
     }
 }
