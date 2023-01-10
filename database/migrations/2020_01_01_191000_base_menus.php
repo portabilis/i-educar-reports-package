@@ -117,48 +117,6 @@ class BaseMenus extends Migration
             'order' => 10,
             'parent_old' => 21127,
         ]);
-        if ($menu = Menu::query()->where('old', Process::MENU_LIBRARY)->first()) {
-            Menu::query()->updateOrCreate([
-                'old' => 999614,
-            ], [
-                'parent_id' => $menu->getKey(),
-                'title' => 'Relatórios',
-                'order' => 3,
-                'parent_old' => 16,
-            ]);
-            Menu::query()->updateOrCreate([
-                'old' => 999831,
-            ], [
-                'parent_id' => $menu->getKey(),
-                'title' => 'Documentos',
-                'order' => 4,
-                'parent_old' => 16,
-            ]);
-        }
-        Menu::query()->updateOrCreate([
-            'old' => 999905,
-        ], [
-            'parent_id' => Menu::query()->where('old', 999614)->firstOrFail()->getKey(),
-            'title' => 'Cadastrais',
-            'order' => 1,
-            'parent_old' => 999614,
-        ]);
-        Menu::query()->updateOrCreate([
-            'old' => 999906,
-        ], [
-            'parent_id' => Menu::query()->where('old', 999614)->firstOrFail()->getKey(),
-            'title' => 'Movimentações',
-            'order' => 2,
-            'parent_old' => 999614,
-        ]);
-        Menu::query()->updateOrCreate([
-            'old' => 999907,
-        ], [
-            'parent_id' => Menu::query()->where('old', 999831)->firstOrFail()->getKey(),
-            'title' => 'Comprovantes',
-            'order' => 3,
-            'parent_old' => 999831,
-        ]);
         if ($menu = Menu::query()->where('old', Process::MENU_TRANSPORT)->first()) {
             Menu::query()->updateOrCreate([
                 'old' => 20712,
@@ -215,11 +173,6 @@ class BaseMenus extends Migration
         Menu::query()->where('old', 999913)->delete();
         Menu::query()->where('old', 9998847)->delete();
         Menu::query()->where('old', 20712)->delete();
-        Menu::query()->where('old', 999907)->delete();
-        Menu::query()->where('old', 999906)->delete();
-        Menu::query()->where('old', 999905)->delete();
-        Menu::query()->where('old', 999831)->delete();
-        Menu::query()->where('old', 999614)->delete();
         Menu::query()->where('old', 999500)->delete();
         Menu::query()->where('old', 999460)->delete();
         Menu::query()->where('old', 999861)->delete();
