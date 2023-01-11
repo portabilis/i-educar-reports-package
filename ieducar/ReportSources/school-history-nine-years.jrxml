@@ -295,7 +295,7 @@
 	<group name="matricula_transferido" isStartNewColumn="true" isStartNewPage="true" keepTogether="true">
 		<groupExpression><![CDATA[$F{matricula_transferido}]]></groupExpression>
 		<groupFooter>
-			<band height="100">
+			<band height="100" splitType="Prevent">
 				<subreport isUsingCache="false">
 					<reportElement uuid="a81eaa13-77a3-4681-b094-de76e02eac9e" x="0" y="0" width="555" height="100" isPrintWhenDetailOverflows="true"/>
 					<subreportParameter name="source">
