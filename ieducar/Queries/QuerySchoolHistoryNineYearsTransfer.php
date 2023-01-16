@@ -129,7 +129,8 @@ class QuerySchoolHistoryNineYearsTransfer extends QueryBridge
                            (SELECT count(*)
                             FROM pmieducar.historico_escolar he
                             WHERE he.ref_cod_aluno = aluno.cod_aluno
-                              AND he.ativo = 1) = '1') AS nome_serie_aux_primeiro_ano
+                              AND he.ativo = 1) = '1') AS nome_serie_aux_primeiro_ano,
+                    aluno.cod_aluno AS cod_aluno
                     FROM pmieducar.aluno
                     LEFT JOIN pmieducar.matricula ON (matricula.cod_matricula IN ($P!{matriculas_transferido}))
                     LEFT JOIN pmieducar.serie ON (serie.cod_serie = matricula.ref_ref_cod_serie)

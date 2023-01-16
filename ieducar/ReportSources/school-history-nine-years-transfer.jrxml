@@ -19,7 +19,7 @@
 	<parameter name="ano_transferido" class="java.lang.Integer"/>
 	<parameter name="matricula_transferido" class="java.lang.Integer"/>
 	<queryString language="json">
-		<![CDATA[registration_transfer(matricula == $P{matricula_transferido})]]>
+		<![CDATA[registration_transfer(cod_aluno == $P{aluno})]]>
 	</queryString>
 	<field name="matricula" class="java.lang.Integer"/>
 	<field name="nome_serie" class="java.lang.String"/>
@@ -40,8 +40,9 @@
 	<field name="nome_disciplina" class="java.lang.String"/>
 	<field name="nome_serie_aux" class="java.lang.String"/>
 	<field name="nome_serie_aux_primeiro_ano" class="java.lang.String"/>
+	<field name="cod_aluno" class="java.lang.Integer"/>
 	<group name="matricula" isStartNewColumn="true" isStartNewPage="true">
-		<groupExpression><![CDATA[$F{matricula}]]></groupExpression>
+		<groupExpression><![CDATA[$F{cod_aluno}]]></groupExpression>
 		<groupHeader>
 			<band height="97">
 				<printWhenExpression><![CDATA[$P{situacao_atual} == '4' || $P{situacao_atual} == '3' && $P{matricula_atual_ano} == $P{ano_transferido}]]></printWhenExpression>

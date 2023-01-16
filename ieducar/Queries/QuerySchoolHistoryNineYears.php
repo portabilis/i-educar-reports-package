@@ -163,7 +163,7 @@ class QuerySchoolHistoryNineYears extends QueryBridge
                            FROM relatorio.view_historico_9anos vh9
                           GROUP BY cod_aluno) max_anos ON max_anos.cod_aluno = view_historico_9anos.cod_aluno
             AND CASE WHEN $P{turma} > 0 THEN aluno.cod_aluno IN ($P!{alunos}) ELSE aluno.cod_aluno = $P{aluno} END
-            ORDER BY ordenamento;
+            ORDER BY nome_aluno, cod_aluno, ordenamento;
 SQL;
     }
 }

@@ -293,7 +293,7 @@
 		<variableExpression><![CDATA[$F{carga_horaria9}]]></variableExpression>
 	</variable>
 	<group name="matricula_transferido" isStartNewColumn="true" isStartNewPage="true" keepTogether="true">
-		<groupExpression><![CDATA[$F{matricula_transferido}]]></groupExpression>
+		<groupExpression><![CDATA[$F{cod_aluno}]]></groupExpression>
 		<groupFooter>
 			<band height="100" splitType="Prevent">
 				<subreport isUsingCache="false">
@@ -301,11 +301,11 @@
 					<subreportParameter name="source">
 						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 					</subreportParameter>
+					<subreportParameter name="aluno">
+						<subreportParameterExpression><![CDATA[$F{cod_aluno}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="situacao_atual">
 						<subreportParameterExpression><![CDATA[$F{situacao_atual}]]></subreportParameterExpression>
-					</subreportParameter>
-					<subreportParameter name="aluno">
-						<subreportParameterExpression><![CDATA[$P{aluno}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="ano_transferido">
 						<subreportParameterExpression><![CDATA[$F{ano_transferido}]]></subreportParameterExpression>
@@ -313,11 +313,11 @@
 					<subreportParameter name="matricula_atual_ano">
 						<subreportParameterExpression><![CDATA[$F{matricula_atual_ano}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter name="matricula_transferido">
-						<subreportParameterExpression><![CDATA[$F{matricula_transferido}]]></subreportParameterExpression>
-					</subreportParameter>
 					<subreportParameter name="observacao_all">
 						<subreportParameterExpression><![CDATA[$F{observacao_all}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="matricula_transferido">
+						<subreportParameterExpression><![CDATA[$F{matricula_transferido}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "school-history-nine-years-transfer.jasper"]]></subreportExpression>
 				</subreport>
@@ -905,7 +905,7 @@
 						<subreportParameterExpression><![CDATA[$P{source}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportParameter name="aluno">
-						<subreportParameterExpression><![CDATA[$P{aluno}]]></subreportParameterExpression>
+						<subreportParameterExpression><![CDATA[$F{cod_aluno}]]></subreportParameterExpression>
 					</subreportParameter>
 					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "school-history-nine-years-extracurricular.jasper"]]></subreportExpression>
 				</subreport>
