@@ -123,7 +123,7 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 endereco_pessoa.cep AS cep,
                 endereco_pessoa.numero AS numero_casa,
                 translate(upper(pessoa.nome),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS nm_servidor,
-                translate(upper(v_pessoa_fisica.email),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS email,
+                translate(upper(pessoa.email),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS email,
                 translate(upper(estado_civil.descricao),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS estado_civil,
                 translate(upper(religions.name),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS religiao,
                 translate(upper(documento.sigla_uf_exp_rg),'áéíóúýàèìòùãõâêîôûäëïöüç','ÁÉÍÓÚÝÀÈÌÒÙÃÕÂÊÎÔÛÄËÏÖÜÇ') AS sigla_uf_exp_rg,
@@ -241,8 +241,6 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
                 AND servidor_alocacao.ref_cod_servidor = servidor.cod_servidor
             LEFT JOIN cadastro.fisica_foto ON TRUE
                 AND fisica_foto.idpes = pessoa.idpes
-            LEFT JOIN cadastro.v_pessoa_fisica ON TRUE
-                AND v_pessoa_fisica.idpes = pessoa.idpes
             WHERE TRUE
                 -- AND servidor_alocacao.ano = {$ano}
                 -- AND servidor.ref_cod_instituicao = {$instituicao}
