@@ -67,6 +67,7 @@
     <field name="fone" class="java.lang.String"/>
     <field name="foto" class="java.lang.String"/>
     <field name="existe_foto" class="java.lang.Integer"/>
+    <field name="lei_estudante" class="java.lang.String"/>
     <variable name="tot_alunos" class="java.lang.Integer" calculation="Count">
         <variableExpression><![CDATA[$F{cod_aluno}]]></variableExpression>
     </variable>
@@ -343,7 +344,7 @@
                 <textElement markup="none">
                     <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
-                <textFieldExpression><![CDATA[$P{leiestudante}]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{lei_estudante}]]></textFieldExpression>
             </textField>
             <image>
                 <reportElement uuid="877cc42a-f41c-4f9f-bdd1-8dc2f8b7ae49" x="284" y="15" width="22" height="22"/>

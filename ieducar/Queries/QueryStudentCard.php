@@ -34,7 +34,12 @@ class QueryStudentCard extends QueryBridge
                     WHEN 5 THEN 'green'
                     WHEN 6 THEN 'red'
                     ELSE 'blue'
-                END AS cor_fundo
+                END AS cor_fundo,
+                (
+                    SELECT value
+                    FROM settings
+                    WHERE key = 'legacy.report.lei_estudante'
+                ) AS lei_estudante
             FROM pmieducar.instituicao
             INNER JOIN pmieducar.escola ON (escola.ref_cod_instituicao = instituicao.cod_instituicao)
             INNER JOIN pmieducar.escola_ano_letivo ON (escola_ano_letivo.ref_cod_escola = escola.cod_escola)
