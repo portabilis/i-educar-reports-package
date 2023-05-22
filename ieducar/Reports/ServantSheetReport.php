@@ -41,6 +41,13 @@ class ServantSheetReport extends Portabilis_Report_ReportCore
             $ids[] = $servant['cod_servidor'];
         }
 
+        if ($this->args['branco'] == 1) {
+            return [
+                'main' => $servants,
+                'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),
+            ];
+        }
+
         return [
             'main' => $servants,
             'header' => Portabilis_Utils_Database::fetchPreparedQuery($queryHeaderReport),

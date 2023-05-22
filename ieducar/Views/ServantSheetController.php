@@ -51,7 +51,7 @@ class ServantSheetController extends Portabilis_Controller_ReportCoreController
             $this->report->addArg('servidor', (int) $this->getRequest()->servidor_id);
         }
 
-        $this->report->addArg('branco', $branco);
+        $this->report->addArg('branco', (int) $branco);
     }
 
     /**
