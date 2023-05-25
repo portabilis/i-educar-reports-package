@@ -17,8 +17,8 @@ Para adicionar o pacote de relatórios execute estes comandos na raiz do projeto
 ```bash
 git clone https://github.com/portabilis/i-educar-reports-package.git packages/portabilis/i-educar-reports-package
 
-# (Docker) docker-compose exec php composer plug-and-play:update
-composer plug-and-play:update
+# (Docker) docker-compose exec php composer plug-and-play
+composer plug-and-play
 
 # (Docker) docker-compose exec php artisan community:reports:install
 php artisan community:reports:install
