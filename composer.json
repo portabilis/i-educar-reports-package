@@ -6,6 +6,9 @@
             "email": "contato@portabilis.com.br"
         }
     ],
+    "require": {
+        "geekcom/phpjasper": "^3.2.0"
+    },
     "autoload": {
         "classmap": [
             "ieducar"
