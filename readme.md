@@ -20,11 +20,8 @@ git clone https://github.com/portabilis/i-educar-reports-package.git packages/po
 # (Docker) docker-compose exec php composer plug-and-play:update
 composer plug-and-play:update
 
-# (Docker) docker-compose exec php artisan community:reports:link
-php artisan community:reports:link
-
-# (Docker) docker-compose exec php artisan reports:install
-php artisan reports:install
+# (Docker) docker-compose exec php artisan community:reports:install
+php artisan community:reports:install
 ```
 
 ## Perguntas frequentes (FAQ)
