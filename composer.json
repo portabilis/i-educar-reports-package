@@ -7,7 +7,7 @@
         }
     ],
     "require": {
-        "geekcom/phpjasper": "^3.2.0"
+        "cossou/jasperphp": "^2.8"
     },
     "autoload": {
         "classmap": [
