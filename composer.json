@@ -2,8 +2,9 @@
     "name": "portabilis/i-educar-reports-package",
     "authors": [
         {
-            "name": "Portabilis Tecnologia",
-            "email": "contato@portabilis.com.br"
+            "name": "Portábilis",
+            "email": "contato@portabilis.com.br",
+            "homepage": "https://portabilis.com.br"
         }
     ],
     "require": {
