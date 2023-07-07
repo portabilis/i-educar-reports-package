@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace iEducar\Community\Reports\Commands;
 
 use Illuminate\Console\Command;
 

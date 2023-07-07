@@ -2,6 +2,8 @@
 
 namespace iEducar\Community\Reports\Providers;
 
+use iEducar\Community\Reports\Commands\CommunityReportsCompileCommand;
+use iEducar\Community\Reports\Commands\CommunityReportsInstallCommand;
 use iEducar\Community\Reports\Commands\CommunityReportsLinkCommand;
 use iEducar\Reports\Contracts\TeacherReportCard;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +20,8 @@ class ReportsServiceProvider extends ServiceProvider
             $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
             $this->commands([
+                CommunityReportsCompileCommand::class,
+                CommunityReportsInstallCommand::class,
                 CommunityReportsLinkCommand::class,
             ]);
 
