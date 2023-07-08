@@ -117,24 +117,6 @@ class BaseMenus extends Migration
             'order' => 10,
             'parent_old' => 21127,
         ]);
-        if ($menu = Menu::query()->where('old', Process::MENU_TRANSPORT)->first()) {
-            Menu::query()->updateOrCreate([
-                'old' => 20712,
-            ], [
-                'parent_id' => $menu->getKey(),
-                'title' => 'Relatórios',
-                'order' => 3,
-                'parent_old' => 17,
-            ]);
-        }
-        Menu::query()->updateOrCreate([
-            'old' => 9998847,
-        ], [
-            'parent_id' => Menu::query()->where('old', 20712)->firstOrFail()->getKey(),
-            'title' => 'Cadastrais',
-            'order' => 1,
-            'parent_old' => 20712,
-        ]);
         Menu::query()->updateOrCreate([
             'old' => 999913,
         ], [
@@ -171,8 +153,6 @@ class BaseMenus extends Migration
         Menu::query()->where('old', 999914)->delete();
         Menu::query()->where('old', 999916)->delete();
         Menu::query()->where('old', 999913)->delete();
-        Menu::query()->where('old', 9998847)->delete();
-        Menu::query()->where('old', 20712)->delete();
         Menu::query()->where('old', 999500)->delete();
         Menu::query()->where('old', 999460)->delete();
         Menu::query()->where('old', 999861)->delete();
