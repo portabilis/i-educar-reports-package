@@ -30,10 +30,10 @@ class CommunityReportsInstallCommand extends Command
         $compile = $this->option('no-compile') === false;
         $migrate = $this->option('no-migrate') === false;
 
+        $this->call('community:reports:link');
+
         passthru('chmod +x vendor/cossou/jasperphp/src/JasperStarter/bin/jasperstarter');
         passthru('chmod 777 ieducar/modules/Reports/ReportSources');
-
-        $this->call('community:reports:link');
 
         if ($compile) {
             $this->call('community:reports:compile');
