@@ -59,6 +59,6 @@ class CommunityReportsCompileCommand extends Command
 
         $jasperStarter = $this->getJasperStarter();
 
-        passthru('cd ' . $jasperFiles . '; for line in $(ls -a | sort | grep .jrxml | sed -e "s/\.jrxml//"); do $(' . $jasperStarter . ' cp $line.jrxml -o $line); done');
+        passthru('cd ' . $jasperFiles . '; for line in $(ls -a | sort | grep .jrxml | sed -e "s/\.jrxml//"); do $(' . $jasperStarter . ' cp $line.jrxml -o $line) && echo "  $line"; done');
     }
 }
