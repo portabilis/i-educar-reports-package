@@ -26,13 +26,8 @@ Instale o pacote:
 
 ```bash
 # (Docker) docker-compose exec php composer plug-and-play
-composer plug-and-play
-```
-
-Execute as migrações:
-
-```bash
 # (Docker) docker-compose exec php artisan community:reports:install
+composer plug-and-play
 php artisan community:reports:install
 ```
 
