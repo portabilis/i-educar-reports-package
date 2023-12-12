@@ -1,7 +1,5 @@
 <?php
 
-use App\Services\SchoolHistory\Objects\SchoolHistory;
-use App\Services\SchoolHistory\SchoolHistoryService;
 use App\Models\LegacyRegistration;
 use iEducar\Reports\BaseModifier;
 
