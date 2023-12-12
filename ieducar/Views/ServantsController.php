@@ -45,13 +45,12 @@ class ServantsController extends Portabilis_Controller_ReportCoreController
         $this->inputsHelper()->dynamic('escola', ['required' => false]);
         $this->inputsHelper()->dynamic('vinculo', ['required' => false]);
 
-        $obj_funcoes = new clsPmieducarFuncao();
-        $lista_funcoes = $obj_funcoes->lista();
+        $lista_funcoes = DB::table('pmieducar.funcao')->select('cod_funcao', 'nm_funcao')->where('ativo', 1)->get()->toArray();
         $opcoes = ['' => 'Selecione'];
-
+        
         if ($lista_funcoes) {
             foreach ($lista_funcoes as $funcao) {
-                $opcoes[$funcao['cod_funcao']] = $funcao['nm_funcao'];
+                $opcoes[$funcao->cod_funcao] = $funcao->nm_funcao;
             }
         }
 
