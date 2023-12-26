@@ -22,12 +22,17 @@ Clone este repositório a partir da raiz do i-Educar:
 git clone git@github.com:portabilis/i-educar-reports-package.git packages/portabilis/i-educar-reports-package
 ```
 
-Instale o pacote:
+Ative o pacote via plug and play:
 
 ```bash
 # (Docker) docker-compose exec php composer plug-and-play
-# (Docker) docker-compose exec php artisan community:reports:install
 composer plug-and-play
+```
+
+Instale o pacote:
+
+```bash
+# (Docker) docker-compose exec php artisan community:reports:install
 php artisan community:reports:install
 ```
 
