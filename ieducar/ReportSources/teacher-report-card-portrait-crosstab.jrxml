@@ -369,7 +369,7 @@
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans" size="8" isBold="false"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure} == null ? "" : ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media})))]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure} == null ? "" : ($V{media} == null ? "" : ($V{media}))]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
 								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="0" y="0" width="29" height="16"/>
@@ -744,7 +744,7 @@
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans" size="8" isBold="false"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure} == null ? "" : ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media})))]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure} == null ? "" : ($V{media} == null ? "" : ($V{media}))]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
 								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="0" y="0" width="29" height="16"/>
@@ -1119,7 +1119,7 @@
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans" size="8" isBold="false"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure} == null ? "" : ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media})))]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure} == null ? "" : ($V{media} == null ? "" : ($V{media}))]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
 								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="0" y="0" width="29" height="16"/>
@@ -1494,7 +1494,7 @@
 								<textElement verticalAlignment="Middle">
 									<font fontName="DejaVu Sans" size="8" isBold="false"/>
 								</textElement>
-								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure} == null ? "" : ($V{media} == null ? "" : new DecimalFormat("##0.0").format(Double.parseDouble($V{media})))]]></textFieldExpression>
+								<textFieldExpression><![CDATA[$V{nota_arredondada_etapaMeasure} == null ? "" : ($V{media} == null ? "" : ($V{media}))]]></textFieldExpression>
 							</textField>
 							<textField isBlankWhenNull="true">
 								<reportElement uuid="136f4f4f-ca4b-467d-9384-043f183414d9" style="Crosstab Data Text" x="0" y="0" width="29" height="16"/>
