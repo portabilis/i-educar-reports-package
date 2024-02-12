@@ -471,10 +471,7 @@ SELECT (cod_aluno), public.fcn_upper(nm_instituicao) AS nome_instituicao,
    INNER JOIN pmieducar.matricula m ON (m.ref_ref_cod_serie = serie.cod_serie)
    INNER JOIN pmieducar.matricula_turma mt ON (mt.ref_cod_matricula = m.cod_matricula)
    INNER JOIN pmieducar.turma t ON (mt.ref_cod_turma = t.cod_turma)
-   INNER JOIN pmieducar.turma_tipo tipo ON (tt.id = t.turma_turno_id)
    WHERE m.ref_cod_aluno = aluno.cod_aluno
-     AND tipo.nm_tipo = turma_tipo.nm_tipo
-     AND m.ref_cod_aluno = aluno.cod_aluno
      AND m.aprovado = 1
    GROUP BY m.ano
    ORDER BY m.ano DESC LIMIT 1) AS ultima_matricula_serie,
