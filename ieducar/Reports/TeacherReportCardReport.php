@@ -235,4 +235,11 @@ class TeacherReportCardReport extends Portabilis_Report_ReportCore
         ];
     }
 
+    public function getOptions(): array
+    {
+        return [
+            1 => _cl(key: 'report.boletim_professor.modelo_padrao')
+        ];
+    }
+
 }
