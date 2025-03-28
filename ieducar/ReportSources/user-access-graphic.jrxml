@@ -83,7 +83,7 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font fontName="DejaVu Sans" size="8" isBold="true"/>
                 </textElement>
-                <text><![CDATA[Relação de acessos ao Sistema i-Educar]]></text>
+                <text><![CDATA[Relação de acessos ao Sistema Ensinus]]></text>
             </staticText>
             <staticText>
                 <reportElement uuid="fedf76e2-bb68-4dc3-881f-8ac52e51c7b9" x="0" y="22" width="445" height="45"/>

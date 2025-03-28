@@ -629,7 +629,7 @@
 					<textElement>
 						<font fontName="DejaVu Sans" size="8" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA["CÓDIGO I-EDUCAR: "+$F{cod_aluno}]]></textFieldExpression>
+					<textFieldExpression><![CDATA["CÓDIGO ENSINUS: "+$F{cod_aluno}]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement uuid="201cc03d-25eb-4016-a8e1-4cf80d1e7643" mode="Opaque" x="355" y="145" width="40" height="16" backcolor="#D2D2D2"/>

@@ -5,7 +5,7 @@ class TransportationUsersController extends Portabilis_Controller_ReportCoreCont
     /**
      * @var string
      */
-    protected $_titulo = 'i-Educar - Relação Usuários de Transporte';
+    protected $_titulo = 'Ensinus - Relação Usuários de Transporte';
 
     /**
      * @var int

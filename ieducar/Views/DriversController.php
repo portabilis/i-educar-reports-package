@@ -5,7 +5,7 @@ class DriversController extends Portabilis_Controller_ReportCoreController
     /**
      * @var string
      */
-    protected $_titulo = 'i-Educar - Motoristas de Transporte';
+    protected $_titulo = 'Ensinus - Motoristas de Transporte';
 
     /**
      * @var int

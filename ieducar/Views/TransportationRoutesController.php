@@ -5,7 +5,7 @@ class TransportationRoutesController extends Portabilis_Controller_ReportCoreCon
     /**
      * @var string
      */
-    protected $_titulo = 'i-Educar - Rotas de Transporte';
+    protected $_titulo = 'Ensinus - Rotas de Transporte';
 
     /**
      * @var int
