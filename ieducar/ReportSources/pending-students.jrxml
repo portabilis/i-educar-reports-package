@@ -210,7 +210,7 @@
                 <textElement textAlignment="Center">
                     <font fontName="DejaVu Sans" size="7"/>
                 </textElement>
-                <text><![CDATA[Portabilis Tecnologia ©]]></text>
+                <text><![CDATA[]]></text>
             </staticText>
             <staticText>
                 <reportElement uuid="578a3b03-e89a-40f7-a4b9-5318bee25adb" x="0" y="2" width="55" height="11"/>

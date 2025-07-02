@@ -414,7 +414,7 @@
                 <textElement textAlignment="Center">
                     <font fontName="DejaVu Sans" size="7"/>
                 </textElement>
-                <text><![CDATA[Portabilis Tecnologia ©]]></text>
+                <text><![CDATA[]]></text>
             </staticText>
             <textField>
                 <reportElement uuid="be1b76f3-80e3-4304-b028-c15cfacebac1" x="702" y="2" width="87" height="11"/>
