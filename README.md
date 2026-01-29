@@ -43,6 +43,10 @@ Publique os assets:
 php artisan vendor:publish --tag=reports-assets --ansi
 ```
 
+## Desinstalação
+
+Para remover este pacote, consulte o guia: [UNINSTALL.md](UNINSTALL.md)
+
 ## Perguntas frequentes (FAQ)
 
 Algumas perguntas aparecem recorrentemente. Olhe primeiro por aqui:
